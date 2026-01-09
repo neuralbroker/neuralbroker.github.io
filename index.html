@@ -167,6 +167,35 @@
             border-bottom: 2px solid var(--header-border);
             margin-bottom: 20px;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .theme-toggle {
+            position: relative;
+            top: auto;
+            right: auto;
+            background: var(--nav-item-bg);
+            border: 1px solid var(--nav-item-border);
+            padding: 8px 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 11pt;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            color: var(--text-color);
         }
 
         header h1 {
@@ -472,30 +501,6 @@
         }
 
         @media screen and (max-width: 768px) {
-            body {
-                font-size: 13pt;
-            }
-
-            .container {
-                padding: 15px;
-            }
-
-            header h1 {
-                font-size: 18pt;
-            }
-
-            header .subtitle {
-                font-size: 11pt;
-            }
-
-            .theme-toggle {
-                top: 10px;
-                right: 10px;
-                padding: 6px 12px;
-                font-size: 10pt;
-            }
-
-            nav {
                 gap: 5px;
                 margin: 15px 0;
             }
@@ -542,14 +547,6 @@
 
             header .subtitle {
                 font-size: 10pt;
-            }
-
-            .theme-toggle {
-                position: relative;
-                top: 0;
-                right: 0;
-                margin: 10px auto;
-                width: fit-content;
             }
 
             nav {
@@ -658,11 +655,13 @@
 
     <div class="container">
         <header>
-            <button class="theme-toggle" onclick="toggleTheme()">
-                <span class="icon" id="themeIcon">&#9728;</span>
-                <span id="themeText">Light</span>
-            </button>
-            <h1>Abdulla Sajad</h1>
+            <div class="header-content">
+                <h1>Abdulla Sajad</h1>
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <span class="icon" id="themeIcon">&#9728;</span>
+                    <span id="themeText">Light</span>
+                </button>
+            </div>
             <p class="title">@sajadkoder</p>
             <p class="subtitle">Computer Science Student &middot; Software Engineer</p>
             <p class="subtitle">India</p>
