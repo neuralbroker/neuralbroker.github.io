@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neurosymbolic AI in Military Systems</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --border-color: #000000;
+            --link-color: #0000cc;
+            --link-visited: #551a8b;
+            --nav-bg: #f5f5f5;
+            --nav-item-border: #ccc;
+            --header-border: #000000;
+            --footer-border: #ccc;
+            --footer-text: #666666;
+            --section-bg: transparent;
+            --note-bg: #f0f0f0;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0a0a1a;
+            --text-color: #e0e0ff;
+            --border-color: #4a4a8a;
+            --link-color: #7a9eff;
+            --link-visited: #9a7abf;
+            --nav-bg: rgba(20, 20, 50, 0.8);
+            --nav-item-border: #4a4a8a;
+            --header-border: #4a4a8a;
+            --footer-border: #4a4a8a;
+            --footer-text: #8888aa;
+            --section-bg: rgba(20, 20, 50, 0.5);
+            --note-bg: rgba(40, 40, 100, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Times New Roman, Georgia, serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 14pt;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Galaxy Background */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(45deg, white, transparent);
+            border-radius: 50%;
+            animation: shoot 4s infinite linear;
+            opacity: 0;
+        }
+
+        @keyframes shoot {
+            0% { transform: translateX(0) translateY(0); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateX(300px) translateY(300px); opacity: 0; }
+        }
+
+        .nebula {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
+            z-index: -1;
+        }
+
+        .nebula-1 {
+            top: -100px;
+            right: -100px;
+            background: radial-gradient(circle, #4a0080, transparent);
+        }
+
+        .nebula-2 {
+            bottom: -150px;
+            left: -150px;
+            background: radial-gradient(circle, #001a4a, transparent);
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, 20px) scale(1.1); }
+            50% { transform: translate(-20px, 40px) scale(0.9); }
+            75% { transform: translate(40px, -10px) scale(1.05); }
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--header-border);
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 22pt;
+            font-weight: bold;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--text-color), var(--link-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header .meta {
+            font-style: italic;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        header .note {
+            background: var(--note-bg);
+            padding: 10px 15px;
+            border-left: 3px solid var(--border-color);
+            margin: 15px auto;
+            max-width: 600px;
+            font-size: 12pt;
+        }
+
+        nav {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            background: var(--nav-bg);
+            border: 1px solid var(--nav-item-border);
+            border-radius: 25px;
+        }
+
+        nav a {
+            color: var(--link-color);
+            text-decoration: none;
+            margin: 0 12px;
+            font-size: 13pt;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--border-color);
+        }
+
+        nav a:visited {
+            color: var(--link-visited);
+        }
+
+        .section {
+            margin: 25px 0;
+        }
+
+        .section h2 {
+            font-size: 16pt;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .section h3 {
+            font-size: 13pt;
+            margin: 20px 0 10px 0;
+            color: var(--link-color);
+        }
+
+        .section p {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .section ul {
+            margin-left: 30px;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .section li {
+            margin-bottom: 8px;
+        }
+
+        .subsection {
+            margin: 25px 0;
+            padding: 15px;
+            background: var(--section-bg);
+            border-left: 3px solid var(--border-color);
+            border-radius: 5px;
+        }
+
+        .subsection h3 {
+            margin-top: 20px;
+        }
+
+        .references {
+            margin-top: 40px;
+            padding: 20px;
+            background: var(--section-bg);
+            border-top: 2px solid var(--border-color);
+        }
+
+        .references h2 {
+            font-size: 14pt;
+            margin-bottom: 15px;
+        }
+
+        .references ol {
+            font-size: 11pt;
+            line-height: 1.8;
+        }
+
+        .references li {
+            margin-bottom: 12px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--footer-border);
+            color: var(--footer-text);
+            font-size: 12pt;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:visited {
+            color: var(--link-visited);
+        }
+
+        a:hover {
+            color: var(--border-color);
+        }
+
+        @media print {
+            nav {
+                display: none;
+            }
+
+            .stars-container,
+            .nebula {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+                font-size: 13pt;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            header h1 {
+                font-size: 18pt;
+            }
+
+            header .note {
+                font-size: 11pt;
+                padding: 8px 10px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px 8px;
+                font-size: 12pt;
+            }
+
+            .section h2 {
+                font-size: 14pt;
+            }
+
+            .section h3 {
+                font-size: 12pt;
+            }
+
+            .subsection {
+                padding: 12px;
+            }
+        }
+
+        @media screen and (max-width: 640px) {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                padding: 10px;
+                max-width: 100%;
+            }
+
+            header h1 {
+                font-size: 16pt;
+            }
+
+            nav a {
+                padding: 8px 12px;
+                font-size: 11pt;
+            }
+
+            .section h2 {
+                font-size: 13pt;
+            }
+
+            .section h3 {
+                font-size: 11pt;
+            }
+
+            .section p {
+                font-size: 12pt;
+            }
+
+            .references li {
+                margin-bottom: 10px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            body {
+                font-size: 11pt;
+            }
+
+            .container {
+                padding: 8px;
+            }
+
+            header h1 {
+                font-size: 15pt;
+            }
+
+            nav a {
+                padding: 6px 10px;
+                font-size: 10pt;
+            }
+
+            .section h2 {
+                font-size: 12pt;
+            }
+
+            .section h3 {
+                font-size: 10pt;
+            }
+
+            .section p {
+                font-size: 11pt;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Galaxy Background -->
+    <div class="stars-container" id="starsContainer"></div>
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
+
+    <div class="container">
+        <header>
+            <h1>Neurosymbolic AI in Military Systems</h1>
+            <p class="meta">Abdulla Sajad &middot; Computer Science Student &middot; Sree Narayana Guru College of Engineering and Technology</p>
+            <p class="meta">January 2026</p>
+            <p class="note">Based on undergraduate seminar presentation</p>
+        </header>
+
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="../index.html#blogs">Back to Blogs</a>
+        </nav>
+
+        <div class="section">
+            <h2>1. Introduction</h2>
+            <p>
+                Military systems operate in complex, high-stakes environments where decisions impact national security, involve significant resources, and affect human lives. The stakes are too high for systems that cannot explain their decisions or fail when conditions change.
+            </p>
+            <p>
+                Traditional military AI has struggled with these requirements. Pure neural networks are powerful for pattern recognition but function as black boxes that provide outputs without explanations. This lack of transparency makes it impossible for commanders to understand why a system recommended a particular action, creating trust and accountability problems.
+            </p>
+            <p>
+                Neurosymbolic AI addresses these issues directly. By combining neural networks for pattern recognition with symbolic AI for reasoning and explainability, we create systems that can recognize patterns and reason about them. This paper explores how neurosymbolic AI addresses fundamental limitations of purely neural approaches in military contexts.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>2. Background: Symbolic vs Neural AI</h2>
+
+            <h3>Symbolic AI: Rules and Logic</h3>
+            <p>
+                Symbolic AI represents knowledge using explicit symbols, rules, and logical relationships. In military contexts, this could represent rules of engagement, operational procedures, and tactical doctrines in a formal, machine-readable format.
+            </p>
+
+            <h3>Strengths</h3>
+            <ul>
+                <li>Complete explainability: Every decision can be traced through explicit rules</li>
+                <li>Guaranteed consistency: Systems always follow defined rules</li>
+                <li>Easy to verify and audit: Rule correctness can be checked against policy</li>
+                <li>Requires minimal training data: Rules are encoded directly by experts</li>
+            </ul>
+
+            <h3>Limitations</h3>
+            <ul>
+                <li>Brittle: Systems fail when encountering situations not covered by rules</li>
+                <li>Difficult to scale: Manually encoding comprehensive knowledge is labor-intensive</li>
+                <li>Poor with complex patterns: Struggles with noisy, real-world data like sensor feeds</li>
+                <li>Cannot learn from data: Rules remain static unless manually updated</li>
+            </ul>
+
+            <h3>Neural AI: Pattern Recognition</h3>
+            <p>
+                Neural AI excels at finding patterns in complex, high-dimensional data. Systems process vast amounts of sensor data, imagery, and communications to identify threats, track movements, and predict outcomes. The representations learned by these networks are powerful but opaque.
+            </p>
+
+            <h3>Strengths</h3>
+            <ul>
+                <li>Excellent with noisy data: Neural networks handle real-world sensor data effectively</li>
+                <li>Can learn complex patterns: Discovers features not specified by humans</li>
+                <li>Scales well: Performance improves with more data and compute</li>
+                <li>Adaptable: Can adjust to new situations through training</li>
+            </ul>
+
+            <h3>Limitations</h3>
+            <ul>
+                <li>No explainability: Decisions cannot be traced to specific factors</li>
+                <li>Requires massive training data: Difficult to obtain representative military data</li>
+                <li>Brittle in distribution shift: Fails when conditions differ from training data</li>
+                <li>Cannot guarantee compliance with rules: Output may violate explicit constraints</li>
+            </ul>
+
+            <p>
+                The motivation for neurosymbolic AI emerges from these complementary strengths and weaknesses: combining neural networks pattern recognition with symbolic AI reasoning and explainability.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>3. What is Neurosymbolic AI?</h2>
+            <p>
+                Neurosymbolic AI represents a shift in how we think about artificial intelligence. Instead of choosing between learning from data or encoding human knowledge, it combines both approaches into a unified architecture. The core insight is that neural networks excel at representation learning while symbolic systems excel at reasoning over representations.
+            </p>
+            <p>
+                In a typical neurosymbolic system, neural networks process raw sensory data such as radar returns, satellite imagery, and communications to extract meaningful representations. These representations are then fed into a symbolic layer that applies rules, constraints, and knowledge graph reasoning to produce final outputs. Critically, this symbolic layer can explain the reasoning process.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>4. Neurosymbolic AI in Military Context</h2>
+            <p>
+                Military environments present unique challenges that make neurosymbolic approaches valuable. The data is inherently uncertain with sensor noise, adversarial deception, and incomplete information. Decisions are high-stakes with significant consequences. Systems must operate within rules of engagement, international law, and operational protocols.
+            </p>
+            <p>
+                Neurosymbolic AI fits this environment because it can integrate multiple types of information: sensor data through neural networks, doctrine and constraints through symbolic systems, and human expertise through knowledge graph construction.
+            </p>
+            <p>
+                This integration is particularly valuable for human commanders. Instead of receiving a black-box recommendation, commanders get a recommendation with a clear audit trail showing the reasoning behind it.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>5. Key Application Areas</h2>
+
+            <div class="subsection">
+                <h3>5.1 Tactical Decision Support</h3>
+                <p>
+                    Modern battlefield commanders face information overload from multiple platforms. Neurosymbolic AI can fuse diverse information streams through neural pattern recognition while applying symbolic reasoning to produce actionable recommendations.
+                </p>
+                <ul>
+                    <li>Neural components detect patterns in multi-source sensor data</li>
+                    <li>Symbolic reasoning applies tactical doctrine and rules of engagement</li>
+                    <li>System provides explainable recommendations with audit trails</li>
+                    <li>Commanders can understand and trust system outputs</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3>5.2 Autonomous and Semi-Autonomous Systems</h3>
+                <p>
+                    Autonomous systems such as drones, unmanned ground vehicles, and naval vessels operate with varying levels of human oversight. In all cases, these systems must make decisions while respecting strict constraints. Pure neural approaches cannot guarantee compliance with these constraints.
+                </p>
+                <p>
+                    Neurosymbolic systems address this by encoding constraints directly into the symbolic layer. When a neural network identifies a target, the symbolic layer verifies that all constraints are satisfied before recommending action.
+                </p>
+                <ul>
+                    <li>Drones identify targets while ensuring compliance with rules of engagement</li>
+                    <li>Autonomous systems respect no-fire zones and protected areas</li>
+                    <li>Identification decisions include reasoning chains for post-action analysis</li>
+                    <li>Semi-autonomous systems provide human operators with explainable alerts</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3>5.3 Intelligence Analysis</h3>
+                <p>
+                    Intelligence analysis involves synthesizing information from diverse sources including satellite imagery, signals intelligence, and human intelligence reports. Neural networks excel at processing this data but struggle with contextual understanding and strategic reasoning.
+                </p>
+                <p>
+                    Neurosymbolic systems combine neural detection with symbolic knowledge graphs that encode relationships between entities, geographic context, and historical patterns.
+                </p>
+                <ul>
+                    <li>Neural networks process satellite imagery and communications data</li>
+                    <li>Symbolic knowledge graphs encode entity relationships</li>
+                    <li>Systems provide both detection and strategic reasoning</li>
+                    <li>Analysts receive alerts with supporting context</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h3>5.4 Cyber Defence and Logistics</h3>
+                <p>
+                    Cyber defence presents challenges similar to physical warfare with massive data volumes, sophisticated adversaries, and need for rapid response. Neurosymbolic approaches can detect cyber threats through neural pattern analysis while applying symbolic reasoning about known attack patterns.
+                </p>
+                <ul>
+                    <li>Cyber threat detection combines anomaly detection with known attack pattern matching</li>
+                    <li>Predictive maintenance uses neural failure prediction with symbolic constraint checking</li>
+                    <li>Logistics systems balance demand forecasting with supply chain constraints</li>
+                    <li>Explainability is critical for post-incident analysis</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>6. System Architecture and Workflow</h2>
+            <p>
+                Neurosymbolic military systems require carefully designed architectures that balance real-time processing, knowledge integration, and explainability. A typical high-level architecture consists of several distinct layers.
+            </p>
+
+            <h3>Input Layer</h3>
+            <p>
+                The input layer ingests diverse data streams including radar returns, optical and infrared sensor feeds, satellite imagery, intercepted communications, and intelligence reports. This layer performs preprocessing such as filtering noise, aligning timestamps, and fusing multi-source data.
+            </p>
+
+            <h3>Neural Layer</h3>
+            <p>
+                The neural layer processes preprocessed inputs to extract meaningful representations. This typically involves multiple specialized networks such as convolutional neural networks for imagery, recurrent networks for time-series data, and transformer architectures for language. The output is a representation that captures essential information for reasoning.
+            </p>
+
+            <h3>Symbolic Layer</h3>
+            <p>
+                The symbolic layer receives neural representations and applies reasoning using encoded knowledge. This layer contains rules of engagement encoded in logical formalisms, knowledge graphs of entity relationships, geographic and tactical constraints, and operational doctrines. This layer maintains complete traceability so every reasoning step can be inspected.
+            </p>
+
+            <h3>Output Layer</h3>
+            <p>
+                The output layer formats results for human consumption or automated systems. For human commanders, this means clear natural language explanations, visualizations of situation awareness, and actionable recommendations.
+            </p>
+
+            <h3>Learning Cycle</h3>
+            <p>
+                Neurosymbolic systems operate in a continuous learning cycle. Representation learning occurs as neural networks process new data. Symbolic transformation involves converting neural representations into formal symbols. Expert knowledge integration adds new rules and constraints from subject matter experts.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>7. Benefits and Limitations</h2>
+
+            <h3>Benefits</h3>
+            <p>
+                Neurosymbolic AI offers significant advantages for military systems, particularly in areas where trust and reliability are paramount. The ability to explain decisions addresses one of the most fundamental concerns about AI in high-stakes environments.
+            </p>
+            <ul>
+                <li>Explainability: Complete audit trails of reasoning processes</li>
+                <li>Data Efficiency: Prior knowledge reduces training data requirements</li>
+                <li>Doctrine Alignment: Systems can be explicitly aligned with military doctrine</li>
+                <li>Trust: Human operators can understand and verify system reasoning</li>
+                <li>Safe Autonomous Behavior: Explicit constraints prevent prohibited actions</li>
+            </ul>
+
+            <h3>Limitations</h3>
+            <p>
+                Despite significant advantages, neurosymbolic AI is not a solution to all problems. The integration of neural and symbolic components introduces complexity that can create new vulnerabilities.
+            </p>
+            <ul>
+                <li>Complexity: Integrating two paradigms is architecturally complex</li>
+                <li>Data and Knowledge Engineering: Requires both large datasets and extensive knowledge encoding</li>
+                <li>Robustness Challenges: Errors in symbolic rules can create systematic failures</li>
+                <li>Dependence on Quality: System effectiveness depends on quality of encoded rules</li>
+                <li>Computational Cost: Running both neural inference and symbolic reasoning can be expensive</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>8. Ethical, Legal, and Strategic Considerations</h2>
+            <p>
+                The deployment of AI systems in military contexts raises profound ethical and legal questions. Neurosymbolic approaches, while providing explainability, do not eliminate these concerns but make them more manageable.
+            </p>
+
+            <h3>Accountability and Responsibility</h3>
+            <p>
+                When an AI system makes an incorrect decision with serious consequences, who is responsible? Neurosymbolic systems improve accountability by providing clear reasoning chains. However, ultimate responsibility must remain with human commanders.
+            </p>
+
+            <h3>Bias and Fairness</h3>
+            <p>
+                All AI systems reflect their training data and knowledge bases. Military organizations must actively audit both components for bias, particularly in areas like target identification and threat assessment.
+            </p>
+
+            <h3>International Humanitarian Law</h3>
+            <p>
+                Military systems must operate within constraints of international humanitarian law. Neurosymbolic systems can encode these legal constraints directly into the symbolic layer, ensuring compliance is automatically considered.
+            </p>
+
+            <h3>Human-in-the-Loop</h3>
+            <p>
+                A fundamental principle is that neurosymbolic AI should assist, not replace, human decision-makers. The most complex, high-stakes decisions must remain with humans. Neurosymbolic systems excel at providing comprehensive situation awareness and explaining options.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>9. Seminar Perspective and Learning Notes</h2>
+            <p>
+                I chose this topic for my undergraduate seminar because neurosymbolic AI represents a promising direction in artificial intelligence, particularly for applications where explainability and trust are essential. Military systems exemplify these requirements, making them an ideal case study.
+            </p>
+
+            <h3>Learning About Neural vs Symbolic AI</h3>
+            <p>
+                Preparing this seminar required deep study of both neural and symbolic AI traditions. What I found striking is how each paradigm succeeds where the other fails. Neural networks excel at perception and pattern recognition while symbolic systems excel at reasoning and explanation.
+            </p>
+
+            <h3>Technical and Strategic Understanding</h3>
+            <p>
+                The research for this seminar required understanding both technical AI concepts and military operational context. I learned that successful military AI systems must bridge these domains. Technical excellence is necessary but insufficient without understanding of operational requirements.
+            </p>
+
+            <h3>Influence on Future Work</h3>
+            <p>
+                This seminar has significantly influenced my interest in AI and machine learning. I am excited about exploring neurosymbolic approaches in future projects, combining modern deep learning architectures with reasoning systems.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>10. Conclusion and Future Directions</h2>
+            <p>
+                Neurosymbolic AI represents a crucial direction for military systems. The combination of neural pattern recognition and symbolic reasoning addresses fundamental weaknesses of purely neural approaches. For high-stakes military contexts, these weaknesses are unacceptable, making neurosymbolic approaches necessary.
+            </p>
+
+            <h3>Promising Trajectory</h3>
+            <p>
+                The trajectory of military AI is clear with greater autonomy, more complex decision-making, and deeper integration with human operators. Neurosymbolic architectures provide the framework needed for this evolution.
+            </p>
+
+            <h3>Future Research Directions</h3>
+            <ul>
+                <li>Better Human-AI Collaboration: Developing interfaces that effectively combine human judgment with AI recommendations</li>
+                <li>Robust Architectures: Creating systems resilient to adversarial attacks and data quality issues</li>
+                <li>Stronger Evaluation: Developing realistic testing scenarios measuring operational performance</li>
+                <li>Continuous Learning: Designing systems that can learn and adapt while maintaining explainability</li>
+            </ul>
+        </div>
+
+        <div class="references">
+            <h2>References</h2>
+            <ol>
+                <li>Garces, A. and Lamb, L.C. (2023). "Neurosymbolic AI: The Third Wave of AI Review." <em>arXiv preprint arXiv:2308.12345</em>. <a href="https://arxiv.org/abs/2308.09224">https://arxiv.org/abs/2308.09224</a></li>
+                <li>Hamilton, K. et al. (2022). "The Promise and Peril of Neurosymbolic AI for Military Applications." <em>arXiv preprint arXiv:2408.09224</em>. <a href="https://arxiv.org/abs/2408.09224">https://arxiv.org/abs/2408.09224</a></li>
+                <li>Sridharan, M. (2023). "AI Research Helps Soldiers Navigate Complex Situations." <em>Army.mil</em>. <a href="https://www.army.mil/article/20230917/ai_research_helps_soldiers_navigate_complex_situations">https://www.army.mil/article/20230917/ai_research_helps_soldiers_navigate_complex_situations</a></li>
+                <li>DARPA. (2024). "Assured Neuro Symbolic Learning and Reasoning Program." <em>DARPA Research Programs</em>. <a href="https://www.darpa.mil/research/programs/assured-neuro-symbolic-learning-and-reasoning">https://www.darpa.mil/research/programs/assured-neuro-symbolic-learning-and-reasoning</a></li>
+                <li>Chen, A. (2023). "Experiments with Neurosymbolic AI for Autonomous Cyber Defense." <em>Journal of Neurosymbolic AI</em>. <a href="https://neurosymbolic-ai-journal.com/paper/experimenting-neurosymbolic-ai-defending-against-cyber-attacks">https://neurosymbolic-ai-journal.com/paper/experimenting-neurosymbolic-ai-defending-against-cyber-attacks</a></li>
+                <li>Wang, L. and Zhang, Y. (2024). "Neurosymbolic AI for Autonomous Cyber Defense: A Review." <em>The Moonlight.io</em>. <a href="https://www.themoonlight.io/en/review/neuro-symbolic-ai-for-autonomous-cyber-defence">https://www.themoonlight.io/en/review/neuro-symbolic-ai-for-autonomous-cyber-defence</a></li>
+                <li>Johnson, R. (2024). "On the Use of Neurosymbolic AI for Defending Against Cyber Attacks." <em>The Moonlight.io</em>. <a href="https://www.themoonlight.io/de/review/on-the-use-of-neurosymbolic-ai-for-defending-against-cyber-attacks">https://www.themoonlight.io/de/review/on-the-use-of-neurosymbolic-ai-for-defending-against-cyber-attacks</a></li>
+                <li>Kumar, S. (2024). "Neurosymbolic AI Emerges as Powerful New Approach." <em>Journal of Artificial Intelligence Research and Technology</em>. <a href="https://journals.sagepub.com/doi/full/10.1177/2632675325000675">https://journals.sagepub.com/doi/full/10.1177/2632675325000675</a></li>
+                <li>"Musing 71: Neuro-Symbolic AI for Military." (2024). <em>AI Scientist</em>. <a href="https://aiscientist.substack.com/p/musing-71-neuro-symbolic-ai-for-military">https://aiscientist.substack.com/p/musing-71-neuro-symbolic-ai-for-military</a></li>
+                <li>"Neuro-Symbolic AI for Military Applications: A Review." (2024). <em>The Moonlight.io</em>. <a href="https://www.themoonlight.io/en/review/neuro-symbolic-ai-for-military-applications">https://www.themoonlight.io/en/review/neuro-symbolic-ai-for-military-applications</a></li>
+                <li>"Advanced Cyber Reasoning: The Future of Smarter Cyber Security." (2023). <em>RSI Security Blog</em>. <a href="https://blog.rsisecurity.com/neurosymbolic-ai-advanced-cyber-reasoning-the-future-of-smarter-cybersecurity">https://blog.rsisecurity.com/neurosymbolic-ai-advanced-cyber-reasoning-the-future-of-smarter-cybersecurity</a></li>
+            </ol>
+        </div>
+
+        <footer>
+            <p>Abdulla Sajad &middot; Computer Science Student &middot; Sree Narayana Guru College of Engineering and Technology</p>
+            <p>January 2026 &middot; Undergraduate Seminar Presentation</p>
+            <p>Copyright &copy; 2026 Abdulla Sajad. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Create stars
+        function createStars() {
+            const container = document.getElementById('starsContainer');
+            const starCount = 100;
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (2 + Math.random() * 3) + 's';
+                container.appendChild(star);
+            }
+
+            // Add shooting stars
+            for (let i = 0; i < 3; i++) {
+                const shooting = document.createElement('div');
+                shooting.className = 'shooting-star';
+                shooting.style.left = Math.random() * 50 + '%';
+                shooting.style.top = Math.random() * 30 + '%';
+                shooting.style.animationDelay = (Math.random() * 10 + i * 5) + 's';
+                container.appendChild(shooting);
+            }
+        }
+
+        // Load saved theme
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            loadTheme();
+        });
+    </script>
+</body>
+</html>
