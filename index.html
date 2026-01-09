@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <meta name="description" content="Abdulla Sajad - Computer Science Student & Software Engineer">
     <title>Abdulla Sajad</title>
     <style>
         :root {
@@ -123,8 +126,8 @@
 
         .nebula {
             position: fixed;
-            width: 400px;
-            height: 400px;
+            width: 300px;
+            height: 300px;
             border-radius: 50%;
             filter: blur(80px);
             opacity: 0.15;
@@ -133,14 +136,14 @@
         }
 
         .nebula-1 {
-            top: -100px;
-            right: -100px;
+            top: -80px;
+            right: -80px;
             background: radial-gradient(circle, #4a0080, transparent);
         }
 
         .nebula-2 {
-            bottom: -150px;
-            left: -150px;
+            bottom: -100px;
+            left: -100px;
             background: radial-gradient(circle, #001a4a, transparent);
             animation-delay: -10s;
         }
@@ -196,6 +199,8 @@
             gap: 8px;
             transition: all 0.3s ease;
             color: var(--text-color);
+            min-height: 44px;
+            min-width: 44px;
         }
 
         header h1 {
@@ -266,6 +271,11 @@
             font-size: 13pt;
             border-radius: 20px;
             transition: all 0.3s ease;
+            min-height: 44px;
+            min-width: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         nav a:hover {
@@ -378,6 +388,7 @@
             font-size: 11pt;
             border-radius: 15px;
             border: 1px solid var(--nav-item-border);
+            min-height: 32px;
         }
 
         .news-item {
@@ -454,6 +465,7 @@
             text-decoration: none;
             border-radius: 20px;
             transition: all 0.3s ease;
+            min-height: 44px;
         }
 
         .blog-item .read-more:hover {
@@ -478,6 +490,8 @@
             color: var(--link-color);
             text-decoration: none;
             transition: color 0.3s ease;
+            min-height: 44px;
+            display: inline-block;
         }
 
         a:visited {
@@ -500,29 +514,143 @@
             }
         }
 
-        @media screen and (max-width: 768px) {
-                gap: 5px;
-                margin: 15px 0;
+        @media screen and (max-width: 1200px) {
+            .container {
+                max-width: 90%;
             }
+        }
 
-            nav a {
-                padding: 6px 12px;
-                font-size: 12pt;
-            }
-
-            .section h2 {
+        @media screen and (max-width: 1024px) {
+            body {
                 font-size: 14pt;
             }
 
-            .section h3 {
+            .container {
+                padding: 25px;
+                max-width: 95%;
+            }
+
+            header h1 {
+                font-size: 21pt;
+            }
+
+            .section {
+                padding: 20px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+                font-size: 13pt;
+            }
+
+            .container {
+                padding: 20px;
+                max-width: 95%;
+            }
+
+            header {
+                padding: 15px 0;
+            }
+
+            header h1 {
+                font-size: 20pt;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .theme-toggle {
+                padding: 6px 14px;
+                font-size: 10pt;
+            }
+
+            nav {
+                gap: 8px;
+                margin: 15px 0;
+                padding: 10px 5px;
+            }
+
+            nav a {
+                padding: 8px 14px;
                 font-size: 12pt;
             }
 
+            .section {
+                margin: 20px 0;
+                padding: 18px;
+            }
+
+            .section h2 {
+                font-size: 16pt;
+                padding-bottom: 8px;
+                margin-bottom: 12px;
+            }
+
+            .section h3 {
+                font-size: 13pt;
+                margin: 12px 0 6px 0;
+            }
+
             .project {
-                padding: 12px;
+                margin-bottom: 15px;
+                padding: 14px;
+            }
+
+            .project .name {
+                font-size: 14pt;
             }
 
             .blog-item {
+                padding: 16px;
+                margin-bottom: 15px;
+            }
+
+            .blog-item .title {
+                font-size: 14pt;
+            }
+        }
+
+        @media screen and (max-width: 768px) and (orientation: landscape) {
+            body {
+                font-size: 12pt;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            header {
+                padding: 10px 0;
+            }
+
+            header h1 {
+                font-size: 18pt;
+            }
+
+            .header-content {
+                flex-direction: row;
+                gap: 15px;
+            }
+
+            .theme-toggle {
+                padding: 5px 12px;
+                font-size: 10pt;
+            }
+
+            nav {
+                margin: 10px 0;
+            }
+
+            nav a {
+                padding: 5px 12px;
+                font-size: 11pt;
+            }
+
+            .section {
+                margin: 15px 0;
                 padding: 15px;
             }
         }
@@ -533,12 +661,31 @@
             }
 
             .container {
-                padding: 10px;
+                padding: 15px;
                 max-width: 100%;
             }
 
+            .nebula {
+                width: 200px;
+                height: 200px;
+            }
+
+            .nebula-1 {
+                top: -50px;
+                right: -50px;
+            }
+
+            .nebula-2 {
+                bottom: -70px;
+                left: -70px;
+            }
+
+            header {
+                padding: 12px 0;
+            }
+
             header h1 {
-                font-size: 16pt;
+                font-size: 18pt;
             }
 
             header .title {
@@ -546,48 +693,98 @@
             }
 
             header .subtitle {
+                font-size: 11pt;
+            }
+
+            .header-content {
+                gap: 8px;
+            }
+
+            .theme-toggle {
+                padding: 5px 12px;
                 font-size: 10pt;
             }
 
+            .theme-toggle .icon {
+                font-size: 12pt;
+            }
+
             nav {
-                gap: 5px;
-                margin: 15px 0;
-                padding: 10px 5px;
+                gap: 6px;
+                margin: 12px 0;
+                padding: 8px 3px;
             }
 
             nav a {
-                padding: 6px 12px;
+                padding: 6px 10px;
                 font-size: 11pt;
+                border-radius: 15px;
             }
 
             .section {
                 margin: 15px 0;
                 padding: 15px;
+                border-radius: 8px;
             }
 
             .section h2 {
-                font-size: 13pt;
+                font-size: 15pt;
             }
 
             .section h3 {
-                font-size: 11pt;
+                font-size: 12pt;
+                margin: 10px 0 5px 0;
+            }
+
+            .section ul {
+                margin-left: 25px;
             }
 
             .project {
                 padding: 12px;
-                margin-bottom: 15px;
+                margin-bottom: 12px;
+                border-radius: 6px;
             }
 
             .project .name {
                 font-size: 13pt;
+                margin-bottom: 6px;
+            }
+
+            .project .description {
+                margin-bottom: 6px;
+            }
+
+            .tech {
+                padding: 3px 10px;
+                margin: 2px 4px 2px 0;
+                font-size: 10pt;
             }
 
             .blog-item {
-                padding: 15px;
+                padding: 14px;
+                margin-bottom: 14px;
+                border-radius: 6px;
             }
 
             .blog-item .title {
                 font-size: 13pt;
+                margin-bottom: 8px;
+            }
+
+            .blog-item .date {
+                font-size: 10pt;
+            }
+
+            .blog-item .read-more {
+                padding: 6px 16px;
+                font-size: 10pt;
+            }
+
+            footer {
+                margin-top: 30px;
+                padding-top: 15px;
+                font-size: 11pt;
             }
         }
 
@@ -597,11 +794,15 @@
             }
 
             .container {
-                padding: 8px;
+                padding: 12px;
+            }
+
+            header {
+                padding: 10px 0;
             }
 
             header h1 {
-                font-size: 15pt;
+                font-size: 16pt;
             }
 
             header .title {
@@ -612,37 +813,165 @@
                 font-size: 10pt;
             }
 
-            nav a {
+            .theme-toggle {
                 padding: 5px 10px;
+                font-size: 9pt;
+            }
+
+            .theme-toggle .icon {
+                font-size: 11pt;
+            }
+
+            nav {
+                gap: 5px;
+                margin: 10px 0;
+                padding: 8px 2px;
+            }
+
+            nav a {
+                padding: 5px 8px;
                 font-size: 10pt;
+                border-radius: 12px;
+            }
+
+            .section {
+                margin: 12px 0;
+                padding: 12px;
             }
 
             .section h2 {
-                font-size: 12pt;
+                font-size: 14pt;
+                margin-bottom: 10px;
             }
 
             .section h3 {
-                font-size: 10pt;
+                font-size: 11pt;
+                margin: 8px 0 4px 0;
             }
 
             .section p {
-                font-size: 11pt;
+                line-height: 1.6;
+            }
+
+            .section ul {
+                margin-left: 20px;
+                margin-bottom: 12px;
+                line-height: 1.7;
             }
 
             .project {
                 padding: 10px;
+                margin-bottom: 10px;
             }
 
             .project .name {
                 font-size: 12pt;
             }
 
+            .project .description {
+                font-size: 11pt;
+            }
+
             .blog-item {
                 padding: 12px;
+                margin-bottom: 12px;
             }
 
             .blog-item .title {
                 font-size: 12pt;
+            }
+
+            .blog-item .desc {
+                font-size: 11pt;
+            }
+
+            .news-item {
+                margin-bottom: 10px;
+                padding-bottom: 10px;
+            }
+
+            footer {
+                margin-top: 25px;
+                padding-top: 12px;
+                font-size: 10pt;
+            }
+        }
+
+        @media screen and (max-width: 360px) {
+            body {
+                font-size: 10pt;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            header h1 {
+                font-size: 14pt;
+            }
+
+            header .title {
+                font-size: 10pt;
+            }
+
+            header .subtitle {
+                font-size: 9pt;
+            }
+
+            nav a {
+                padding: 4px 6px;
+                font-size: 9pt;
+            }
+
+            .section {
+                padding: 10px;
+            }
+
+            .section h2 {
+                font-size: 13pt;
+            }
+
+            .section h3 {
+                font-size: 10pt;
+            }
+        }
+
+        @media screen and (min-width: 2000px) {
+            body {
+                font-size: 16pt;
+            }
+
+            .container {
+                max-width: 1200px;
+                padding: 40px;
+            }
+
+            header h1 {
+                font-size: 28pt;
+            }
+
+            .section h2 {
+                font-size: 20pt;
+            }
+
+            .section h3 {
+                font-size: 16pt;
+            }
+
+            .project {
+                padding: 20px;
+            }
+
+            .project .name {
+                font-size: 18pt;
+            }
+
+            .blog-item {
+                padding: 25px;
+            }
+
+            .blog-item .title {
+                font-size: 18pt;
             }
         }
     </style>
@@ -862,7 +1191,8 @@
         // Create stars
         function createStars() {
             const container = document.getElementById('starsContainer');
-            const starCount = 100;
+            const isMobile = window.innerWidth <= 768;
+            const starCount = isMobile ? 50 : 100;
 
             for (let i = 0; i < starCount; i++) {
                 const star = document.createElement('div');
@@ -875,7 +1205,8 @@
             }
 
             // Add shooting stars
-            for (let i = 0; i < 3; i++) {
+            const shootingStarCount = isMobile ? 2 : 3;
+            for (let i = 0; i < shootingStarCount; i++) {
                 const shooting = document.createElement('div');
                 shooting.className = 'shooting-star';
                 shooting.style.left = Math.random() * 50 + '%';
@@ -896,11 +1227,13 @@
                 themeText.textContent = 'Light';
                 themeIcon.innerHTML = '&#9728;';
                 localStorage.setItem('theme', 'light');
+                document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff');
             } else {
                 html.setAttribute('data-theme', 'dark');
                 themeText.textContent = 'Dark';
                 themeIcon.innerHTML = '&#9790;';
                 localStorage.setItem('theme', 'dark');
+                document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000000');
             }
         }
 
@@ -915,6 +1248,9 @@
                 html.setAttribute('data-theme', 'dark');
                 themeText.textContent = 'Dark';
                 themeIcon.innerHTML = '&#9790;';
+                document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000000');
+            } else {
+                document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff');
             }
         }
 
