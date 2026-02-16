@@ -9,21 +9,19 @@
     <style>
         :root {
             --bg: #0a0a0a;
-            --bg-alt: #111111;
-            --text: #e4e4e4;
-            --text-dim: #666666;
+            --text: #ffffff;
+            --text-dim: #b0b0b0;
             --accent: #00ff88;
             --accent-dim: #00ff8833;
-            --border: #222222;
+            --border: #333333;
         }
         [data-theme="light"] {
-            --bg: #fafafa;
-            --bg-alt: #ffffff;
-            --text: #0a0a0a;
-            --text-dim: #888888;
+            --bg: #ffffff;
+            --text: #000000;
+            --text-dim: #444444;
             --accent: #00aa55;
             --accent-dim: #00aa5520;
-            --border: #e0e0e0;
+            --border: #cccccc;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -31,13 +29,14 @@
             background: var(--bg);
             color: var(--text);
             line-height: 1.7;
-            font-size: 13px;
+            font-size: 15px;
             transition: background 0.2s, color 0.2s;
+            -webkit-font-smoothing: antialiased;
         }
         ::selection { background: var(--accent); color: var(--bg); }
         a { color: var(--accent); text-decoration: none; }
         
-        .container { max-width: 650px; margin: 0 auto; padding: 3rem 1.5rem; }
+        .container { max-width: 700px; margin: 0 auto; padding: 4rem 2rem; }
         
         nav {
             position: fixed;
@@ -49,31 +48,31 @@
             z-index: 100;
         }
         nav .inner {
-            max-width: 650px;
+            max-width: 700px;
             margin: 0 auto;
-            padding: 1rem 1.5rem;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .logo { font-weight: 700; font-size: 13px; color: var(--text); }
+        .logo { font-weight: 700; font-size: 15px; color: var(--text); }
         .logo span { color: var(--accent); }
         .nav-btns { display: flex; gap: 1rem; align-items: center; }
-        .nav-btn { font-size: 11px; color: var(--text-dim); background: none; border: none; cursor: pointer; font-family: inherit; }
+        .nav-btn { font-size: 12px; color: var(--text); background: none; border: none; cursor: pointer; font-family: inherit; transition: color 0.2s; }
         .nav-btn:hover { color: var(--accent); }
-        .print-btn { border: 1px solid var(--border); padding: 0.4rem 0.6rem; }
+        .print-btn { border: 1px solid var(--border); padding: 0.5rem 0.75rem; }
         .print-btn:hover { border-color: var(--accent); }
         
-        header { margin-bottom: 2.5rem; padding-top: 2rem; }
-        header h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
-        header .title { color: var(--text-dim); margin-bottom: 1rem; }
-        header .meta { display: flex; flex-wrap: wrap; gap: 1.5rem; font-size: 11px; }
+        header { margin-bottom: 2.5rem; padding-top: 1.5rem; }
+        header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        header .title { color: var(--text-dim); font-size: 16px; margin-bottom: 1.25rem; }
+        header .meta { display: flex; flex-wrap: wrap; gap: 1.5rem; font-size: 13px; }
         header .meta span { color: var(--text-dim); }
         header .meta a { color: var(--accent); }
         
-        section { margin-bottom: 2rem; }
+        section { margin-bottom: 2.5rem; }
         .section-title {
-            font-size: 11px;
+            font-size: 12px;
             color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -82,31 +81,35 @@
             border-bottom: 1px solid var(--border);
         }
         
-        .summary { color: var(--text-dim); font-size: 12px; }
+        .summary { color: var(--text-dim); font-size: 14px; line-height: 1.8; }
         
         .project { margin-bottom: 1.5rem; }
-        .project-header { display: flex; justify-content: space-between; margin-bottom: 0.25rem; }
-        .project h3 { font-size: 13px; font-weight: 600; }
-        .project .year { font-size: 10px; color: var(--text-dim); }
-        .project .tech { font-size: 11px; color: var(--text-dim); margin-bottom: 0.5rem; }
+        .project-header { display: flex; justify-content: space-between; margin-bottom: 0.25rem; flex-wrap: wrap; gap: 0.5rem; }
+        .project h3 { font-size: 15px; font-weight: 600; }
+        .project .year { font-size: 13px; color: var(--text-dim); }
+        .project .tech { font-size: 13px; color: var(--text-dim); margin-bottom: 0.5rem; }
         .project ul { list-style: none; margin-left: 1rem; }
-        .project li { font-size: 11px; color: var(--text-dim); margin-bottom: 0.25rem; position: relative; }
-        .project li::before { content: '→'; position: absolute; left: -1rem; color: var(--border); font-size: 10px; }
+        .project li { font-size: 13px; color: var(--text-dim); margin-bottom: 0.35rem; position: relative; line-height: 1.6; }
+        .project li::before { content: '→'; position: absolute; left: -1rem; color: var(--border); font-size: 12px; }
         
-        .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-        .skill-group h4 { font-size: 11px; color: var(--text-dim); margin-bottom: 0.5rem; }
-        .skill-group p { font-size: 12px; }
+        .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .skill-group h4 { font-size: 13px; color: var(--text-dim); margin-bottom: 0.5rem; }
+        .skill-group p { font-size: 14px; }
         
-        .edu-item { display: flex; justify-content: space-between; align-items: baseline; }
-        .edu-item h3 { font-size: 13px; }
-        .edu-item .year { font-size: 10px; color: var(--accent); }
-        .edu-item .org { font-size: 11px; color: var(--text-dim); }
+        .edu-item { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; }
+        .edu-item h3 { font-size: 15px; }
+        .edu-item .year { font-size: 13px; color: var(--accent); }
+        .edu-item .org { font-size: 14px; color: var(--text-dim); }
+        
+        .interests { font-size: 14px; color: var(--text-dim); }
         
         @media print {
             nav { display: none; }
             .container { padding-top: 0; }
         }
-        @media (max-width: 500px) {
+        @media (max-width: 600px) {
+            .container { padding: 4rem 1.25rem; }
+            header h1 { font-size: 1.75rem; }
             .skills-grid { grid-template-columns: 1fr; }
             header .meta { flex-direction: column; gap: 0.5rem; }
         }
@@ -218,7 +221,7 @@
 
         <section>
             <div class="section-title">interests</div>
-            <p style="color: var(--text-dim); font-size: 12px;">LLM fine-tuning // system design // open source</p>
+            <p class="interests">LLM fine-tuning // system design // open source</p>
         </section>
     </div>
 
