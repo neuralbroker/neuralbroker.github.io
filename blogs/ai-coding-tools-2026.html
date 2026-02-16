@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Coding Tools That Changed How I Work | Abdulla Sajad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --text: #ffffff;
+            --text-dim: #b0b0b0;
+            --accent: #00ff88;
+            --accent-dim: #00ff8833;
+            --border: #333333;
+        }
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --text: #000000;
+            --text-dim: #444444;
+            --accent: #00aa55;
+            --accent-dim: #00aa5520;
+            --border: #cccccc;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 15px;
+            transition: background 0.2s, color 0.2s;
+            -webkit-font-smoothing: antialiased;
+        }
+        ::selection { background: var(--accent); color: var(--bg); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        
+        .progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); z-index: 101; }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+        nav .inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-weight: 700; font-size: 15px; color: var(--text); }
+        .logo span { color: var(--accent); }
+        .nav-btns { display: flex; gap: 1rem; align-items: center; }
+        .nav-btn { font-size: 12px; color: var(--text); background: none; border: none; cursor: pointer; font-family: inherit; transition: color 0.2s; }
+        .nav-btn:hover { color: var(--accent); }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 5rem 2rem; }
+        
+        article { padding-top: 1.5rem; }
+        
+        .meta { display: flex; gap: 1rem; margin-bottom: 1.5rem; font-size: 13px; flex-wrap: wrap; }
+        .meta .cat { color: var(--accent); }
+        .meta .date { color: var(--text-dim); }
+        
+        h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.01em; line-height: 1.3; }
+        .subtitle { color: var(--text-dim); font-size: 16px; margin-bottom: 2rem; line-height: 1.6; }
+        
+        .author { display: flex; gap: 1rem; align-items: center; padding: 1rem; border: 1px solid var(--border); margin-bottom: 2.5rem; }
+        .author-avatar { width: 40px; height: 40px; background: var(--accent); color: var(--bg); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+        .author-name { font-weight: 600; font-size: 14px; }
+        .author-info { font-size: 13px; color: var(--text-dim); }
+        
+        .toc { border: 1px solid var(--border); padding: 1.25rem; margin-bottom: 2.5rem; }
+        .toc-title { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+        .toc ol { list-style: none; display: grid; gap: 0.5rem; }
+        .toc a { font-size: 14px; color: var(--text-dim); display: flex; gap: 0.5rem; }
+        .toc a:hover { color: var(--accent); text-decoration: none; }
+        .toc .num { color: var(--accent); font-size: 13px; min-width: 1.5rem; }
+        
+        .content h2 { font-size: 18px; font-weight: 600; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+        .content h3 { font-size: 16px; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--accent); }
+        .content p { color: var(--text-dim); margin-bottom: 1rem; line-height: 1.8; }
+        .content ul, .content ol { margin: 1rem 0 1.5rem 1.5rem; color: var(--text-dim); }
+        .content li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .content strong { color: var(--text); }
+        .content code { background: var(--accent-dim); padding: 0.2rem 0.4rem; font-size: 13px; color: var(--accent); }
+        
+        .highlight { background: var(--accent-dim); border-left: 2px solid var(--accent); padding: 1rem 1.25rem; margin: 1.5rem 0; }
+        .highlight p { color: var(--text); margin: 0; font-style: italic; font-size: 15px; }
+        
+        .tool-section { border: 1px solid var(--border); padding: 1.25rem; margin: 1rem 0; }
+        .tool-section h4 { font-size: 15px; font-weight: 600; margin-bottom: 0.5rem; color: var(--accent); }
+        .tool-section p { font-size: 14px; margin: 0; }
+        
+        .footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+        .share { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .share a { font-size: 13px; color: var(--text-dim); }
+        .share a:hover { color: var(--accent); }
+        .nav-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .nav-links a { padding: 1rem; border: 1px solid var(--border); font-size: 14px; }
+        .nav-links a:hover { border-color: var(--accent); text-decoration: none; }
+        .nav-links .label { font-size: 12px; color: var(--text-dim); }
+        .nav-links .title { font-weight: 600; margin-top: 0.25rem; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 5rem 1.25rem; }
+            h1 { font-size: 1.75rem; }
+            .nav-links { grid-template-columns: 1fr; }
+            .toc ol { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" id="progress"></div>
+    
+    <nav>
+        <div class="inner">
+            <a href="../index.html" class="logo">abdulla<span>.</span>sajad</a>
+            <div class="nav-btns">
+                <a href="../index.html#blog" class="nav-btn">[back]</a>
+                <button class="nav-btn" id="themeToggle">[theme]</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <article>
+            <div class="meta">
+                <span class="cat">[ai tools]</span>
+                <span class="date">jan 2026</span>
+            </div>
+            
+            <h1>AI Coding Tools That Changed How I Work</h1>
+            <p class="subtitle">From Cursor to OpenHands, exploring AI-powered dev tools that actually help ship code faster—not just look impressive in demos.</p>
+            
+            <div class="author">
+                <div class="author-avatar">AS</div>
+                <div>
+                    <div class="author-name">Abdulla Sajad</div>
+                    <div class="author-info">Software Engineer // Still learning AI</div>
+                </div>
+            </div>
+            
+            <div class="toc">
+                <div class="toc-title">contents</div>
+                <ol>
+                    <li><a href="#intro"><span class="num">01</span> introduction</a></li>
+                    <li><a href="#cursor"><span class="num">02</span> cursor: the ide that changed everything</a></li>
+                    <li><a href="#openhands"><span class="num">03</span> openhands: autonomous coding agent</a></li>
+                    <li><a href="#copilot"><span class="num">04</span> github copilot: the reliable standby</a></li>
+                    <li><a href="#others"><span class="num">05</span> other tools worth mentioning</a></li>
+                    <li><a href="#workflow"><span class="num">06</span> my current workflow</a></li>
+                    <li><a href="#reality"><span class="num">07</span> the reality check</a></li>
+                    <li><a href="#conclusion"><span class="num">08</span> conclusion</a></li>
+                </ol>
+            </div>
+            
+            <div class="content">
+                <section id="intro">
+                    <h2>1. Introduction</h2>
+                    <p>Full disclosure: I'm new to the AI/ML space. I started as a traditional software engineer building Java backends and React frontends. AI tools were something I read about, not something I used daily.</p>
+                    <p>That changed in late 2025. I decided to actually learn this stuff—not just the hype, but the practical tools that could help me ship faster. This is my honest take on what actually works versus what's just marketing.</p>
+                    
+                    <div class="highlight">
+                        <p>The goal isn't to replace developers. It's to handle the tedious stuff so we can focus on problems that actually require thinking.</p>
+                    </div>
+                </section>
+
+                <section id="cursor">
+                    <h2>2. Cursor: The IDE That Changed Everything</h2>
+                    <p>Cursor was my gateway drug into AI-assisted coding. It's VS Code with AI baked in, but that description undersells it massively.</p>
+                    
+                    <h3>What Makes It Different</h3>
+                    <p>The killer feature is <strong>Ctrl+K</strong>—inline editing. You select code, describe what you want, and it rewrites in place. No copy-pasting between ChatGPT and your editor. No context switching.</p>
+                    
+                    <div class="tool-section">
+                        <h4>// cmd+k use cases</h4>
+                        <p>"Add error handling to this function" / "Convert this to async/await" / "Make this component responsive"</p>
+                    </div>
+                    
+                    <p>The <strong>Composer</strong> feature (Ctrl+I) is next level—it can make changes across multiple files. I've had it refactor a component, update the types file, and modify the tests in one go.</p>
+                    
+                    <h3>What I've Learned</h3>
+                    <ul>
+                        <li>Be specific with instructions—vague prompts give vague code</li>
+                        <li>Always review the diff before accepting</li>
+                        <li>It's great for boilerplate, bad for architecture decisions</li>
+                        <li>The context window matters—reference files explicitly</li>
+                    </ul>
+                </section>
+
+                <section id="openhands">
+                    <h2>3. OpenHands: Autonomous Coding Agent</h2>
+                    <p>OpenHands (formerly OpenDevin) is different from Cursor. It's not an IDE—it's an agent that can actually <em>do</em> things. Run commands, create files, browse the web, execute tests.</p>
+                    
+                    <h3>When It Shines</h3>
+                    <p>I use OpenHands for tasks that would take hours of context switching:</p>
+                    <ul>
+                        <li>Setting up new projects with boilerplate</li>
+                        <li>Writing tests for existing functions</li>
+                        <li>Debugging with access to actual runtime</li>
+                        <li>Creating documentation from code</li>
+                    </ul>
+                    
+                    <h3>The Tradeoff</h3>
+                    <p>It's slower than Cursor. Sometimes it gets stuck in loops. But when it works, you come back to a completed task that would have taken you hours.</p>
+                    
+                    <div class="highlight">
+                        <p>The future isn't one tool—it's knowing which tool for which job.</p>
+                    </div>
+                </section>
+
+                <section id="copilot">
+                    <h2>4. GitHub Copilot: The Reliable Standby</h2>
+                    <p>Copilot was my first AI coding tool, and I still use it daily. It's not flashy, but it's reliable.</p>
+                    
+                    <h3>Where Copilot Excels</h3>
+                    <ul>
+                        <li>Auto-completing obvious code (the tedious stuff)</li>
+                        <li>Writing tests from function signatures</li>
+                        <li>Generating boilerplate implementations</li>
+                        <li>IDE integration is seamless</li>
+                    </ul>
+                    
+                    <h3>Where It Falls Short</h3>
+                    <p>It doesn't understand your codebase. It predicts based on the current file and maybe a few open tabs. Complex refactoring? Not happening. Cross-file changes? You're better off with Cursor or doing it manually.</p>
+                </section>
+
+                <section id="others">
+                    <h2>5. Other Tools Worth Mentioning</h2>
+                    
+                    <div class="tool-section">
+                        <h4>// aider</h4>
+                        <p>Terminal-based pair programmer. Great for folks who live in CLI. Works well with git—you can see diffs before committing.</p>
+                    </div>
+                    
+                    <div class="tool-section">
+                        <h4>// continue.dev</h4>
+                        <p>Open source alternative to Cursor's AI features. Works in VS Code. Good if you want to bring your own model/API keys.</p>
+                    </div>
+                    
+                    <div class="tool-section">
+                        <h4>// cline (formerly claude dev)</h4>
+                        <p>VS Code extension that acts as an autonomous agent. Similar concept to OpenHands but integrated into your editor.</p>
+                    </div>
+                    
+                    <div class="tool-section">
+                        <h4>// windsurf</h4>
+                        <p>Another AI IDE, from Codeium. The "Cascade" feature handles multi-file edits well. Worth trying if Cursor doesn't click for you.</p>
+                    </div>
+                </section>
+
+                <section id="workflow">
+                    <h2>6. My Current Workflow</h2>
+                    <p>After experimenting for months, here's what actually stuck:</p>
+                    
+                    <ul>
+                        <li><strong>Day-to-day coding:</strong> Cursor with Claude Sonnet. Fast, inline, minimal friction.</li>
+                        <li><strong>Complex tasks:</strong> OpenHands when I need something that can run commands and tests.</li>
+                        <li><strong>Quick suggestions:</strong> Copilot autocomplete is still useful for obvious completions.</li>
+                        <li><strong>Learning/exploring:</strong> Chat with Claude about architecture, then implement in Cursor.</li>
+                    </ul>
+                    
+                    <h3>The Honest Truth</h3>
+                    <p>I still write code manually. AI helps with the obvious stuff, but the interesting problems—system design, debugging weird edge cases, making tradeoffs—still need human judgment.</p>
+                </section>
+
+                <section id="reality">
+                    <h2>7. The Reality Check</h2>
+                    <p>Here's what the marketing doesn't tell you:</p>
+                    
+                    <h3>AI Tools Are Not Magic</h3>
+                    <ul>
+                        <li>They hallucinate. Always review generated code.</li>
+                        <li>They don't understand your business logic.</li>
+                        <li>Context limits are real—large codebases confuse them.</li>
+                        <li>Sometimes the old way is faster for simple changes.</li>
+                    </ul>
+                    
+                    <h3>What Actually Improved</h3>
+                    <ul>
+                        <li><strong>Speed on boilerplate:</strong> 10x faster on CRUD, migrations, tests.</li>
+                        <li><strong>Exploration:</strong> Can understand unfamiliar codebases faster.</li>
+                        <li><strong>Consistency:</strong> AI follows patterns better than tired me at 2am.</li>
+                    </ul>
+                    
+                    <h3>What Didn't Improve</h3>
+                    <ul>
+                        <li>Architecture decisions—still need human judgment</li>
+                        <li>Debugging complex race conditions</li>
+                        <li>Understanding business requirements</li>
+                    </ul>
+                </section>
+
+                <section id="conclusion">
+                    <h2>8. Conclusion</h2>
+                    <p>AI coding tools are genuinely useful. Not in the "replace developers" way, but in the "handle tedious stuff so developers can think" way.</p>
+                    <p>If you're new to this like I was, start with Cursor. It's the lowest friction entry point. Then explore agents like OpenHands when you need more autonomous help.</p>
+                    <p>The key is knowing what each tool is good at. Using the wrong tool for the job leads to frustration and the conclusion that "AI is overrated." It's not overrated—it's just not magic.</p>
+                    
+                    <div class="highlight">
+                        <p>The best developers aren't the ones who write the most code. They're the ones who know what to automate and what requires human thought.</p>
+                    </div>
+                </section>
+            </div>
+            
+            <footer class="footer">
+                <div class="share">
+                    <a href="https://twitter.com/intent/tweet?text=AI Coding Tools That Changed How I Work" target="_blank">[share on x]</a>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true" target="_blank">[share on linkedin]</a>
+                </div>
+                <div class="nav-links">
+                    <a href="../index.html">
+                        <div class="label">← back to</div>
+                        <div class="title">home</div>
+                    </a>
+                    <a href="../index.html#blog">
+                        <div class="label">more articles →</div>
+                        <div class="title">blog</div>
+                    </a>
+                </div>
+            </footer>
+        </article>
+    </div>
+
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const progress = document.getElementById('progress');
+        const saved = localStorage.getItem('theme') || 'dark';
+        if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+        
+        toggle.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        });
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            progress.style.width = (scrollTop / docHeight * 100) + '%';
+        });
+    </script>
+</body>
+</html>

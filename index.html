@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdulla Sajad | SWE + AI</title>
+    <title>Abdulla Sajad | SWE + AI Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -129,6 +129,20 @@
         .skill-group li { font-size: 14px; color: var(--text-dim); margin-bottom: 0.5rem; }
         .skill-group li::before { content: '// '; color: var(--border); }
         
+        .blog-grid { display: grid; gap: 1rem; }
+        .blog-item {
+            border: 1px solid var(--border);
+            padding: 1.25rem;
+            transition: border-color 0.2s;
+            display: block;
+        }
+        .blog-item:hover { border-color: var(--accent); text-decoration: none; }
+        .blog-item .meta { display: flex; gap: 1rem; font-size: 12px; margin-bottom: 0.5rem; }
+        .blog-item .cat { color: var(--accent); }
+        .blog-item .date { color: var(--text-dim); }
+        .blog-item h3 { font-size: 15px; font-weight: 600; margin-bottom: 0.5rem; color: var(--text); }
+        .blog-item p { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+        
         .timeline-item { margin-bottom: 2rem; }
         .timeline-item .year { font-size: 13px; color: var(--accent); margin-bottom: 0.25rem; }
         .timeline-item h3 { font-size: 15px; font-weight: 600; }
@@ -149,6 +163,14 @@
         .contact-item:hover { border-color: var(--accent); }
         .contact-item .key { color: var(--text-dim); }
         .contact-item .value { color: var(--text); }
+        
+        .resume-placeholder {
+            border: 1px dashed var(--border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 14px;
+        }
         
         footer { border-top: 1px solid var(--border); padding-top: 2rem; font-size: 13px; color: var(--text-dim); }
         footer .inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
@@ -190,9 +212,9 @@
             <div class="nav-right">
                 <div class="nav-links" id="navLinks">
                     <a href="#work">work</a>
+                    <a href="#blog">blog</a>
                     <a href="#skills">skills</a>
                     <a href="#contact">contact</a>
-                    <a href="resume.html">resume</a>
                 </div>
                 <button class="menu-btn" id="menuBtn">[menu]</button>
                 <button class="theme-btn" id="themeToggle">[theme]</button>
@@ -203,9 +225,9 @@
     <div class="container">
         <section class="hero">
             <h1>Abdulla Sajad</h1>
-            <p class="tagline">software engineer // ai developer</p>
+            <p class="tagline">software engineer // ai engineer</p>
             <span class="status">open to opportunities</span>
-            <p class="bio">I build full-stack applications with focus on backend systems and AI integration. Currently exploring LLM engineering, RAG pipelines, and building products that matter.</p>
+            <p class="bio">I build full-stack applications with focus on backend systems and AI integration. Currently exploring LLM engineering, RAG pipelines, and building products that matter. Still learning, always shipping.</p>
             <div class="links">
                 <a href="https://github.com/sajadkoder" target="_blank">[github]</a>
                 <a href="https://linkedin.com/in/abdullasajad" target="_blank">[linkedin]</a>
@@ -222,15 +244,17 @@
                     <h3>Esencelab</h3>
                     <span class="year">2024</span>
                 </div>
-                <p>AI-powered resume builder optimized for ATS. Secure auth, modular backend, intelligent resume analysis.</p>
+                <p>AI-powered campus recruitment platform. Resume parsing with Gemini AI, intelligent job matching, real-time application tracking. Built for students, recruiters, and admins.</p>
                 <div class="tags">
-                    <span class="tag">spring boot</span>
                     <span class="tag">react</span>
-                    <span class="tag">postgresql</span>
-                    <span class="tag">openai</span>
+                    <span class="tag">typescript</span>
+                    <span class="tag">supabase</span>
+                    <span class="tag">gemini ai</span>
+                    <span class="tag">tailwind</span>
                 </div>
                 <div class="links">
                     <a href="https://github.com/sajadkoder/esencelab" target="_blank">[source]</a>
+                    <a href="https://esencelab.vercel.app" target="_blank">[live]</a>
                 </div>
             </div>
 
@@ -249,21 +273,43 @@
                     <a href="https://github.com/sajadkoder/speakswap" target="_blank">[source]</a>
                 </div>
             </div>
+        </section>
 
-            <div class="project">
-                <div class="project-header">
-                    <h3>AI Workflow Lab</h3>
-                    <span class="year">2024-</span>
-                </div>
-                <p>RAG pipelines, prompt engineering experiments, local LLM deployment. Personal AI playground.</p>
-                <div class="tags">
-                    <span class="tag">python</span>
-                    <span class="tag">langchain</span>
-                    <span class="tag">docker</span>
-                </div>
-                <div class="links">
-                    <span style="color: var(--text-dim); font-size: 14px;">[private]</span>
-                </div>
+        <section id="blog">
+            <div class="label">// blog</div>
+            <div class="blog-grid">
+                <a href="blogs/ai-coding-tools-2026.html" class="blog-item">
+                    <div class="meta">
+                        <span class="cat">[ai tools]</span>
+                        <span class="date">jan 2026</span>
+                    </div>
+                    <h3>AI Coding Tools That Changed How I Work</h3>
+                    <p>From Cursor to OpenHands, exploring AI-powered dev tools that actually help ship code faster.</p>
+                </a>
+                <a href="blogs/llm-landscape-2026.html" class="blog-item">
+                    <div class="meta">
+                        <span class="cat">[llm]</span>
+                        <span class="date">jan 2026</span>
+                    </div>
+                    <h3>The LLM Landscape: What's Actually Useful in 2026</h3>
+                    <p>Breaking down the models that matter, from reasoning models to coding assistants.</p>
+                </a>
+                <a href="blogs/learning-ai-engineering.html" class="blog-item">
+                    <div class="meta">
+                        <span class="cat">[learning]</span>
+                        <span class="date">dec 2025</span>
+                    </div>
+                    <h3>Learning AI Engineering as a Software Developer</h3>
+                    <p>My journey from traditional SWE to AI engineering. What worked, what didn't.</p>
+                </a>
+                <a href="blogs/neurosymbolic-ai-military.html" class="blog-item">
+                    <div class="meta">
+                        <span class="cat">[ai research]</span>
+                        <span class="date">jan 2026</span>
+                    </div>
+                    <h3>Neurosymbolic AI in Military Systems</h3>
+                    <p>Combining neural networks with symbolic reasoning for explainable military AI.</p>
+                </a>
             </div>
         </section>
 
@@ -301,7 +347,7 @@
                     <ul>
                         <li>docker</li>
                         <li>git</li>
-                        <li>postgresql</li>
+                        <li>supabase</li>
                         <li>linux</li>
                     </ul>
                 </div>
@@ -314,6 +360,13 @@
                 <div class="year">2022 - 2026</div>
                 <h3>B.Tech Computer Science</h3>
                 <div class="org">Sree Narayana Guru College of Engineering</div>
+            </div>
+        </section>
+
+        <section id="resume">
+            <div class="label">// resume</div>
+            <div class="resume-placeholder">
+                [resume coming soon]
             </div>
         </section>
 
@@ -342,7 +395,7 @@
         <footer>
             <div class="inner">
                 <span>© 2026</span>
-                <span>built with focus</span>
+                <span>sajad</span>
             </div>
         </footer>
     </div>

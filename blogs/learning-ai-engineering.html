@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning AI Engineering as a Software Developer | Abdulla Sajad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --text: #ffffff;
+            --text-dim: #b0b0b0;
+            --accent: #00ff88;
+            --accent-dim: #00ff8833;
+            --border: #333333;
+        }
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --text: #000000;
+            --text-dim: #444444;
+            --accent: #00aa55;
+            --accent-dim: #00aa5520;
+            --border: #cccccc;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 15px;
+            transition: background 0.2s, color 0.2s;
+            -webkit-font-smoothing: antialiased;
+        }
+        ::selection { background: var(--accent); color: var(--bg); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        
+        .progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); z-index: 101; }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+        nav .inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-weight: 700; font-size: 15px; color: var(--text); }
+        .logo span { color: var(--accent); }
+        .nav-btns { display: flex; gap: 1rem; align-items: center; }
+        .nav-btn { font-size: 12px; color: var(--text); background: none; border: none; cursor: pointer; font-family: inherit; transition: color 0.2s; }
+        .nav-btn:hover { color: var(--accent); }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 5rem 2rem; }
+        
+        article { padding-top: 1.5rem; }
+        
+        .meta { display: flex; gap: 1rem; margin-bottom: 1.5rem; font-size: 13px; flex-wrap: wrap; }
+        .meta .cat { color: var(--accent); }
+        .meta .date { color: var(--text-dim); }
+        
+        h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.01em; line-height: 1.3; }
+        .subtitle { color: var(--text-dim); font-size: 16px; margin-bottom: 2rem; line-height: 1.6; }
+        
+        .author { display: flex; gap: 1rem; align-items: center; padding: 1rem; border: 1px solid var(--border); margin-bottom: 2.5rem; }
+        .author-avatar { width: 40px; height: 40px; background: var(--accent); color: var(--bg); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+        .author-name { font-weight: 600; font-size: 14px; }
+        .author-info { font-size: 13px; color: var(--text-dim); }
+        
+        .toc { border: 1px solid var(--border); padding: 1.25rem; margin-bottom: 2.5rem; }
+        .toc-title { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+        .toc ol { list-style: none; display: grid; gap: 0.5rem; }
+        .toc a { font-size: 14px; color: var(--text-dim); display: flex; gap: 0.5rem; }
+        .toc a:hover { color: var(--accent); text-decoration: none; }
+        .toc .num { color: var(--accent); font-size: 13px; min-width: 1.5rem; }
+        
+        .content h2 { font-size: 18px; font-weight: 600; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+        .content h3 { font-size: 16px; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--accent); }
+        .content p { color: var(--text-dim); margin-bottom: 1rem; line-height: 1.8; }
+        .content ul, .content ol { margin: 1rem 0 1.5rem 1.5rem; color: var(--text-dim); }
+        .content li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .content strong { color: var(--text); }
+        
+        .highlight { background: var(--accent-dim); border-left: 2px solid var(--accent); padding: 1rem 1.25rem; margin: 1.5rem 0; }
+        .highlight p { color: var(--text); margin: 0; font-style: italic; font-size: 15px; }
+        
+        .resource-card { border: 1px solid var(--border); padding: 1.25rem; margin: 1rem 0; }
+        .resource-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 0.5rem; color: var(--accent); }
+        .resource-card p { font-size: 14px; margin: 0; }
+        .resource-card .tag { font-size: 11px; color: var(--text-dim); margin-top: 0.5rem; }
+        
+        .lesson-box { border: 1px solid var(--border); padding: 1.25rem; margin: 1rem 0; }
+        .lesson-box h4 { font-size: 14px; font-weight: 600; margin-bottom: 0.75rem; }
+        .lesson-box ul { margin: 0 0 0 1rem; }
+        
+        .footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+        .share { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .share a { font-size: 13px; color: var(--text-dim); }
+        .share a:hover { color: var(--accent); }
+        .nav-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .nav-links a { padding: 1rem; border: 1px solid var(--border); font-size: 14px; }
+        .nav-links a:hover { border-color: var(--accent); text-decoration: none; }
+        .nav-links .label { font-size: 12px; color: var(--text-dim); }
+        .nav-links .title { font-weight: 600; margin-top: 0.25rem; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 5rem 1.25rem; }
+            h1 { font-size: 1.75rem; }
+            .nav-links { grid-template-columns: 1fr; }
+            .toc ol { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" id="progress"></div>
+    
+    <nav>
+        <div class="inner">
+            <a href="../index.html" class="logo">abdulla<span>.</span>sajad</a>
+            <div class="nav-btns">
+                <a href="../index.html#blog" class="nav-btn">[back]</a>
+                <button class="nav-btn" id="themeToggle">[theme]</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <article>
+            <div class="meta">
+                <span class="cat">[learning]</span>
+                <span class="date">dec 2025</span>
+            </div>
+            
+            <h1>Learning AI Engineering as a Software Developer</h1>
+            <p class="subtitle">My journey from building Java backends to exploring LLMs, RAG pipelines, and prompt engineering. What worked, what didn't, and what I'm still figuring out.</p>
+            
+            <div class="author">
+                <div class="author-avatar">AS</div>
+                <div>
+                    <div class="author-name">Abdulla Sajad</div>
+                    <div class="author-info">Software Engineer // Transitioning to AI</div>
+                </div>
+            </div>
+            
+            <div class="toc">
+                <div class="toc-title">contents</div>
+                <ol>
+                    <li><a href="#starting"><span class="num">01</span> where i started</a></li>
+                    <li><a href="#why"><span class="num">02</span> why ai engineering</a></li>
+                    <li><a href="#first"><span class="num">03</span> first steps (and missteps)</a></li>
+                    <li><a href="#resources"><span class="num">04</span> resources that actually helped</a></li>
+                    <li><a href="#building"><span class="num">05</span> learning by building</a></li>
+                    <li><a href="#mindset"><span class="num">06</span> mindset shifts</a></li>
+                    <li><a href="#still"><span class="num">07</span> what i'm still learning</a></li>
+                    <li><a href="#advice"><span class="num">08</span> advice for fellow swe's</a></li>
+                </ol>
+            </div>
+            
+            <div class="content">
+                <section id="starting">
+                    <h2>1. Where I Started</h2>
+                    <p>Six months ago, I was comfortable. Building REST APIs in Spring Boot, frontend in React, database work in PostgreSQL. Traditional full-stack development.</p>
+                    <p>AI was something I used—ChatGPT for quick answers, Copilot for autocomplete—but not something I understood. The difference between a model and an API was vague. I couldn't explain how GPT actually worked beyond "it predicts the next token."</p>
+                    
+                    <div class="highlight">
+                        <p>I wasn't trying to become an ML researcher. I wanted to build applications that use AI—which is what most companies actually need.</p>
+                    </div>
+                </section>
+
+                <section id="why">
+                    <h2>2. Why AI Engineering</h2>
+                    <p>A few things pushed me:</p>
+                    <ul>
+                        <li><strong>Curiosity:</strong> Everyone's talking about AI. I wanted to understand it beyond the headlines.</li>
+                        <li><strong>Career:</strong> AI integration is becoming expected in products. Pure backend work is changing.</li>
+                        <li><strong>Capability:</strong> I saw what others were building with AI and wanted those tools in my arsenal.</li>
+                        <li><strong>Fear of missing out:</strong> Honestly. The space was moving so fast I felt left behind.</li>
+                    </ul>
+                    
+                    <h3>The Distinction</h3>
+                    <p>Early on, I realized there's a difference between:</p>
+                    <ul>
+                        <li><strong>ML Engineering:</strong> Training models, data pipelines, MLOps</li>
+                        <li><strong>AI Engineering:</strong> Using existing models, building applications, prompt engineering, RAG</li>
+                    </ul>
+                    <p>I went for the second path. It's more accessible from a SWE background and more aligned with what I actually want to build.</p>
+                </section>
+
+                <section id="first">
+                    <h2>3. First Steps (and Missteps)</h2>
+                    <p>Here's what I did wrong:</p>
+                    
+                    <h3>Mistake 1: Starting with Theory</h3>
+                    <p>I spent weeks reading about transformers, attention mechanisms, backpropagation. Interesting? Yes. Practical for building apps? No. I learned a lot but couldn't build anything.</p>
+                    
+                    <h3>Mistake 2: Tutorial Hell</h3>
+                    <p>Followed LangChain tutorials, built what they built, understood nothing. When something broke, I was stuck. Copy-pasting isn't learning.</p>
+                    
+                    <h3>Mistake 3: Chasing Every New Thing</h3>
+                    <p>New model drops → new framework → new technique. I was overwhelmed trying to keep up instead of deeply learning anything.</p>
+                    
+                    <div class="lesson-box">
+                        <h4>// what finally worked</h4>
+                        <ul>
+                            <li>One project at a time</li>
+                            <li>Learn just enough to build the next feature</li>
+                            <li>Go deeper when something doesn't work</li>
+                            <li>Accept that I can't learn everything</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="resources">
+                    <h2>4. Resources That Actually Helped</h2>
+                    
+                    <div class="resource-card">
+                        <h4>// hands-on learning</h4>
+                        <p>Build things. Start with a simple chatbot. Then add RAG. Then add tools. Iterate. Break things. Fix them.</p>
+                        <span class="tag">most important</span>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h4>// documentation over tutorials</h4>
+                        <p>Official docs for LangChain, OpenAI API, Anthropic API. They're drier than tutorials but more accurate and comprehensive.</p>
+                        <span class="tag">ground truth</span>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h4>// andrej karpathy's neural networks series</h4>
+                        <p>Finally understood what's happening under the hood. Not necessary for building apps, but gives intuition that helps debug.</p>
+                        <span class="tag">theory foundation</span>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h4>// 3b1b neural network videos</h4>
+                        <p>Visual explanations of how networks learn. Made the math intuitive.</p>
+                        <span class="tag">visual learner friendly</span>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <h4>// jerry liu's llm apps talks</h4>
+                        <p>Practical perspectives on building with LLMs. Less hype, more reality.</p>
+                        <span class="tag">practical insight</span>
+                    </div>
+                    
+                    <h3>What Didn't Help</h3>
+                    <ul>
+                        <li>Coursera-style long courses (outdated by the time you finish)</li>
+                        <li>Twitter/X threads (too superficial)</li>
+                        <li>Hacker News debates (mostly academic)</li>
+                        <li>Papers (unless you're implementing something specific)</li>
+                    </ul>
+                </section>
+
+                <section id="building">
+                    <h2>5. Learning by Building</h2>
+                    <p>The best way I found to learn: have a project, hit problems, solve them.</p>
+                    
+                    <h3>Project 1: Simple Chatbot</h3>
+                    <p>Started with OpenAI API, basic conversation handling. Learned about tokens, context windows, temperature.</p>
+                    
+                    <h3>Project 2: RAG Pipeline</h3>
+                    <p>Built a document Q&A system. Learned about embeddings, vector databases, chunking strategies, retrieval metrics. This is where things got interesting.</p>
+                    <p>Key lessons:</p>
+                    <ul>
+                        <li>Chunking strategy matters more than the model</li>
+                        <li>Retrieval quality is the bottleneck</li>
+                        <li>Simple often beats complex</li>
+                    </ul>
+                    
+                    <h3>Project 3: Agent with Tools</h3>
+                    <p>Built something that could use tools—search web, run code, read files. Learned about function calling, tool schemas, agent loops.</p>
+                    <p>This is where I understood the difference between "chat with AI" and "AI that can do things."</p>
+                    
+                    <div class="highlight">
+                        <p>Every project taught me one thing well. That's better than learning ten things superficially.</p>
+                    </div>
+                </section>
+
+                <section id="mindset">
+                    <h2>6. Mindset Shifts</h2>
+                    <p>Coming from traditional software, I had to unlearn some things:</p>
+                    
+                    <h3>Deterministic → Probabilistic</h3>
+                    <p>In traditional code, same input = same output. With AI, same prompt can give different results. Testing becomes harder. Debugging is different.</p>
+                    
+                    <h3>Exact Specification → Iteration</h3>
+                    <p>You can't spec an AI feature like you spec an API. You iterate on prompts, test outputs, adjust. It's more like design work than coding.</p>
+                    
+                    <h3>Code Quality → Prompt Quality</h3>
+                    <p>Bad code can be refactored. Bad prompts are harder to untangle. Writing clear instructions is a skill I'm still developing.</p>
+                    
+                    <h3>Few-Shot Learning</h3>
+                    <p>Showing the model examples of what you want is often better than describing it. I learned to think in examples, not just instructions.</p>
+                </section>
+
+                <section id="still">
+                    <h2>7. What I'm Still Learning</h2>
+                    <p>I'm not an expert. Here's what's still on my list:</p>
+                    
+                    <ul>
+                        <li><strong>Fine-tuning:</strong> When to do it vs when to use RAG</li>
+                        <li><strong>Evaluation:</strong> How to measure if my AI features are actually good</li>
+                        <li><strong>Cost optimization:</strong> Balancing quality with API costs</li>
+                        <li><strong>Multimodal:</strong> Working with images, audio beyond just text</li>
+                        <li><strong>Agents:</strong> Building more sophisticated autonomous systems</li>
+                    </ul>
+                    
+                    <p>The field moves fast. What I learned six months ago is already dated. The skill isn't knowing everything—it's being able to learn quickly when you need to.</p>
+                </section>
+
+                <section id="advice">
+                    <h2>8. Advice for Fellow SWE's</h2>
+                    <p>If you're a software engineer looking to get into AI engineering:</p>
+                    
+                    <ul>
+                        <li><strong>Start with APIs:</strong> OpenAI, Anthropic, Gemini. Build something small this week.</li>
+                        <li><strong>One project at a time:</strong> Don't try to learn everything. Pick a project and learn what you need.</li>
+                        <li><strong>Your SWE skills transfer:</strong> System design, error handling, testing, API design—all still relevant.</li>
+                        <li><strong>Don't over-theory:</strong> You don't need a PhD to build AI apps. Understand enough to debug, then move on.</li>
+                        <li><strong>Accept imperfection:</strong> AI outputs are never 100% reliable. Build systems that handle that.</li>
+                        <li><strong>Stay practical:</strong> The hype cycle is intense. Focus on what helps you build better software.</li>
+                    </ul>
+                    
+                    <div class="highlight">
+                        <p>The goal isn't to become an AI researcher. It's to become a better engineer who can work with AI.</p>
+                    </div>
+                    
+                    <p>I'm still on this journey. Learning constantly, building when I can, accepting that I'll never know everything. That's the nature of a field this fast-moving.</p>
+                    <p>If you're starting out, feel free to reach out. Always happy to chat with fellow engineers figuring this out.</p>
+                </section>
+            </div>
+            
+            <footer class="footer">
+                <div class="share">
+                    <a href="https://twitter.com/intent/tweet?text=Learning AI Engineering as a Software Developer" target="_blank">[share on x]</a>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true" target="_blank">[share on linkedin]</a>
+                </div>
+                <div class="nav-links">
+                    <a href="../index.html">
+                        <div class="label">← back to</div>
+                        <div class="title">home</div>
+                    </a>
+                    <a href="../index.html#blog">
+                        <div class="label">more articles →</div>
+                        <div class="title">blog</div>
+                    </a>
+                </div>
+            </footer>
+        </article>
+    </div>
+
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const progress = document.getElementById('progress');
+        const saved = localStorage.getItem('theme') || 'dark';
+        if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+        
+        toggle.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        });
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            progress.style.width = (scrollTop / docHeight * 100) + '%';
+        });
+    </script>
+</body>
+</html>
