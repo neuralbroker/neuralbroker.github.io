@@ -193,32 +193,52 @@
                     <p>This is where I spend most of my time. Here's what I've learned:</p>
                     
                     <div class="model-card">
-                        <h4>Claude 3.5 Sonnet / Claude 4</h4>
+                        <h4>Claude 4 Sonnet / Claude 4 Opus</h4>
                         <div class="use-case">// best for: complex coding, architecture discussions, debugging</div>
-                        <p>My go-to for serious coding work. It understands context better than anything else I've tried. When I paste in a file and ask for refactoring, it actually gets what I'm trying to do.</p>
+                        <p>Claude 4 represents a significant leap. Sonnet offers the best balance of capability and speed. Opus is the most capable model for complex multi-step reasoning. Both have improved tool use and extended thinking capabilities.</p>
                         <div class="pros-cons">
-                            <strong>Pros:</strong> Great context understanding, follows instructions well, less likely to hallucinate APIs.<br>
-                            <strong>Cons:</strong> Rate limits can be annoying, not available in some regions.
+                            <strong>Pros:</strong> Best context understanding, excellent instruction following, superior coding abilities, extended thinking mode.<br>
+                            <strong>Cons:</strong> Rate limits, not available in all regions, can be expensive for heavy use.
                         </div>
                     </div>
                     
                     <div class="model-card">
-                        <h4>GPT-4o</h4>
-                        <div class="use-case">// best for: general purpose, quick questions, broad knowledge</div>
-                        <p>Still solid. I use it when Claude is rate-limited or when I need broader world knowledge. The API is reliable and well-documented.</p>
+                        <h4>GPT-5</h4>
+                        <div class="use-case">// best for: general purpose, multimodal tasks, broad knowledge</div>
+                        <p>GPT-5 brings native multimodal capabilities and improved reasoning. The model handles images, audio, and text seamlessly. Function calling is significantly improved over GPT-4.</p>
                         <div class="pros-cons">
-                            <strong>Pros:</strong> Fast, widely available, good ecosystem (Copilot, etc.).<br>
-                            <strong>Cons:</strong> Sometimes verbose, can be confident but wrong.
+                            <strong>Pros:</strong> Native multimodal, excellent API reliability, huge ecosystem, good reasoning.<br>
+                            <strong>Cons:</strong> Can be verbose, expensive for large context, less transparent about capabilities.
                         </div>
                     </div>
                     
                     <div class="model-card">
-                        <h4>DeepSeek V3 / R1</h4>
-                        <div class="use-case">// best for: cost-effective coding, reasoning tasks</div>
-                        <p>The recent hype is justified. DeepSeek R1's reasoning capabilities are impressive for the price. I've started using it for initial debugging passes before switching to Claude for complex fixes.</p>
+                        <h4>DeepSeek R2</h4>
+                        <div class="use-case">// best for: cost-effective coding, reasoning tasks, open-source deployments</div>
+                        <p>DeepSeek R2 continues the R1's strong reasoning with improved code generation. Open weights available, making it ideal for organizations wanting to run their own models.</p>
                         <div class="pros-cons">
-                            <strong>Pros:</strong> Extremely cheap, good reasoning, open weights available.<br>
-                            <strong>Cons:</strong> UI/UX of various providers varies, newer so less ecosystem.
+                            <strong>Pros:</strong> Extremely competitive pricing, open weights, strong reasoning, good for fine-tuning.<br>
+                            <strong>Cons:</strong> UI/UX varies by provider, less ecosystem support than OpenAI/Anthropic.
+                        </div>
+                    </div>
+                    
+                    <div class="model-card">
+                        <h4>Gemini 2.5 Pro</h4>
+                        <div class="use-case">// best for: long context, multimodal, Google ecosystem integration</div>
+                        <p>Google's flagship model offers the longest context window (up to 2M tokens) and excellent multimodal capabilities. Deep integration with Google Cloud and Workspace.</p>
+                        <div class="pros-cons">
+                            <strong>Pros:</strong> Massive context, excellent multimodal, Google integration, competitive pricing.<br>
+                            <strong>Cons:</strong> Less polished for coding than Claude/GPT, API can be inconsistent.
+                        </div>
+                    </div>
+                    
+                    <div class="model-card">
+                        <h4>Llama 4</h4>
+                        <div class="use-case">// best for: local deployment, privacy-sensitive applications</div>
+                        <p>Meta's latest open-source model offers strong performance with the freedom of local deployment. Multiple sizes available for different hardware requirements.</p>
+                        <div class="pros-cons">
+                            <strong>Pros:</strong> Truly open source, runs locally, no API costs, privacy-preserving.<br>
+                            <strong>Cons:</strong> Requires GPU infrastructure, can't match closed-source on many benchmarks.
                         </div>
                     </div>
                 </section>
@@ -227,7 +247,117 @@
                     <h2>3. Reasoning Models</h2>
                     <p>The big trend in late 2025/early 2026: models that "think" before answering. They show their reasoning process, and it actually helps.</p>
                     
-                    <h3>When Reasoning Helps</h3>
+                    <h3>API Pricing Comparison (2026)</h3>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Model</th>
+                            <th>Input ($/M tokens)</th>
+                            <th>Output ($/M tokens)</th>
+                            <th>Context</th>
+                        </tr>
+                        <tr>
+                            <td>Claude 4 Opus</td>
+                            <td>$15</td>
+                            <td>$75</td>
+                            <td>200K</td>
+                        </tr>
+                        <tr>
+                            <td>Claude 4 Sonnet</td>
+                            <td>$3</td>
+                            <td>$15</td>
+                            <td>200K</td>
+                        </tr>
+                        <tr>
+                            <td>GPT-5</td>
+                            <td>$10</td>
+                            <td>$30</td>
+                            <td>128K</td>
+                        </tr>
+                        <tr>
+                            <td>GPT-4o</td>
+                            <td>$2.50</td>
+                            <td>$10</td>
+                            <td>128K</td>
+                        </tr>
+                        <tr>
+                            <td>DeepSeek R2</td>
+                            <td>$0.50</td>
+                            <td>$2</td>
+                            <td>64K</td>
+                        </tr>
+                        <tr>
+                            <td>Gemini 2.5 Pro</td>
+                            <td>$1.25</td>
+                            <td>$5</td>
+                            <td>2M</td>
+                        </tr>
+                    </table>
+                    
+                    <h3>Fine-tuning vs RAG in 2026</h3>
+                    <p>One of the most common questions: should you fine-tune or use RAG?</p>
+                    
+                    <h4>When to Use RAG</h4>
+                    <ul>
+                        <li>Need to incorporate up-to-date information</li>
+                        <li>Want to avoid expensive fine-tuning</li>
+                        <li>Need source attribution for responses</li>
+                        <li>Data changes frequently</li>
+                        <li>Need to query large amounts of knowledge</li>
+                    </ul>
+                    
+                    <h4>When to Fine-tune</h4>
+                    <ul>
+                        <li>Need consistent style/voice across responses</li>
+                        <li>Specialized task that requires specific format</li>
+                        <li>Cost optimization for high-volume use cases</li>
+                        <li>Tasks where RAG doesn't perform well enough</li>
+                        <li>Need to teach model domain-specific patterns</li>
+                    </ul>
+                    
+                    <h4>Hybrid Approach</h4>
+                    <p>Many applications benefit from both:</p>
+                    <ul>
+                        <li>Fine-tune for task structure and style</li>
+                        <li>Use RAG for current knowledge and specific context</li>
+                        <li>Combine for best of both worlds</li>
+                    </ul>
+                    
+                    <h3>Multimodal Capabilities</h3>
+                    <p>2026 models handle multiple modalities:</p>
+                    <ul>
+                        <li><strong>GPT-5:</strong> Native image, audio, video understanding</li>
+                        <li><strong>Claude 4:</strong> Image understanding, document analysis</li>
+                        <li><strong>Gemini 2.5:</strong> Native multimodal, 2M token context</li>
+                    </ul>
+                    
+                    <h3>Enterprise Considerations</h3>
+                    <p>What enterprises care about in 2026:</p>
+                    <ul>
+                        <li><strong>Data privacy:</strong> On-premise options, data handling policies</li>
+                        <li><strong>SLA guarantees:</strong> Uptime, rate limits, support</li>
+                        <li><strong>Compliance:</strong> SOC2, HIPAA, GDPR support</li>
+                        <li><strong>Cost predictability:</strong> Volume discounts, committed use</li>
+                        <li><strong>Integration:</strong> SDKs, APIs, enterprise tools</li>
+                    </ul>
+                    
+                    <h3>Local Deployment Options</h3>
+                    <p>Running models on your own infrastructure:</p>
+                    <ul>
+                        <li><strong>Ollama:</strong> Easiest way to run open-source models locally</li>
+                        <li><strong>llama.cpp:</strong> High-performance inference</li>
+                        <li><strong>vLLM:</strong> Production-grade local inference</li>
+                        <li><strong>Text Generation WebUI:</strong> User-friendly interface</li>
+                    </ul>
+                    
+                    <h3>Model Selection Decision Tree</h3>
+                    <p>How to choose the right model:</p>
+                    <ol>
+                        <li>What's your primary use case? (coding → Claude, general → GPT-5)</li>
+                        <li>How important is cost? (critical → DeepSeek, secondary → Claude/GPT)</li>
+                        <li>Do you need privacy? (yes → local Llama, no → any API)</li>
+                        <li>How much context? (>200K → Gemini 2.5)</li>
+                        <li>Need reasoning? (yes → Claude 4 Opus, DeepSeek R2)</li>
+                    </ol>
                     <ul>
                         <li>Complex debugging where the cause isn't obvious</li>
                         <li>Architecture decisions with tradeoffs</li>

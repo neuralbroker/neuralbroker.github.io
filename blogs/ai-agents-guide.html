@@ -120,6 +120,11 @@
         .warning-box { background: rgba(245, 158, 11, 0.1); border-left: 2px solid #f59e0b; padding: 1rem 1.25rem; margin: 1.5rem 0; }
         .warning-box p { color: var(--text); margin: 0; font-size: 14px; }
         
+        .comparison-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1rem 0; }
+        .comparison-item { border: 1px solid var(--border); padding: 1rem; }
+        .comparison-item h5 { font-size: 13px; color: var(--accent); margin-bottom: 0.5rem; }
+        .comparison-item p { font-size: 13px; margin: 0; }
+        
         .footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
         .share { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
         .share a { font-size: 13px; color: var(--text-dim); }
@@ -135,6 +140,7 @@
             h1 { font-size: 1.75rem; }
             .nav-links { grid-template-columns: 1fr; }
             .toc ol { grid-template-columns: 1fr; }
+            .comparison-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -159,7 +165,7 @@
             </div>
             
             <h1>Building with AI Agents: A Practical Guide</h1>
-            <p class="subtitle">From chatbots to autonomous agents—understanding how to build, use, and think about AI agents that can actually do things.</p>
+            <p class="subtitle">From chatbots to autonomous agents—understanding how to build, use, and think about AI agents that can actually do things. A comprehensive guide from someone learning this space.</p>
             
             <div class="author">
                 <div class="author-avatar">AS</div>
@@ -173,21 +179,26 @@
                 <div class="toc-title">contents</div>
                 <ol>
                     <li><a href="#what"><span class="num">01</span> what are ai agents</a></li>
-                    <li><a href="#anatomy"><span class="num">02</span> anatomy of an agent</a></li>
-                    <li><a href="#tools"><span class="num">03</span> tool use fundamentals</a></li>
-                    <li><a href="#patterns"><span class="num">04</span> agent patterns</a></li>
-                    <li><a href="#frameworks"><span class="num">05</span> frameworks & tools</a></li>
-                    <li><a href="#building"><span class="num">06</span> building your first agent</a></li>
-                    <li><a href="#production"><span class="num">07</span> production considerations</a></li>
-                    <li><a href="#limitations"><span class="num">08</span> limitations & challenges</a></li>
-                    <li><a href="#future"><span class="num">09</span> where this is going</a></li>
+                    <li><a href="#evolution"><span class="num">02</span> evolution of ai systems</a></li>
+                    <li><a href="#anatomy"><span class="num">03</span> anatomy of an agent</a></li>
+                    <li><a href="#tools"><span class="num">04</span> tool use fundamentals</a></li>
+                    <li><a href="#memory"><span class="num">05</span> memory systems</a></li>
+                    <li><a href="#patterns"><span class="num">06</span> agent patterns</a></li>
+                    <li><a href="#planning"><span class="num">07</span> planning & reasoning</a></li>
+                    <li><a href="#frameworks"><span class="num">08</span> frameworks & tools</a></li>
+                    <li><a href="#building"><span class="num">09</span> building your first agent</a></li>
+                    <li><a href="#multi"><span class="num">10</span> multi-agent systems</a></li>
+                    <li><a href="#production"><span class="num">11</span> production considerations</a></li>
+                    <li><a href="#evaluation"><span class="num">12</span> evaluating agents</a></li>
+                    <li><a href="#limitations"><span class="num">13</span> limitations & challenges</a></li>
+                    <li><a href="#future"><span class="num">14</span> where this is going</a></li>
                 </ol>
             </div>
             
             <div class="content">
                 <section id="what">
                     <h2>1. What Are AI Agents</h2>
-                    <p>The difference between a chatbot and an agent: agents can <em>do</em> things, not just say things.</p>
+                    <p>The difference between a chatbot and an agent: agents can <em>do</em> things, not just say things. This distinction sounds simple, but it represents a fundamental shift in how we think about AI systems.</p>
                     
                     <h3>Chatbot vs Agent</h3>
                     <div class="diagram">CHATBOT:
@@ -201,22 +212,60 @@ AGENT:
                     ↓
               [LLM processes] → [Response with actual weather]</div>
                     
-                    <p>An agent has:</p>
+                    <p>An agent has capabilities that go beyond text generation:</p>
                     <ul>
-                        <li><strong>Tools:</strong> Functions it can call (APIs, databases, file operations)</li>
-                        <li><strong>Planning:</strong> Ability to break goals into steps</li>
-                        <li><strong>Memory:</strong> Context from previous interactions</li>
+                        <li><strong>Tools:</strong> Functions it can call (APIs, databases, file operations, code execution)</li>
+                        <li><strong>Planning:</strong> Ability to break goals into steps and execute them sequentially</li>
+                        <li><strong>Memory:</strong> Context from previous interactions and the ability to learn</li>
                         <li><strong>Autonomy:</strong> Makes decisions without constant human input</li>
+                        <li><strong>Self-Correction:</strong> Can recognize failures and try different approaches</li>
                     </ul>
                     
+                    <h3>Why This Matters Now</h3>
+                    <p>Agent capabilities have dramatically improved in the last year. Better reasoning models, improved function calling, and more mature frameworks make agents practical for real applications. What was research territory in 2024 is production-ready in 2026.</p>
+                    
                     <div class="highlight">
-                        <p>The key insight: agents don't just predict text—they reason about what actions to take, execute them, and reason about results.</p>
+                        <p>The key insight: agents don't just predict text—they reason about what actions to take, execute them, observe results, and iterate. This loop is what makes them powerful.</p>
                     </div>
                 </section>
 
+                <section id="evolution">
+                    <h2>2. Evolution of AI Systems</h2>
+                    <p>Understanding how we got here helps frame where agents fit:</p>
+                    
+                    <div class="comparison-grid">
+                        <div class="comparison-item">
+                            <h5>2020-2021: Prompt Engineering Era</h5>
+                            <p>GPT-3 showed emergent capabilities. Everything was about crafting the right prompt. No tools, just clever instructions.</p>
+                        </div>
+                        <div class="comparison-item">
+                            <h5>2022-2023: Tool Use Emerges</h5>
+                            <p>ChatGPT plugins, function calling, code interpreter. LLMs could finally interact with external systems.</p>
+                        </div>
+                        <div class="comparison-item">
+                            <h5>2024: Agent Frameworks</h5>
+                            <p>LangChain, AutoGPT, BabyAGI. Structured approaches to building autonomous agents. Still experimental.</p>
+                        </div>
+                        <div class="comparison-item">
+                            <h5>2025-2026: Production Agents</h5>
+                            <p>Reasoning models (Claude thinking, DeepSeek R1), mature frameworks, real deployments. Agents that actually work reliably.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>The Key Breakthroughs</h3>
+                    <p>Several developments made agents practical:</p>
+                    <ul>
+                        <li><strong>Better instruction following:</strong> Models actually do what you ask them to do</li>
+                        <li><strong>Structured output:</strong> Models can reliably output JSON, making tool interfaces work</li>
+                        <li><strong>Longer contexts:</strong> Agents can maintain conversation and execution history</li>
+                        <li><strong>Reasoning capabilities:</strong> Models can think through multi-step problems</li>
+                        <li><strong>Error recovery:</strong> Agents can recognize failures and try alternatives</li>
+                    </ul>
+                </section>
+
                 <section id="anatomy">
-                    <h2>2. Anatomy of an Agent</h2>
-                    <p>Every agent system has core components, regardless of framework:</p>
+                    <h2>3. Anatomy of an Agent</h2>
+                    <p>Every agent system has core components, regardless of framework or implementation:</p>
                     
                     <h3>The Agent Loop</h3>
                     <div class="diagram">┌─────────────────────────────────────────┐
@@ -228,400 +277,872 @@ AGENT:
 │       ↓                                  │
 │  3. Act    → Execute a tool/action       │
 │       ↓                                  │
-│  4. Update → Process results, repeat    │
+│  4. Observe → What happened?            │
+│       ↓                                  │
+│  5. Repeat → Until goal achieved        │
 │                                          │
 └─────────────────────────────────────────┘</div>
                     
-                    <h3>Core Components</h3>
+                    <h3>Core Components in Detail</h3>
                     
                     <h4>1. The Brain (LLM)</h4>
-                    <p>Most agents use an LLM as the reasoning engine. It decides what tools to call, when, and interprets results.</p>
-                    <p>Better reasoning models (Claude 3.5, GPT-4o, DeepSeek R1) make better agents. They follow instructions more reliably and plan better.</p>
+                    <p>Most agents use an LLM as the reasoning engine. It decides what tools to call, when, and interprets results. The choice of model significantly impacts agent capability:</p>
+                    <ul>
+                        <li><strong>Claude 4 Sonnet:</strong> Excellent instruction following, great for complex planning, enhanced tool use</li>
+                        <li><strong>Claude 4 Opus:</strong> Most capable model for complex reasoning, research, and multi-step tasks</li>
+                        <li><strong>GPT-5:</strong> Fast and capable, improved function calling, native multimodal support</li>
+                        <li><strong>DeepSeek R2:</strong> Strong reasoning, open weights, cost-effective for complex tasks</li>
+                        <li><strong>Claude with Extended Thinking:</strong> Best for multi-step reasoning and self-correction</li>
+                        <li><strong>Gemini 2.5 Pro:</strong> Google's best for long context and multimodal tasks</li>
+                    </ul>
                     
                     <h4>2. Tools / Function Definitions</h4>
                     <p>Tools are the actions an agent can take. Each tool has:</p>
                     <ul>
-                        <li>Name and description (LLM uses this to decide when to call)</li>
-                        <li>Input schema (what parameters it accepts)</li>
-                        <li>Implementation (actual code that runs)</li>
+                        <li><strong>Name and description:</strong> LLM uses this to decide when to call</li>
+                        <li><strong>Input schema:</strong> What parameters it accepts (defined as JSON schema)</li>
+                        <li><strong>Implementation:</strong> Actual code that runs when called</li>
+                        <li><strong>Error handling:</strong> What happens when the tool fails</li>
                     </ul>
                     
-                    <h4>3. Memory</h4>
-                    <p>Agents need context from previous steps:</p>
+                    <h4>3. Memory Systems</h4>
+                    <p>Agents need different types of memory:</p>
                     <ul>
-                        <li><strong>Working memory:</strong> Current conversation, recent actions</li>
-                        <li><strong>Long-term memory:</strong> Vector store, previous sessions</li>
-                        <li><strong>Execution trace:</strong> History of tool calls and results</li>
+                        <li><strong>Working memory:</strong> Current conversation, recent actions, immediate context</li>
+                        <li><strong>Episodic memory:</strong> Past interactions with this user</li>
+                        <li><strong>Semantic memory:</strong> Knowledge about the world, stored in vector databases</li>
+                        <li><strong>Procedural memory:</strong> Learned patterns about how to accomplish tasks</li>
                     </ul>
                     
-                    <h4>4. Planner (Optional but Powerful)</h4>
+                    <h4>4. Planner</h4>
                     <p>For complex tasks, agents benefit from explicit planning:</p>
                     <ul>
-                        <li>Break goal into subtasks</li>
-                        <li>Execute subtasks in order or in parallel</li>
+                        <li>Decompose goal into subtasks</li>
+                        <li>Identify dependencies between tasks</li>
+                        <li>Execute in order or in parallel</li>
                         <li>Replan when things fail</li>
+                        <li>Track progress toward goal</li>
                     </ul>
                 </section>
 
                 <section id="tools">
-                    <h2>3. Tool Use Fundamentals</h2>
-                    <p>Tools are what turn an LLM into an agent. Here's how they actually work:</p>
+                    <h2>4. Tool Use Fundamentals</h2>
+                    <p>Tools are what turn an LLM into an agent. Understanding tool design is critical.</p>
                     
-                    <h3>Function Calling</h3>
-                    <p>Modern LLMs support structured tool use:</p>
+                    <h3>Function Calling Protocol</h3>
+                    <p>Modern LLMs support structured tool use through a specific protocol:</p>
                     <pre><code>// You define tools with schemas
 tools = [
   {
     name: "search_web",
-    description: "Search the web for information",
+    description: "Search the web for current information. Use for recent events, prices, or facts.",
     parameters: {
-      query: { type: "string", description: "Search query" }
+      type: "object",
+      properties: {
+        query: { 
+          type: "string", 
+          description: "The search query" 
+        },
+        num_results: {
+          type: "integer",
+          description: "Number of results to return",
+          default: 5
+        }
+      },
+      required: ["query"]
     }
   },
   {
     name: "read_file",
-    description: "Read a file from disk",
+    description: "Read contents of a file from disk",
     parameters: {
-      path: { type: "string", description: "File path" }
+      type: "object",
+      properties: {
+        path: { 
+          type: "string", 
+          description: "Absolute path to file" 
+        }
+      },
+      required: ["path"]
     }
   }
 ]
 
-// LLM sees these and can decide to call them
-// It outputs structured JSON when it wants to use a tool
+// The LLM sees these tool definitions and can decide to call them
+// When it wants to use a tool, it outputs structured JSON:
+{
+  "tool_calls": [
+    {
+      "name": "search_web",
+      "arguments": "{\"query\": \"current bitcoin price\", \"num_results\": 3}"
+    }
+  ]
+}
+
 // Your code executes the tool and returns results
-// Results go back to LLM for next step</code></pre>
+// Results go back to LLM for next reasoning step</code></pre>
                     
-                    <h3>Common Tool Types</h3>
+                    <h3>Designing Good Tools</h3>
+                    <p>Tool design significantly impacts agent performance:</p>
+                    <ul>
+                        <li><strong>Clear descriptions:</strong> The LLM needs to understand when to use each tool</li>
+                        <li><strong>Minimal parameters:</strong> Fewer parameters = fewer chances for errors</li>
+                        <li><strong>Descriptive names:</strong> <code>search_web</code> is better than <code>tool_1</code></li>
+                        <li><strong>Helpful error messages:</strong> When tools fail, explain why clearly</li>
+                        <li><strong>Idempotent when possible:</strong> Same input = same output, safer for retries</li>
+                    </ul>
+                    
+                    <h3>Tool Categories by Risk</h3>
                     <div class="tool-card">
-                        <h4>Information Retrieval</h4>
-                        <div class="category">// search, fetch, query</div>
-                        <p>Web search, database queries, API calls, document retrieval</p>
-                        <p><strong>Risk:</strong> Low. Mostly read operations.</p>
+                        <h4>Read-Only Tools</h4>
+                        <div class="category">// safe, reversible</div>
+                        <p>Search, read files, query database, fetch URL. Low risk. Agent can call freely.</p>
+                        <div class="pros-cons">
+                            <strong>Risk:</strong> Low | <strong>Approval:</strong> Not needed
+                        </div>
                     </div>
                     <div class="tool-card">
-                        <h4>File Operations</h4>
-                        <div class="category">// read, write, modify</div>
-                        <p>Read files, write code, edit documents, create directories</p>
-                        <p><strong>Risk:</strong> Medium. Can overwrite important data.</p>
+                        <h4>Write Tools</h4>
+                        <div class="category">// potentially destructive</div>
+                        <p>Write files, update database, modify settings. Can overwrite data. Moderate risk.</p>
+                        <div class="pros-cons">
+                            <strong>Risk:</strong> Medium | <strong>Approval:</strong> Consider for sensitive data
+                        </div>
                     </div>
                     <div class="tool-card">
-                        <h4>Code Execution</h4>
-                        <div class="category">// run, evaluate</div>
-                        <p>Run Python, execute shell commands, evaluate expressions</p>
-                        <p><strong>Risk:</strong> High. Sandbox properly.</p>
+                        <h4>Execution Tools</h4>
+                        <div class="category">// code runs</div>
+                        <p>Run Python, execute shell commands. Can do anything. High risk without sandboxing.</p>
+                        <div class="pros-cons">
+                            <strong>Risk:</strong> High | <strong>Approval:</strong> Sandbox required
+                        </div>
                     </div>
                     <div class="tool-card">
-                        <h4>External Actions</h4>
-                        <div class="category">// send, post, deploy</div>
-                        <p>Send emails, post to Slack, deploy code, make purchases</p>
-                        <p><strong>Risk:</strong> Very high. Require human approval.</p>
+                        <h4>External Action Tools</h4>
+                        <div class="category">// affects real world</div>
+                        <p>Send email, post to social, make purchases, deploy code. Irreversible impact.</p>
+                        <div class="pros-cons">
+                            <strong>Risk:</strong> Very High | <strong>Approval:</strong> Always require human confirmation
+                        </div>
                     </div>
                     
                     <div class="warning-box">
-                        <p><strong>Safety first:</strong> Never give an agent unrestricted access to destructive operations. Use sandboxes, require human confirmation for high-risk actions, and log everything.</p>
+                        <p><strong>Safety principle:</strong> Grant agents the minimum permissions needed. Use sandboxes for code execution. Require human approval for irreversible actions. Log everything.</p>
                     </div>
                 </section>
 
-                <section id="patterns">
-                    <h2>4. Agent Patterns</h2>
-                    <p>Different problems need different agent architectures:</p>
+                <section id="memory">
+                    <h2>5. Memory Systems</h2>
+                    <p>Memory is what separates a single-turn tool user from an agent that can work on complex, multi-step tasks over time.</p>
                     
-                    <h3>ReAct (Reason + Act)</h3>
-                    <p>The classic pattern. Think through a problem step by step.</p>
-                    <div class="diagram>User: "What's the population of the capital of France?"
-
-Agent thinks:
-- I need to find the capital of France
-- Then find its population
-
-Action 1: search("capital of France")
-Result: Paris
-
-Action 2: search("population of Paris 2024")
-Result: 2.1 million
-
-Final answer: Paris is the capital, population ~2.1M</div>
+                    <h3>Types of Agent Memory</h3>
                     
-                    <h3>Plan-and-Execute</h3>
-                    <p>First plan, then execute. Better for multi-step tasks.</p>
-                    <div class="diagram>1. Planning Phase:
-   - Analyze the goal
-   - Create numbered steps
-   - Store plan
-
-2. Execution Phase:
-   - Execute step 1
-   - Check if successful
-   - Move to step 2 or replan
-   - Repeat until done</div>
-                    
-                    <h3>Multi-Agent Systems</h3>
-                    <p>Multiple agents with different roles collaborating.</p>
-                    <div class="diagram>[Coordinator Agent]
-       ↓ assigns tasks
-[Researcher] [Coder] [Reviewer]
-       ↓           ↓          ↓
-   Searches    Writes    Reviews
-       ↓           ↓          ↓
-       └─────────┬──────────┘
-                 ↓
-         [Shared State / Messages]</div>
-                    
-                    <p>Example: A coding system where:</p>
+                    <h4>Working Memory (Short-Term)</h4>
+                    <p>The immediate context window. Contains:</p>
                     <ul>
-                        <li><strong>Architect agent:</strong> Plans the structure</li>
-                        <li><strong>Coder agent:</strong> Writes the code</li>
-                        <li><strong>Reviewer agent:</strong> Checks for bugs</li>
-                        <li><strong>Tester agent:</strong> Runs tests</li>
+                        <li>Current user request</li>
+                        <li>Recent conversation history</li>
+                        <li>Tool calls and results in this session</li>
+                        <li>Agent's internal reasoning trace</li>
                     </ul>
+                    <p><strong>Challenge:</strong> Context windows are limited. A long-running agent will exhaust this. Solutions include summarization, sliding windows, and external state storage.</p>
                     
-                    <h3>Self-Correction</h3>
-                    <p>Agents that can fix their own mistakes.</p>
+                    <h4>Episodic Memory (Medium-Term)</h4>
+                    <p>Memory of past interactions with specific users:</p>
                     <ul>
-                        <li>Try an approach</li>
-                        <li>Check if it worked (run tests, verify output)</li>
-                        <li>If failed, analyze error and try differently</li>
-                        <li>Repeat until success or max attempts</li>
+                        <li>Previous conversations</li>
+                        <li>User preferences learned over time</li>
+                        <li>Tasks completed previously</li>
+                        <li>Failures and how they were resolved</li>
+                    </ul>
+                    <p><strong>Implementation:</strong> Usually stored in a database, retrieved when user returns.</p>
+                    
+                    <h4>Semantic Memory (Long-Term Knowledge)</h4>
+                    <p>Facts and knowledge the agent has access to:</p>
+                    <ul>
+                        <li>Documentation and manuals</li>
+                        <li>Codebases for coding agents</li>
+                        <li>Product catalogs, company policies</li>
+                        <li>Domain-specific knowledge bases</li>
+                    </ul>
+                    <p><strong>Implementation:</strong> Vector databases (Pinecone, Weaviate, Chroma) with semantic search.</p>
+                    
+                    <h3>Memory Architecture</h3>
+                    <div class="diagram">┌────────────────────────────────────────────────┐
+│                  AGENT MEMORY                   │
+│                                                 │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────┐│
+│  │   Working   │  │   Vector    │  │   DB    ││
+│  │   Memory    │  │   Store     │  │ Storage ││
+│  │ (Context)   │  │ (RAG)       │  │ (History)││
+│  └─────────────┘  └─────────────┘  └─────────┘│
+│        ↓                 ↓               ↓     │
+│  ┌──────────────────────────────────────────┐ │
+│  │            Memory Manager                 │ │
+│  │  - Retrieves relevant context            │ │
+│  │  - Summarizes when needed                │ │
+│  │  - Stores new information                │ │
+│  └──────────────────────────────────────────┘ │
+└────────────────────────────────────────────────┘</div>
+                    
+                    <h3>Managing Context Overflow</h3>
+                    <p>When context gets too long:</p>
+                    <ul>
+                        <li><strong>Summarization:</strong> Compress earlier conversation into summary</li>
+                        <li><strong>Sliding window:</strong> Keep only last N messages</li>
+                        <li><strong>Importance scoring:</strong> Keep important messages, discard others</li>
+                        <li><strong>Hierarchical compression:</strong> Multiple levels of summaries</li>
+                        <li><strong>External state:</strong> Store state in database, retrieve when needed</li>
                     </ul>
                 </section>
 
+                <section id="patterns">
+                    <h2>6. Agent Patterns</h2>
+                    <p>Different problems need different agent architectures. Here are the major patterns:</p>
+                    
+                    <h3>ReAct (Reason + Act)</h3>
+                    <p>The foundational pattern. Think through a problem step by step, interleaving reasoning and action.</p>
+                    <div class="diagram">User: "What's the population of the capital of France?"
+
+Agent:
+Thought: I need to find the capital of France first
+Action: search("capital of France")
+Observation: Paris is the capital of France
+
+Thought: Now I need Paris population
+Action: search("Paris population 2026")
+Observation: ~2.1 million (city), ~12 million (metro)
+
+Thought: I have the answer
+Answer: Paris is the capital of France with approximately 
+        2.1 million in the city proper and 12 million metro area.</div>
+                    
+                    <h4>When ReAct Works Well</h4>
+                    <ul>
+                        <li>Questions requiring multiple lookups</li>
+                        <li>Tasks with unclear next steps initially</li>
+                        <li>Situations where the path reveals itself</li>
+                    </ul>
+                    
+                    <h3>Plan-and-Execute</h3>
+                    <p>Separate planning from execution. Better for complex, multi-step tasks.</p>
+                    <div class="diagram">PLANNING PHASE:
+User: "Book me a restaurant for tonight"
+
+Agent thinks:
+Step 1: Check user's calendar for available times
+Step 2: Search for restaurants near user's location  
+Step 3: Filter by cuisine preferences (from profile)
+Step 4: Check availability for tonight
+Step 5: Present options or book if confident
+
+EXECUTION PHASE:
+- Execute step 1 → User free 7-9pm
+- Execute step 2 → Found 15 restaurants nearby
+- Execute step 3 → User likes Italian, Japanese
+- Execute step 4 → 3 have availability
+- Execute step 5 → Present 3 options, ask user to choose</div>
+                    
+                    <h4>Benefits of Plan-and-Execute</h4>
+                    <ul>
+                        <li>Clearer progress tracking</li>
+                        <li>Easier to resume after failures</li>
+                        <li>Can parallelize independent steps</li>
+                        <li>User can review/modify plan before execution</li>
+                    </ul>
+                    
+                    <h3>Reflexion</h3>
+                    <p>Agents that learn from their mistakes through self-critique.</p>
+                    <div class="diagram">1. Agent attempts task
+2. Agent generates self-critique of attempt
+3. Critique identifies what went wrong
+4. Agent tries again with critique in context
+5. Repeat until success or max attempts</div>
+                    
+                    <h4>When Reflexion Helps</h4>
+                    <ul>
+                        <li>Coding tasks (test tells you what failed)</li>
+                        <li>Tasks with clear success criteria</li>
+                        <li>Situations where mistakes are informative</li>
+                    </ul>
+                </section>
+
+                <section id="planning">
+                    <h2>7. Planning & Reasoning</h2>
+                    <p>Planning is what separates reactive agents from proactive ones. Good planning means the agent can handle complexity without constant human guidance.</p>
+                    
+                    <h3>Planning Approaches</h3>
+                    
+                    <h4>Decomposition</h4>
+                    <p>Break complex goals into subtasks:</p>
+                    <pre><code>Goal: "Build a landing page for my startup"
+
+Decomposed:
+1. Research landing page best practices
+2. Identify startup's key value propositions
+3. Design page structure (hero, features, CTA)
+4. Write copy for each section
+5. Create HTML/CSS structure
+6. Add styling and responsiveness
+7. Test on different devices
+8. Iterate based on review</code></pre>
+                    
+                    <h4>Dependency Graph</h4>
+                    <p>Some tasks depend on others:</p>
+                    <div class="diagram">Task: "Send a report of recent sales to the team"
+
+Dependency Graph:
+├── Query database for sales data
+│   └── (requires: database connection)
+├── Generate visualizations
+│   └── (requires: sales data)
+├── Write summary analysis  
+│   └── (requires: sales data)
+├── Compile into report
+│   └── (requires: visualizations + summary)
+└── Send email
+    └── (requires: compiled report + team list)</div>
+                    
+                    <h4>Replanning</h4>
+                    <p>When things fail, replan:</p>
+                    <ul>
+                        <li>Identify what failed and why</li>
+                        <li>Determine if goal is still achievable</li>
+                        <li>Generate new plan accounting for failure</li>
+                        <li>Resume from appropriate point</li>
+                    </ul>
+                    
+                    <h3>Reasoning Models</h3>
+                    <p>Newer models have built-in reasoning capabilities:</p>
+                    <ul>
+                        <li><strong>Claude Extended Thinking:</strong> Shows reasoning process explicitly</li>
+                        <li><strong>DeepSeek R1:</strong> Strong reasoning through reinforcement learning</li>
+                        <li><strong>OpenAI o1:</strong> Chain-of-thought reasoning internally</li>
+                    </ul>
+                    <p>These models make better decisions about when to call tools and how to interpret results.</p>
+                </section>
+
                 <section id="frameworks">
-                    <h2>5. Frameworks & Tools</h2>
-                    <p>The ecosystem is evolving rapidly. Here's what I've actually used:</p>
+                    <h2>8. Frameworks & Tools</h2>
+                    <p>The ecosystem has matured significantly. Here's what I've used:</p>
                     
                     <div class="tool-card">
-                        <h4>LangChain / LangGraph</h4>
+                        <h4>LangChain + LangGraph</h4>
                         <div class="category">// python, typescript</div>
-                        <p>Most popular framework. Good abstractions for chains, agents, tools, memory.</p>
+                        <p>The most popular framework. LangChain provides abstractions for chains, agents, tools, memory. LangGraph adds explicit state machine modeling for complex flows.</p>
                         <div class="pros-cons">
-                            <strong>Pros:</strong> Huge ecosystem, lots of integrations, well-documented<br>
-                            <strong>Cons:</strong> Can be over-engineered, abstraction leaks<br>
-                            <strong>Best for:</strong> Prototyping quickly, standard agent patterns
+                            <strong>Pros:</strong> Huge ecosystem, extensive integrations, well-documented, LangGraph is powerful for complex flows<br>
+                            <strong>Cons:</strong> Can be over-abstracted, learning curve for advanced features<br>
+                            <strong>Best for:</strong> Most agent applications, complex workflows
                         </div>
                     </div>
                     
                     <div class="tool-card">
                         <h4>CrewAI</h4>
                         <div class="category">// python</div>
-                        <p>Multi-agent systems made easy. Define agents with roles, let them collaborate.</p>
+                        <p>Purpose-built for multi-agent systems. Define agents with roles, let them collaborate naturally.</p>
                         <div class="pros-cons">
-                            <strong>Pros:</strong> Clean multi-agent abstractions, role-based design<br>
-                            <strong>Cons:</strong> Newer, less mature ecosystem<br>
-                            <strong>Best for:</strong> Complex workflows with multiple roles
+                            <strong>Pros:</strong> Clean multi-agent abstractions, role-based design is intuitive<br>
+                            <strong>Cons:</strong> Less mature, fewer integrations than LangChain<br>
+                            <strong>Best for:</strong> Multi-agent scenarios where agents have distinct roles
                         </div>
                     </div>
                     
                     <div class="tool-card">
                         <h4>AutoGen</h4>
                         <div class="category">// python</div>
-                        <p>Microsoft's framework for conversational agents. Agents talk to each other.</p>
+                        <p>Microsoft's framework for conversational agents. Agents talk to each other to solve problems.</p>
                         <div class="pros-cons">
-                            <strong>Pros:</strong> Natural multi-agent communication patterns<br>
-                            <strong>Cons:</strong> Can get verbose, harder to control<br>
-                            <strong>Best for:</strong> Research, complex collaborative tasks
+                            <strong>Pros:</strong> Natural multi-agent conversation patterns, research-backed<br>
+                            <strong>Cons:</strong> Can be verbose, harder to control exact behavior<br>
+                            <strong>Best for:</strong> Research, scenarios where agents should negotiate
                         </div>
                     </div>
                     
                     <div class="tool-card">
-                        <h4>OpenHands / Cline / Cursor</h4>
-                        <div class="category">// autonomous coding</div>
-                        <p>Ready-made coding agents. Less framework, more "use this tool."</p>
+                        <h4>OpenHands / Cursor / Cline</h4>
+                        <div class="category">// ready-to-use tools</div>
+                        <p>Not frameworks—actual agent products you can use immediately for coding.</p>
                         <div class="pros-cons">
-                            <strong>Pros:</strong> Actually useful for real work<br>
-                            <strong>Cons:</strong> Less customizable<br>
-                            <strong>Best for:</strong> Using agents, not building them
+                            <strong>Pros:</strong> Actually useful for real work today<br>
+                            <strong>Cons:</strong> Less customizable, pay per use<br>
+                            <strong>Best for:</strong> Getting work done, not building agents
                         </div>
                     </div>
                     
-                    <h3>My Recommendation</h3>
+                    <h3>Choosing a Framework</h3>
                     <ul>
-                        <li>Start with raw API + simple function calling (understand the basics)</li>
-                        <li>Use LangChain/LangGraph for real projects (abstractions help)</li>
-                        <li>Consider CrewAI for multi-agent scenarios</li>
-                        <li>Use existing tools (OpenHands, Cursor) for actual coding work</li>
+                        <li><strong>Just starting:</strong> Use raw API + simple function calling first</li>
+                        <li><strong>Single agent:</strong> LangChain is the safe choice</li>
+                        <li><strong>Complex flows:</strong> LangGraph for state management</li>
+                        <li><strong>Multiple agents:</strong> CrewAI or AutoGen</li>
+                        <li><strong>Actually coding:</strong> Just use Cursor or OpenHands</li>
                     </ul>
                 </section>
 
                 <section id="building">
-                    <h2>6. Building Your First Agent</h2>
-                    <p>Let's walk through a simple agent that can search and summarize:</p>
+                    <h2>9. Building Your First Agent</h2>
+                    <p>Let's build a simple research agent that can search and summarize:</p>
                     
-                    <h3>Step 1: Define the Goal</h3>
-                    <p>What should the agent do? Let's build: "Research a topic and produce a summary."</p>
+                    <h3>Step 1: Define Requirements</h3>
+                    <p>What should the agent do?</p>
+                    <ul>
+                        <li>Accept a research topic</li>
+                        <li>Search the web for information</li>
+                        <li>Read relevant articles</li>
+                        <li>Synthesize findings into a summary</li>
+                        <li>Handle failures gracefully</li>
+                    </ul>
                     
-                    <h3>Step 2: Define Tools</h3>
+                    <h3>Step 2: Design Tools</h3>
                     <pre><code>tools = [
   {
-    name: "search",
-    description: "Search the web for information",
-    parameters: { query: string }
+    name: "search_web",
+    description: "Search the web for information about a topic",
+    parameters: {
+      query: { type: "string", description: "Search query" },
+      num_results: { type: "integer", default: 5 }
+    }
   },
   {
-    name: "scrape",
-    description: "Extract text from a webpage",
-    parameters: { url: string }
+    name: "read_url",
+    description: "Read and extract text from a webpage",
+    parameters: {
+      url: { type: "string", description: "URL to read" }
+    }
+  },
+  {
+    name: "save_note",
+    description: "Save an important finding for later",
+    parameters: {
+      note: { type: "string", description: "Finding to save" }
+    }
   }
 ]</code></pre>
                     
-                    <h3>Step 3: Implement the Loop</h3>
+                    <h3>Step 3: Implement the Agent Loop</h3>
                     <div class="step-list">
                         <div class="step-item">
                             <span class="step-num">1</span>
                             <div class="step-content">
-                                <h5>Receive user goal</h5>
-                                <p>"Research the latest news about AI agents and summarize"</p>
+                                <h5>Initialize</h5>
+                                <p>Set up LLM client, tools, memory. Load any existing context.</p>
                             </div>
                         </div>
                         <div class="step-item">
                             <span class="step-num">2</span>
                             <div class="step-content">
-                                <h5>LLM decides first action</h5>
-                                <p>"I should search for 'AI agents latest news 2026'"</p>
+                                <h5>Receive Goal</h5>
+                                <p>"Research the latest developments in AI agents and summarize key trends"</p>
                             </div>
                         </div>
                         <div class="step-item">
                             <span class="step-num">3</span>
                             <div class="step-content">
-                                <h5>Execute tool</h5>
-                                <p>Call search API, get list of URLs and snippets</p>
+                                <h5>Plan (Optional)</h5>
+                                <p>LLM breaks down: search → read → synthesize → format</p>
                             </div>
                         </div>
                         <div class="step-item">
                             <span class="step-num">4</span>
                             <div class="step-content">
-                                <h5>LLM processes results</h5>
-                                <p>"I found 5 relevant articles. Let me scrape the top 3"</p>
+                                <h5>Execute Loop</h5>
+                                <p>LLM decides action → execute tool → observe result → repeat</p>
                             </div>
                         </div>
                         <div class="step-item">
                             <span class="step-num">5</span>
                             <div class="step-content">
-                                <h5>Execute more tools</h5>
-                                <p>Scrape each URL, get full content</p>
+                                <h5>Handle Failures</h5>
+                                <p>If search fails, try different query. If URL fails, skip it.</p>
                             </div>
                         </div>
                         <div class="step-item">
                             <span class="step-num">6</span>
                             <div class="step-content">
-                                <h5>Synthesize</h5>
-                                <p>LLM generates summary from all gathered content</p>
+                                <h5>Complete</h5>
+                                <p>When LLM determines it has enough info, generate final summary.</p>
                             </div>
                         </div>
                     </div>
                     
-                    <h3>Step 4: Handle Edge Cases</h3>
+                    <h3>Step 4: Add Guardrails</h3>
                     <ul>
-                        <li>What if search returns nothing?</li>
-                        <li>What if scrape fails?</li>
-                        <li>What if the agent loops forever?</li>
-                        <li>What if costs get too high?</li>
+                        <li>Max iterations (prevent infinite loops)</li>
+                        <li>Max tokens per call (control costs)</li>
+                        <li>Timeout for tool execution</li>
+                        <li>Fallback when stuck</li>
+                        <li>Logging for debugging</li>
                     </ul>
+                </section>
+
+                <section id="multi">
+                    <h2>10. Multi-Agent Systems</h2>
+                    <p>Multiple agents can work together, each with different roles. This pattern is powerful for complex tasks.</p>
                     
-                    <p>Real agents need guardrails, limits, and fallbacks.</p>
+                    <h3>Common Multi-Agent Patterns</h3>
+                    
+                    <h4>Hierarchical</h4>
+                    <div class="diagram">         [Supervisor Agent]
+                 ↙           ↓           ↘
+        [Researcher]   [Writer]    [Reviewer]
+              ↓             ↓           ↓
+          Searches       Drafts     Reviews
+              ↓             ↓           ↓
+        └──────────────┬───────────────┘
+                       ↓
+              [Shared Workspace]</div>
+                    
+                    <h4>Collaborative</h4>
+                    <div class="diagram">[Agent A] ←→ [Agent B] ←→ [Agent C]
+       ↑               ↑               ↑
+       └───────────────┴───────────────┘
+                       ↓
+              [Shared Memory/State]</div>
+                    
+                    <h4>Competitive</h4>
+                    <div class="diagram">[Agent A] proposes solution
+       ↓
+[Agent B] critiques
+       ↓
+[Agent A] revises
+       ↓
+  Repeat until consensus</div>
+                    
+                    <h3>Example: Coding Team</h3>
+                    <div class="tool-card">
+                        <h4>Architecture Agent</h4>
+                        <p>Plans the overall structure, defines interfaces, suggests file organization</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>Coder Agent</h4>
+                        <p>Implements specific modules, writes functions, handles details</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>Reviewer Agent</h4>
+                        <p>Reviews code for bugs, style issues, security problems</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>Tester Agent</h4>
+                        <p>Writes and runs tests, reports failures, suggests fixes</p>
+                    </div>
+                    
+                    <h3>Coordination Challenges</h3>
+                    <ul>
+                        <li><strong>Communication overhead:</strong> Agents need to share context efficiently</li>
+                        <li><strong>Consistency:</strong> Multiple agents might make conflicting changes</li>
+                        <li><strong>Cost:</strong> More agents = more LLM calls</li>
+                        <li><strong>Debugging:</strong> Harder to trace where things went wrong</li>
+                    </ul>
                 </section>
 
                 <section id="production">
-                    <h2>7. Production Considerations</h2>
+                    <h2>11. Production Considerations</h2>
                     <p>Demo agents are easy. Production agents are hard. Here's what to think about:</p>
                     
                     <h3>Cost Management</h3>
+                    <p>Every LLM call costs money. Agents make many calls per task.</p>
                     <ul>
-                        <li>Every LLM call costs money. Agents make many calls.</li>
                         <li>Set max iterations/tokens per task</li>
-                        <li>Cache results when possible</li>
+                        <li>Cache results when possible (same query = cached response)</li>
                         <li>Use cheaper models for simple decisions</li>
                         <li>Monitor costs per task type</li>
+                        <li>Implement budgets per user/session</li>
                     </ul>
+                    <p><strong>Typical costs:</strong> Simple agent task: $0.01-0.10. Complex research task: $0.50-2.00. Multi-agent coding: $1-10.</p>
                     
                     <h3>Reliability</h3>
                     <ul>
-                        <li>Agents fail. Plan for it.</li>
-                        <li>Timeouts on tool execution</li>
-                        <li>Retry logic with backoff</li>
+                        <li>Timeouts on tool execution (don't hang forever)</li>
+                        <li>Retry logic with exponential backoff</li>
                         <li>Fallback to simpler behavior when complex fails</li>
                         <li>Human-in-the-loop for critical decisions</li>
+                        <li>Graceful degradation (partial results better than nothing)</li>
                     </ul>
                     
                     <h3>Observability</h3>
                     <ul>
                         <li>Log every LLM call and tool execution</li>
                         <li>Track token usage, latency, success rates</li>
-                        <li>Debug why agents fail (they will)</li>
-                        <li>Tools like LangSmith, Arize help</li>
+                        <li>Capture the reasoning trace for debugging</li>
+                        <li>Set up alerts for anomalies</li>
+                        <li>Tools: LangSmith, Arize, Weights & Biases</li>
                     </ul>
                     
                     <h3>Security</h3>
                     <ul>
-                        <li>Prompt injection is real. Sanitize inputs.</li>
-                        <li>Limit tool permissions (principle of least privilege)</li>
-                        <li>Sandbox code execution</li>
-                        <li>Never put secrets in prompts</li>
-                        <li>Review agent actions before destructive operations</li>
+                        <li><strong>Prompt injection:</strong> Sanitize user inputs, don't trust blindly</li>
+                        <li><strong>Tool permissions:</strong> Principle of least privilege</li>
+                        <li><strong>Sandboxing:</strong> Never run untrusted code without isolation</li>
+                        <li><strong>Secrets:</strong> Never put API keys in prompts or logs</li>
+                        <li><strong>Human approval:</strong> For destructive or expensive operations</li>
+                        <li><strong>Output validation:</strong> Validate agent outputs before use</li>
+                        <li><strong>Rate limiting:</strong> Prevent abuse and manage costs</li>
+                        <li><strong>Audit trails:</strong> Log all agent actions for compliance</li>
+                    </ul>
+                    
+                    <h3>Monitoring and Observability in 2026</h3>
+                    <p>Essential tools and metrics for production agents:</p>
+                    <ul>
+                        <li><strong>LangSmith:</strong> Anthropic's platform for agent observability</li>
+                        <li><strong>AgentOps:</strong> Open-source agent monitoring</li>
+                        <li><strong>Custom dashboards:</strong> Track success rates, costs, latency</li>
+                        <li><strong>Error alerting:</strong> Immediate notification of failures</li>
+                        <li><strong>Cost tracking:</strong> Monitor spend by agent, user, time period</li>
+                        <li><strong>Token usage:</strong> Track input/output tokens per task</li>
+                    </ul>
+                    
+                    <h3>Handling Failures</h3>
+                    <p>Robust failure handling strategies:</p>
+                    <ul>
+                        <li><strong>Graceful degradation:</strong> Return partial results when possible</li>
+                        <li><strong>Automatic retries:</strong> With exponential backoff</li>
+                        <li><strong>Fallback to simpler models:</strong> When complex fails</li>
+                        <li><strong>Human escalation:</strong> For unresolved issues</li>
+                        <li><strong>Circuit breakers:</strong> Prevent cascading failures</li>
+                        <li><strong>Timeout handling:</strong> Don't let agents hang indefinitely</li>
+                    </ul>
+                    
+                    <h3>Scaling Considerations</h3>
+                    <p>When agent usage grows:</p>
+                    <ul>
+                        <li><strong>Request queuing:</strong> Manage peak loads gracefully</li>
+                        <li><strong>Model routing:</strong> Direct traffic based on task complexity</li>
+                        <li><strong>Geographic distribution:</strong> Reduce latency for global users</li>
+                        <li><strong>Caching strategies:</strong> Cache common requests and responses</li>
+                        <li><strong>Resource pooling:</strong> Reuse expensive resources where possible</li>
                     </ul>
                     
                     <div class="highlight">
-                        <p>The gap between demo and production is huge. Start simple, add complexity only when needed.</p>
+                        <p>The gap between demo and production is enormous. Start simple, add complexity only when needed. Ship a working simple agent before building a complex one.</p>
                     </div>
                 </section>
 
-                <section id="limitations">
-                    <h2>8. Limitations & Challenges</h2>
-                    <p>Agents aren't magic. They have real limitations:</p>
+                <section id="evaluation">
+                    <h2>12. Evaluating Agents</h2>
+                    <p>How do you know if your agent is working? Evaluation is crucial and non-trivial.</p>
                     
-                    <h3>Reliability</h3>
-                    <p>Agents fail in unpredictable ways. They might:</p>
+                    <h3>Metrics</h3>
                     <ul>
-                        <li>Call the wrong tool</li>
-                        <li>Get stuck in loops</li>
+                        <li><strong>Task completion rate:</strong> % of tasks completed successfully</li>
+                        <li><strong>Average steps:</strong> How many iterations to complete?</li>
+                        <li><strong>Cost per task:</strong> Average LLM spend</li>
+                        <li><strong>Time per task:</strong> End-to-end latency</li>
+                        <li><strong>Tool usage patterns:</strong> Which tools are used most? Any unused?</li>
+                        <li><strong>Error rate:</strong> How often does the agent fail?</li>
+                    </ul>
+                    
+                    <h3>Evaluation Methods</h3>
+                    <h4>Human Evaluation</h4>
+                    <p>Have humans review agent outputs. Most accurate but expensive and slow.</p>
+                    
+                    <h4>LLM-as-Judge</h4>
+                    <p>Use another LLM to evaluate outputs. Good for scale, but has biases.</p>
+                    <pre><code>evaluator_prompt = `
+You are evaluating an AI agent's output.
+Task: {original_task}
+Agent output: {agent_output}
+
+Rate on:
+- Correctness (1-5)
+- Completeness (1-5)
+- Clarity (1-5)
+`</code></pre>
+                    
+                    <h4>Ground Truth Comparison</h4>
+                    <p>Compare against known-good outputs. Works for tasks with clear answers.</p>
+                    
+                    <h4>Automated Tests</h4>
+                    <p>For coding agents: run test suites. For data agents: verify outputs against expected values.</p>
+                    
+                    <h3>Continuous Evaluation</h3>
+                    <p>Build evaluation into your workflow:</p>
+                    <ul>
+                        <li>Log all agent runs</li>
+                        <li>Sample outputs for human review</li>
+                        <li>Track metrics over time</li>
+                        <li>Alert on degradation</li>
+                        <li>A/B test changes</li>
+                    </ul>
+                </section>
+
+                <section id="limitations">
+                    <h2>13. Limitations & Challenges</h2>
+                    <p>Agents aren't magic. Understanding their limitations helps set realistic expectations:</p>
+                    
+                    <h3>Reliability Issues</h3>
+                    <p>Agents fail in ways traditional software doesn't:</p>
+                    <ul>
+                        <li>Call the wrong tool for the situation</li>
+                        <li>Get stuck in loops repeating the same action</li>
                         <li>Hallucinate facts confidently</li>
-                        <li>Miss obvious steps</li>
+                        <li>Miss obvious steps that humans would catch</li>
+                        <li>Give up too easily or try too many times</li>
                     </ul>
                     
                     <h3>Context Limits</h3>
-                    <p>LLMs have token limits. Long agent runs exhaust context. Solutions:</p>
+                    <p>LLMs have finite context. Long agent runs exhaust it. Solutions:</p>
                     <ul>
-                        <li>Summarize earlier steps</li>
-                        <li>Use sliding windows</li>
-                        <li>Store state externally</li>
-                        <li>Use models with larger contexts</li>
+                        <li>Summarize earlier steps periodically</li>
+                        <li>Use sliding windows (keep recent, discard old)</li>
+                        <li>Store state externally, retrieve when needed</li>
+                        <li>Use models with larger contexts (Claude 200K, Gemini 2M, Gemini 1M context)</li>
                     </ul>
                     
-                    <h3>Cost</h3>
-                    <p>Agents make many LLM calls. A complex task could cost $1-10. For high-volume applications, this adds up fast.</p>
+                    <h3>Emerging Limitations in 2026</h3>
+                    <p>New challenges as agents become more capable:</p>
+                    <ul>
+                        <li><strong>Tool sprawl:</strong> Too many tools confuse agents about which to use</li>
+                        <li><strong>Credential management:</strong> Agents need secure access to multiple systems</li>
+                        <li><strong>State management:</strong> Maintaining state across long-running tasks is hard</li>
+                        <li><strong>Failure cascades:</strong> One failure can derail entire agent workflows</li>
+                        <li><strong>Latency compounding:</strong> Sequential tool calls add up to significant delays</li>
+                    </ul>
                     
-                    <h3>Speed</h3>
-                    <p>Sequential tool calls + LLM inference = slow. Not suitable for real-time user interactions without streaming.</p>
+                    <h3>Cost at Scale</h3>
+                    <p>Agents make many LLM calls. A complex task could cost $1-10. For thousands of users, this adds up to real money. Plan for it.</p>
                     
-                    <h3>Debugging</h3>
-                    <p>When an agent fails, why? It made a series of decisions. Debugging means tracing through each one. Harder than traditional code.</p>
+                    <h3>Latency</h3>
+                    <p>Sequential tool calls + LLM inference = slow. A research task might take 30-60 seconds. Not suitable for real-time user interactions without streaming.</p>
+                    
+                    <h3>Debugging Difficulty</h3>
+                    <p>When an agent fails, debugging means:</p>
+                    <ul>
+                        <li>Tracing through every decision it made</li>
+                        <li>Understanding why it chose that action</li>
+                        <li>Reconstructing the state at each step</li>
+                        <li>Often it's not clear what "went wrong"</li>
+                    </ul>
+                    
+                    <h3>Security Surface</h3>
+                    <p>Agents with tools have larger attack surfaces:</p>
+                    <ul>
+                        <li>Tool outputs can contain malicious content</li>
+                        <li>Agents can be tricked into harmful actions</li>
+                        <li>Context pollution affects decision-making</li>
+                    </ul>
                     
                     <div class="warning-box">
-                        <p><strong>Honest assessment:</strong> I use agents for research, coding assistance, and exploration. But I wouldn't trust them with critical production operations without human oversight.</p>
+                        <p><strong>Honest assessment:</strong> I use agents for research, coding assistance, and exploration. They're genuinely useful. But I wouldn't trust them with critical production operations without human oversight. The technology is powerful but not yet reliable enough for autonomous high-stakes decisions.</p>
                     </div>
                 </section>
 
                 <section id="future">
-                    <h2>9. Where This Is Going</h2>
-                    <p>The space is moving fast. Here's what I'm watching:</p>
+                    <h2>14. Where This Is Going</h2>
+                    <p>The field is evolving rapidly. Here's what I'm watching:</p>
                     
                     <h3>Better Reasoning Models</h3>
-                    <p>Models are getting better at planning and self-correction. DeepSeek R1, Claude with extended thinking—these make more reliable agents.</p>
+                    <p>Models are getting better at planning and self-correction. DeepSeek R1, Claude with extended thinking—these make agents more reliable by improving the reasoning step.</p>
                     
                     <h3>Smaller, Specialized Agents</h3>
-                    <p>Instead of one big agent, smaller specialized agents for specific tasks. Cheaper, faster, more reliable.</p>
+                    <p>Instead of one big agent that does everything, we're seeing smaller specialized agents for specific tasks. Cheaper, faster, more reliable.</p>
                     
                     <h3>Agent-to-Agent Communication</h3>
-                    <p>Standards emerging for agents to talk to each other. MCP (Model Context Protocol) from Anthropic is interesting.</p>
+                    <p>Standards are emerging for agents to communicate. MCP (Model Context Protocol) from Anthropic is interesting—agents can expose tools to each other.</p>
                     
-                    <h3>Better Tool Interfaces</h3>
-                    <p>More software exposing agent-friendly APIs. Not just REST, but semantic descriptions agents can understand.</p>
+                    <h3>Claude 4 and GPT-5 Era</h3>
+                    <p>The 2026 landscape features Claude 4 with enhanced tool use and extended thinking, GPT-5 with native function calling improvements, and DeepSeek R2 with reasoning capabilities rivaling closed-source models. These models make agents significantly more reliable.</p>
                     
-                    <h3>Human-Agent Collaboration</h3>
-                    <p>The best results come from humans and agents working together, not fully autonomous systems. Agents as "coworkers" not replacements.</p>
+                    <h3>Model Context Protocol (MCP)</h3>
+                    <p>Anthropic's MCP is changing how agents interact with external tools. Instead of hardcoding tool definitions, agents can discover and use tools dynamically. This is a major step toward standardized agent-tool communication.</p>
+                    <ul>
+                        <li><strong>Dynamic tool discovery:</strong> Agents find available tools at runtime</li>
+                        <li><strong>Standardized interfaces:</strong> Tools describe themselves to agents</li>
+                        <li><strong>Scalable architecture:</strong> More tools without code changes</li>
+                    </ul>
+                    
+                    <h3>Specialized vs General Agents</h3>
+                    <p>The trend in 2026 is toward specialized agents rather than one-size-fits-all solutions:</p>
+                    <ul>
+                        <li><strong>Coding agents:</strong> Cursor, Cline, Windsurf - focused on developer productivity</li>
+                        <li><strong>Research agents:</strong> OpenDeepSearch, Perplexity - focused on information gathering</li>
+                        <li><strong>Data agents:</strong> Hex, ThoughtSpot AI - focused on analytics</li>
+                        <li><strong>Customer service agents:</strong> Intercom, Zendesk AI - focused on support</li>
+                    </ul>
+                    
+                    <h3>Agentic Search and RAG</h3>
+                    <p>Retrieval-Augmented Generation has evolved into agentic RAG:</p>
+                    <ul>
+                        <li><strong>Multi-step retrieval:</strong> Agents decide what to retrieve, then retrieve more based on initial results</li>
+                        <li><strong>Self-correcting retrieval:</strong> Agents evaluate retrieved content and try again if insufficient</li>
+                        <li><strong>Hybrid search:</strong> Combining semantic, keyword, and graph retrieval</li>
+                        <li><strong>Citation verification:</strong> Agents verify retrieved information against sources</li>
+                    </ul>
+                    
+                    <h3>Autonomous Coding Agents in 2026</h3>
+                    <p>Coding agents have matured significantly:</p>
+                    <ul>
+                        <li><strong>Code review:</strong> Agents review PRs, suggest improvements, catch bugs</li>
+                        <li><strong>Test generation:</strong> Agents write comprehensive test suites</li>
+                        <li><strong>Debugging:</strong> Agents analyze error messages, trace issues, suggest fixes</li>
+                        <li><strong>Refactoring:</strong> Agents safely refactor legacy codebases</li>
+                        <li><strong>Documentation:</strong> Agents generate and maintain documentation</li>
+                    </ul>
+                    
+                    <h3>Agent Safety and Guardrails</h3>
+                    <p>With great power comes great responsibility. 2026 has seen increased focus on agent safety:</p>
+                    <ul>
+                        <li><strong>Output filtering:</strong> Preventing agents from outputting sensitive data</li>
+                        <li><strong>Rate limiting:</strong> Controlling how often agents can take actions</li>
+                        <li><strong>Human-in-the-loop:</strong> Requiring approval for sensitive operations</li>
+                        <li><strong>Audit logging:</strong> Complete trails of agent decisions and actions</li>
+                        <li><strong>Sandboxing:</strong> Isolating agents from production systems</li>
+                    </ul>
+                    
+                    <h3>Cost Optimization Strategies</h3>
+                    <p>Managing agent costs is critical for production deployments:</p>
+                    <ul>
+                        <li><strong>Model routing:</strong> Cheap models for simple tasks, expensive for complex</li>
+                        <li><strong>Caching:</strong> Cache tool results, LLM responses where possible</li>
+                        <li><strong>Token budgeting:</strong> Limit context size to reduce costs</li>
+                        <li><strong>Batch processing:</strong> Process multiple requests together</li>
+                        <li><strong>Local models:</strong> Use local models for simple, private tasks</li>
+                    </ul>
+                    
+                    <h3>Real-World Agent Architectures</h3>
+                    <p>Common patterns seen in production systems:</p>
+                    <ul>
+                        <li><strong>Supervisor pattern:</strong> One agent coordinates multiple specialist agents</li>
+                        <li><strong>Plan-Execute pattern:</strong> Separate planner and executor agents</li>
+                        <li><strong>Reflection pattern:</strong> Agent reviews its own output before returning</li>
+                        <li><strong>Critique pattern:</strong> One agent generates, another critiques</li>
+                    </ul>
+                    
+                    <h3>Evaluation and Testing Agents</h3>
+                    <p>Testing agents requires new approaches:</p>
+                    <ul>
+                        <li><strong>Task completion metrics:</strong> Did the agent achieve the goal?</li>
+                        <li><strong>Tool usage efficiency:</strong> How many tool calls vs optimal?</li>
+                        <li><strong>Reasoning quality:</strong> Is the reasoning sound?</li>
+                        <li><strong>Cost tracking:</strong> What's the cost per task?</li>
+                        <li><strong>Latency measurement:</strong> How long does the agent take?</li>
+                    </ul>
+                    
+                    <h3>Building Production Agents: A Checklist</h3>
+                    <p>Before deploying agents to production:</p>
+                    <ul>
+                        <li>Define clear success criteria for each task type</li>
+                        <li>Implement proper error handling and fallback behavior</li>
+                        <li>Add comprehensive logging and observability</li>
+                        <li>Set up monitoring for costs, latency, and success rates</li>
+                        <li>Create human escalation paths for failures</li>
+                        <li>Test with adversarial inputs and edge cases</li>
+                        <li>Implement rate limiting and budget controls</li>
+                        <li>Add circuit breakers for external service failures</li>
+                    </ul>
+                    
+                    <h3>Future Directions</h3>
+                    <p>Where the field is heading:</p>
+                    <ul>
+                        <li><strong>Multimodal agents:</strong> Agents that can see, hear, and act across modalities</li>
+                        <li><strong>Long-running agents:</strong> Agents that maintain context over days or weeks</li>
+                        <li><strong>Collaborative agents:</strong> Multiple agents working together on complex tasks</li>
+                        <li><strong>Verified agents:</strong> Agents with formal verification of behavior</li>
+                        <li><strong>Domain-specific agents:</strong> Highly optimized agents for specific industries</li>
+                    </ul>
                     
                     <div class="highlight">
-                        <p>The technology is exciting but early. Build small, learn from failures, and don't trust agents with anything you can't undo.</p>
+                        <p>The technology is exciting but still early. Build small, learn from failures, keep humans in the loop for important decisions, and don't trust agents with anything you can't undo.</p>
                     </div>
                 </section>
             </div>

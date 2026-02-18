@@ -225,6 +225,23 @@
                         <li>Default to array/list for most cases</li>
                         <li>Consider alternatives when insertions/deletions are frequent and data is large</li>
                         <li>Profile before optimizing—cache locality often matters more than Big O</li>
+                        <li>In 2026, most languages have optimized collections—use them</li>
+                    </ul>
+                    
+                    <h3>Modern Collections in 2026</h3>
+                    <ul>
+                        <li><strong>Python:</strong> deque for efficient append/pop from ends</li>
+                        <li><strong>Java:</strong> ArrayList, LinkedList, but also specialized collections</li>
+                        <li><strong>Go:</strong> slices vs maps, understanding underlying arrays</li>
+                        <li><strong>Rust:</strong> Vec, VecDeque, HashMap, BTreeMap</li>
+                    </ul>
+                    
+                    <h3>Language-Specific Considerations</h3>
+                    <ul>
+                        <li>Python's list is actually a dynamic array (not linked list)</li>
+                        <li>JavaScript objects are hash maps, arrays are also hash maps</li>
+                        <li>Go maps don't preserve insertion order (use slice for that)</li>
+                        <li>Rust's HashMap uses SipHash to prevent HashDoS attacks</li>
                     </ul>
                 </section>
 
@@ -282,6 +299,15 @@ rateLimits = {
                         <li>Memory is tight → Arrays are more compact</li>
                         <li>Need range queries → Consider trees or sorted arrays</li>
                         <li>Worst-case guarantees matter → Consider treaps or skip lists</li>
+                        <li>Hash attacks → Use secure hashing (SipHash in Rust)</li>
+                    </ul>
+                    
+                    <h3>Modern Hashing in Production</h3>
+                    <ul>
+                        <li><strong>Consistent hashing:</strong> Used in distributed systems (Cassandra, DynamoDB)</li>
+                        <li><strong>Bloom filters:</strong> Probabilistic set membership</li>
+                        <li><strong>Cuckoo hashing:</strong> Worst-case O(1) lookups</li>
+                        <li><strong>MinHash:</strong> Estimate set similarity</li>
                     </ul>
                 </section>
 
@@ -314,6 +340,24 @@ rateLimits = {
                     
                     <h4>Decision Trees / Configuration</h4>
                     <p>Feature flags, routing rules, permission checks—often implemented as trees where you traverse down based on conditions.</p>
+                    
+                    <h3>Trie (Prefix Tree)</h3>
+                    <p>Often overlooked but incredibly useful:</p>
+                    <ul>
+                        <li><strong>Autocomplete:</strong> Prefix matching is what tries do best</li>
+                        <li><strong>Spell checking:</strong> Dictionary lookup</li>
+                        <li><strong>IP routing:</strong> Longest prefix match</li>
+                        <li><strong>String algorithms:</strong> Finding longest common prefix</li>
+                    </ul>
+                    
+                    <h3>Modern Tree Databases</h3>
+                    <p>Databases use trees extensively:</p>
+                    <ul>
+                        <li><strong>B+ trees:</strong> MySQL, PostgreSQL indexes</li>
+                        <li><strong>LSM trees:</strong> Cassandra, RocksDB write optimization</li>
+                        <li><strong>Red-black trees:</strong> Java TreeMap, C++ std::map</li>
+                        <li><strong>Skip lists:</strong> Redis sorted sets</li>
+                    </ul>
                     
                     <div class="highlight">
                         <p>Before building a tree structure, check if your use case matches what databases or libraries already provide. Don't reinvent B+ trees.</p>

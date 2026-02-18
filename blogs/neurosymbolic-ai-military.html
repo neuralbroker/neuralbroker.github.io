@@ -99,6 +99,11 @@
         .highlight { background: var(--accent-dim); border-left: 2px solid var(--accent); padding: 1rem 1.25rem; margin: 1.5rem 0; }
         .highlight p { color: var(--text); margin: 0; font-style: italic; font-size: 15px; }
         
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 13px; }
+        .comparison-table th, .comparison-table td { border: 1px solid var(--border); padding: 0.75rem; text-align: left; }
+        .comparison-table th { background: var(--accent-dim); color: var(--accent); }
+        .comparison-table td { color: var(--text-dim); }
+        
         .refs { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
         .refs h3 { font-size: 14px; margin-bottom: 1rem; color: var(--accent); }
         .refs ol { margin-left: 1.5rem; font-size: 13px; color: var(--text-dim); }
@@ -168,8 +173,11 @@
                     <li><a href="#applications"><span class="num">04</span> military applications</a></li>
                     <li><a href="#architecture"><span class="num">05</span> system architecture</a></li>
                     <li><a href="#benefits"><span class="num">06</span> benefits & limitations</a></li>
-                    <li><a href="#ethical"><span class="num">07</span> ethical considerations</a></li>
-                    <li><a href="#conclusion"><span class="num">08</span> conclusion</a></li>
+                    <li><a href="#frameworks"><span class="num">07</span> implementation frameworks</a></li>
+                    <li><a href="#case-studies"><span class="num">08</span> case studies</a></li>
+                    <li><a href="#international"><span class="num">09</span> international landscape</a></li>
+                    <li><a href="#ethical"><span class="num">10</span> ethical considerations</a></li>
+                    <li><a href="#conclusion"><span class="num">11</span> conclusion</a></li>
                 </ol>
             </div>
             
@@ -208,24 +216,47 @@
                     <h2>4. Military Applications</h2>
                     
                     <h3>Tactical Decision Support</h3>
-                    <p>Neural detection + symbolic doctrine application. Commanders get recommendations with full audit trails.</p>
+                    <p>Neural detection + symbolic doctrine application. Commanders get recommendations with full audit trails. The system can explain: "I flagged this contact as hostile because it matched pattern X from training data, but doctrine states we need visual confirmation before engagement."</p>
                     
                     <h3>Autonomous Systems</h3>
-                    <p>Drones identify targets while symbolic layer verifies rules of engagement compliance. Constraints encoded directly—prohibited actions become impossible.</p>
+                    <p>Drones identify targets while symbolic layer verifies rules of engagement compliance. Constraints encoded directly—prohibited actions become impossible. The symbolic layer can literally prevent certain actions regardless of what the neural network suggests.</p>
                     
                     <h3>Intelligence Analysis</h3>
-                    <p>Neural processing of satellite/comms data. Symbolic knowledge graphs encode entity relationships and historical patterns.</p>
+                    <p>Neural processing of satellite/comms data. Symbolic knowledge graphs encode entity relationships and historical patterns. The system can reason: "This vehicle movement pattern matches historical invasion preparations, combined with communications intercept showing command structure changes."</p>
                     
                     <h3>Cyber Defense</h3>
-                    <p>Neural anomaly detection + symbolic attack pattern matching. Rapid, explainable response.</p>
+                    <p>Neural anomaly detection + symbolic attack pattern matching. Rapid, explainable response. The system can explain each decision: "I blocked this connection because it matches the APT29 attack pattern signature and originated from a known malicious IP range."</p>
+                    
+                    <h3>Logistics and Supply Chain</h3>
+                    <p>Demand forecasting with neural networks, constraint-based optimization for routing. Explainable recommendations for supply decisions.</p>
+                    
+                    <h3>Situational Awareness</h3>
+                    <p>Fusing data from multiple sensors (radar, visual, infrared) with symbolic reasoning about enemy doctrine and behavior patterns.</p>
                 </section>
 
                 <section id="architecture">
                     <h2>5. System Architecture</h2>
-                    <p><strong>Input layer:</strong> ingest radar, sensors, satellite, intel reports. Preprocess and fuse.</p>
-                    <p><strong>Neural layer:</strong> CNNs for imagery, transformers for language. Extract representations.</p>
-                    <p><strong>Symbolic layer:</strong> rules of engagement, knowledge graphs, constraints. Apply reasoning with full traceability.</p>
-                    <p><strong>Output layer:</strong> natural language explanations, visualizations, recommendations.</p>
+                    <p><strong>Input layer:</strong> ingest radar, sensors, satellite, intel reports. Preprocess and fuse. Modern systems handle multiple data types including full-motion video, signals intelligence, human intelligence reports.</p>
+                    <p><strong>Neural layer:</strong> CNNs for imagery, transformers for language. Extract representations. In 2026, foundation models provide pre-trained representations that can be fine-tuned for military tasks.</p>
+                    <p><strong>Symbolic layer:</strong> rules of engagement, knowledge graphs, constraints. Apply reasoning with full traceability. Uses knowledge representation languages like OWL, rule engines like Drools.</p>
+                    <p><strong>Output layer:</strong> natural language explanations, visualizations, recommendations. Can generate natural language justifications for each decision.</p>
+                    
+                    <h3>Knowledge Representation in 2026</h3>
+                    <p>Modern symbolic systems use:</p>
+                    <ul>
+                        <li><strong>Knowledge graphs:</strong> Represent entities and relationships (who owns what, what威胁 what)</li>
+                        <li><strong>Ontologies:</strong> Formal definitions of concepts and their relationships</li>
+                        <li><strong>Rule engines:</strong> Execute symbolic rules (IF X THEN Y)</li>
+                        <li><strong>Logic programming:</strong> Prolog-style reasoning for complex relationships</li>
+                    </ul>
+                    
+                    <h3>Integration Approaches</h3>
+                    <ul>
+                        <li><strong>Pipeline:</strong> Neural extracts features, symbolic reasons over them</li>
+                        <li><strong>Neuro-symbolic embedding:</strong> Neural networks learn to mimic logical operations</li>
+                        <li><strong>Neural attention to symbols:</strong> Model attends to symbolic representations</li>
+                        <li><strong>Hybrid embeddings:</strong> Combine neural and symbolic in shared representation space</li>
+                    </ul>
                 </section>
 
                 <section id="benefits">
@@ -233,20 +264,80 @@
                     
                     <h3>Benefits</h3>
                     <ul>
-                        <li>Explainability: complete audit trails</li>
-                        <li>Data efficiency: prior knowledge reduces training needs</li>
-                        <li>Doctrine alignment: explicit rule encoding</li>
-                        <li>Trust: operators can verify reasoning</li>
-                        <li>Safe autonomy: constraints prevent violations</li>
+                        <li>Explainability: complete audit trails for every decision</li>
+                        <li>Data efficiency: prior knowledge reduces training needs significantly</li>
+                        <li>Doctrine alignment: explicit rule encoding ensures compliance</li>
+                        <li>Trust: operators can verify reasoning step-by-step</li>
+                        <li>Safe autonomy: hard constraints prevent rule violations</li>
+                        <li>Composability: symbolic rules compose cleanly</li>
+                        <li>Verification: symbolic systems can be formally verified</li>
                     </ul>
                     
                     <h3>Limitations</h3>
                     <ul>
-                        <li>Complexity: integrating two paradigms</li>
-                        <li>Requires both datasets and knowledge engineering</li>
-                        <li>Rule errors create systematic failures</li>
-                        <li>Higher computational cost</li>
+                        <li>Complexity: integrating two paradigms is architecturally challenging</li>
+                        <li>Requires both large datasets and expert knowledge engineering</li>
+                        <li>Rule errors create systematic failures (brittle)</li>
+                        <li>Higher computational cost than pure neural approaches</li>
+                        <li>Symbolic knowledge acquisition bottleneck</li>
+                        <li>Difficulty handling uncertainty</li>
+                        <li>Scale challenges: symbolic reasoning doesn't parallelize easily</li>
                     </ul>
+                    
+                    <h3>Research Directions in 2026</h3>
+                    <ul>
+                        <li><strong>Neuro-symbolic transformers:</strong> Combining attention with logical reasoning</li>
+                        <li><strong>Learned reasoning:</strong> Neural networks that learn to reason symbolically</li>
+                        <li><strong>Knowledge graph completion:</strong> Using neural methods to complete knowledge graphs</li>
+                        <li><strong>Probabilistic logic:</strong> Handling uncertainty in symbolic reasoning</li>
+                        <li><strong>Scalable reasoning:</strong> Distributed symbolic computation</li>
+                    </ul>
+                    
+                    <h3>Comparison: Neural vs Symbolic vs Hybrid</h3>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Pure Neural</th>
+                            <th>Pure Symbolic</th>
+                            <th>Neuro-symbolic</th>
+                        </tr>
+                        <tr>
+                            <td>Explainability</td>
+                            <td>Low</td>
+                            <td>High</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>Scalability</td>
+                            <td>High</td>
+                            <td>Low</td>
+                            <td>Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Data efficiency</td>
+                            <td>Low</td>
+                            <td>High</td>
+                            <td>Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Handles novel situations</td>
+                            <td>Medium</td>
+                            <td>Low</td>
+                            <td>Medium-High</td>
+                        </tr>
+                        <tr>
+                            <td>Data needs</td>
+                            <td>Massive</td>
+                            <td>Small</td>
+                            <td>Moderate</td>
+                        </tr>
+                        <tr>
+                            <td>Real-world robustness</td>
+                            <td>High</td>
+                            <td>Low</td>
+                            <td>High</td>
+                        </tr>
+                    </table>
                 </section>
 
                 <section id="ethical">
@@ -258,6 +349,75 @@
                     <div class="highlight">
                         <p>Neurosymbolic AI should <strong>assist, not replace</strong> human decision-makers. High-stakes decisions remain human.</p>
                     </div>
+                </section>
+                
+                <section id="frameworks">
+                    <h2>Implementation Frameworks</h2>
+                    <p>Tools and frameworks for building neuro-symbolic systems:</p>
+                    
+                    <h3>Knowledge Representation</h3>
+                    <ul>
+                        <li><strong>OWL/RDF:</strong> Web Ontology Language for semantic web</li>
+                        <li><strong>Protégé:</strong> Ontology editing tool</li>
+                        <li><strong>Graph databases:</strong> Neo4j for knowledge graphs</li>
+                    </ul>
+                    
+                    <h3>Reasoning Engines</h3>
+                    <ul>
+                        <li><strong>Drools:</strong> Business rules management system</li>
+                        <li><strong>Jess:</strong> Java expert shell system</li>
+                        <li><strong>Prolog:</strong> Logic programming language</li>
+                    </ul>
+                    
+                    <h3>Neuro-symbolic Libraries</h3>
+                    <ul>
+                        <li><strong>DeepProbLog:</strong> Probabilistic logic programming with neural networks</li>
+                        <li><strong>ILP systems:</strong> Inductive logic programming</li>
+                        <li><strong>NARS:</strong> Open-source neuro-symbolic reasoning</li>
+                    </ul>
+                </section>
+                
+                <section id="case-studies">
+                    <h2>Real-World Case Studies</h2>
+                    
+                    <h3>DARPA's ASSURE Program</h3>
+                    <p>The Assured Neuro-Symbolic Learning program aims to develop scalable approaches to learning symbolic representations from raw data. Focus on military applications where explainability is critical.</p>
+                    
+                    <h3>Explainable AI (XAI) in Defense</h3>
+                    <p>Multiple defense contractors are developing XAI systems:</p>
+                    <ul>
+                        <li><strong>Raytheon:</strong> Explainable AI for targeting decisions</li>
+                        <li><strong>Lockheed:</strong> Neuro-symbolic systems for mission planning</li>
+                        <li><strong>Northrop Grumman:</strong> Symbolic reasoning for ISR analysis</li>
+                    </ul>
+                    
+                    <h3>Cyber Operations</h3>
+                    <p>Neuro-symbolic approaches for network defense:</p>
+                    <ul>
+                        <li>Anomaly detection identifies potential threats</li>
+                        <li>Symbolic rules validate against known attack patterns</li>
+                        <li>Explainable recommendations for response</li>
+                    </ul>
+                </section>
+                
+                <section id="international">
+                    <h2>International Landscape</h2>
+                    
+                    <h3>China</h3>
+                    <p>Significant investment in neuro-symbolic AI for military applications. Focus on combining deep learning with traditional AI approaches.</p>
+                    
+                    <h3>European Union</h3>
+                    <p>Emphasis on explainable AI in defense applications. GDPR-adjacent approaches to AI transparency.</p>
+                    
+                    <h3>NATO Partners</h3>
+                    <p>Collaborative research on explainable AI for coalition operations. Interoperability requirements drive standardization efforts.</p>
+                    
+                    <h3>International Norms</h3>
+                    <ul>
+                        <li>UN discussions on lethal autonomous weapons systems (LAWS)</li>
+                        <li>Emphasis on "meaningful human control"</li>
+                        <li>Transparency requirements for AI in military applications</li>
+                    </ul>
                 </section>
 
                 <section id="conclusion">

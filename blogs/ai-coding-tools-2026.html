@@ -182,22 +182,151 @@
                     <h2>2. Cursor: The IDE That Changed Everything</h2>
                     <p>Cursor was my gateway drug into AI-assisted coding. It's VS Code with AI baked in, but that description undersells it massively.</p>
                     
-                    <h3>What Makes It Different</h3>
-                    <p>The killer feature is <strong>Ctrl+K</strong>—inline editing. You select code, describe what you want, and it rewrites in place. No copy-pasting between ChatGPT and your editor. No context switching.</p>
-                    
-                    <div class="tool-section">
-                        <h4>// cmd+k use cases</h4>
-                        <p>"Add error handling to this function" / "Convert this to async/await" / "Make this component responsive"</p>
-                    </div>
-                    
-                    <p>The <strong>Composer</strong> feature (Ctrl+I) is next level—it can make changes across multiple files. I've had it refactor a component, update the types file, and modify the tests in one go.</p>
-                    
-                    <h3>What I've Learned</h3>
+                    <h3>Claude 4 and GPT-5 Integration</h3>
+                    <p>The 2026 coding landscape is dominated by Claude 4 and GPT-5 powered tools:</p>
                     <ul>
-                        <li>Be specific with instructions—vague prompts give vague code</li>
-                        <li>Always review the diff before accepting</li>
-                        <li>It's great for boilerplate, bad for architecture decisions</li>
-                        <li>The context window matters—reference files explicitly</li>
+                        <li><strong>Claude 4 Sonnet:</strong> Best balance of speed and capability for coding</li>
+                        <li><strong>Claude 4 Opus:</strong> Most capable for complex architectural decisions</li>
+                        <li><strong>GPT-5:</strong> Native multimodal support, excellent code generation</li>
+                        <li><strong>DeepSeek R2:</strong> Open-source alternative with strong coding capabilities</li>
+                    </ul>
+                    
+                    <h3>Cursor: The IDE Revolution</h3>
+                    <p>Cursor has evolved significantly in 2026:</p>
+                    <ul>
+                        <li><strong>Ctrl+K:</strong> Inline editing - describe changes, see them applied</li>
+                        <li><strong>Ctrl+I (Composer):</strong> Multi-file edits, refactoring across entire projects</li>
+                        <li><strong>Chat mode:</strong> Conversational debugging and code review</li>
+                        <li><strong>Terminal integration:</strong> AI assistance in command line</li>
+                        <li><strong>Database assistant:</strong> Natural language SQL queries and schema design</li>
+                        <li><strong>Test generation:</strong> Automatic test creation from code</li>
+                    </ul>
+                    
+                    <h3>Cline (formerly Claude Dev)</h3>
+                    <p>VS Code extension that's become essential:</p>
+                    <ul>
+                        <li>Autonomous coding agent in your editor</li>
+                        <li>Multi-file editing and creation</li>
+                        <li>Shell command execution</li>
+                        <li>Browser automation</li>
+                        <li>Custom tool support</li>
+                    </ul>
+                    
+                    <h3>Windsurf (Codeium)</h3>
+                    <p>Codeium's AI IDE has grown significantly:</p>
+                    <ul>
+                        <li><strong>Cascade:</strong> Advanced multi-file editing</li>
+                        <li>Free tier available</li>
+                        <li>Strong autocomplete</li>
+                        <li>Good context understanding</li>
+                    </ul>
+                    
+                    <h3>GitHub Copilot in 2026</h3>
+                    <p>Copilot has evolved with new features:</p>
+                    <ul>
+                        <li><strong>Copilot Workspace:</strong> Agentic coding assistance</li>
+                        <li><strong>Copilot Chat:</strong> Conversational debugging</li>
+                        <li><strong>Copilot Voice:</strong> Voice-based coding assistance</li>
+                        <li><strong>Copilot Pull Requests:</strong> AI-powered code review</li>
+                        <li><strong>Copilot Docs:</strong> AI-powered documentation</li>
+                    </ul>
+                    
+                    <h3>Tool Comparison in 2026</h3>
+                    <p>Here's a detailed comparison of coding tools:</p>
+                    <table class="comparison-table">
+                        <tr>
+                            <th>Tool</th>
+                            <th>Best For</th>
+                            <th>Cost</th>
+                            <th>Key Feature</th>
+                        </tr>
+                        <tr>
+                            <td>Cursor</td>
+                            <td>General coding</td>
+                            <td>$20-40/mo</td>
+                            <td>Ctrl+K inline editing</td>
+                        </tr>
+                        <tr>
+                            <td>Cline</td>
+                            <td>Autonomous coding</td>
+                            <td>$20/mo</td>
+                            <td>Full agent capabilities</td>
+                        </tr>
+                        <tr>
+                            <td>Windsurf</td>
+                            <td>Budget-conscious</td>
+                            <td>Free tier</td>
+                            <td>Cascade feature</td>
+                        </tr>
+                        <tr>
+                            <td>Copilot</td>
+                            <td>IDE integration</td>
+                            <td>$10-100/mo</td>
+                            <td>Ubiquitous autocomplete</td>
+                        </tr>
+                        <tr>
+                            <td>OpenHands</td>
+                            <td>Complex automation</td>
+                            <td>Open source</td>
+                            <td>Full environment control</td>
+                        </tr>
+                    </table>
+                    
+                    <h3>Setting Up Your AI Coding Environment</h3>
+                    <p>Minimal setup for maximum productivity:</p>
+                    <ul>
+                        <li><strong>Primary:</strong> Cursor with Claude 4 Sonnet</li>
+                        <li><strong>Secondary:</strong> Cline for autonomous tasks</li>
+                        <li><strong>Research:</strong> OpenHands for complex investigations</li>
+                        <li><strong>Quick:</strong> Copilot for instant autocomplete</li>
+                    </ul>
+                    
+                    <h3>Keyboard Shortcuts That Matter</h3>
+                    <ul>
+                        <li><strong>Ctrl+K (Cursor):</strong> Inline edit selected code</li>
+                        <li><strong>Ctrl+I (Cursor):</strong> Open composer for multi-file edits</li>
+                        <li><strong>Ctrl+L (Cursor):</strong> Chat with AI about code</li>
+                        <li><strong>Ctrl+Shift+R (Cline):</strong> Run autonomous agent</li>
+                        <li><strong>Tab (Copilot):</strong> Accept autocomplete</li>
+                    </ul>
+                    
+                    <h3>When to Use Which Tool</h3>
+                    <ul>
+                        <li><strong>Quick fix:</strong> Cursor + Ctrl+K</li>
+                        <li><strong>Refactoring:</strong> Cursor Composer</li>
+                        <li><strong>Debugging:</strong> Cursor Chat with error paste</li>
+                        <li><strong>New feature:</strong> Cline autonomous mode</li>
+                        <li><strong>Research:</strong> OpenHands</li>
+                        <li><strong>Boilerplate:</strong> Copilot</li>
+                        <li><strong>Learning:</strong> Claude in Chat mode</li>
+                    </ul>
+                    
+                    <h3>Cost Analysis</h3>
+                    <p>Monthly costs for a power user:</p>
+                    <ul>
+                        <li><strong>Cursor Pro:</strong> $40/month (Claude 4 Sonnet)</li>
+                        <li><strong>Cline Pro:</strong> $20/month</li>
+                        <li><strong>Copilot Business:</strong> $19/user/month</li>
+                        <li><strong>Total:</strong> ~$80/month for full setup</li>
+                    </ul>
+                    
+                    <h3>Team Collaboration</h3>
+                    <p>How teams use AI coding tools:</p>
+                    <ul>
+                        <li><strong>Pair programming:</strong> One dev + AI working together</li>
+                        <li><strong>Code review:</strong> AI pre-review before human review</li>
+                        <li><strong>Documentation:</strong> AI-generated docs reviewed by humans</li>
+                        <li><strong>Onboarding:</strong> New devs get AI assistant for guidance</li>
+                    </ul>
+                    
+                    <h3>Future of AI Coding</h3>
+                    <p>Where things are heading:</p>
+                    <ul>
+                        <li><strong>More autonomous:</strong> Agents that can handle entire features</li>
+                        <li><strong>Better debugging:</strong> AI that traces and fixes bugs</li>
+                        <li><strong>Test-first:</strong> AI writes tests before code</li>
+                        <li><strong>Voice coding:</strong> Dictating code to AI</li>
+                        <li><strong>Visual coding:</strong> AI assists in design tools</li>
                     </ul>
                 </section>
 

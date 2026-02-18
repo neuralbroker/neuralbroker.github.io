@@ -321,12 +321,23 @@
                                                     ↓
                     [Reads] → Load balancer → [Replica 1, Replica 2]</div>
                     
+                    <h4>Caching Strategies (Redis Deep Dive)</h4>
+                    <p>Redis has become the de facto caching solution in 2026:</p>
+                    <ul>
+                        <li><strong>Data structures:</strong> Strings, hashes, lists, sets, sorted sets</li>
+                        <li><strong>Patterns:</strong> Cache-aside, write-through, write-behind</li>
+                        <li><strong>Cluster:</strong> Horizontal scaling for massive datasets</li>
+                        <li><strong>Streams:</strong> Event-driven architecture support</li>
+                        <li><strong>Search:</strong> RediSearch for full-text search</li>
+                    </ul>
+                    
                     <h4>Sharding (Partitioning)</h4>
                     <p>Split data across multiple databases. Each shard holds a subset of data.</p>
                     <ul>
                         <li><strong>Key-based:</strong> User ID mod N determines shard</li>
                         <li><strong>Range-based:</strong> A-M on shard 1, N-Z on shard 2</li>
                         <li><strong>Directory-based:</strong> Lookup table maps keys to shards</li>
+                        <li><strong>Geographic:</strong> Data close to users by region</li>
                     </ul>
                     
                     <h4>The Challenge</h4>
@@ -438,6 +449,31 @@
                     
                     All services react independently. No direct coupling.</div>
                     
+                    <h3>Real Architecture Patterns in 2026</h3>
+                    <p>Modern patterns used by top companies:</p>
+                    
+                    <h4>Microservices Evolution</h4>
+                    <ul>
+                        <li><strong>Service mesh:</strong> Istio, Linkerd for traffic management</li>
+                        <li><strong>API gateways:</strong> Kong, AWS API Gateway for routing</li>
+                        <li><strong>Serverless:</strong> Lambda, Cloud Functions for event-driven</li>
+                        <li><strong>Container orchestration:</strong> Kubernetes for deployment</li>
+                    </ul>
+                    
+                    <h4>Event Streaming</h4>
+                    <ul>
+                        <li><strong>Kafka:</strong> Industry standard for event streaming</li>
+                        <li><strong>Pulsar:</strong> Alternative with geo-replication</li>
+                        <li><strong>Redpanda:</strong> Kafka-compatible, simpler</li>
+                    </ul>
+                    
+                    <h4>Service Communication</h4>
+                    <ul>
+                        <li><strong>gRPC:</strong> High-performance RPC</li>
+                        <li><strong>GraphQL:</strong> Flexible queries for clients</li>
+                        <li><strong>WebSocket:</strong> Real-time bidirectional</li>
+                    </ul>
+                    
                     <h3>CQRS (Command Query Responsibility Segregation)</h3>
                     <p>Separate models for reading and writing data. Optimize each independently.</p>
                     <ul>
@@ -523,6 +559,40 @@
                         <li><strong>System Design Primer (GitHub):</strong> Free, comprehensive, practical</li>
                         <li><strong>ByteByteGo:</strong> Good visual explanations of concepts</li>
                         <li><strong>Real architecture blogs:</strong> Uber, Netflix, Discord engineering blogs</li>
+                        <li><strong>System Design Interview:</strong> Comprehensive guide</li>
+                        <li><strong>Exponent:</strong> Practice problems and solutions</li>
+                    </ul>
+                    
+                    <h3>Real System Case Studies</h3>
+                    <p>Learning from how real systems work:</p>
+                    
+                    <h4>Twitter/X Architecture</h4>
+                    <ul>
+                        <li>Tweet timeline service - heavily cached</li>
+                        <li>Timeline aggregation with Gizzard</li>
+                        <li>Tweet persistence with Manhattan (distributed DB)</li>
+                    </ul>
+                    
+                    <h4>Netflix Architecture</h4>
+                    <ul>
+                        <li>Content delivery via CDN</li>
+                        <li>Microservices with Eureka service discovery</li>
+                        <li>Zuul API gateway</li>
+                        <li>Chaos engineering with Chaos Monkey</li>
+                    </ul>
+                    
+                    <h4>Discord Architecture</h4>
+                    <ul>
+                        <li>Gateway service for WebSocket connections</li>
+                        <li>Rust-based services for performance</li>
+                        <li>Channel shard architecture</li>
+                    </ul>
+                    
+                    <h4>Uber Architecture</h4>
+                    <ul>
+                        <li>Dispatch system - matching riders and drivers</li>
+                        <li>Real-time geospatial queries</li>
+                        <li>Trips service with complex state machines</li>
                     </ul>
                     
                     <h3>Practice Approach</h3>
