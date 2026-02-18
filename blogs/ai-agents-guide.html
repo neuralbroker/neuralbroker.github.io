@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building with AI Agents: A Practical Guide | Abdulla Sajad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --text: #ffffff;
+            --text-dim: #b0b0b0;
+            --accent: #00ff88;
+            --accent-dim: #00ff8833;
+            --border: #333333;
+        }
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --text: #000000;
+            --text-dim: #444444;
+            --accent: #00aa55;
+            --accent-dim: #00aa5520;
+            --border: #cccccc;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 15px;
+            transition: background 0.2s, color 0.2s;
+            -webkit-font-smoothing: antialiased;
+        }
+        ::selection { background: var(--accent); color: var(--bg); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        
+        .progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); z-index: 101; }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+        nav .inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-weight: 700; font-size: 15px; color: var(--text); }
+        .logo span { color: var(--accent); }
+        .nav-btns { display: flex; gap: 1rem; align-items: center; }
+        .nav-btn { font-size: 12px; color: var(--text); background: none; border: none; cursor: pointer; font-family: inherit; transition: color 0.2s; }
+        .nav-btn:hover { color: var(--accent); }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 5rem 2rem; }
+        
+        article { padding-top: 1.5rem; }
+        
+        .meta { display: flex; gap: 1rem; margin-bottom: 1.5rem; font-size: 13px; flex-wrap: wrap; }
+        .meta .cat { color: var(--accent); }
+        .meta .date { color: var(--text-dim); }
+        
+        h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.01em; line-height: 1.3; }
+        .subtitle { color: var(--text-dim); font-size: 16px; margin-bottom: 2rem; line-height: 1.6; }
+        
+        .author { display: flex; gap: 1rem; align-items: center; padding: 1rem; border: 1px solid var(--border); margin-bottom: 2.5rem; }
+        .author-avatar { width: 40px; height: 40px; background: var(--accent); color: var(--bg); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+        .author-name { font-weight: 600; font-size: 14px; }
+        .author-info { font-size: 13px; color: var(--text-dim); }
+        
+        .toc { border: 1px solid var(--border); padding: 1.25rem; margin-bottom: 2.5rem; }
+        .toc-title { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+        .toc ol { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+        .toc a { font-size: 14px; color: var(--text-dim); display: flex; gap: 0.5rem; }
+        .toc a:hover { color: var(--accent); text-decoration: none; }
+        .toc .num { color: var(--accent); font-size: 13px; min-width: 1.5rem; }
+        
+        .content h2 { font-size: 18px; font-weight: 600; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+        .content h3 { font-size: 16px; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--accent); }
+        .content h4 { font-size: 15px; font-weight: 600; margin: 1rem 0 0.5rem; color: var(--text); }
+        .content p { color: var(--text-dim); margin-bottom: 1rem; line-height: 1.8; }
+        .content ul, .content ol { margin: 1rem 0 1.5rem 1.5rem; color: var(--text-dim); }
+        .content li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .content strong { color: var(--text); }
+        .content code { background: var(--accent-dim); padding: 0.2rem 0.4rem; font-size: 13px; color: var(--accent); }
+        .content pre { background: var(--accent-dim); padding: 1rem; overflow-x: auto; margin: 1rem 0; font-size: 13px; line-height: 1.6; }
+        .content pre code { background: none; padding: 0; }
+        
+        .highlight { background: var(--accent-dim); border-left: 2px solid var(--accent); padding: 1rem 1.25rem; margin: 1.5rem 0; }
+        .highlight p { color: var(--text); margin: 0; font-style: italic; font-size: 15px; }
+        
+        .tool-card { border: 1px solid var(--border); padding: 1.25rem; margin: 1rem 0; }
+        .tool-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 0.5rem; color: var(--accent); }
+        .tool-card .category { font-size: 11px; color: var(--text-dim); margin-bottom: 0.5rem; }
+        .tool-card p { font-size: 14px; margin: 0 0 0.5rem 0; }
+        .tool-card .pros-cons { font-size: 13px; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+        
+        .diagram { background: var(--accent-dim); padding: 1.25rem; margin: 1.5rem 0; font-size: 12px; font-family: 'JetBrains Mono', monospace; overflow-x: auto; white-space: pre; line-height: 1.4; }
+        
+        .step-list { margin: 1rem 0; }
+        .step-item { display: flex; gap: 1rem; margin-bottom: 1rem; padding: 1rem; border: 1px solid var(--border); }
+        .step-num { color: var(--accent); font-weight: 700; font-size: 14px; flex-shrink: 0; }
+        .step-content h5 { font-size: 14px; margin-bottom: 0.25rem; }
+        .step-content p { font-size: 13px; margin: 0; }
+        
+        .warning-box { background: rgba(245, 158, 11, 0.1); border-left: 2px solid #f59e0b; padding: 1rem 1.25rem; margin: 1.5rem 0; }
+        .warning-box p { color: var(--text); margin: 0; font-size: 14px; }
+        
+        .footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+        .share { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .share a { font-size: 13px; color: var(--text-dim); }
+        .share a:hover { color: var(--accent); }
+        .nav-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .nav-links a { padding: 1rem; border: 1px solid var(--border); font-size: 14px; }
+        .nav-links a:hover { border-color: var(--accent); text-decoration: none; }
+        .nav-links .label { font-size: 12px; color: var(--text-dim); }
+        .nav-links .title { font-weight: 600; margin-top: 0.25rem; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 5rem 1.25rem; }
+            h1 { font-size: 1.75rem; }
+            .nav-links { grid-template-columns: 1fr; }
+            .toc ol { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" id="progress"></div>
+    
+    <nav>
+        <div class="inner">
+            <a href="../index.html" class="logo">abdulla<span>.</span>sajad</a>
+            <div class="nav-btns">
+                <a href="../index.html#blog" class="nav-btn">[back]</a>
+                <button class="nav-btn" id="themeToggle">[theme]</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <article>
+            <div class="meta">
+                <span class="cat">[ai agents]</span>
+                <span class="date">jan 2026</span>
+            </div>
+            
+            <h1>Building with AI Agents: A Practical Guide</h1>
+            <p class="subtitle">From chatbots to autonomous agents—understanding how to build, use, and think about AI agents that can actually do things.</p>
+            
+            <div class="author">
+                <div class="author-avatar">AS</div>
+                <div>
+                    <div class="author-name">Abdulla Sajad</div>
+                    <div class="author-info">Software Engineer // Experimenting with agents</div>
+                </div>
+            </div>
+            
+            <div class="toc">
+                <div class="toc-title">contents</div>
+                <ol>
+                    <li><a href="#what"><span class="num">01</span> what are ai agents</a></li>
+                    <li><a href="#anatomy"><span class="num">02</span> anatomy of an agent</a></li>
+                    <li><a href="#tools"><span class="num">03</span> tool use fundamentals</a></li>
+                    <li><a href="#patterns"><span class="num">04</span> agent patterns</a></li>
+                    <li><a href="#frameworks"><span class="num">05</span> frameworks & tools</a></li>
+                    <li><a href="#building"><span class="num">06</span> building your first agent</a></li>
+                    <li><a href="#production"><span class="num">07</span> production considerations</a></li>
+                    <li><a href="#limitations"><span class="num">08</span> limitations & challenges</a></li>
+                    <li><a href="#future"><span class="num">09</span> where this is going</a></li>
+                </ol>
+            </div>
+            
+            <div class="content">
+                <section id="what">
+                    <h2>1. What Are AI Agents</h2>
+                    <p>The difference between a chatbot and an agent: agents can <em>do</em> things, not just say things.</p>
+                    
+                    <h3>Chatbot vs Agent</h3>
+                    <div class="diagram">CHATBOT:
+[User] → [LLM] → [Text Response]
+         "What's the weather?" → "I can't check real-time data"
+
+AGENT:
+[User] → [LLM] → [Decides: need weather tool]
+                    ↓
+              [Calls weather API] → [Gets data]
+                    ↓
+              [LLM processes] → [Response with actual weather]</div>
+                    
+                    <p>An agent has:</p>
+                    <ul>
+                        <li><strong>Tools:</strong> Functions it can call (APIs, databases, file operations)</li>
+                        <li><strong>Planning:</strong> Ability to break goals into steps</li>
+                        <li><strong>Memory:</strong> Context from previous interactions</li>
+                        <li><strong>Autonomy:</strong> Makes decisions without constant human input</li>
+                    </ul>
+                    
+                    <div class="highlight">
+                        <p>The key insight: agents don't just predict text—they reason about what actions to take, execute them, and reason about results.</p>
+                    </div>
+                </section>
+
+                <section id="anatomy">
+                    <h2>2. Anatomy of an Agent</h2>
+                    <p>Every agent system has core components, regardless of framework:</p>
+                    
+                    <h3>The Agent Loop</h3>
+                    <div class="diagram">┌─────────────────────────────────────────┐
+│              AGENT LOOP                  │
+│                                          │
+│  1. Observe → What's the current state?  │
+│       ↓                                  │
+│  2. Think  → What should I do next?     │
+│       ↓                                  │
+│  3. Act    → Execute a tool/action       │
+│       ↓                                  │
+│  4. Update → Process results, repeat    │
+│                                          │
+└─────────────────────────────────────────┘</div>
+                    
+                    <h3>Core Components</h3>
+                    
+                    <h4>1. The Brain (LLM)</h4>
+                    <p>Most agents use an LLM as the reasoning engine. It decides what tools to call, when, and interprets results.</p>
+                    <p>Better reasoning models (Claude 3.5, GPT-4o, DeepSeek R1) make better agents. They follow instructions more reliably and plan better.</p>
+                    
+                    <h4>2. Tools / Function Definitions</h4>
+                    <p>Tools are the actions an agent can take. Each tool has:</p>
+                    <ul>
+                        <li>Name and description (LLM uses this to decide when to call)</li>
+                        <li>Input schema (what parameters it accepts)</li>
+                        <li>Implementation (actual code that runs)</li>
+                    </ul>
+                    
+                    <h4>3. Memory</h4>
+                    <p>Agents need context from previous steps:</p>
+                    <ul>
+                        <li><strong>Working memory:</strong> Current conversation, recent actions</li>
+                        <li><strong>Long-term memory:</strong> Vector store, previous sessions</li>
+                        <li><strong>Execution trace:</strong> History of tool calls and results</li>
+                    </ul>
+                    
+                    <h4>4. Planner (Optional but Powerful)</h4>
+                    <p>For complex tasks, agents benefit from explicit planning:</p>
+                    <ul>
+                        <li>Break goal into subtasks</li>
+                        <li>Execute subtasks in order or in parallel</li>
+                        <li>Replan when things fail</li>
+                    </ul>
+                </section>
+
+                <section id="tools">
+                    <h2>3. Tool Use Fundamentals</h2>
+                    <p>Tools are what turn an LLM into an agent. Here's how they actually work:</p>
+                    
+                    <h3>Function Calling</h3>
+                    <p>Modern LLMs support structured tool use:</p>
+                    <pre><code>// You define tools with schemas
+tools = [
+  {
+    name: "search_web",
+    description: "Search the web for information",
+    parameters: {
+      query: { type: "string", description: "Search query" }
+    }
+  },
+  {
+    name: "read_file",
+    description: "Read a file from disk",
+    parameters: {
+      path: { type: "string", description: "File path" }
+    }
+  }
+]
+
+// LLM sees these and can decide to call them
+// It outputs structured JSON when it wants to use a tool
+// Your code executes the tool and returns results
+// Results go back to LLM for next step</code></pre>
+                    
+                    <h3>Common Tool Types</h3>
+                    <div class="tool-card">
+                        <h4>Information Retrieval</h4>
+                        <div class="category">// search, fetch, query</div>
+                        <p>Web search, database queries, API calls, document retrieval</p>
+                        <p><strong>Risk:</strong> Low. Mostly read operations.</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>File Operations</h4>
+                        <div class="category">// read, write, modify</div>
+                        <p>Read files, write code, edit documents, create directories</p>
+                        <p><strong>Risk:</strong> Medium. Can overwrite important data.</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>Code Execution</h4>
+                        <div class="category">// run, evaluate</div>
+                        <p>Run Python, execute shell commands, evaluate expressions</p>
+                        <p><strong>Risk:</strong> High. Sandbox properly.</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>External Actions</h4>
+                        <div class="category">// send, post, deploy</div>
+                        <p>Send emails, post to Slack, deploy code, make purchases</p>
+                        <p><strong>Risk:</strong> Very high. Require human approval.</p>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <p><strong>Safety first:</strong> Never give an agent unrestricted access to destructive operations. Use sandboxes, require human confirmation for high-risk actions, and log everything.</p>
+                    </div>
+                </section>
+
+                <section id="patterns">
+                    <h2>4. Agent Patterns</h2>
+                    <p>Different problems need different agent architectures:</p>
+                    
+                    <h3>ReAct (Reason + Act)</h3>
+                    <p>The classic pattern. Think through a problem step by step.</p>
+                    <div class="diagram>User: "What's the population of the capital of France?"
+
+Agent thinks:
+- I need to find the capital of France
+- Then find its population
+
+Action 1: search("capital of France")
+Result: Paris
+
+Action 2: search("population of Paris 2024")
+Result: 2.1 million
+
+Final answer: Paris is the capital, population ~2.1M</div>
+                    
+                    <h3>Plan-and-Execute</h3>
+                    <p>First plan, then execute. Better for multi-step tasks.</p>
+                    <div class="diagram>1. Planning Phase:
+   - Analyze the goal
+   - Create numbered steps
+   - Store plan
+
+2. Execution Phase:
+   - Execute step 1
+   - Check if successful
+   - Move to step 2 or replan
+   - Repeat until done</div>
+                    
+                    <h3>Multi-Agent Systems</h3>
+                    <p>Multiple agents with different roles collaborating.</p>
+                    <div class="diagram>[Coordinator Agent]
+       ↓ assigns tasks
+[Researcher] [Coder] [Reviewer]
+       ↓           ↓          ↓
+   Searches    Writes    Reviews
+       ↓           ↓          ↓
+       └─────────┬──────────┘
+                 ↓
+         [Shared State / Messages]</div>
+                    
+                    <p>Example: A coding system where:</p>
+                    <ul>
+                        <li><strong>Architect agent:</strong> Plans the structure</li>
+                        <li><strong>Coder agent:</strong> Writes the code</li>
+                        <li><strong>Reviewer agent:</strong> Checks for bugs</li>
+                        <li><strong>Tester agent:</strong> Runs tests</li>
+                    </ul>
+                    
+                    <h3>Self-Correction</h3>
+                    <p>Agents that can fix their own mistakes.</p>
+                    <ul>
+                        <li>Try an approach</li>
+                        <li>Check if it worked (run tests, verify output)</li>
+                        <li>If failed, analyze error and try differently</li>
+                        <li>Repeat until success or max attempts</li>
+                    </ul>
+                </section>
+
+                <section id="frameworks">
+                    <h2>5. Frameworks & Tools</h2>
+                    <p>The ecosystem is evolving rapidly. Here's what I've actually used:</p>
+                    
+                    <div class="tool-card">
+                        <h4>LangChain / LangGraph</h4>
+                        <div class="category">// python, typescript</div>
+                        <p>Most popular framework. Good abstractions for chains, agents, tools, memory.</p>
+                        <div class="pros-cons">
+                            <strong>Pros:</strong> Huge ecosystem, lots of integrations, well-documented<br>
+                            <strong>Cons:</strong> Can be over-engineered, abstraction leaks<br>
+                            <strong>Best for:</strong> Prototyping quickly, standard agent patterns
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h4>CrewAI</h4>
+                        <div class="category">// python</div>
+                        <p>Multi-agent systems made easy. Define agents with roles, let them collaborate.</p>
+                        <div class="pros-cons">
+                            <strong>Pros:</strong> Clean multi-agent abstractions, role-based design<br>
+                            <strong>Cons:</strong> Newer, less mature ecosystem<br>
+                            <strong>Best for:</strong> Complex workflows with multiple roles
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h4>AutoGen</h4>
+                        <div class="category">// python</div>
+                        <p>Microsoft's framework for conversational agents. Agents talk to each other.</p>
+                        <div class="pros-cons">
+                            <strong>Pros:</strong> Natural multi-agent communication patterns<br>
+                            <strong>Cons:</strong> Can get verbose, harder to control<br>
+                            <strong>Best for:</strong> Research, complex collaborative tasks
+                        </div>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <h4>OpenHands / Cline / Cursor</h4>
+                        <div class="category">// autonomous coding</div>
+                        <p>Ready-made coding agents. Less framework, more "use this tool."</p>
+                        <div class="pros-cons">
+                            <strong>Pros:</strong> Actually useful for real work<br>
+                            <strong>Cons:</strong> Less customizable<br>
+                            <strong>Best for:</strong> Using agents, not building them
+                        </div>
+                    </div>
+                    
+                    <h3>My Recommendation</h3>
+                    <ul>
+                        <li>Start with raw API + simple function calling (understand the basics)</li>
+                        <li>Use LangChain/LangGraph for real projects (abstractions help)</li>
+                        <li>Consider CrewAI for multi-agent scenarios</li>
+                        <li>Use existing tools (OpenHands, Cursor) for actual coding work</li>
+                    </ul>
+                </section>
+
+                <section id="building">
+                    <h2>6. Building Your First Agent</h2>
+                    <p>Let's walk through a simple agent that can search and summarize:</p>
+                    
+                    <h3>Step 1: Define the Goal</h3>
+                    <p>What should the agent do? Let's build: "Research a topic and produce a summary."</p>
+                    
+                    <h3>Step 2: Define Tools</h3>
+                    <pre><code>tools = [
+  {
+    name: "search",
+    description: "Search the web for information",
+    parameters: { query: string }
+  },
+  {
+    name: "scrape",
+    description: "Extract text from a webpage",
+    parameters: { url: string }
+  }
+]</code></pre>
+                    
+                    <h3>Step 3: Implement the Loop</h3>
+                    <div class="step-list">
+                        <div class="step-item">
+                            <span class="step-num">1</span>
+                            <div class="step-content">
+                                <h5>Receive user goal</h5>
+                                <p>"Research the latest news about AI agents and summarize"</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <span class="step-num">2</span>
+                            <div class="step-content">
+                                <h5>LLM decides first action</h5>
+                                <p>"I should search for 'AI agents latest news 2026'"</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <span class="step-num">3</span>
+                            <div class="step-content">
+                                <h5>Execute tool</h5>
+                                <p>Call search API, get list of URLs and snippets</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <span class="step-num">4</span>
+                            <div class="step-content">
+                                <h5>LLM processes results</h5>
+                                <p>"I found 5 relevant articles. Let me scrape the top 3"</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <span class="step-num">5</span>
+                            <div class="step-content">
+                                <h5>Execute more tools</h5>
+                                <p>Scrape each URL, get full content</p>
+                            </div>
+                        </div>
+                        <div class="step-item">
+                            <span class="step-num">6</span>
+                            <div class="step-content">
+                                <h5>Synthesize</h5>
+                                <p>LLM generates summary from all gathered content</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3>Step 4: Handle Edge Cases</h3>
+                    <ul>
+                        <li>What if search returns nothing?</li>
+                        <li>What if scrape fails?</li>
+                        <li>What if the agent loops forever?</li>
+                        <li>What if costs get too high?</li>
+                    </ul>
+                    
+                    <p>Real agents need guardrails, limits, and fallbacks.</p>
+                </section>
+
+                <section id="production">
+                    <h2>7. Production Considerations</h2>
+                    <p>Demo agents are easy. Production agents are hard. Here's what to think about:</p>
+                    
+                    <h3>Cost Management</h3>
+                    <ul>
+                        <li>Every LLM call costs money. Agents make many calls.</li>
+                        <li>Set max iterations/tokens per task</li>
+                        <li>Cache results when possible</li>
+                        <li>Use cheaper models for simple decisions</li>
+                        <li>Monitor costs per task type</li>
+                    </ul>
+                    
+                    <h3>Reliability</h3>
+                    <ul>
+                        <li>Agents fail. Plan for it.</li>
+                        <li>Timeouts on tool execution</li>
+                        <li>Retry logic with backoff</li>
+                        <li>Fallback to simpler behavior when complex fails</li>
+                        <li>Human-in-the-loop for critical decisions</li>
+                    </ul>
+                    
+                    <h3>Observability</h3>
+                    <ul>
+                        <li>Log every LLM call and tool execution</li>
+                        <li>Track token usage, latency, success rates</li>
+                        <li>Debug why agents fail (they will)</li>
+                        <li>Tools like LangSmith, Arize help</li>
+                    </ul>
+                    
+                    <h3>Security</h3>
+                    <ul>
+                        <li>Prompt injection is real. Sanitize inputs.</li>
+                        <li>Limit tool permissions (principle of least privilege)</li>
+                        <li>Sandbox code execution</li>
+                        <li>Never put secrets in prompts</li>
+                        <li>Review agent actions before destructive operations</li>
+                    </ul>
+                    
+                    <div class="highlight">
+                        <p>The gap between demo and production is huge. Start simple, add complexity only when needed.</p>
+                    </div>
+                </section>
+
+                <section id="limitations">
+                    <h2>8. Limitations & Challenges</h2>
+                    <p>Agents aren't magic. They have real limitations:</p>
+                    
+                    <h3>Reliability</h3>
+                    <p>Agents fail in unpredictable ways. They might:</p>
+                    <ul>
+                        <li>Call the wrong tool</li>
+                        <li>Get stuck in loops</li>
+                        <li>Hallucinate facts confidently</li>
+                        <li>Miss obvious steps</li>
+                    </ul>
+                    
+                    <h3>Context Limits</h3>
+                    <p>LLMs have token limits. Long agent runs exhaust context. Solutions:</p>
+                    <ul>
+                        <li>Summarize earlier steps</li>
+                        <li>Use sliding windows</li>
+                        <li>Store state externally</li>
+                        <li>Use models with larger contexts</li>
+                    </ul>
+                    
+                    <h3>Cost</h3>
+                    <p>Agents make many LLM calls. A complex task could cost $1-10. For high-volume applications, this adds up fast.</p>
+                    
+                    <h3>Speed</h3>
+                    <p>Sequential tool calls + LLM inference = slow. Not suitable for real-time user interactions without streaming.</p>
+                    
+                    <h3>Debugging</h3>
+                    <p>When an agent fails, why? It made a series of decisions. Debugging means tracing through each one. Harder than traditional code.</p>
+                    
+                    <div class="warning-box">
+                        <p><strong>Honest assessment:</strong> I use agents for research, coding assistance, and exploration. But I wouldn't trust them with critical production operations without human oversight.</p>
+                    </div>
+                </section>
+
+                <section id="future">
+                    <h2>9. Where This Is Going</h2>
+                    <p>The space is moving fast. Here's what I'm watching:</p>
+                    
+                    <h3>Better Reasoning Models</h3>
+                    <p>Models are getting better at planning and self-correction. DeepSeek R1, Claude with extended thinking—these make more reliable agents.</p>
+                    
+                    <h3>Smaller, Specialized Agents</h3>
+                    <p>Instead of one big agent, smaller specialized agents for specific tasks. Cheaper, faster, more reliable.</p>
+                    
+                    <h3>Agent-to-Agent Communication</h3>
+                    <p>Standards emerging for agents to talk to each other. MCP (Model Context Protocol) from Anthropic is interesting.</p>
+                    
+                    <h3>Better Tool Interfaces</h3>
+                    <p>More software exposing agent-friendly APIs. Not just REST, but semantic descriptions agents can understand.</p>
+                    
+                    <h3>Human-Agent Collaboration</h3>
+                    <p>The best results come from humans and agents working together, not fully autonomous systems. Agents as "coworkers" not replacements.</p>
+                    
+                    <div class="highlight">
+                        <p>The technology is exciting but early. Build small, learn from failures, and don't trust agents with anything you can't undo.</p>
+                    </div>
+                </section>
+            </div>
+            
+            <footer class="footer">
+                <div class="share">
+                    <a href="https://twitter.com/intent/tweet?text=Building with AI Agents: A Practical Guide" target="_blank">[share on x]</a>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true" target="_blank">[share on linkedin]</a>
+                </div>
+                <div class="nav-links">
+                    <a href="../index.html">
+                        <div class="label">← back to</div>
+                        <div class="title">home</div>
+                    </a>
+                    <a href="../index.html#blog">
+                        <div class="label">more articles →</div>
+                        <div class="title">blog</div>
+                    </a>
+                </div>
+            </footer>
+        </article>
+    </div>
+
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const progress = document.getElementById('progress');
+        const saved = localStorage.getItem('theme') || 'dark';
+        if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+        
+        toggle.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        });
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            progress.style.width = (scrollTop / docHeight * 100) + '%';
+        });
+    </script>
+</body>
+</html>

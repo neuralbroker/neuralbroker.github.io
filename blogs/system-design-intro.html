@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to System Design | Abdulla Sajad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --text: #ffffff;
+            --text-dim: #b0b0b0;
+            --accent: #00ff88;
+            --accent-dim: #00ff8833;
+            --border: #333333;
+        }
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --text: #000000;
+            --text-dim: #444444;
+            --accent: #00aa55;
+            --accent-dim: #00aa5520;
+            --border: #cccccc;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 15px;
+            transition: background 0.2s, color 0.2s;
+            -webkit-font-smoothing: antialiased;
+        }
+        ::selection { background: var(--accent); color: var(--bg); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        
+        .progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); z-index: 101; }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+        nav .inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-weight: 700; font-size: 15px; color: var(--text); }
+        .logo span { color: var(--accent); }
+        .nav-btns { display: flex; gap: 1rem; align-items: center; }
+        .nav-btn { font-size: 12px; color: var(--text); background: none; border: none; cursor: pointer; font-family: inherit; transition: color 0.2s; }
+        .nav-btn:hover { color: var(--accent); }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 5rem 2rem; }
+        
+        article { padding-top: 1.5rem; }
+        
+        .meta { display: flex; gap: 1rem; margin-bottom: 1.5rem; font-size: 13px; flex-wrap: wrap; }
+        .meta .cat { color: var(--accent); }
+        .meta .date { color: var(--text-dim); }
+        
+        h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.01em; line-height: 1.3; }
+        .subtitle { color: var(--text-dim); font-size: 16px; margin-bottom: 2rem; line-height: 1.6; }
+        
+        .author { display: flex; gap: 1rem; align-items: center; padding: 1rem; border: 1px solid var(--border); margin-bottom: 2.5rem; }
+        .author-avatar { width: 40px; height: 40px; background: var(--accent); color: var(--bg); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+        .author-name { font-weight: 600; font-size: 14px; }
+        .author-info { font-size: 13px; color: var(--text-dim); }
+        
+        .toc { border: 1px solid var(--border); padding: 1.25rem; margin-bottom: 2.5rem; }
+        .toc-title { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+        .toc ol { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+        .toc a { font-size: 14px; color: var(--text-dim); display: flex; gap: 0.5rem; }
+        .toc a:hover { color: var(--accent); text-decoration: none; }
+        .toc .num { color: var(--accent); font-size: 13px; min-width: 1.5rem; }
+        
+        .content h2 { font-size: 18px; font-weight: 600; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+        .content h3 { font-size: 16px; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--accent); }
+        .content h4 { font-size: 15px; font-weight: 600; margin: 1rem 0 0.5rem; color: var(--text); }
+        .content p { color: var(--text-dim); margin-bottom: 1rem; line-height: 1.8; }
+        .content ul, .content ol { margin: 1rem 0 1.5rem 1.5rem; color: var(--text-dim); }
+        .content li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .content strong { color: var(--text); }
+        .content code { background: var(--accent-dim); padding: 0.2rem 0.4rem; font-size: 13px; color: var(--accent); }
+        .content pre { background: var(--accent-dim); padding: 1rem; overflow-x: auto; margin: 1rem 0; font-size: 13px; line-height: 1.6; }
+        .content pre code { background: none; padding: 0; }
+        
+        .highlight { background: var(--accent-dim); border-left: 2px solid var(--accent); padding: 1rem 1.25rem; margin: 1.5rem 0; }
+        .highlight p { color: var(--text); margin: 0; font-style: italic; font-size: 15px; }
+        
+        .concept-card { border: 1px solid var(--border); padding: 1.25rem; margin: 1rem 0; }
+        .concept-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 0.5rem; color: var(--accent); }
+        .concept-card p { font-size: 14px; margin: 0 0 0.5rem 0; }
+        .concept-card .example { font-size: 13px; color: var(--text-dim); margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border); }
+        
+        .diagram { background: var(--accent-dim); padding: 1.25rem; margin: 1.5rem 0; font-size: 12px; font-family: 'JetBrains Mono', monospace; overflow-x: auto; white-space: pre; line-height: 1.4; }
+        
+        .metric-box { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1rem 0; }
+        .metric-item { border: 1px solid var(--border); padding: 1rem; }
+        .metric-item h5 { font-size: 13px; color: var(--text-dim); margin-bottom: 0.5rem; }
+        .metric-item p { font-size: 14px; margin: 0; color: var(--text); }
+        
+        .footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+        .share { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .share a { font-size: 13px; color: var(--text-dim); }
+        .share a:hover { color: var(--accent); }
+        .nav-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .nav-links a { padding: 1rem; border: 1px solid var(--border); font-size: 14px; }
+        .nav-links a:hover { border-color: var(--accent); text-decoration: none; }
+        .nav-links .label { font-size: 12px; color: var(--text-dim); }
+        .nav-links .title { font-weight: 600; margin-top: 0.25rem; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 5rem 1.25rem; }
+            h1 { font-size: 1.75rem; }
+            .nav-links { grid-template-columns: 1fr; }
+            .toc ol { grid-template-columns: 1fr; }
+            .metric-box { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" id="progress"></div>
+    
+    <nav>
+        <div class="inner">
+            <a href="../index.html" class="logo">abdulla<span>.</span>sajad</a>
+            <div class="nav-btns">
+                <a href="../index.html#blog" class="nav-btn">[back]</a>
+                <button class="nav-btn" id="themeToggle">[theme]</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <article>
+            <div class="meta">
+                <span class="cat">[system design]</span>
+                <span class="date">dec 2025</span>
+            </div>
+            
+            <h1>Introduction to System Design</h1>
+            <p class="subtitle">A practical guide to thinking about systems at scale—from load balancers to databases, caching to consistency. Written by someone still learning.</p>
+            
+            <div class="author">
+                <div class="author-avatar">AS</div>
+                <div>
+                    <div class="author-name">Abdulla Sajad</div>
+                    <div class="author-info">Software Engineer // Learning system design</div>
+                </div>
+            </div>
+            
+            <div class="toc">
+                <div class="toc-title">contents</div>
+                <ol>
+                    <li><a href="#what"><span class="num">01</span> what is system design</a></li>
+                    <li><a href="#scale"><span class="num">02</span> thinking about scale</a></li>
+                    <li><a href="#components"><span class="num">03</span> core components</a></li>
+                    <li><a href="#database"><span class="num">04</span> database choices</a></li>
+                    <li><a href="#caching"><span class="num">05</span> caching strategies</a></li>
+                    <li><a href="#consistency"><span class="num">06</span> consistency models</a></li>
+                    <li><a href="#patterns"><span class="num">07</span> common patterns</a></li>
+                    <li><a href="#process"><span class="num">08</span> the design process</a></li>
+                    <li><a href="#learning"><span class="num">09</span> how to learn</a></li>
+                </ol>
+            </div>
+            
+            <div class="content">
+                <section id="what">
+                    <h2>1. What is System Design</h2>
+                    <p>System design is about making architectural decisions when building software that needs to work at scale. It's not about specific technologies—it's about understanding tradeoffs.</p>
+                    <p>When you're building an app for 100 users, almost any approach works. When it's 100 million users, every decision matters. System design is the skill of reasoning through those decisions.</p>
+                    
+                    <h3>Why It Matters</h3>
+                    <ul>
+                        <li><strong>Interviews:</strong> FAANG and similar companies test this heavily</li>
+                        <li><strong>Real work:</strong> Understanding why systems fail helps you build better ones</li>
+                        <li><strong>Career growth:</strong> Senior engineers are expected to think architecturally</li>
+                        <li><strong>Debugging:</strong> When things break at scale, you need mental models</li>
+                    </ul>
+                    
+                    <div class="highlight">
+                        <p>System design isn't memorizing architectures. It's learning to ask the right questions and understand tradeoffs.</p>
+                    </div>
+                </section>
+
+                <section id="scale">
+                    <h2>2. Thinking About Scale</h2>
+                    <p>The first question in any system design discussion: "At what scale?"</p>
+                    
+                    <h3>The Numbers You Should Know</h3>
+                    <div class="metric-box">
+                        <div class="metric-item">
+                            <h5>Latency Comparisons</h5>
+                            <p>L1 cache: 1ns<br>RAM: 100ns<br>SSD seek: 100μs<br>Disk seek: 10ms<br>Network (same DC): 0.5ms<br>Network (cross-region): 150ms</p>
+                        </div>
+                        <div class="metric-item">
+                            <h5>Capacity Estimates</h5>
+                            <p>Requests/sec thresholds:<br>1K: single server<br>10K: need caching<br>100K: need load balancing<br>1M+: distributed systems</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Back-of-the-Envelope Math</h3>
+                    <p>Quick calculations help sanity-check designs:</p>
+                    <ul>
+                        <li><strong>Storage:</strong> 1M users × 1KB data = 1GB. Add 10× for redundancy, indexing.</li>
+                        <li><strong>Bandwidth:</strong> 1M users × 10 requests/day × 10KB = 100GB/day ≈ 1MB/s</li>
+                        <li><strong>Read/Write ratio:</strong> Most apps are read-heavy (100:1 or more). Design for it.</li>
+                    </ul>
+                    
+                    <h3>Vertical vs Horizontal Scaling</h3>
+                    <div class="concept-card">
+                        <h4>Vertical Scaling (Scale Up)</h4>
+                        <p>Bigger machine. More RAM, faster CPU, bigger disk.</p>
+                        <div class="example">Pros: Simple, no code changes. Cons: Expensive, hard limit, single point of failure.</div>
+                    </div>
+                    <div class="concept-card">
+                        <h4>Horizontal Scaling (Scale Out)</h4>
+                        <p>More machines. Distribute load across commodity hardware.</p>
+                        <div class="example">Pros: Cheaper, fault tolerant, theoretically unlimited. Cons: Complexity, distributed systems problems.</div>
+                    </div>
+                </section>
+
+                <section id="components">
+                    <h2>3. Core Components</h2>
+                    <p>Most distributed systems are built from a set of standard components. Understanding each one helps you compose architectures.</p>
+                    
+                    <h3>Load Balancers</h3>
+                    <p>Distribute incoming requests across multiple servers. The entry point to any scaled system.</p>
+                    
+                    <div class="concept-card">
+                        <h4>Load Balancing Algorithms</h4>
+                        <p><strong>Round Robin:</strong> Rotate through servers sequentially.<br>
+                        <strong>Least Connections:</strong> Route to server with fewest active requests.<br>
+                        <strong>Consistent Hashing:</strong> Route same user to same server (sticky sessions).<br>
+                        <strong>Weighted:</strong> More powerful servers get more traffic.</p>
+                        <div class="example">Tools: Nginx, HAProxy, AWS ALB, Cloudflare</div>
+                    </div>
+                    
+                    <div class="diagram">[Users] → [Load Balancer] → [Server 1, Server 2, Server 3]
+                          ↓
+                    Health checks remove unhealthy servers from rotation</div>
+                    
+                    <h3>Reverse Proxy vs API Gateway</h3>
+                    <div class="concept-card">
+                        <h4>Reverse Proxy</h4>
+                        <p>Accepts client requests, forwards to backend servers. Handles SSL termination, compression, caching.</p>
+                        <div class="example">Nginx, Apache, HAProxy</div>
+                    </div>
+                    <div class="concept-card">
+                        <h4>API Gateway</h4>
+                        <p>Reverse proxy + features. Rate limiting, authentication, request routing, response transformation.</p>
+                        <div class="example">Kong, AWS API Gateway, Ambassador</div>
+                    </div>
+                    
+                    <h3>Message Queues</h3>
+                    <p>Decouple services. Producer sends message, consumer processes asynchronously.</p>
+                    
+                    <div class="concept-card">
+                        <h4>When to Use</h4>
+                        <p>• Email sending (don't block the request)<br>
+                        • Image processing (heavy work in background)<br>
+                        • Analytics events (batch process later)<br>
+                        • Task scheduling (run at specific times)</p>
+                        <div class="example">RabbitMQ, Kafka, SQS, Redis Streams</div>
+                    </div>
+                    
+                    <div class="diagram">[Service A] → [Queue] → [Service B]
+                          ↓              ↓           ↓
+                    Produces msg    Buffers     Consumes & processes
+                    Continues                    asynchronously</div>
+                </section>
+
+                <section id="database">
+                    <h2>4. Database Choices</h2>
+                    <p>Database selection is often the most critical architectural decision. Pick wrong and you'll feel it for years.</p>
+                    
+                    <h3>SQL vs NoSQL</h3>
+                    <div class="concept-card">
+                        <h4>Relational (SQL)</h4>
+                        <p>Structured data, relations, ACID transactions, clear schemas.</p>
+                        <div class="example">PostgreSQL, MySQL, SQLite. Use when: data is relational, consistency matters, schema is stable.</div>
+                    </div>
+                    <div class="concept-card">
+                        <h4>Document (NoSQL)</h4>
+                        <p>Flexible schemas, nested data, horizontal scaling, eventual consistency.</p>
+                        <div class="example">MongoDB, DynamoDB. Use when: schema evolves, need horizontal scaling, data is hierarchical.</div>
+                    </div>
+                    <div class="concept-card">
+                        <h4>Key-Value</h4>
+                        <p>Simple lookups, extremely fast, no complex queries.</p>
+                        <div class="example">Redis, Memcached. Use for: caching, sessions, leaderboards.</div>
+                    </div>
+                    <div class="concept-card">
+                        <h4>Wide-Column</h4>
+                        <p>Billions of rows, time-series, high write throughput.</p>
+                        <div class="example">Cassandra, HBase. Use for: logs, metrics, IoT data.</div>
+                    </div>
+                    
+                    <h3>Database Scaling</h3>
+                    <p>When one database isn't enough:</p>
+                    
+                    <h4>Read Replicas</h4>
+                    <p>Master handles writes. Replicas handle reads. Works because most apps are read-heavy.</p>
+                    <div class="diagram">[Writes] → [Master DB] → Replicates → [Replica 1, Replica 2]
+                                                    ↓
+                    [Reads] → Load balancer → [Replica 1, Replica 2]</div>
+                    
+                    <h4>Sharding (Partitioning)</h4>
+                    <p>Split data across multiple databases. Each shard holds a subset of data.</p>
+                    <ul>
+                        <li><strong>Key-based:</strong> User ID mod N determines shard</li>
+                        <li><strong>Range-based:</strong> A-M on shard 1, N-Z on shard 2</li>
+                        <li><strong>Directory-based:</strong> Lookup table maps keys to shards</li>
+                    </ul>
+                    
+                    <h4>The Challenge</h4>
+                    <p>Sharding complicates everything: cross-shard queries, transactions, rebalancing. Don't shard until you need to.</p>
+                </section>
+
+                <section id="caching">
+                    <h2>5. Caching Strategies</h2>
+                    <p>Caching is often the difference between a slow system and a fast one. But cache invalidation is famously "one of the hardest things in CS."</p>
+                    
+                    <h3>Where to Cache</h3>
+                    <div class="concept-card">
+                        <h4>Client-side (Browser)</h4>
+                        <p>HTTP headers (Cache-Control, ETag). Reduces requests entirely.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>CDN (Edge)</h4>
+                        <p>Static assets, some API responses. Close to users geographically.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>Application-level (Redis/Memcached)</h4>
+                        <p>Database query results, computed data, sessions.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>Database-level</h4>
+                        <p>Query cache, buffer pool. Built into most databases.</p>
+                    </div>
+                    
+                    <h3>Cache Patterns</h3>
+                    <h4>Cache-Aside (Lazy Loading)</h4>
+                    <div class="diagram">1. App checks cache
+2. If miss: load from DB, store in cache
+3. Return data
+4. On write: update DB, invalidate cache</div>
+                    
+                    <h4>Write-Through</h4>
+                    <div class="diagram">1. App writes to cache
+2. Cache writes to DB
+3. Read: always from cache (never stale)</div>
+                    
+                    <h4>Write-Behind (Write-Back)</h4>
+                    <div class="diagram">1. App writes to cache
+2. Ack immediately
+3. Async: cache writes to DB
+4. Risk: data loss if cache crashes before write</div>
+                    
+                    <h3>Cache Invalidation</h3>
+                    <ul>
+                        <li><strong>TTL:</strong> Easiest. Expire after X seconds. Stale data for X seconds.</li>
+                        <li><strong>Write-invalidate:</strong> Delete from cache on write. Next read refreshes.</li>
+                        <li><strong>Write-through:</strong> Update cache on write. Always fresh, more writes.</li>
+                        <li><strong>Event-based:</strong> Listen to change events, update cache proactively.</li>
+                    </ul>
+                </section>
+
+                <section id="consistency">
+                    <h2>6. Consistency Models</h2>
+                    <p>In distributed systems, you can't have everything. The CAP theorem tells us: when partitioned, choose consistency or availability.</p>
+                    
+                    <h3>CAP Theorem</h3>
+                    <ul>
+                        <li><strong>Consistency:</strong> All nodes see the same data at the same time</li>
+                        <li><strong>Availability:</strong> Every request gets a response (success or failure)</li>
+                        <li><strong>Partition Tolerance:</strong> System continues despite network failures</li>
+                    </ul>
+                    <p>Network partitions are inevitable in distributed systems. So you're really choosing between CP and AP.</p>
+                    
+                    <h3>Consistency Levels</h3>
+                    <div class="concept-card">
+                        <h4>Strong Consistency</h4>
+                        <p>All reads see the most recent write. Like a single-threaded program.</p>
+                        <div class="example">Trade-off: Higher latency, lower availability. Banking systems need this.</div>
+                    </div>
+                    <div class="concept-card">
+                        <h4>Eventual Consistency</h4>
+                        <p>Given enough time, all replicas converge. Reads might see stale data temporarily.</p>
+                        <div class="example">Trade-off: Lower latency, higher availability. Social media feeds can tolerate this.</div>
+                    </div>
+                    <div class="concept-card">
+                        <h4>Causal Consistency</h4>
+                        <p>Events that are causally related are seen by everyone in order.</p>
+                        <div class="example">If user A replies to user B's comment, everyone sees B's comment before A's reply.</div>
+                    </div>
+                    
+                    <div class="highlight">
+                        <p>There's no "best" consistency model. The right choice depends on your application's requirements.</p>
+                    </div>
+                </section>
+
+                <section id="patterns">
+                    <h2>7. Common Patterns</h2>
+                    <p>Certain patterns show up repeatedly in system design. Learn these and you'll recognize them everywhere.</p>
+                    
+                    <h3>Microservices</h3>
+                    <p>Break monolith into small, independent services. Each owns its data and logic.</p>
+                    <ul>
+                        <li><strong>Pros:</strong> Independent deployment, technology flexibility, team autonomy</li>
+                        <li><strong>Cons:</strong> Distributed complexity, network overhead, harder debugging</li>
+                    </ul>
+                    <p>Don't start with microservices. Extract from monolith when boundaries become clear.</p>
+                    
+                    <h3>Event-Driven Architecture</h3>
+                    <p>Services communicate via events, not direct calls. Looser coupling.</p>
+                    <div class="diagram">[Order Service] → "OrderCreated" event → [Inventory Service]
+                                              ↓
+                                        [Email Service]
+                                              ↓
+                                        [Analytics Service]
+                    
+                    All services react independently. No direct coupling.</div>
+                    
+                    <h3>CQRS (Command Query Responsibility Segregation)</h3>
+                    <p>Separate models for reading and writing data. Optimize each independently.</p>
+                    <ul>
+                        <li><strong>Write model:</strong> Normalized, transactional, authoritative</li>
+                        <li><strong>Read model:</strong> Denormalized, optimized for queries, can be stale</li>
+                    </ul>
+                    <p>Useful when read and write patterns differ significantly.</p>
+                    
+                    <h3>Circuit Breaker</h3>
+                    <p>Prevent cascade failures. If a service is failing, stop calling it.</p>
+                    <div class="diagram">States: CLOSED → OPEN → HALF-OPEN → CLOSED
+                                      ↓           ↓            ↓
+                           Normal      Failing    Testing if recovered
+                           requests    requests   (limited calls)
+                           pass        fail fast</div>
+                    
+                    <h3>Rate Limiting</h3>
+                    <p>Protect services from overload. Common algorithms:</p>
+                    <ul>
+                        <li><strong>Token Bucket:</strong> Refill tokens over time, deny when empty</li>
+                        <li><strong>Sliding Window:</strong> Count requests in last N seconds</li>
+                        <li><strong>Fixed Window:</strong> Reset count every N seconds</li>
+                    </ul>
+                </section>
+
+                <section id="process">
+                    <h2>8. The Design Process</h2>
+                    <p>When faced with a system design problem, follow a structured approach:</p>
+                    
+                    <h3>Step 1: Clarify Requirements</h3>
+                    <ul>
+                        <li>What's the expected scale? (users, requests/sec, data size)</li>
+                        <li>What are the functional requirements? (features)</li>
+                        <li>What are the non-functional requirements? (latency, availability)</li>
+                        <li>What are the constraints? (budget, existing infrastructure)</li>
+                    </ul>
+                    
+                    <h3>Step 2: Define Data Model</h3>
+                    <ul>
+                        <li>What entities exist?</li>
+                        <li>How do they relate?</li>
+                        <li>What queries do we need?</li>
+                        <li>How much data? How fast is it growing?</li>
+                    </ul>
+                    
+                    <h3>Step 3: Design APIs</h3>
+                    <ul>
+                        <li>What endpoints/operations?</li>
+                        <li>Request/response formats?</li>
+                        <li>Authentication/authorization?</li>
+                    </ul>
+                    
+                    <h3>Step 4: High-Level Design</h3>
+                    <ul>
+                        <li>Draw the major components</li>
+                        <li>Show data flow</li>
+                        <li>Identify bottlenecks</li>
+                    </ul>
+                    
+                    <h3>Step 5: Deep Dive</h3>
+                    <ul>
+                        <li>How does each component work?</li>
+                        <li>How do they handle failure?</li>
+                        <li>Where can we optimize?</li>
+                    </ul>
+                    
+                    <h3>Step 6: Scale & Iterate</h3>
+                    <ul>
+                        <li>Add caching where needed</li>
+                        <li>Introduce load balancing</li>
+                        <li>Consider sharding</li>
+                        <li>Add monitoring</li>
+                    </ul>
+                </section>
+
+                <section id="learning">
+                    <h2>9. How to Learn</h2>
+                    <p>System design is learned through exposure and practice. Here's my approach:</p>
+                    
+                    <h3>Resources That Helped Me</h3>
+                    <ul>
+                        <li><strong>Designing Data-Intensive Applications:</strong> The bible. Read it, re-read it.</li>
+                        <li><strong>System Design Primer (GitHub):</strong> Free, comprehensive, practical</li>
+                        <li><strong>ByteByteGo:</strong> Good visual explanations of concepts</li>
+                        <li><strong>Real architecture blogs:</strong> Uber, Netflix, Discord engineering blogs</li>
+                    </ul>
+                    
+                    <h3>Practice Approach</h3>
+                    <ul>
+                        <li>Design something from scratch (URL shortener, chat app, feed)</li>
+                        <li>Compare your design to real systems</li>
+                        <li>Understand why they made different choices</li>
+                        <li>Present designs to others—explaining reveals gaps</li>
+                    </ul>
+                    
+                    <h3>The Reality</h3>
+                    <p>You won't design distributed systems from scratch early in your career. But understanding the concepts helps you:</p>
+                    <ul>
+                        <li>Debug issues in existing systems</li>
+                        <li>Make better decisions at any scale</li>
+                        <li>Understand why things are built certain ways</li>
+                        <li>Communicate with senior engineers effectively</li>
+                    </ul>
+                    
+                    <div class="highlight">
+                        <p>System design isn't about knowing the "right" answer. It's about reasoning through tradeoffs and asking the right questions.</p>
+                    </div>
+                </section>
+            </div>
+            
+            <footer class="footer">
+                <div class="share">
+                    <a href="https://twitter.com/intent/tweet?text=Introduction to System Design" target="_blank">[share on x]</a>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true" target="_blank">[share on linkedin]</a>
+                </div>
+                <div class="nav-links">
+                    <a href="../index.html">
+                        <div class="label">← back to</div>
+                        <div class="title">home</div>
+                    </a>
+                    <a href="../index.html#blog">
+                        <div class="label">more articles →</div>
+                        <div class="title">blog</div>
+                    </a>
+                </div>
+            </footer>
+        </article>
+    </div>
+
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const progress = document.getElementById('progress');
+        const saved = localStorage.getItem('theme') || 'dark';
+        if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+        
+        toggle.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        });
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            progress.style.width = (scrollTop / docHeight * 100) + '%';
+        });
+    </script>
+</body>
+</html>
