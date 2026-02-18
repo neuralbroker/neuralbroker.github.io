@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA in the Real World: Beyond LeetCode | Abdulla Sajad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --text: #ffffff;
+            --text-dim: #b0b0b0;
+            --accent: #00ff88;
+            --accent-dim: #00ff8833;
+            --border: #333333;
+        }
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --text: #000000;
+            --text-dim: #444444;
+            --accent: #00aa55;
+            --accent-dim: #00aa5520;
+            --border: #cccccc;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 15px;
+            transition: background 0.2s, color 0.2s;
+            -webkit-font-smoothing: antialiased;
+        }
+        ::selection { background: var(--accent); color: var(--bg); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        
+        .progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); z-index: 101; }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+        nav .inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-weight: 700; font-size: 15px; color: var(--text); }
+        .logo span { color: var(--accent); }
+        .nav-btns { display: flex; gap: 1rem; align-items: center; }
+        .nav-btn { font-size: 12px; color: var(--text); background: none; border: none; cursor: pointer; font-family: inherit; transition: color 0.2s; }
+        .nav-btn:hover { color: var(--accent); }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 5rem 2rem; }
+        
+        article { padding-top: 1.5rem; }
+        
+        .meta { display: flex; gap: 1rem; margin-bottom: 1.5rem; font-size: 13px; flex-wrap: wrap; }
+        .meta .cat { color: var(--accent); }
+        .meta .date { color: var(--text-dim); }
+        
+        h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.01em; line-height: 1.3; }
+        .subtitle { color: var(--text-dim); font-size: 16px; margin-bottom: 2rem; line-height: 1.6; }
+        
+        .author { display: flex; gap: 1rem; align-items: center; padding: 1rem; border: 1px solid var(--border); margin-bottom: 2.5rem; }
+        .author-avatar { width: 40px; height: 40px; background: var(--accent); color: var(--bg); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+        .author-name { font-weight: 600; font-size: 14px; }
+        .author-info { font-size: 13px; color: var(--text-dim); }
+        
+        .toc { border: 1px solid var(--border); padding: 1.25rem; margin-bottom: 2.5rem; }
+        .toc-title { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+        .toc ol { list-style: none; display: grid; gap: 0.5rem; }
+        .toc a { font-size: 14px; color: var(--text-dim); display: flex; gap: 0.5rem; }
+        .toc a:hover { color: var(--accent); text-decoration: none; }
+        .toc .num { color: var(--accent); font-size: 13px; min-width: 1.5rem; }
+        
+        .content h2 { font-size: 18px; font-weight: 600; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+        .content h3 { font-size: 16px; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--accent); }
+        .content h4 { font-size: 15px; font-weight: 600; margin: 1rem 0 0.5rem; color: var(--text); }
+        .content p { color: var(--text-dim); margin-bottom: 1rem; line-height: 1.8; }
+        .content ul, .content ol { margin: 1rem 0 1.5rem 1.5rem; color: var(--text-dim); }
+        .content li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .content strong { color: var(--text); }
+        .content code { background: var(--accent-dim); padding: 0.2rem 0.4rem; font-size: 13px; color: var(--accent); }
+        .content pre { background: var(--accent-dim); padding: 1rem; overflow-x: auto; margin: 1rem 0; font-size: 13px; line-height: 1.6; }
+        .content pre code { background: none; padding: 0; }
+        
+        .highlight { background: var(--accent-dim); border-left: 2px solid var(--accent); padding: 1rem 1.25rem; margin: 1.5rem 0; }
+        .highlight p { color: var(--text); margin: 0; font-style: italic; font-size: 15px; }
+        
+        .ds-card { border: 1px solid var(--border); padding: 1.25rem; margin: 1rem 0; }
+        .ds-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 0.5rem; color: var(--accent); }
+        .ds-card .complexity { font-size: 12px; color: var(--text-dim); margin-bottom: 0.5rem; font-family: 'JetBrains Mono', monospace; }
+        .ds-card p { font-size: 14px; margin: 0 0 0.5rem 0; }
+        .ds-card .example { font-size: 13px; color: var(--text-dim); margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--border); }
+        
+        .use-case { border: 1px solid var(--border); padding: 1.25rem; margin: 1rem 0; }
+        .use-case h4 { font-size: 14px; font-weight: 600; margin-bottom: 0.75rem; }
+        .use-case ul { margin: 0 0 0 1rem; }
+        .use-case li { font-size: 13px; }
+        
+        .footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+        .share { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .share a { font-size: 13px; color: var(--text-dim); }
+        .share a:hover { color: var(--accent); }
+        .nav-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .nav-links a { padding: 1rem; border: 1px solid var(--border); font-size: 14px; }
+        .nav-links a:hover { border-color: var(--accent); text-decoration: none; }
+        .nav-links .label { font-size: 12px; color: var(--text-dim); }
+        .nav-links .title { font-weight: 600; margin-top: 0.25rem; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 5rem 1.25rem; }
+            h1 { font-size: 1.75rem; }
+            .nav-links { grid-template-columns: 1fr; }
+            .toc ol { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" id="progress"></div>
+    
+    <nav>
+        <div class="inner">
+            <a href="../index.html" class="logo">abdulla<span>.</span>sajad</a>
+            <div class="nav-btns">
+                <a href="../index.html#blog" class="nav-btn">[back]</a>
+                <button class="nav-btn" id="themeToggle">[theme]</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <article>
+            <div class="meta">
+                <span class="cat">[fundamentals]</span>
+                <span class="date">dec 2025</span>
+            </div>
+            
+            <h1>DSA in the Real World: Beyond LeetCode</h1>
+            <p class="subtitle">Understanding when and why to use data structures and algorithms in actual production code—not just interviews.</p>
+            
+            <div class="author">
+                <div class="author-avatar">AS</div>
+                <div>
+                    <div class="author-name">Abdulla Sajad</div>
+                    <div class="author-info">Software Engineer // Still learning</div>
+                </div>
+            </div>
+            
+            <div class="toc">
+                <div class="toc-title">contents</div>
+                <ol>
+                    <li><a href="#mindset"><span class="num">01</span> the dsa disconnect</a></li>
+                    <li><a href="#arrays"><span class="num">02</span> arrays and lists: when to use what</a></li>
+                    <li><a href="#hashing"><span class="num">03</span> hashing: the workhorse</a></li>
+                    <li><a href="#trees"><span class="num">04</span> trees: beyond binary search</a></li>
+                    <li><a href="#graphs"><span class="num">05</span> graphs: modeling relationships</a></li>
+                    <li><a href="#caching"><span class="num">06</span> caching patterns</a></li>
+                    <li><a href="#sorting"><span class="num">07</span> sorting: don't reinvent</a></li>
+                    <li><a href="#learning"><span class="num">08</span> how to actually learn</a></li>
+                    <li><a href="#conclusion"><span class="num">09</span> conclusion</a></li>
+                </ol>
+            </div>
+            
+            <div class="content">
+                <section id="mindset">
+                    <h2>1. The DSA Disconnect</h2>
+                    <p>Here's the problem with how most of us learn DSA:</p>
+                    <ul>
+                        <li>Learn it for interviews</li>
+                        <li>Forget it after getting the job</li>
+                        <li>Use lists for everything</li>
+                        <li>Wonder why code is slow</li>
+                    </ul>
+                    <p>I was guilty of this. I could solve medium LeetCode problems but didn't know when to use a HashMap vs an object in production code.</p>
+                    
+                    <div class="highlight">
+                        <p>DSA isn't about memorizing solutions. It's about having a mental toolbox so you reach for the right tool without thinking.</p>
+                    </div>
+                    
+                    <p>This post is about bridging that gap—understanding DSA concepts and seeing where they actually show up in real systems.</p>
+                </section>
+
+                <section id="arrays">
+                    <h2>2. Arrays and Lists: When to Use What</h2>
+                    <p>Most code uses arrays/lists by default. That's fine for small data. The problems start when data grows.</p>
+                    
+                    <div class="ds-card">
+                        <h4>Array / ArrayList</h4>
+                        <div class="complexity">access: O(1) | insert/delete: O(n) | search: O(n)</div>
+                        <p>Use when: You need random access, data size is predictable, mostly reading.</p>
+                        <div class="example">Example: Configuration arrays, fixed-size caches, indexed lookups</div>
+                    </div>
+                    
+                    <div class="ds-card">
+                        <h4>LinkedList</h4>
+                        <div class="complexity">access: O(n) | insert/delete: O(1)* | search: O(n)</div>
+                        <p>Use when: Frequent insertions/deletions at known positions, unknown size upfront.</p>
+                        <div class="example">Example: Undo/redo history, browser history, music playlist queue</div>
+                    </div>
+                    
+                    <h3>Real-World Scenario: Pagination</h3>
+                    <p>Building a paginated list of users? You probably don't need a LinkedList even though you're "inserting" into the middle of pages. The overhead of LinkedList nodes often outweighs benefits for small datasets.</p>
+                    
+                    <p>But if you're building a text editor and tracking cursor position with millions of characters? LinkedList (or more commonly, a gap buffer or rope) makes sense.</p>
+                    
+                    <h3>The Practical Takeaway</h3>
+                    <ul>
+                        <li>Default to array/list for most cases</li>
+                        <li>Consider alternatives when insertions/deletions are frequent and data is large</li>
+                        <li>Profile before optimizing—cache locality often matters more than Big O</li>
+                    </ul>
+                </section>
+
+                <section id="hashing">
+                    <h2>3. Hashing: The Workhorse</h2>
+                    <p>HashMap, HashSet, Dictionary, Object—whatever your language calls it, this is probably your most-used data structure after arrays.</p>
+                    
+                    <div class="ds-card">
+                        <h4>HashMap / Hash Table</h4>
+                        <div class="complexity">get/put/delete: O(1) average | worst case: O(n)</div>
+                        <p>Use when: You need fast lookups by key, don't care about order, okay with extra memory.</p>
+                    </div>
+                    
+                    <h3>Real-World Use Cases</h3>
+                    
+                    <div class="use-case">
+                        <h4>// caching</h4>
+                        <ul>
+                            <li>Store computed results to avoid recalculation</li>
+                            <li>Session storage in web apps</li>
+                            <li>Memoization in recursive algorithms</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="use-case">
+                        <h4>// deduplication</h4>
+                        <ul>
+                            <li>Check if item exists in O(1) instead of O(n) array scan</li>
+                            <li>Remove duplicates from a list</li>
+                            <li>Track seen items in stream processing</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="use-case">
+                        <h4>// counting and grouping</h4>
+                        <ul>
+                            <li>Count word frequencies</li>
+                            <li>Group items by category</li>
+                            <li>Build indexes for fast lookups</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>Example: Rate Limiting</h3>
+                    <p>A simple rate limiter tracks requests per IP:</p>
+                    <pre><code>// Conceptual structure
+rateLimits = {
+  "192.168.1.1": { count: 5, resetAt: timestamp },
+  "10.0.0.1": { count: 2, resetAt: timestamp }
+}</code></pre>
+                    <p>O(1) lookup for each request. Can't do that efficiently with an array.</p>
+                    
+                    <h3>When HashMaps Fail</h3>
+                    <ul>
+                        <li>Need ordered iteration → Use TreeMap or sorted structure</li>
+                        <li>Memory is tight → Arrays are more compact</li>
+                        <li>Need range queries → Consider trees or sorted arrays</li>
+                        <li>Worst-case guarantees matter → Consider treaps or skip lists</li>
+                    </ul>
+                </section>
+
+                <section id="trees">
+                    <h2>4. Trees: Beyond Binary Search</h2>
+                    <p>Everyone learns BST. But trees show up everywhere in ways that aren't obviously "tree problems."</p>
+                    
+                    <div class="ds-card">
+                        <h4>Binary Search Tree</h4>
+                        <div class="complexity">search/insert/delete: O(log n) average | worst: O(n)</div>
+                        <p>Use when: Need ordered data with fast lookups, range queries.</p>
+                    </div>
+                    
+                    <div class="ds-card">
+                        <h4>B-Tree / B+ Tree</h4>
+                        <div class="complexity">search/insert/delete: O(log n) | optimized for disk</div>
+                        <p>Use when: Data doesn't fit in memory, need range scans. Databases use these.</p>
+                    </div>
+                    
+                    <h3>Real-World Use Cases</h3>
+                    
+                    <h4>File Systems</h4>
+                    <p>Directory structures are trees. Each folder contains files (leaves) and subfolders (children). Operations like "find all files under /src" are tree traversals.</p>
+                    
+                    <h4>Databases</h4>
+                    <p>When you create an index on a column, databases use B+ trees. They're optimized for disk reads—minimizing disk IOPS matters more than minimizing memory operations.</p>
+                    
+                    <h4>DOM Manipulation</h4>
+                    <p>HTML is a tree. DOM operations—finding elements, traversing parents/children, modifying structure—are tree operations. Understanding this helps write efficient frontend code.</p>
+                    
+                    <h4>Decision Trees / Configuration</h4>
+                    <p>Feature flags, routing rules, permission checks—often implemented as trees where you traverse down based on conditions.</p>
+                    
+                    <div class="highlight">
+                        <p>Before building a tree structure, check if your use case matches what databases or libraries already provide. Don't reinvent B+ trees.</p>
+                    </div>
+                </section>
+
+                <section id="graphs">
+                    <h2>5. Graphs: Modeling Relationships</h2>
+                    <p>Graphs feel abstract until you realize: any time things connect to other things, you have a graph.</p>
+                    
+                    <div class="ds-card">
+                        <h4>Graph Representations</h4>
+                        <p><strong>Adjacency List:</strong> Map of node → list of neighbors. Good for sparse graphs.</p>
+                        <p><strong>Adjacency Matrix:</strong> 2D array of connections. Good for dense graphs, O(1) edge lookup.</p>
+                    </div>
+                    
+                    <h3>Real-World Use Cases</h3>
+                    
+                    <div class="use-case">
+                        <h4>// social networks</h4>
+                        <ul>
+                            <li>Users are nodes, follows/friendships are edges</li>
+                            <li>"People you may know" = find nodes 2 hops away</li>
+                            <li>Shortest path between users</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="use-case">
+                        <h4>// dependency management</h4>
+                        <ul>
+                            <li>Package dependencies form a DAG (directed acyclic graph)</li>
+                            <li>Build systems—what needs to compile before what</li>
+                            <li>Detect circular dependencies with cycle detection</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="use-case">
+                        <h4>// routing and navigation</h4>
+                        <ul>
+                            <li>Locations are nodes, roads/connections are edges</li>
+                            <li>Shortest path (Dijkstra, A*)</li>
+                            <li>Network routing tables</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="use-case">
+                        <h4>// recommendations</h4>
+                        <ul>
+                            <li>Users and items form a bipartite graph</li>
+                            <li>Collaborative filtering uses graph connectivity</li>
+                            <li>"Users who bought X also bought Y" = graph patterns</li>
+                        </ul>
+                    </div>
+                    
+                    <h3>Example: Detecting Circular Dependencies</h3>
+                    <pre><code>// Package imports form a graph
+// A → B → C → A = circular dependency
+
+function hasCycle(node, visited, recStack) {
+  visited.add(node);
+  recStack.add(node);
+  
+  for (const neighbor of graph[node]) {
+    if (!visited.has(neighbor)) {
+      if (hasCycle(neighbor, visited, recStack)) return true;
+    } else if (recStack.has(neighbor)) {
+      return true; // cycle detected
+    }
+  }
+  
+  recStack.delete(node);
+  return false;
+}</code></pre>
+                    <p>This shows up in build systems, module bundlers, dependency injection containers.</p>
+                </section>
+
+                <section id="caching">
+                    <h2>6. Caching Patterns</h2>
+                    <p>Caching is where DSA meets real-world performance. The right data structure determines if your cache helps or hurts.</p>
+                    
+                    <div class="ds-card">
+                        <h4>LRU Cache (Least Recently Used)</h4>
+                        <p>HashMap + Doubly LinkedList. O(1) get and put. Evicts least recently used when full.</p>
+                        <div class="example">Browser cache, image caches, database query caches</div>
+                    </div>
+                    
+                    <div class="ds-card">
+                        <h4>LFU Cache (Least Frequently Used)</h4>
+                        <p>Tracks access count. Evicts least frequently accessed items.</p>
+                        <div class="example">CDN caching, frequently accessed API responses</div>
+                    </div>
+                    
+                    <div class="ds-card">
+                        <h4>TTL Cache (Time To Live)</h4>
+                        <p>Items expire after a duration. Often combined with LRU.</p>
+                        <div class="example">Session tokens, API rate limit counters, temporary tokens</div>
+                    </div>
+                    
+                    <h3>Practical Implementation Tips</h3>
+                    <ul>
+                        <li>Use existing libraries—Guava, Caffeine, Redis for distributed</li>
+                        <li>Consider memory limits before implementing</li>
+                        <li>Cache invalidation is hard—plan for it upfront</li>
+                        <li>Measure hit rate. If < 80%, caching might not be worth the complexity</li>
+                    </ul>
+                </section>
+
+                <section id="sorting">
+                    <h2>7. Sorting: Don't Reinvent</h2>
+                    <p>Here's the honest truth: you almost never need to implement sorting from scratch.</p>
+                    
+                    <p>But understanding when sorting matters:</p>
+                    
+                    <h3>When to Sort</h3>
+                    <ul>
+                        <li><strong>Binary search prerequisite:</strong> Sorted data enables O(log n) search</li>
+                        <li><strong>Range queries:</strong> "Give me items between X and Y"</li>
+                        <li><strong>Deduplication:</strong> Adjacent duplicates are easy to spot</li>
+                        <li><strong>Priority processing:</strong> Process items by importance/deadline</li>
+                        <li><strong>Display:</strong> Users expect sorted lists in UIs</li>
+                    </ul>
+                    
+                    <h3>What to Know</h3>
+                    <ul>
+                        <li>Standard library sorts are optimized. Use them.</li>
+                        <li>Know the difference between stable and unstable sort</li>
+                        <li>For custom objects, understand comparators</li>
+                        <li>For streaming data, consider heaps instead of sorting everything</li>
+                    </ul>
+                    
+                    <div class="ds-card">
+                        <h4>Heap / Priority Queue</h4>
+                        <div class="complexity">insert: O(log n) | extract min/max: O(log n) | peek: O(1)</div>
+                        <p>Use when: Need min/max element frequently, processing items by priority.</p>
+                        <div class="example">Task schedulers, Dijkstra's algorithm, merge k sorted arrays</div>
+                    </div>
+                </section>
+
+                <section id="learning">
+                    <h2>8. How to Actually Learn</h2>
+                    <p>The traditional approach—solve hundreds of problems—works for interviews but doesn't build intuition for real applications.</p>
+                    
+                    <h3>My Recommended Approach</h3>
+                    
+                    <h4>1. Understand Tradeoffs, Not Just Complexity</h4>
+                    <p>Don't just memorize O(n log n). Understand: when would I choose this over that? What are the constants? How does cache behavior affect real performance?</p>
+                    
+                    <h4>2. Trace Through Standard Libraries</h4>
+                    <p>Look at how HashMap is implemented in your language. How does Python's dict work? Java's HashMap? Understanding production implementations teaches you real-world concerns.</p>
+                    
+                    <h4>3. Analyze Real Systems</h4>
+                    <p>How does Redis store data? How does PostgreSQL index tables? How does Git store commits? Real systems use DSA in non-obvious ways.</p>
+                    
+                    <h4>4. Build Things</h4>
+                    <ul>
+                        <li>Build a simple cache with LRU eviction</li>
+                        <li>Implement a basic search with indexing</li>
+                        <li>Create a dependency resolver that detects cycles</li>
+                        <li>Write a rate limiter</li>
+                    </ul>
+                    
+                    <h4>5. Profile Real Code</h4>
+                    <p>When your code is slow, profile it. See what data structures are actually being used. Understand why they're slow. Fix them.</p>
+                    
+                    <div class="highlight">
+                        <p>The goal isn't to memorize implementations. It's to recognize patterns: "this looks like a graph problem" or "a hash would solve this."</p>
+                    </div>
+                </section>
+
+                <section id="conclusion">
+                    <h2>9. Conclusion</h2>
+                    <p>DSA isn't just for interviews. It's the vocabulary for talking about how code performs. Without it, you're guessing. With it, you're making informed decisions.</p>
+                    
+                    <h3>Key Takeaways</h3>
+                    <ul>
+                        <li>Arrays are the default; consider alternatives when operations don't match access patterns</li>
+                        <li>HashMaps are the workhorse—know when they're the right choice</li>
+                        <li>Trees show up in file systems, databases, and DOM—recognize them</li>
+                        <li>Graphs model any relationship—social, dependencies, routing</li>
+                        <li>Caching is DSA applied—LRU, TTL, eviction strategies</li>
+                        <li>Don't implement sorting; understand when sorted data enables other operations</li>
+                    </ul>
+                    
+                    <p>The best engineers I know don't think in terms of "I need to use a tree here." They think "I need ordered lookups with fast inserts" and the tree is the natural solution.</p>
+                    <p>That intuition comes from understanding the why, not just the what. And it comes from building things and seeing where the theory meets reality.</p>
+                </section>
+            </div>
+            
+            <footer class="footer">
+                <div class="share">
+                    <a href="https://twitter.com/intent/tweet?text=DSA in the Real World: Beyond LeetCode" target="_blank">[share on x]</a>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true" target="_blank">[share on linkedin]</a>
+                </div>
+                <div class="nav-links">
+                    <a href="../index.html">
+                        <div class="label">← back to</div>
+                        <div class="title">home</div>
+                    </a>
+                    <a href="../index.html#blog">
+                        <div class="label">more articles →</div>
+                        <div class="title">blog</div>
+                    </a>
+                </div>
+            </footer>
+        </article>
+    </div>
+
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const progress = document.getElementById('progress');
+        const saved = localStorage.getItem('theme') || 'dark';
+        if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+        
+        toggle.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        });
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            progress.style.width = (scrollTop / docHeight * 100) + '%';
+        });
+    </script>
+</body>
+</html>
