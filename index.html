@@ -275,41 +275,6 @@
             color: var(--text-secondary);
         }
         
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.6rem 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.9rem;
-        }
-        
-        .contact-item:last-child { border-bottom: none; }
-        
-        .contact-item .icon {
-            width: 18px;
-            height: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-        }
-        
-        .contact-item .icon svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
-        
-        .contact-item .key {
-            color: var(--text-muted);
-            width: 70px;
-        }
-        
-        .contact-item .value {
-            color: var(--link);
-        }
-        
         footer {
             margin-top: 3rem;
             padding-top: 1.5rem;
@@ -356,9 +321,113 @@
             color: var(--text);
         }
         
+        .theme-toggle:hover {
+            border-color: var(--text);
+            color: var(--text);
+        }
+        
         @media (max-width: 600px) {
-            .skills { grid-template-columns: 1fr; }
-            nav { gap: 1rem; }
+            .container {
+                padding: 2rem 1.25rem;
+            }
+            
+            header {
+                flex-direction: column;
+                gap: 1.25rem;
+                margin-bottom: 2rem;
+                padding-bottom: 1.5rem;
+            }
+            
+            .header-left {
+                width: 100%;
+            }
+            
+            .name {
+                font-size: 1.5rem;
+            }
+            
+            .tagline {
+                font-size: 0.9rem;
+            }
+            
+            nav {
+                gap: 0.75rem;
+                flex-wrap: wrap;
+            }
+            
+            nav a {
+                font-size: 0.85rem;
+            }
+            
+            .social {
+                gap: 0.75rem;
+                flex-wrap: wrap;
+            }
+            
+            .social a {
+                font-size: 0.8rem;
+            }
+            
+            .theme-toggle {
+                align-self: flex-start;
+            }
+            
+            h2 {
+                font-size: 0.65rem;
+                margin-bottom: 1rem;
+            }
+            
+            .project h3 {
+                font-size: 0.95rem;
+            }
+            
+            .project p {
+                font-size: 0.85rem;
+            }
+            
+            .project .tags {
+                font-size: 0.7rem;
+            }
+            
+            .skills {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .blog-item h3 {
+                font-size: 0.9rem;
+            }
+            
+            .blog-item p {
+                font-size: 0.8rem;
+            }
+            
+            .education-item h3 {
+                font-size: 0.9rem;
+            }
+            
+            footer {
+                gap: 1.25rem;
+            }
+            
+            footer a svg {
+                width: 22px;
+                height: 22px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .name {
+                font-size: 1.35rem;
+            }
+            
+            nav a {
+                font-size: 0.8rem;
+            }
+            
+            .social a {
+                font-size: 0.75rem;
+            }
         }
     </style>
 </head>
@@ -375,7 +444,6 @@
                     <a href="#projects">projects</a>
                     <a href="#blog">writing</a>
                     <a href="#skills">skills</a>
-                    <a href="#contact">contact</a>
                 </nav>
                 <div class="social">
                     <a href="https://github.com/sajadkoder">github</a>
