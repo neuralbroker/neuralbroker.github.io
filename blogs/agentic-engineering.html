@@ -5,63 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agentic Engineering: The Future of Autonomous AI Systems | Abdulla Sajad</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #050508;
-            --text: #e8e8e8;
-            --text-dim: #888888;
-            --accent: #ffffff;
-            --accent-dim: #ffffff12;
-            --border: #1a1a1f;
-            --glow: rgba(255, 255, 255, 0.03);
-            --star: rgba(255, 255, 255, 0.5);
+            --bg: #0a0a0e;
+            --bg-elevated: #121218;
+            --bg-card: #18181f;
+            --text: #f0f0f0;
+            --text-secondary: #a0a0a8;
+            --text-muted: #6b6b75;
+            --accent: #e8e8ec;
+            --accent-dim: #ffffff15;
+            --border: #2a2a32;
+            --border-light: #3a3a45;
+            --glow: rgba(255, 255, 255, 0.02);
+            --gradient-1: rgba(255, 248, 240, 0.03);
+            --gradient-2: rgba(255, 245, 235, 0.02);
         }
         [data-theme="light"] {
-            --bg: #fafafa;
+            --bg: #faf9f7;
+            --bg-elevated: #ffffff;
+            --bg-card: #f5f4f1;
             --text: #1a1a1f;
-            --text-dim: #555555;
-            --accent: #333333;
+            --text-secondary: #4a4a52;
+            --text-muted: #8a8a92;
+            --accent: #2a2a32;
             --accent-dim: #00000008;
-            --border: #e0e0e0;
+            --border: #e5e3de;
+            --border-light: #d5d3cd;
             --glow: rgba(0, 0, 0, 0.02);
-            --star: rgba(0, 0, 0, 0.3);
+            --gradient-1: rgba(255, 248, 240, 0.4);
+            --gradient-2: rgba(250, 249, 247, 0.6);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Inter', 'JetBrains Mono', monospace;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.8;
+            line-height: 1.7;
             font-size: 15px;
-            transition: background 0.2s, color 0.2s;
+            transition: background 0.3s, color 0.3s;
             -webkit-font-smoothing: antialiased;
             position: relative;
         }
         ::selection { background: var(--accent); color: var(--bg); }
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--accent); }
-        a { color: var(--accent); text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+        a { color: var(--text); text-decoration: none; }
+        a:hover { color: var(--accent); }
         
-        .bg-grid {
+        .bg-layer {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: 
-                linear-gradient(var(--border) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 60px 60px;
-            opacity: 0.1;
+            background: 
+                radial-gradient(ellipse at 20% 20%, var(--gradient-1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, var(--gradient-2) 0%, transparent 50%);
             pointer-events: none;
             z-index: 0;
         }
         
-        .bg-glow {
+        nav {
             position: fixed;
             width: 500px;
             height: 500px;
