@@ -8,22 +8,24 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0a0a0a;
-            --text: #ffffff;
-            --text-dim: #b0b0b0;
-            --accent: #00ff88;
-            --accent-dim: #00ff8833;
-            --border: #333333;
-            --glow: rgba(0, 255, 136, 0.15);
+            --bg: #050508;
+            --text: #e8e8e8;
+            --text-dim: #888888;
+            --accent: #ffffff;
+            --accent-dim: #ffffff12;
+            --border: #1a1a1f;
+            --glow: rgba(255, 255, 255, 0.03);
+            --star: rgba(255, 255, 255, 0.5);
         }
         [data-theme="light"] {
-            --bg: #ffffff;
-            --text: #000000;
-            --text-dim: #444444;
-            --accent: #00aa55;
-            --accent-dim: #00aa5520;
-            --border: #cccccc;
-            --glow: rgba(0, 170, 85, 0.1);
+            --bg: #fafafa;
+            --text: #1a1a1f;
+            --text-dim: #555555;
+            --accent: #333333;
+            --accent-dim: #00000008;
+            --border: #e0e0e0;
+            --glow: rgba(0, 0, 0, 0.02);
+            --star: rgba(0, 0, 0, 0.3);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; scroll-padding-top: 80px; }
@@ -45,32 +47,79 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: 
-                linear-gradient(var(--border) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 60px 60px;
-            opacity: 0.15;
+            background: 
+                radial-gradient(1px 1px at 20px 30px, var(--star), transparent),
+                radial-gradient(1px 1px at 40px 70px, var(--star), transparent),
+                radial-gradient(1px 1px at 50px 160px, var(--star), transparent),
+                radial-gradient(1px 1px at 90px 40px, var(--star), transparent),
+                radial-gradient(1px 1px at 130px 80px, var(--star), transparent),
+                radial-gradient(1.5px 1.5px at 160px 120px, var(--star), transparent),
+                radial-gradient(1px 1px at 200px 50px, var(--star), transparent),
+                radial-gradient(1px 1px at 250px 180px, var(--star), transparent),
+                radial-gradient(1px 1px at 300px 90px, var(--star), transparent),
+                radial-gradient(1.5px 1.5px at 350px 200px, var(--star), transparent),
+                radial-gradient(1px 1px at 400px 150px, var(--star), transparent),
+                radial-gradient(1px 1px at 450px 80px, var(--star), transparent),
+                radial-gradient(1px 1px at 500px 220px, var(--star), transparent),
+                radial-gradient(1px 1px at 550px 100px, var(--star), transparent),
+                radial-gradient(1.5px 1.5px at 600px 180px, var(--star), transparent),
+                radial-gradient(1px 1px at 650px 60px, var(--star), transparent),
+                radial-gradient(1px 1px at 700px 250px, var(--star), transparent),
+                radial-gradient(1px 1px at 750px 140px, var(--star), transparent),
+                radial-gradient(1.5px 1.5px at 100px 200px, var(--star), transparent),
+                radial-gradient(1px 1px at 180px 280px, var(--star), transparent),
+                radial-gradient(1px 1px at 280px 350px, var(--star), transparent),
+                radial-gradient(1px 1px at 380px 300px, var(--star), transparent),
+                radial-gradient(1px 1px at 480px 380px, var(--star), transparent),
+                radial-gradient(1px 1px at 580px 320px, var(--star), transparent),
+                radial-gradient(1.5px 1.5px at 680px 400px, var(--star), transparent),
+                radial-gradient(1px 1px at 780px 280px, var(--star), transparent),
+                radial-gradient(1px 1px at 120px 420px, var(--star), transparent),
+                radial-gradient(1px 1px at 220px 480px, var(--star), transparent),
+                radial-gradient(1px 1px at 320px 450px, var(--star), transparent),
+                radial-gradient(1px 1px at 420px 520px, var(--star), transparent),
+                radial-gradient(1px 1px at 520px 480px, var(--star), transparent),
+                radial-gradient(1.5px 1.5px at 620px 550px, var(--star), transparent),
+                radial-gradient(1px 1px at 720px 500px, var(--star), transparent);
+            background-size: 800px 600px;
+            animation: twinkle 8s ease-in-out infinite;
             pointer-events: none;
             z-index: 0;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
         }
         
         .bg-glow {
             position: fixed;
-            width: 600px;
-            height: 600px;
+            width: 800px;
+            height: 800px;
             border-radius: 50%;
-            background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+            background: radial-gradient(ellipse at center, var(--glow) 0%, transparent 60%);
             pointer-events: none;
             z-index: 0;
-            animation: float 20s ease-in-out infinite;
+            animation: drift 30s ease-in-out infinite;
         }
-        .bg-glow-1 { top: -200px; right: -200px; animation-delay: 0s; }
-        .bg-glow-2 { bottom: -200px; left: -200px; animation-delay: -10s; }
+        .bg-glow-1 { 
+            top: -300px; 
+            right: -300px; 
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.02) 0%, transparent 50%);
+            animation-delay: 0s; 
+        }
+        .bg-glow-2 { 
+            bottom: -300px; 
+            left: -300px; 
+            background: radial-gradient(ellipse at center, rgba(200,200,255,0.015) 0%, transparent 50%);
+            animation-delay: -15s; 
+        }
         
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(-30px, 30px) scale(1.1); }
-            66% { transform: translate(30px, -20px) scale(0.95); }
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(10px, -15px) rotate(1deg); }
+            50% { transform: translate(-5px, 10px) rotate(-1deg); }
+            75% { transform: translate(-15px, -10px) rotate(0.5deg); }
         }
         
         .container { position: relative; z-index: 1; }
@@ -181,6 +230,25 @@
         .project .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
         .project .tag { font-size: 12px; padding: 0.3rem 0.6rem; background: var(--accent-dim); color: var(--accent); }
         .project .links { margin-top: 1rem; gap: 1.5rem; }
+        
+        .status-badge {
+            font-size: 11px;
+            padding: 0.25rem 0.6rem;
+            border-radius: 3px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .status-badge.in-progress {
+            background: rgba(255, 200, 0, 0.15);
+            color: #ffc800;
+            border: 1px solid rgba(255, 200, 0, 0.3);
+        }
+        .status-badge.finished {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-dim);
+            border: 1px solid var(--border);
+        }
         
         .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
         .skill-group h3 { font-size: 14px; font-weight: 600; margin-bottom: 1rem; color: var(--accent); }
@@ -400,35 +468,101 @@
             <div class="project">
                 <div class="project-header">
                     <h3>Esencelab</h3>
-                    <span class="year">2025 - present</span>
+                    <span class="status-badge in-progress">in progress</span>
                 </div>
-                <p>AI-powered campus recruitment platform. Resume parsing with Gemini AI, intelligent job matching, real-time application tracking. Built for students, recruiters, and admins.</p>
+                <p>AI-powered campus recruitment platform with resume parsing, AI skill extraction, job matching, and role-based dashboards. Full-stack app with Next.js, Express backend, and FastAPI AI service.</p>
                 <div class="tags">
-                    <span class="tag">react</span>
+                    <span class="tag">next.js</span>
                     <span class="tag">typescript</span>
+                    <span class="tag">express</span>
+                    <span class="tag">fastapi</span>
                     <span class="tag">supabase</span>
                     <span class="tag">gemini ai</span>
-                    <span class="tag">tailwind</span>
                 </div>
                 <div class="links">
                     <a href="https://github.com/sajadkoder/esencelab" target="_blank">[source]</a>
-                    <a href="https://esencelab.vercel.app" target="_blank">[live]</a>
                 </div>
             </div>
 
             <div class="project">
                 <div class="project-header">
-                    <h3>Speakswap</h3>
-                    <span class="year">2024 - 2025</span>
+                    <h3>SpeakSwap</h3>
+                    <span class="status-badge finished">finished</span>
                 </div>
-                <p>Real-time voice translation. Browser speech recognition to multi-language output.</p>
+                <p>Real-time voice translation app with speech-to-text, multi-language translation, and text-to-speech output. Migrated from Android to web using Next.js.</p>
                 <div class="tags">
+                    <span class="tag">next.js</span>
                     <span class="tag">typescript</span>
-                    <span class="tag">react</span>
+                    <span class="tag">tailwind</span>
                     <span class="tag">web speech api</span>
                 </div>
                 <div class="links">
                     <a href="https://github.com/sajadkoder/speakswap" target="_blank">[source]</a>
+                    <a href="https://speakswap.vercel.app" target="_blank">[live]</a>
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <h3>ZordCoder</h3>
+                    <span class="status-badge in-progress">in progress</span>
+                </div>
+                <p>Multilingual coding assistant optimized for mobile (Termux). Built with GGUF model inference, llama.cpp, featuring CLI and Next.js web interface with streaming responses.</p>
+                <div class="tags">
+                    <span class="tag">python</span>
+                    <span class="tag">llama.cpp</span>
+                    <span class="tag">next.js</span>
+                    <span class="tag">typescript</span>
+                    <span class="tag">cli</span>
+                </div>
+                <div class="links">
+                    <a href="https://github.com/sajadkoder/zordcoder" target="_blank">[source]</a>
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <h3>ZeViewer</h3>
+                    <span class="status-badge in-progress">in progress</span>
+                </div>
+                <p>Video viewer and management application built with modern web technologies.</p>
+                <div class="tags">
+                    <span class="tag">typescript</span>
+                    <span class="tag">react</span>
+                </div>
+                <div class="links">
+                    <a href="https://github.com/sajadkoder/zeviewer" target="_blank">[source]</a>
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <h3>Smart Task AI</h3>
+                    <span class="status-badge in-progress">in progress</span>
+                </div>
+                <p>AI-powered task management system with smart features.</p>
+                <div class="tags">
+                    <span class="tag">java</span>
+                    <span class="tag">spring boot</span>
+                    <span class="tag">ai</span>
+                </div>
+                <div class="links">
+                    <a href="https://github.com/sajadkoder/smart-task-ai" target="_blank">[source]</a>
+                </div>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <h3>Lexora AI</h3>
+                    <span class="status-badge in-progress">in progress</span>
+                </div>
+                <p>AI-powered application with Python backend.</p>
+                <div class="tags">
+                    <span class="tag">python</span>
+                    <span class="tag">ai</span>
+                </div>
+                <div class="links">
+                    <a href="https://github.com/sajadkoder/lexora-ai" target="_blank">[source]</a>
                 </div>
             </div>
         </section>
