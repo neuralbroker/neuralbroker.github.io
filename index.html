@@ -3,312 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdulla Sajad | Software Engineer & AI Engineer</title>
-    <meta name="description" content="Software Engineer and AI Engineer specializing in full-stack development, LLM engineering, RAG pipelines, and building AI-powered products.">
+    <title>Abdulla Sajad</title>
+    <meta name="description" content="Software Engineer and AI Engineer">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #0c0c10;
-            --bg-secondary: #14141a;
-            --bg-tertiary: #1a1a22;
-            --text: #e4e4e7;
-            --text-secondary: #a1a1aa;
-            --text-muted: #71717a;
-            --accent: #fafafa;
-            --border: #27272a;
-            --border-light: #3f3f46;
-            --glow: rgba(255, 255, 255, 0.02);
-        }
-        [data-theme="light"] {
-            --bg: #fafaf9;
-            --bg-secondary: #f5f5f4;
-            --bg-tertiary: #e7e5e4;
-            --text: #1c1917;
-            --text-secondary: #44403c;
-            --text-muted: #78716c;
-            --accent: #0c0a09;
-            --border: #e7e5e4;
-            --border-light: #d6d3d1;
-            --glow: rgba(0, 0, 0, 0.02);
-        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0d0d0d;
+            --bg-secondary: #161616;
+            --text: #e6e6e6;
+            --text-secondary: #999;
+            --text-muted: #666;
+            --border: #2a2a2a;
+            --accent: #fff;
+        }
+        
+        [data-theme="light"] {
+            --bg: #fafafa;
+            --bg-secondary: #f0f0f0;
+            --text: #111;
+            --text-secondary: #555;
+            --text-muted: #888;
+            --border: #e0e0e0;
+            --accent: #000;
+        }
+        
         html { scroll-behavior: smooth; }
+        
         body {
-            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'IBM Plex Sans', -apple-system, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
-            font-size: 16px;
+            font-size: 15px;
             transition: background 0.3s, color 0.3s;
-            -webkit-font-smoothing: antialiased;
         }
+        
+        a { color: inherit; text-decoration: none; }
+        a:hover { text-decoration: underline; }
         
         .container {
-            max-width: 720px;
+            max-width: 680px;
             margin: 0 auto;
-            padding: 2rem 1.5rem;
+            padding: 3rem 1.5rem;
         }
-        
-        ::selection { background: var(--accent); color: var(--bg); }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
-        a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border-light); transition: border-color 0.2s; }
-        a:hover { border-color: var(--text); }
         
         header {
-            padding: 2rem 0;
             margin-bottom: 3rem;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-        
-        .logo {
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-        .logo a { border: none; }
-        
-        nav {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-        nav a {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            border: none;
-        }
-        nav a:hover { color: var(--text); }
-        nav .active { color: var(--text); }
-        
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            padding: 0.4rem 0.75rem;
-            font-size: 0.75rem;
-            cursor: pointer;
-            font-family: inherit;
-            border-radius: 4px;
-            transition: all 0.2s;
-        }
-        .theme-toggle:hover { border-color: var(--text-secondary); color: var(--text); }
-        
-        .hero {
-            margin-bottom: 3rem;
-        }
-        
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.15;
-            margin-bottom: 0.75rem;
-        }
-        
-        .hero .tagline {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-        
-        .status {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            background: #22c55e;
-            border-radius: 50%;
-        }
-        
-        .hero p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.7;
-            max-width: 100%;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
-        }
-        .social-links a {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            padding: 0.5rem 0;
-            border: none;
-        }
-        .social-links a:hover { color: var(--text); }
-        .social-links svg { width: 16px; height: 16px; fill: currentColor; }
-        
-        .section {
-            margin-bottom: 3rem;
-        }
-        
-        .section-title {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 1.25rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .project {
-            margin-bottom: 2rem;
             padding-bottom: 2rem;
             border-bottom: 1px solid var(--border);
         }
-        .project:last-child { border-bottom: none; }
         
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+        .name {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
             margin-bottom: 0.5rem;
         }
         
-        .project h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
+        .tagline {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 1rem;
         }
         
-        .project .badge {
-            font-size: 0.7rem;
-            padding: 0.2rem 0.5rem;
-            border-radius: 3px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-        .badge.in-progress {
-            background: rgba(251, 191, 36, 0.15);
-            color: #fbbf24;
-            border: 1px solid rgba(251, 191, 36, 0.25);
-        }
-        .badge.finished {
-            background: var(--bg-tertiary);
+        .tagline span {
             color: var(--text-muted);
-            border: 1px solid var(--border);
+        }
+        
+        nav {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+        
+        nav a {
+            color: var(--text-secondary);
+        }
+        
+        nav a:hover {
+            color: var(--text);
+            text-decoration: none;
+        }
+        
+        .social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .social a {
+            color: var(--text-muted);
+        }
+        
+        .social a:hover {
+            color: var(--text);
+        }
+        
+        section {
+            margin-bottom: 3rem;
+        }
+        
+        h2 {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+        }
+        
+        .about p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+        }
+        
+        .project {
+            margin-bottom: 1.75rem;
+        }
+        
+        .project-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            margin-bottom: 0.35rem;
+        }
+        
+        .project h3 {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .project .status {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        
+        .project .status.finished::before {
+            content: "— ";
         }
         
         .project p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.65;
-            margin-bottom: 0.75rem;
-        }
-        
-        .project .features {
-            margin-bottom: 0.75rem;
-        }
-        .project .feature {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.3rem;
-            padding-left: 1rem;
-            position: relative;
-        }
-        .project .feature::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
         }
         
         .project .tags {
             display: flex;
-            gap: 0.4rem;
+            gap: 0.5rem;
             flex-wrap: wrap;
-            margin-bottom: 0.75rem;
-        }
-        .project .tag {
             font-size: 0.75rem;
-            padding: 0.25rem 0.5rem;
-            background: var(--bg-tertiary);
-            color: var(--text-secondary);
-            border-radius: 3px;
-        }
-        
-        .project .links {
-            display: flex;
-            gap: 1rem;
-        }
-        .project .links a {
-            font-size: 0.85rem;
             color: var(--text-muted);
-            border: none;
         }
-        .project .links a:hover { color: var(--text); }
         
-        .blog-list {
-            display: flex;
-            flex-direction: column;
+        .project .tags span:not(:last-child)::after {
+            content: "·";
+            margin-left: 0.5rem;
+        }
+        
+        .project-link {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.35rem;
         }
         
         .blog-item {
             display: block;
-            padding: 1rem 0;
+            padding: 0.75rem 0;
             border-bottom: 1px solid var(--border);
-            border-bottom-color: var(--border);
         }
+        
         .blog-item:last-child { border-bottom: none; }
-        .blog-item:hover { border-bottom-color: var(--text); }
+        
+        .blog-item:hover { text-decoration: none; }
         
         .blog-item .meta {
             display: flex;
             gap: 0.75rem;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
-            margin-bottom: 0.35rem;
+            margin-bottom: 0.25rem;
         }
+        
         .blog-item h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.35rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
         }
+        
         .blog-item p {
             font-size: 0.85rem;
             color: var(--text-secondary);
-            line-height: 1.5;
         }
         
-        .skills-grid {
+        .skills {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
+            gap: 1rem 2rem;
+        }
+        
+        .skill-group {
+            margin-bottom: 0.5rem;
         }
         
         .skill-group h4 {
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--text);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 0.35rem;
         }
         
         .skill-group ul {
@@ -318,417 +229,263 @@
         .skill-group li {
             font-size: 0.85rem;
             color: var(--text-secondary);
-            margin-bottom: 0.4rem;
-            padding-left: 0.75rem;
-            position: relative;
-        }
-        .skill-group li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--text-muted);
-        }
-        
-        .experience-item {
-            margin-bottom: 1.5rem;
-        }
-        
-        .experience-item .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: 0.5rem;
             margin-bottom: 0.25rem;
         }
         
-        .experience-item h3 {
-            font-size: 1rem;
-            font-weight: 600;
+        .education-item {
+            margin-bottom: 1rem;
         }
         
-        .experience-item .year {
+        .education-item .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.25rem;
+        }
+        
+        .education-item h3 {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .education-item .year {
             font-size: 0.8rem;
             color: var(--text-muted);
         }
         
-        .experience-item .org {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.25rem;
-        }
-        
-        .experience-item .desc {
+        .education-item .org {
             font-size: 0.85rem;
             color: var(--text-secondary);
-            line-height: 1.5;
-        }
-        
-        .resume-box {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
-        }
-        
-        .resume-box h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .resume-box p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-        
-        .resume-box a {
-            display: inline-block;
-            padding: 0.6rem 1.25rem;
-            background: var(--text);
-            color: var(--bg);
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            border: none;
-        }
-        .resume-box a:hover { opacity: 0.9; }
-        
-        .contact-list {
-            display: grid;
-            gap: 1rem;
         }
         
         .contact-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 0;
+            padding: 0.6rem 0;
             border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
         }
         
+        .contact-item:last-child { border-bottom: none; }
+        
         .contact-item .key {
-            font-size: 0.85rem;
             color: var(--text-muted);
         }
         
         .contact-item .value {
-            font-size: 0.9rem;
             color: var(--text-secondary);
         }
         
         footer {
             margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-        }
-        
-        footer .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        footer .brand {
-            max-width: 280px;
-        }
-        
-        footer .brand h4 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        footer .brand p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-        
-        footer .footer-nav {
-            display: flex;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-        
-        footer .nav-col h5 {
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.75rem;
-        }
-        
-        footer .nav-col a {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.4rem;
-            border: none;
-        }
-        footer .nav-col a:hover { color: var(--text); }
-        
-        footer .bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            padding-top: 1rem;
+            padding-top: 1.5rem;
             border-top: 1px solid var(--border);
             font-size: 0.8rem;
             color: var(--text-muted);
-        }
-        
-        footer .socials {
             display: flex;
-            gap: 1rem;
+            justify-content: space-between;
         }
         
-        footer .socials a {
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
             color: var(--text-muted);
-            border: none;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+            font-family: inherit;
+            border-radius: 3px;
+            transition: all 0.2s;
         }
-        footer .socials a:hover { color: var(--text); }
         
-        @media (max-width: 640px) {
-            .container { padding: 1.5rem 1rem; }
-            .hero h1 { font-size: 2rem; }
-            .header-top { flex-direction: column; align-items: flex-start; gap: 1rem; }
+        .theme-toggle:hover {
+            border-color: var(--text);
+            color: var(--text);
+        }
+        
+        @media (max-width: 600px) {
+            .skills { grid-template-columns: 1fr; }
             nav { gap: 1rem; }
-            .skills-grid { grid-template-columns: 1fr; }
-            footer .footer-content { flex-direction: column; }
-            footer .footer-nav { gap: 2rem; }
-            footer .bottom { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="header-top">
-                <div class="logo">
-                    <a href="#">Abdulla Sajad</a>
-                </div>
-                <div style="display: flex; gap: 1rem; align-items: center;">
-                    <nav>
-                        <a href="#about" class="active">about</a>
-                        <a href="#projects">projects</a>
-                        <a href="#blog">blog</a>
-                        <a href="#skills">skills</a>
-                        <a href="#contact">contact</a>
-                    </nav>
-                    <button class="theme-toggle" id="themeToggle">theme</button>
-                </div>
+            <div class="name">Abdulla Sajad</div>
+            <div class="tagline">
+                Software Engineer <span>//</span> AI Engineer
             </div>
-            
-            <div class="hero" id="about">
-                <h1>Software Engineer & AI Engineer</h1>
-                <p class="tagline">Building products that matter</p>
-                <div class="status">
-                    <span class="status-dot"></span>
-                    Open to opportunities
-                </div>
-                <p>
-                    Final-year CS student passionate about full-stack development and AI integration. 
-                    Currently exploring LLM engineering, RAG pipelines, and autonomous agents. 
-                    Still learning, always shipping.
-                </p>
-                <div class="social-links">
-                    <a href="https://github.com/sajadkoder" target="_blank">
-                        <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        github
-                    </a>
-                    <a href="https://linkedin.com/in/abdullasajad" target="_blank">
-                        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                        linkedin
-                    </a>
-                    <a href="https://twitter.com/sajadkoder" target="_blank">
-                        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                        twitter
-                    </a>
-                    <a href="mailto:abdullasajad01@gmail.com">
-                        <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
-                        email
-                    </a>
-                </div>
+            <nav>
+                <a href="#about">about</a>
+                <a href="#projects">projects</a>
+                <a href="#blog">writing</a>
+                <a href="#skills">skills</a>
+                <a href="#contact">contact</a>
+                <button class="theme-toggle" id="themeToggle">theme</button>
+            </nav>
+            <div class="social">
+                <a href="https://github.com/sajadkoder">github</a>
+                <a href="https://linkedin.com/in/abdullasajad">linkedin</a>
+                <a href="https://twitter.com/sajadkoder">twitter</a>
+                <a href="mailto:abdullasajad01@gmail.com">email</a>
             </div>
         </header>
 
-        <section class="section" id="projects">
-            <h2 class="section-title">Projects</h2>
+        <section id="about" class="about">
+            <h2>About</h2>
+            <p>
+                Final-year CS student building full-stack applications with focus on backend systems and AI integration. 
+                Currently exploring LLM engineering, RAG pipelines, and autonomous agents.
+            </p>
+            <p>
+                Based in Kerala, India. Open to opportunities.
+            </p>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
             
             <div class="project">
                 <div class="project-header">
-                    <h3>Esencelab</h3>
-                    <span class="badge in-progress">in progress</span>
+                    <h3><a href="https://github.com/sajadkoder/Anogram">Anogram</a></h3>
+                    <span class="status">messaging app</span>
                 </div>
-                <p>AI-powered campus recruitment platform bridging students, recruiters, and admins.</p>
-                <div class="features">
-                    <div class="feature">Resume parsing with Gemini AI for automatic skill extraction</div>
-                    <div class="feature">AI-powered job matching based on candidate profiles</div>
-                    <div class="feature">Role-based dashboards for students, recruiters, and admins</div>
-                    <div class="feature">Application tracking system with real-time status updates</div>
-                </div>
+                <p>Decentralized offline-capable messaging with Telegram-inspired UI and Bluetooth mesh networking. 100% offline, peer-to-peer, privacy-first.</p>
                 <div class="tags">
-                    <span class="tag">Next.js</span>
-                    <span class="tag">TypeScript</span>
-                    <span class="tag">FastAPI</span>
-                    <span class="tag">Supabase</span>
-                    <span class="tag">Gemini AI</span>
-                </div>
-                <div class="links">
-                    <a href="https://github.com/sajadkoder/esencelab" target="_blank">source →</a>
+                    <span>Kotlin</span><span>Jetpack Compose</span><span>BLE Mesh</span><span>Clean Architecture</span>
                 </div>
             </div>
 
             <div class="project">
                 <div class="project-header">
-                    <h3>SpeakSwap</h3>
-                    <span class="badge finished">finished</span>
+                    <h3><a href="https://github.com/sajadkoder/sentinel-ml">SentinelML</a></h3>
+                    <span class="status">fraud detection</span>
                 </div>
-                <p>Real-time voice translation web application. Originally Android, migrated to web.</p>
-                <div class="features">
-                    <div class="feature">Speech-to-text using Web Speech API with 60+ languages</div>
-                    <div class="feature">Multi-translation API integration</div>
-                    <div class="feature">Text-to-speech with language-specific voices</div>
-                </div>
+                <p>Production-ready real-time fraud detection system. FastAPI, scikit-learn, Redis caching, MLflow tracking, Docker deployment.</p>
                 <div class="tags">
-                    <span class="tag">Next.js</span>
-                    <span class="tag">TypeScript</span>
-                    <span class="tag">Tailwind</span>
-                </div>
-                <div class="links">
-                    <a href="https://github.com/sajadkoder/speakswap" target="_blank">source →</a>
-                    <a href="https://speakswap.vercel.app" target="_blank">demo →</a>
+                    <span>Python</span><span>FastAPI</span><span>ML</span><span>Docker</span>
                 </div>
             </div>
 
             <div class="project">
                 <div class="project-header">
-                    <h3>ZordCoder</h3>
-                    <span class="badge in-progress">in progress</span>
+                    <h3><a href="https://github.com/sajadkoder/esencelab">Esencelab</a></h3>
+                    <span class="status">in progress</span>
                 </div>
-                <p>Multilingual coding assistant optimized for mobile (Termux) with GGUF inference.</p>
-                <div class="features">
-                    <div class="feature">GGUF quantized model for fast local inference</div>
-                    <div class="feature">Dual interfaces: CLI and Next.js web</div>
-                    <div class="feature">Streaming responses for real-time generation</div>
-                </div>
+                <p>AI-powered campus recruitment platform with resume parsing, job matching, and role-based dashboards.</p>
                 <div class="tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">llama.cpp</span>
-                    <span class="tag">Next.js</span>
-                </div>
-                <div class="links">
-                    <a href="https://github.com/sajadkoder/zordcoder" target="_blank">source →</a>
+                    <span>Next.js</span><span>TypeScript</span><span>FastAPI</span><span>Supabase</span><span>Gemini AI</span>
                 </div>
             </div>
 
             <div class="project">
                 <div class="project-header">
-                    <h3>Smart Task AI</h3>
-                    <span class="badge in-progress">in progress</span>
+                    <h3><a href="https://github.com/sajadkoder/speakswap">SpeakSwap</a></h3>
+                    <span class="status finished">finished</span>
                 </div>
-                <p>AI-powered task management with Kanban board and intelligent automation.</p>
-                <div class="features">
-                    <div class="feature">JWT-based secure authentication</div>
-                    <div class="feature">Drag-and-drop Kanban board</div>
-                    <div class="feature">AI task categorization and priority suggestions</div>
-                </div>
+                <p>Real-time voice translation web app. Migrated from Android to web with speech-to-text and multi-language translation.</p>
                 <div class="tags">
-                    <span class="tag">Java</span>
-                    <span class="tag">Spring Boot</span>
-                    <span class="tag">React</span>
+                    <span>Next.js</span><span>TypeScript</span><span>Web Speech API</span>
                 </div>
-                <div class="links">
-                    <a href="https://github.com/sajadkoder/smart-task-ai" target="_blank">source →</a>
+                <a href="https://speakswap.vercel.app" class="project-link">speakswap.vercel.app →</a>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <h3><a href="https://github.com/sajadkoder/zordcoder">ZordCoder</a></h3>
+                    <span class="status">coding assistant</span>
+                </div>
+                <p>Multilingual coding assistant for mobile (Termux) with GGUF inference, CLI and web interface, streaming responses.</p>
+                <div class="tags">
+                    <span>Python</span><span>llama.cpp</span><span>Next.js</span><span>CLI</span>
                 </div>
             </div>
 
             <div class="project">
                 <div class="project-header">
-                    <h3>ZeViewer</h3>
-                    <span class="badge in-progress">in progress</span>
+                    <h3><a href="https://github.com/sajadkoder/koder-ide">Koder IDE</a></h3>
+                    <span class="status">android app</span>
                 </div>
-                <p>Video viewer and management application with modern web technologies.</p>
+                <p>Native Android code editor with syntax highlighting for 14+ languages. Jetpack Compose, Material 3.</p>
                 <div class="tags">
-                    <span class="tag">TypeScript</span>
-                    <span class="tag">React</span>
-                </div>
-                <div class="links">
-                    <a href="https://github.com/sajadkoder/zeviewer" target="_blank">source →</a>
+                    <span>Kotlin</span><span>Android</span><span>Jetpack Compose</span>
                 </div>
             </div>
 
             <div class="project">
                 <div class="project-header">
-                    <h3>Lexora AI</h3>
-                    <span class="badge in-progress">in progress</span>
+                    <h3><a href="https://github.com/sajadkoder/smart-task-ai">Smart Task AI</a></h3>
+                    <span class="status">task management</span>
                 </div>
-                <p>AI-powered Python application exploring language model capabilities.</p>
+                <p>AI-powered Kanban task manager with drag-drop, AI categorization, priority suggestions, and productivity analytics.</p>
                 <div class="tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">AI/ML</span>
+                    <span>Java</span><span>Spring Boot</span><span>React</span><span>WebSocket</span>
                 </div>
-                <div class="links">
-                    <a href="https://github.com/sajadkoder/lexora-ai" target="_blank">source →</a>
+            </div>
+
+            <div class="project">
+                <div class="project-header">
+                    <h3><a href="https://github.com/sajadkoder/lexora-ai">Lexora AI</a></h3>
+                    <span class="status">in progress</span>
+                </div>
+                <p>AI-powered application exploring language model capabilities.</p>
+                <div class="tags">
+                    <span>Python</span><span>AI/ML</span>
                 </div>
             </div>
         </section>
 
-        <section class="section" id="blog">
-            <h2 class="section-title">Blog</h2>
-            <div class="blog-list">
-                <a href="blogs/agentic-engineering.html" class="blog-item">
-                    <div class="meta">
-                        <span>Agentic Engineering</span>
-                        <span>Feb 2026</span>
-                    </div>
-                    <h3>Agentic Engineering: Building Autonomous AI Systems That Actually Work</h3>
-                    <p>A comprehensive deep-dive into engineering principles, architectures, and patterns behind production-ready autonomous AI agents.</p>
-                </a>
-                <a href="blogs/ai-agents-guide.html" class="blog-item">
-                    <div class="meta">
-                        <span>AI Agents</span>
-                        <span>Feb 2026</span>
-                    </div>
-                    <h3>Building with AI Agents: A Practical Guide</h3>
-                    <p>From chatbots to autonomous agents—tools, patterns, and production realities.</p>
-                </a>
-                <a href="blogs/ai-coding-tools-2026.html" class="blog-item">
-                    <div class="meta">
-                        <span>AI Tools</span>
-                        <span>Feb 2026</span>
-                    </div>
-                    <h3>AI Coding Tools That Changed How I Work</h3>
-                    <p>From Cursor to OpenHands, exploring AI-powered dev tools that actually help ship code faster.</p>
-                </a>
-                <a href="blogs/llm-landscape-2026.html" class="blog-item">
-                    <div class="meta">
-                        <span>LLM</span>
-                        <span>Jan 2026</span>
-                    </div>
-                    <h3>The LLM Landscape: What's Actually Useful in 2026</h3>
-                    <p>Breaking down the models that matter, from reasoning models to coding assistants.</p>
-                </a>
-            </div>
+        <section id="blog">
+            <h2>Writing</h2>
+            
+            <a href="blogs/agentic-engineering.html" class="blog-item">
+                <div class="meta">
+                    <span>Feb 2026</span>
+                    <span>Agentic Engineering</span>
+                </div>
+                <h3>Agentic Engineering: Building Autonomous AI Systems That Actually Work</h3>
+                <p>A comprehensive deep-dive into the engineering principles, architectures, and patterns behind production-ready autonomous AI agents.</p>
+            </a>
+            
+            <a href="blogs/ai-agents-guide.html" class="blog-item">
+                <div class="meta">
+                    <span>Feb 2026</span>
+                    <span>AI Agents</span>
+                </div>
+                <h3>Building with AI Agents: A Practical Guide</h3>
+                <p>From chatbots to autonomous agents—tools, patterns, and production realities.</p>
+            </a>
+            
+            <a href="blogs/ai-coding-tools-2026.html" class="blog-item">
+                <div class="meta">
+                    <span>Feb 2026</span>
+                    <span>AI Tools</span>
+                </div>
+                <h3>AI Coding Tools That Changed How I Work</h3>
+                <p>From Cursor to OpenHands, exploring AI-powered dev tools that actually help ship code faster.</p>
+            </a>
+            
+            <a href="blogs/llm-landscape-2026.html" class="blog-item">
+                <div class="meta">
+                    <span>Jan 2026</span>
+                    <span>LLM</span>
+                </div>
+                <h3>The LLM Landscape: What's Actually Useful in 2026</h3>
+                <p>Breaking down the models that matter, from reasoning models to coding assistants.</p>
+            </a>
         </section>
 
-        <section class="section" id="skills">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-grid">
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills">
                 <div class="skill-group">
                     <h4>Languages</h4>
                     <ul>
                         <li>Java</li>
                         <li>Python</li>
                         <li>TypeScript</li>
-                        <li>SQL</li>
+                        <li>Kotlin</li>
                     </ul>
                 </div>
                 <div class="skill-group">
@@ -737,7 +494,7 @@
                         <li>Spring Boot</li>
                         <li>FastAPI</li>
                         <li>React / Next.js</li>
-                        <li>Express</li>
+                        <li>Android</li>
                     </ul>
                 </div>
                 <div class="skill-group">
@@ -761,80 +518,40 @@
             </div>
         </section>
 
-        <section class="section" id="education">
-            <h2 class="section-title">Education</h2>
-            <div class="experience-item">
+        <section id="education">
+            <h2>Education</h2>
+            <div class="education-item">
                 <div class="header">
                     <h3>B.Tech Computer Science</h3>
-                    <span class="year">2022 - 2026</span>
+                    <span class="year">2022 — 2026</span>
                 </div>
                 <div class="org">Sree Narayana Guru College of Engineering</div>
-                <div class="desc">Focus on software engineering, data structures, algorithms, and AI/ML fundamentals.</div>
             </div>
         </section>
 
-        <section class="section" id="resume">
-            <h2 class="section-title">Resume</h2>
-            <div class="resume-box">
-                <h3>View My Resume</h3>
-                <p>Get a detailed overview of my background, skills, and experience.</p>
-                <a href="resume.html">View Resume →</a>
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="contact-item">
+                <span class="key">email</span>
+                <a href="mailto:abdullasajad01@gmail.com" class="value">abdullasajad01@gmail.com</a>
             </div>
-        </section>
-
-        <section class="section" id="contact">
-            <h2 class="section-title">Contact</h2>
-            <div class="contact-list">
-                <div class="contact-item">
-                    <span class="key">Email</span>
-                    <a href="mailto:abdullasajad01@gmail.com" class="value">abdullasajad01@gmail.com</a>
-                </div>
-                <div class="contact-item">
-                    <span class="key">Location</span>
-                    <span class="value">Kerala, India</span>
-                </div>
-                <div class="contact-item">
-                    <span class="key">GitHub</span>
-                    <a href="https://github.com/sajadkoder" class="value" target="_blank">@sajadkoder</a>
-                </div>
-                <div class="contact-item">
-                    <span class="key">LinkedIn</span>
-                    <a href="https://linkedin.com/in/abdullasajad" class="value" target="_blank">abdullasajad</a>
-                </div>
+            <div class="contact-item">
+                <span class="key">location</span>
+                <span class="value">Kerala, India</span>
+            </div>
+            <div class="contact-item">
+                <span class="key">github</span>
+                <a href="https://github.com/sajadkoder" class="value">@sajadkoder</a>
+            </div>
+            <div class="contact-item">
+                <span class="key">linkedin</span>
+                <a href="https://linkedin.com/in/abdullasajad" class="value">abdullasajad</a>
             </div>
         </section>
 
         <footer>
-            <div class="footer-content">
-                <div class="brand">
-                    <h4>Abdulla Sajad</h4>
-                    <p>Software Engineer & AI Engineer building products that matter.</p>
-                </div>
-                <div class="footer-nav">
-                    <div class="nav-col">
-                        <h5>Navigate</h5>
-                        <a href="#about">About</a>
-                        <a href="#projects">Projects</a>
-                        <a href="#blog">Blog</a>
-                        <a href="#skills">Skills</a>
-                    </div>
-                    <div class="nav-col">
-                        <h5>Connect</h5>
-                        <a href="https://github.com/sajadkoder">GitHub</a>
-                        <a href="https://linkedin.com/in/abdullasajad">LinkedIn</a>
-                        <a href="https://twitter.com/sajadkoder">Twitter</a>
-                        <a href="mailto:abdullasajad01@gmail.com">Email</a>
-                    </div>
-                </div>
-            </div>
-            <div class="bottom">
-                <span>© 2026 Abdulla Sajad</span>
-                <div class="socials">
-                    <a href="https://github.com/sajadkoder" target="_blank">GitHub</a>
-                    <a href="https://linkedin.com/in/abdullasajad" target="_blank">LinkedIn</a>
-                    <a href="https://twitter.com/sajadkoder" target="_blank">Twitter</a>
-                </div>
-            </div>
+            <span>© 2026 Abdulla Sajad</span>
+            <span>built with simple HTML</span>
         </footer>
     </div>
 
