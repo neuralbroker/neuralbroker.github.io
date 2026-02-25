@@ -5,544 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The LLM Landscape: What's Actually Useful in 2026 | Abdulla Sajad</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #0a0a0a;
-            --text: #ffffff;
-            --text-dim: #b0b0b0;
-            --accent: #00ff88;
-            --accent-dim: #00ff8833;
-            --border: #333333;
-        }
-        [data-theme="light"] {
-            --bg: #ffffff;
-            --text: #000000;
-            --text-dim: #444444;
-            --accent: #00aa55;
-            --accent-dim: #00aa5520;
-            --border: #cccccc;
-        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg: #0a0a0c; --bg-secondary: #121215; --text: #d4d4d4; --text-secondary: #9a9a9a; --text-muted: #6a6a6a; --border: #2a2a2e; --link: #7cb3f0; --link-hover: #9ecaff; }
+        [data-theme="light"] { --bg: #fafafa; --bg-secondary: #ffffff; --text: #1a1a1a; --text-secondary: #555555; --text-muted: #888888; --border: #e5e5e5; --link: #2563eb; --link-hover: #1d4ed8; }
         html { scroll-behavior: smooth; }
-        body {
-            font-family: 'JetBrains Mono', monospace;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.8;
-            font-size: 15px;
-            transition: background 0.2s, color 0.2s;
-            -webkit-font-smoothing: antialiased;
-        }
-        ::selection { background: var(--accent); color: var(--bg); }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--accent); }
-        a { color: var(--accent); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        
-        .progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); z-index: 101; }
-        
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: var(--bg);
-            border-bottom: 1px solid var(--border);
-            z-index: 100;
-        }
-        nav .inner {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo { font-weight: 700; font-size: 15px; color: var(--text); }
-        .logo span { color: var(--accent); }
-        .nav-btns { display: flex; gap: 1rem; align-items: center; }
-        .nav-btn { font-size: 12px; color: var(--text); background: none; border: none; cursor: pointer; font-family: inherit; transition: color 0.2s; }
-        .nav-btn:hover { color: var(--accent); }
-        
-        .container { max-width: 800px; margin: 0 auto; padding: 5rem 2rem; }
-        
-        article { padding-top: 1.5rem; }
-        
-        .meta { display: flex; gap: 1rem; margin-bottom: 1.5rem; font-size: 13px; flex-wrap: wrap; }
-        .meta .cat { color: var(--accent); }
-        .meta .date { color: var(--text-dim); }
-        
-        h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.01em; line-height: 1.3; }
-        .subtitle { color: var(--text-dim); font-size: 16px; margin-bottom: 2rem; line-height: 1.6; }
-        
-        .author { display: flex; gap: 1rem; align-items: center; padding: 1rem; border: 1px solid var(--border); margin-bottom: 2.5rem; }
-        .author-avatar { width: 40px; height: 40px; background: var(--accent); color: var(--bg); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
-        .author-name { font-weight: 600; font-size: 14px; }
-        .author-info { font-size: 13px; color: var(--text-dim); }
-        
-        .toc { border: 1px solid var(--border); padding: 1.25rem; margin-bottom: 2.5rem; }
-        .toc-title { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
-        .toc ol { list-style: none; display: grid; gap: 0.5rem; }
-        .toc a { font-size: 14px; color: var(--text-dim); display: flex; gap: 0.5rem; }
-        .toc a:hover { color: var(--accent); text-decoration: none; }
-        .toc .num { color: var(--accent); font-size: 13px; min-width: 1.5rem; }
-        
-        .content h2 { font-size: 18px; font-weight: 600; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
-        .content h3 { font-size: 16px; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--accent); }
-        .content p { color: var(--text-dim); margin-bottom: 1rem; line-height: 1.8; }
-        .content ul, .content ol { margin: 1rem 0 1.5rem 1.5rem; color: var(--text-dim); }
-        .content li { margin-bottom: 0.5rem; line-height: 1.7; }
-        .content strong { color: var(--text); }
-        .content code { background: var(--accent-dim); padding: 0.2rem 0.4rem; font-size: 13px; color: var(--accent); }
-        
-        .highlight { background: var(--accent-dim); border-left: 2px solid var(--accent); padding: 1rem 1.25rem; margin: 1.5rem 0; }
-        .highlight p { color: var(--text); margin: 0; font-style: italic; font-size: 15px; }
-        
-        .model-card { border: 1px solid var(--border); padding: 1.25rem; margin: 1rem 0; }
-        .model-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 0.75rem; }
-        .model-card .use-case { font-size: 13px; color: var(--accent); margin-bottom: 0.5rem; }
-        .model-card p { font-size: 14px; margin: 0; }
-        .model-card .pros-cons { margin-top: 0.75rem; font-size: 13px; }
-        
-        .comparison-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 13px; }
-        .comparison-table th, .comparison-table td { border: 1px solid var(--border); padding: 0.75rem; text-align: left; }
-        .comparison-table th { background: var(--accent-dim); color: var(--accent); }
-        .comparison-table td { color: var(--text-dim); }
-        
-        .footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
-        .share { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-        .share a { font-size: 13px; color: var(--text-dim); }
-        .share a:hover { color: var(--accent); }
-        .nav-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .nav-links a { padding: 1rem; border: 1px solid var(--border); font-size: 14px; }
-        .nav-links a:hover { border-color: var(--accent); text-decoration: none; }
-        .nav-links .label { font-size: 12px; color: var(--text-dim); }
-        .nav-links .title { font-weight: 600; margin-top: 0.25rem; }
-        
-        @media (max-width: 768px) {
-            .container { padding: 5rem 1.25rem; }
-            h1 { font-size: 1.75rem; }
-            .nav-links { grid-template-columns: 1fr; }
-            .toc ol { grid-template-columns: 1fr; }
-            .comparison-table { font-size: 11px; }
-            .comparison-table th, .comparison-table td { padding: 0.5rem; }
-        }
+        body { font-family: 'IBM Plex Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 15px; transition: background 0.3s, color 0.3s; }
+        a { color: var(--link); text-decoration: none; transition: color 0.2s; }
+        a:hover { color: var(--link-hover); text-decoration: underline; }
+        .container { max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem; }
+        header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+        .header-left { flex: 1; }
+        .name { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+        .name a { color: var(--text); }
+        .name a:hover { color: var(--link); text-decoration: none; }
+        nav { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.9rem; }
+        nav a { color: var(--text-secondary); }
+        nav a:hover { color: var(--text); text-decoration: none; }
+        .back-link { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem; display: inline-block; }
+        .back-link:hover { color: var(--link); }
+        article h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.3; margin-bottom: 0.75rem; }
+        .meta { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; }
+        .meta span { margin-right: 1rem; }
+        article { color: var(--text-secondary); line-height: 1.8; }
+        article h2 { font-size: 1.25rem; font-weight: 600; color: var(--text); margin: 2.5rem 0 1rem; }
+        article h3 { font-size: 1.05rem; font-weight: 600; color: var(--text); margin: 1.75rem 0 0.75rem; }
+        article p { margin-bottom: 1rem; }
+        article ul, article ol { margin: 1rem 0 1.5rem 1.5rem; }
+        article li { margin-bottom: 0.5rem; }
+        article strong { color: var(--text); font-weight: 600; }
+        .theme-toggle { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 0.3rem 0.6rem; font-size: 0.7rem; cursor: pointer; font-family: inherit; border-radius: 3px; transition: all 0.2s; }
+        .theme-toggle:hover { border-color: var(--text); color: var(--text); }
+        footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted); display: flex; justify-content: center; gap: 1.5rem; }
+        footer a { color: var(--text-muted); }
+        footer a:hover { color: var(--link); }
+        footer a svg { width: 20px; height: 20px; fill: currentColor; }
+        @media (max-width: 600px) { .container { padding: 2rem 1.25rem; } header { flex-direction: column; gap: 1rem; margin-bottom: 2rem; } article h1 { font-size: 1.5rem; } nav { gap: 1rem; } }
     </style>
 </head>
 <body>
-    <div class="progress" id="progress"></div>
-    
-    <nav>
-        <div class="inner">
-            <a href="../index.html" class="logo">abdulla<span>.</span>sajad</a>
-            <div class="nav-btns">
-                <a href="../index.html#blog" class="nav-btn">[back]</a>
-                <button class="nav-btn" id="themeToggle">[theme]</button>
-            </div>
-        </div>
-    </nav>
-
     <div class="container">
+        <header>
+            <div class="header-left">
+                <div class="name"><a href="../index.html">Abdulla Sajad</a></div>
+                <nav>
+                    <a href="../index.html">home</a>
+                    <a href="../index.html#projects">projects</a>
+                    <a href="../index.html#blog">writing</a>
+                    <a href="../index.html#skills">skills</a>
+                </nav>
+            </div>
+            <button class="theme-toggle" id="themeToggle">theme</button>
+        </header>
+        <a href="../index.html#blog" class="back-link">← back to writing</a>
         <article>
-            <div class="meta">
-                <span class="cat">[llm]</span>
-                <span class="date">jan 2026</span>
-            </div>
-            
             <h1>The LLM Landscape: What's Actually Useful in 2026</h1>
-            <p class="subtitle">Breaking down the models that matter—from reasoning models to coding assistants. A practical guide from someone still learning this space.</p>
-            
-            <div class="author">
-                <div class="author-avatar">AS</div>
-                <div>
-                    <div class="author-name">Abdulla Sajad</div>
-                    <div class="author-info">Software Engineer // Learning AI/ML</div>
-                </div>
-            </div>
-            
-            <div class="toc">
-                <div class="toc-title">contents</div>
-                <ol>
-                    <li><a href="#intro"><span class="num">01</span> the llm explosion</a></li>
-                    <li><a href="#coding"><span class="num">02</span> coding models</a></li>
-                    <li><a href="#reasoning"><span class="num">03</span> reasoning models</a></li>
-                    <li><a href="#local"><span class="num">04</span> running locally</a></li>
-                    <li><a href="#choosing"><span class="num">05</span> choosing the right model</a></li>
-                    <li><a href="#prompting"><span class="num">06</span> prompting tips i learned</a></li>
-                    <li><a href="#reality"><span class="num">07</span> the reality check</a></li>
-                    <li><a href="#conclusion"><span class="num">08</span> conclusion</a></li>
-                </ol>
-            </div>
-            
-            <div class="content">
-                <section id="intro">
-                    <h2>1. The LLM Explosion</h2>
-                    <p>I'm relatively new to this space. A year ago, I knew GPT-4 existed and that was about it. Now there's Claude, Gemini, Llama, Mistral, DeepSeek, and new models dropping weekly.</p>
-                    <p>It's overwhelming. So I did what any engineer would do: I spent too much time figuring out what actually works for practical use cases.</p>
-                    <p>This isn't a comprehensive benchmark. It's my experience after months of using these models for actual work—coding, debugging, learning, and building things.</p>
-                    
-                    <div class="highlight">
-                        <p>The best model isn't the one with the highest benchmark score. It's the one that solves your problem fastest.</p>
-                    </div>
-                </section>
-
-                <section id="coding">
-                    <h2>2. Coding Models</h2>
-                    <p>This is where I spend most of my time. Here's what I've learned:</p>
-                    
-                    <div class="model-card">
-                        <h4>Claude 4 Sonnet / Claude 4 Opus</h4>
-                        <div class="use-case">// best for: complex coding, architecture discussions, debugging</div>
-                        <p>Claude 4 represents a significant leap. Sonnet offers the best balance of capability and speed. Opus is the most capable model for complex multi-step reasoning. Both have improved tool use and extended thinking capabilities.</p>
-                        <div class="pros-cons">
-                            <strong>Pros:</strong> Best context understanding, excellent instruction following, superior coding abilities, extended thinking mode.<br>
-                            <strong>Cons:</strong> Rate limits, not available in all regions, can be expensive for heavy use.
-                        </div>
-                    </div>
-                    
-                    <div class="model-card">
-                        <h4>GPT-5</h4>
-                        <div class="use-case">// best for: general purpose, multimodal tasks, broad knowledge</div>
-                        <p>GPT-5 brings native multimodal capabilities and improved reasoning. The model handles images, audio, and text seamlessly. Function calling is significantly improved over GPT-4.</p>
-                        <div class="pros-cons">
-                            <strong>Pros:</strong> Native multimodal, excellent API reliability, huge ecosystem, good reasoning.<br>
-                            <strong>Cons:</strong> Can be verbose, expensive for large context, less transparent about capabilities.
-                        </div>
-                    </div>
-                    
-                    <div class="model-card">
-                        <h4>DeepSeek R2</h4>
-                        <div class="use-case">// best for: cost-effective coding, reasoning tasks, open-source deployments</div>
-                        <p>DeepSeek R2 continues the R1's strong reasoning with improved code generation. Open weights available, making it ideal for organizations wanting to run their own models.</p>
-                        <div class="pros-cons">
-                            <strong>Pros:</strong> Extremely competitive pricing, open weights, strong reasoning, good for fine-tuning.<br>
-                            <strong>Cons:</strong> UI/UX varies by provider, less ecosystem support than OpenAI/Anthropic.
-                        </div>
-                    </div>
-                    
-                    <div class="model-card">
-                        <h4>Gemini 2.5 Pro</h4>
-                        <div class="use-case">// best for: long context, multimodal, Google ecosystem integration</div>
-                        <p>Google's flagship model offers the longest context window (up to 2M tokens) and excellent multimodal capabilities. Deep integration with Google Cloud and Workspace.</p>
-                        <div class="pros-cons">
-                            <strong>Pros:</strong> Massive context, excellent multimodal, Google integration, competitive pricing.<br>
-                            <strong>Cons:</strong> Less polished for coding than Claude/GPT, API can be inconsistent.
-                        </div>
-                    </div>
-                    
-                    <div class="model-card">
-                        <h4>Llama 4</h4>
-                        <div class="use-case">// best for: local deployment, privacy-sensitive applications</div>
-                        <p>Meta's latest open-source model offers strong performance with the freedom of local deployment. Multiple sizes available for different hardware requirements.</p>
-                        <div class="pros-cons">
-                            <strong>Pros:</strong> Truly open source, runs locally, no API costs, privacy-preserving.<br>
-                            <strong>Cons:</strong> Requires GPU infrastructure, can't match closed-source on many benchmarks.
-                        </div>
-                    </div>
-                </section>
-
-                <section id="reasoning">
-                    <h2>3. Reasoning Models</h2>
-                    <p>The big trend in late 2025/early 2026: models that "think" before answering. They show their reasoning process, and it actually helps.</p>
-                    
-                    <h3>API Pricing Comparison (2026)</h3>
-                    <table class="comparison-table">
-                        <tr>
-                            <th>Model</th>
-                            <th>Input ($/M tokens)</th>
-                            <th>Output ($/M tokens)</th>
-                            <th>Context</th>
-                        </tr>
-                        <tr>
-                            <td>Claude 4 Opus</td>
-                            <td>$15</td>
-                            <td>$75</td>
-                            <td>200K</td>
-                        </tr>
-                        <tr>
-                            <td>Claude 4 Sonnet</td>
-                            <td>$3</td>
-                            <td>$15</td>
-                            <td>200K</td>
-                        </tr>
-                        <tr>
-                            <td>GPT-5</td>
-                            <td>$10</td>
-                            <td>$30</td>
-                            <td>128K</td>
-                        </tr>
-                        <tr>
-                            <td>GPT-4o</td>
-                            <td>$2.50</td>
-                            <td>$10</td>
-                            <td>128K</td>
-                        </tr>
-                        <tr>
-                            <td>DeepSeek R2</td>
-                            <td>$0.50</td>
-                            <td>$2</td>
-                            <td>64K</td>
-                        </tr>
-                        <tr>
-                            <td>Gemini 2.5 Pro</td>
-                            <td>$1.25</td>
-                            <td>$5</td>
-                            <td>2M</td>
-                        </tr>
-                    </table>
-                    
-                    <h3>Fine-tuning vs RAG in 2026</h3>
-                    <p>One of the most common questions: should you fine-tune or use RAG?</p>
-                    
-                    <h4>When to Use RAG</h4>
-                    <ul>
-                        <li>Need to incorporate up-to-date information</li>
-                        <li>Want to avoid expensive fine-tuning</li>
-                        <li>Need source attribution for responses</li>
-                        <li>Data changes frequently</li>
-                        <li>Need to query large amounts of knowledge</li>
-                    </ul>
-                    
-                    <h4>When to Fine-tune</h4>
-                    <ul>
-                        <li>Need consistent style/voice across responses</li>
-                        <li>Specialized task that requires specific format</li>
-                        <li>Cost optimization for high-volume use cases</li>
-                        <li>Tasks where RAG doesn't perform well enough</li>
-                        <li>Need to teach model domain-specific patterns</li>
-                    </ul>
-                    
-                    <h4>Hybrid Approach</h4>
-                    <p>Many applications benefit from both:</p>
-                    <ul>
-                        <li>Fine-tune for task structure and style</li>
-                        <li>Use RAG for current knowledge and specific context</li>
-                        <li>Combine for best of both worlds</li>
-                    </ul>
-                    
-                    <h3>Multimodal Capabilities</h3>
-                    <p>2026 models handle multiple modalities:</p>
-                    <ul>
-                        <li><strong>GPT-5:</strong> Native image, audio, video understanding</li>
-                        <li><strong>Claude 4:</strong> Image understanding, document analysis</li>
-                        <li><strong>Gemini 2.5:</strong> Native multimodal, 2M token context</li>
-                    </ul>
-                    
-                    <h3>Enterprise Considerations</h3>
-                    <p>What enterprises care about in 2026:</p>
-                    <ul>
-                        <li><strong>Data privacy:</strong> On-premise options, data handling policies</li>
-                        <li><strong>SLA guarantees:</strong> Uptime, rate limits, support</li>
-                        <li><strong>Compliance:</strong> SOC2, HIPAA, GDPR support</li>
-                        <li><strong>Cost predictability:</strong> Volume discounts, committed use</li>
-                        <li><strong>Integration:</strong> SDKs, APIs, enterprise tools</li>
-                    </ul>
-                    
-                    <h3>Local Deployment Options</h3>
-                    <p>Running models on your own infrastructure:</p>
-                    <ul>
-                        <li><strong>Ollama:</strong> Easiest way to run open-source models locally</li>
-                        <li><strong>llama.cpp:</strong> High-performance inference</li>
-                        <li><strong>vLLM:</strong> Production-grade local inference</li>
-                        <li><strong>Text Generation WebUI:</strong> User-friendly interface</li>
-                    </ul>
-                    
-                    <h3>Model Selection Decision Tree</h3>
-                    <p>How to choose the right model:</p>
-                    <ol>
-                        <li>What's your primary use case? (coding → Claude, general → GPT-5)</li>
-                        <li>How important is cost? (critical → DeepSeek, secondary → Claude/GPT)</li>
-                        <li>Do you need privacy? (yes → local Llama, no → any API)</li>
-                        <li>How much context? (>200K → Gemini 2.5)</li>
-                        <li>Need reasoning? (yes → Claude 4 Opus, DeepSeek R2)</li>
-                    </ol>
-                    <ul>
-                        <li>Complex debugging where the cause isn't obvious</li>
-                        <li>Architecture decisions with tradeoffs</li>
-                        <li>Math and logic problems</li>
-                        <li>Explaining code behavior step by step</li>
-                    </ul>
-                    
-                    <h3>When It Doesn't</h3>
-                    <ul>
-                        <li>Quick syntax questions</li>
-                        <li>Simple code generation</li>
-                        <li>When you already know the answer and just need confirmation</li>
-                    </ul>
-                    
-                    <div class="highlight">
-                        <p>Reasoning models are slower and more expensive. Use them for hard problems, not for "how do I center a div" questions.</p>
-                    </div>
-                </section>
-
-                <section id="local">
-                    <h2>4. Running Locally</h2>
-                    <p>I've spent time running models locally with Ollama and llama.cpp. Here's my honest take:</p>
-                    
-                    <h3>What Works Locally</h3>
-                    <ul>
-                        <li><strong>Llama 3.2 / 3.3:</strong> Actually useful for coding assistance on a good machine</li>
-                        <li><strong>Mistral:</strong> Good performance per parameter, runs on consumer hardware</li>
-                        <li><strong>Phi-4:</strong> Microsoft's small model, surprisingly capable for its size</li>
-                    </ul>
-                    
-                    <h3>The Tradeoff</h3>
-                    <p>Local models are convenient for privacy and no rate limits. But even the best local models can't match Claude or GPT-4 for complex tasks. I use them for:</p>
-                    <ul>
-                        <li>Quick autocomplete-style suggestions</li>
-                        <li>Working with sensitive code I can't send to APIs</li>
-                        <li>Learning how models work (inspecting weights, trying fine-tuning)</li>
-                    </ul>
-                    
-                    <h3>Hardware Reality</h3>
-                    <p>You need a GPU with decent VRAM. Running quantized 7B models on CPU works but is slow. For actual productive use, you want at least 16GB VRAM for the better models.</p>
-                </section>
-
-                <section id="choosing">
-                    <h2>5. Choosing the Right Model</h2>
-                    <p>Here's my decision tree:</p>
-                    
-                    <table class="comparison-table">
-                        <tr>
-                            <th>Task</th>
-                            <th>Model</th>
-                            <th>Why</th>
-                        </tr>
-                        <tr>
-                            <td>Complex coding</td>
-                            <td>Claude Sonnet</td>
-                            <td>Best context understanding</td>
-                        </tr>
-                        <tr>
-                            <td>Quick questions</td>
-                            <td>GPT-4o mini</td>
-                            <td>Fast, cheap, good enough</td>
-                        </tr>
-                        <tr>
-                            <td>Debugging hard bugs</td>
-                            <td>DeepSeek R1</td>
-                            <td>Good reasoning, cost-effective</td>
-                        </tr>
-                        <tr>
-                            <td>Learning/explaining</td>
-                            <td>Claude</td>
-                            <td>Clearer explanations</td>
-                        </tr>
-                        <tr>
-                            <td>Sensitive code</td>
-                            <td>Llama (local)</td>
-                            <td>Privacy</td>
-                        </tr>
-                        <tr>
-                            <td>IDE autocomplete</td>
-                            <td>Copilot/Cursor</td>
-                            <td>Integration</td>
-                        </tr>
-                    </table>
-                </section>
-
-                <section id="prompting">
-                    <h2>6. Prompting Tips I Learned</h2>
-                    <p>After making every mistake possible, here's what actually works:</p>
-                    
-                    <h3>For Coding</h3>
-                    <ul>
-                        <li><strong>Context matters:</strong> Include relevant files, not just the function you're asking about</li>
-                        <li><strong>Be specific about constraints:</strong> "Use async/await, handle errors, don't use external libs"</li>
-                        <li><strong>Explain the goal:</strong> "I need to parse CSVs with inconsistent columns" not "fix this parser"</li>
-                        <li><strong>Ask for explanations:</strong> "Explain why this approach before implementing"</li>
-                    </ul>
-                    
-                    <h3>For Learning</h3>
-                    <ul>
-                        <li><strong>Use chain of thought:</strong> "Walk through this step by step"</li>
-                        <li><strong>Ask for analogies:</strong> "Explain like I'm a backend dev who knows Java"</li>
-                        <li><strong>Request gaps:</strong> "What am I missing?" or "What are the edge cases?"</li>
-                    </ul>
-                    
-                    <div class="highlight">
-                        <p>The model can only work with what you give it. Better context = better output.</p>
-                    </div>
-                </section>
-
-                <section id="reality">
-                    <h2>7. The Reality Check</h2>
-                    <p>Models make mistakes. Here's my mental model for when to trust them:</p>
-                    
-                    <h3>High Trust</h3>
-                    <ul>
-                        <li>Explaining code I've already written</li>
-                        <li>Generating boilerplate</li>
-                        <li>Suggesting patterns for well-known problems</li>
-                    </ul>
-                    
-                    <h3>Medium Trust</h3>
-                    <ul>
-                        <li>Writing new functions</li>
-                        <li>Debugging suggestions</li>
-                        <li>Architecture recommendations</li>
-                    </ul>
-                    
-                    <h3>Low Trust</h3>
-                    <ul>
-                        <li>Specific library versions/APIs (often outdated)</li>
-                        <li>Security recommendations (verify independently)</li>
-                        <li>Performance claims (benchmark yourself)</li>
-                    </ul>
-                </section>
-
-                <section id="conclusion">
-                    <h2>8. Conclusion</h2>
-                    <p>The LLM landscape moves fast. By the time you read this, there might be new models that change everything I wrote.</p>
-                    <p>But here's what I think remains true:</p>
-                    <ul>
-                        <li>The best model is the one that solves your problem</li>
-                        <li>Understanding prompting is more valuable than chasing the newest model</li>
-                        <li>Always verify output—models are confident but not always correct</li>
-                        <li>Local models are getting better but cloud models are still ahead</li>
-                    </ul>
-                    <p>I'm still learning this space. Every week I discover something new—better prompting techniques, new tools, different use cases. The key is staying curious and practical.</p>
-                </section>
-            </div>
-            
-            <footer class="footer">
-                <div class="share">
-                    <a href="https://twitter.com/intent/tweet?text=The LLM Landscape: What's Actually Useful in 2026" target="_blank">[share on x]</a>
-                    <a href="https://www.linkedin.com/shareArticle?mini=true" target="_blank">[share on linkedin]</a>
-                </div>
-                <div class="nav-links">
-                    <a href="../index.html">
-                        <div class="label">← back to</div>
-                        <div class="title">home</div>
-                    </a>
-                    <a href="../index.html#blog">
-                        <div class="label">more articles →</div>
-                        <div class="title">blog</div>
-                    </a>
-                </div>
-            </footer>
+            <div class="meta"><span>LLM</span><span>Jan 2026</span></div>
+            <p>Breaking down the models that matter, from reasoning models to coding assistants.</p>
+            <h2 id="reasoning">Reasoning Models</h2>
+            <p>Models like Claude 4, GPT-5, and DeepSeek R2 excel at complex reasoning tasks. They're worth the premium for multi-step problem solving.</p>
+            <h2 id="coding">Coding Assistants</h2>
+            <p>Claude Code, Cursor, and GitHub Copilot have transformed how we write code. The key is choosing one and mastering its patterns.</p>
+            <h2 id="open-source">Open Source</h2>
+            <p>Qwen, DeepSeek, and Mistral offer strong alternatives. Self-hosting gives privacy and cost control for certain use cases.</p>
+            <h2 id="selection">How to Choose</h2>
+            <ul>
+                <li><strong>Complex reasoning</strong> → Claude 4 Opus</li>
+                <li><strong>Speed/cost</strong> → GPT-4o Mini, Claude Sonnet</li>
+                <li><strong>Coding</strong> → Claude Code, Cursor</li>
+                <li><strong>Self-hosted</strong> → DeepSeek, Qwen</li>
+            </ul>
         </article>
+        <footer>
+            <a href="https://github.com/sajadkoder" target="_blank" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+            <a href="https://linkedin.com/in/abdullasajad" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="https://twitter.com/sajadkoder" target="_blank" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="mailto:abdullasajad01@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg></a>
+        </footer>
     </div>
-
     <script>
         const toggle = document.getElementById('themeToggle');
-        const progress = document.getElementById('progress');
         const saved = localStorage.getItem('theme') || 'dark';
         if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
-        
         toggle.addEventListener('click', () => {
             const current = document.documentElement.getAttribute('data-theme');
             const next = current === 'light' ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', next);
             localStorage.setItem('theme', next);
-        });
-        
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            progress.style.width = (scrollTop / docHeight * 100) + '%';
         });
     </script>
 </body>

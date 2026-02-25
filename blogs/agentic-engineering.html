@@ -5,926 +5,273 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agentic Engineering: The Future of Autonomous AI Systems | Abdulla Sajad</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #0a0a0e;
-            --bg-elevated: #121218;
-            --bg-card: #18181f;
-            --text: #f0f0f0;
-            --text-secondary: #a0a0a8;
-            --text-muted: #6b6b75;
-            --accent: #e8e8ec;
-            --accent-dim: #ffffff15;
-            --border: #2a2a32;
-            --border-light: #3a3a45;
-            --glow: rgba(255, 255, 255, 0.02);
-            --gradient-1: rgba(255, 248, 240, 0.03);
-            --gradient-2: rgba(255, 245, 235, 0.02);
-        }
-        [data-theme="light"] {
-            --bg: #faf9f7;
-            --bg-elevated: #ffffff;
-            --bg-card: #f5f4f1;
-            --text: #1a1a1f;
-            --text-secondary: #4a4a52;
-            --text-muted: #8a8a92;
-            --accent: #2a2a32;
-            --accent-dim: #00000008;
-            --border: #e5e3de;
-            --border-light: #d5d3cd;
-            --glow: rgba(0, 0, 0, 0.02);
-            --gradient-1: rgba(255, 248, 240, 0.4);
-            --gradient-2: rgba(250, 249, 247, 0.6);
-        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0c;
+            --bg-secondary: #121215;
+            --text: #d4d4d4;
+            --text-secondary: #9a9a9a;
+            --text-muted: #6a6a6a;
+            --border: #2a2a2e;
+            --accent: #e0e0e0;
+            --link: #7cb3f0;
+            --link-hover: #9ecaff;
+        }
+        
+        [data-theme="light"] {
+            --bg: #fafafa;
+            --bg-secondary: #ffffff;
+            --text: #1a1a1a;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+            --border: #e5e5e5;
+            --accent: #000000;
+            --link: #2563eb;
+            --link-hover: #1d4ed8;
+        }
+        
         html { scroll-behavior: smooth; }
+        
         body {
-            font-family: 'Inter', 'JetBrains Mono', monospace;
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.7;
             font-size: 15px;
             transition: background 0.3s, color 0.3s;
-            -webkit-font-smoothing: antialiased;
-            position: relative;
-        }
-        ::selection { background: var(--accent); color: var(--bg); }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
-        a { color: var(--text); text-decoration: none; }
-        a:hover { color: var(--accent); }
-        
-        .bg-layer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(ellipse at 20% 20%, var(--gradient-1) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, var(--gradient-2) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
         }
         
-        nav {
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-            animation: float 25s ease-in-out infinite;
-        }
-        .bg-glow-1 { top: -150px; right: -150px; animation-delay: 0s; }
-        .bg-glow-2 { bottom: -150px; left: -150px; animation-delay: -12s; }
+        a { color: var(--link); text-decoration: none; transition: color 0.2s; }
+        a:hover { color: var(--link-hover); text-decoration: underline; }
         
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(-20px, 20px) scale(1.05); }
-            66% { transform: translate(20px, -15px) scale(0.95); }
-        }
-        
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: var(--bg);
-            border-bottom: 1px solid var(--border);
-            z-index: 100;
-        }
-        nav .inner {
-            max-width: 900px;
+        .container {
+            max-width: 680px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 3rem 1.5rem;
+        }
+        
+        header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
-            align-items: center;
-        }
-        .logo { font-weight: 700; font-size: 15px; color: var(--text); }
-        .logo span { color: var(--accent); }
-        .nav-btns { display: flex; gap: 1rem; align-items: center; }
-        .nav-btn { font-size: 12px; color: var(--text); background: none; border: none; cursor: pointer; font-family: inherit; transition: color 0.2s; }
-        .nav-btn:hover { color: var(--accent); }
-        
-        .container { 
-            max-width: 900px; 
-            margin: 0 auto; 
-            padding: 5rem 2rem; 
-            position: relative;
-            z-index: 1;
+            align-items: flex-start;
+            gap: 1rem;
         }
         
-        .article-layout {
-            display: grid;
-            grid-template-columns: 1fr 220px;
-            gap: 3rem;
-            align-items: start;
+        .header-left { flex: 1; }
+        
+        .name {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
         }
         
-        .main-content {
-            min-width: 0;
+        .name a { color: var(--text); }
+        .name a:hover { color: var(--link); text-decoration: none; }
+        
+        nav {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
         }
         
-        .toc-sidebar {
-            position: sticky;
-            top: 100px;
-            max-height: calc(100vh - 120px);
-            overflow-y: auto;
+        nav a { color: var(--text-secondary); }
+        nav a:hover { color: var(--text); text-decoration: none; }
+        
+        .back-link {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            display: inline-block;
         }
         
-        .meta { display: flex; gap: 1rem; margin-bottom: 1.5rem; font-size: 13px; flex-wrap: wrap; }
-        .meta .cat { color: var(--accent); }
-        .meta .date { color: var(--text-dim); }
+        .back-link:hover { color: var(--link); }
         
-        h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.01em; line-height: 1.3; }
-        .subtitle { color: var(--text-dim); font-size: 18px; margin-bottom: 2rem; line-height: 1.6; }
-        
-        .author { display: flex; gap: 1rem; align-items: center; padding: 1rem; border: 1px solid var(--border); margin-bottom: 2.5rem; transition: border-color 0.2s; }
-        .author:hover { border-color: var(--accent); }
-        .author-avatar { 
-            width: 44px; 
-            height: 44px; 
-            background: var(--accent); 
-            color: var(--bg); 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-weight: 700; 
-            font-size: 14px; 
-            flex-shrink: 0;
-        }
-        .author-name { font-weight: 600; font-size: 14px; }
-        .author-info { font-size: 13px; color: var(--text-dim); }
-        
-        .toc { 
-            border: 1px solid var(--border); 
-            padding: 1.25rem; 
-            margin-bottom: 2rem; 
-            background: var(--bg);
-            transition: border-color 0.2s;
-        }
-        .toc:hover { border-color: var(--accent); }
-        .toc-title { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
-        .toc ol { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-        .toc a { font-size: 13px; color: var(--text-dim); display: flex; gap: 0.5rem; transition: color 0.2s; }
-        .toc a:hover { color: var(--accent); text-decoration: none; }
-        .toc .num { color: var(--accent); font-size: 12px; min-width: 1.5rem; }
-        
-        .content h2 { font-size: 20px; font-weight: 600; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
-        .content h3 { font-size: 17px; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--accent); }
-        .content h4 { font-size: 15px; font-weight: 600; margin: 1rem 0 0.5rem; color: var(--text); }
-        .content p { color: var(--text-dim); margin-bottom: 1rem; line-height: 1.9; }
-        .content ul, .content ol { margin: 1rem 0 1.5rem 1.5rem; color: var(--text-dim); }
-        .content li { margin-bottom: 0.5rem; line-height: 1.7; }
-        .content strong { color: var(--text); }
-        .content code { background: var(--accent-dim); padding: 0.2rem 0.4rem; font-size: 13px; color: var(--accent); }
-        .content pre { background: var(--accent-dim); padding: 1rem; overflow-x: auto; margin: 1rem 0; font-size: 13px; line-height: 1.6; }
-        .content pre code { background: none; padding: 0; }
-        
-        .highlight { background: var(--accent-dim); border-left: 3px solid var(--accent); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
-        .highlight p { color: var(--text); margin: 0; font-style: italic; font-size: 15px; }
-        
-        .diagram { background: var(--accent-dim); padding: 1.5rem; margin: 1.5rem 0; font-size: 12px; font-family: 'JetBrains Mono', monospace; overflow-x: auto; white-space: pre; line-height: 1.5; border-radius: 4px; }
-        
-        .concept-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; }
-        .concept-card { border: 1px solid var(--border); padding: 1.25rem; transition: border-color 0.2s; }
-        .concept-card:hover { border-color: var(--accent); }
-        .concept-card h4 { color: var(--accent); margin-bottom: 0.5rem; font-size: 14px; }
-        .concept-card p { font-size: 13px; margin: 0; }
-        
-        .step-list { margin: 1.5rem 0; }
-        .step-item { display: flex; gap: 1rem; margin-bottom: 1rem; padding: 1rem; border: 1px solid var(--border); transition: border-color 0.2s; }
-        .step-item:hover { border-color: var(--accent); }
-        .step-num { color: var(--accent); font-weight: 700; font-size: 14px; flex-shrink: 0; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; background: var(--accent-dim); border-radius: 50%; }
-        .step-content h5 { font-size: 14px; margin-bottom: 0.25rem; }
-        .step-content p { font-size: 13px; margin: 0; }
-        
-        .warning-box { background: rgba(245, 158, 11, 0.1); border-left: 3px solid #f59e0b; padding: 1rem 1.25rem; margin: 1.5rem 0; }
-        .warning-box p { color: var(--text); margin: 0; font-size: 14px; }
-        
-        .tech-card { border: 1px solid var(--border); padding: 1.5rem; margin: 1rem 0; transition: border-color 0.2s; }
-        .tech-card:hover { border-color: var(--accent); }
-        .tech-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 0.5rem; color: var(--accent); }
-        .tech-card .category { font-size: 11px; color: var(--text-dim); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .tech-card p { font-size: 14px; margin: 0 0 0.75rem 0; }
-        .tech-card .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
-        .tech-card .tag { font-size: 11px; padding: 0.25rem 0.5rem; background: var(--accent-dim); color: var(--accent); }
-        
-        .footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); }
-        .nav-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .nav-links a { padding: 1rem; border: 1px solid var(--border); font-size: 14px; display: block; transition: border-color 0.2s; }
-        .nav-links a:hover { border-color: var(--accent); text-decoration: none; }
-        .nav-links .label { font-size: 12px; color: var(--text-dim); }
-        .nav-links .title { font-weight: 600; margin-top: 0.25rem; }
-        
-        .share-section { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-        .share-link { font-size: 13px; color: var(--text-dim); padding: 0.5rem 0.75rem; border: 1px solid var(--border); transition: all 0.2s; }
-        .share-link:hover { color: var(--accent); border-color: var(--accent); }
-        
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 2px;
-            background: var(--accent);
-            z-index: 101;
-            transition: width 0.1s;
+        article h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+            margin-bottom: 0.75rem;
         }
         
-        @media (max-width: 1100px) {
-            .article-layout {
-                grid-template-columns: 1fr;
-            }
-            .toc-sidebar {
-                position: static;
-                max-height: none;
-            }
-            .toc ol {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
+        .meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
         }
         
-        @media (max-width: 768px) {
-            .container { padding: 5rem 1.25rem; }
-            h1 { font-size: 1.75rem; }
-            .subtitle { font-size: 16px; }
-            .nav-links { grid-template-columns: 1fr; }
-            .toc ol { grid-template-columns: 1fr; }
-            .concept-grid { grid-template-columns: 1fr; }
-            .author { flex-direction: column; text-align: center; }
-            .article-layout { gap: 2rem; }
+        .meta span { margin-right: 1rem; }
+        
+        article {
+            color: var(--text-secondary);
+            line-height: 1.8;
         }
         
-        @media (max-width: 480px) {
-            h1 { font-size: 1.5rem; }
-            .meta { font-size: 12px; }
-            .toc { padding: 1rem; }
-            .step-item { flex-direction: column; gap: 0.75rem; }
-            .step-num { width: 26px; height: 26px; font-size: 12px; }
-            .diagram { padding: 1rem; font-size: 11px; }
-            nav .inner { padding: 1rem 1rem; }
+        article h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 2.5rem 0 1rem;
+        }
+        
+        article h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text);
+            margin: 1.75rem 0 0.75rem;
+        }
+        
+        article p { margin-bottom: 1rem; }
+        
+        article ul, article ol { margin: 1rem 0 1.5rem 1.5rem; }
+        
+        article li { margin-bottom: 0.5rem; }
+        
+        article strong { color: var(--text); font-weight: 600; }
+        
+        article code {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9em;
+            background: var(--bg-secondary);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+        
+        article pre {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            overflow-x: auto;
+            border-radius: 6px;
+            margin: 1.5rem 0;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+        
+        article pre code { background: none; padding: 0; }
+        
+        article blockquote {
+            border-left: 3px solid var(--border);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 0.3rem 0.6rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+            font-family: inherit;
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+        
+        .theme-toggle:hover { border-color: var(--text); color: var(--text); }
+        
+        footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        
+        footer a { color: var(--text-muted); }
+        footer a:hover { color: var(--link); }
+        footer a svg { width: 20px; height: 20px; fill: currentColor; }
+        
+        @media (max-width: 600px) {
+            .container { padding: 2rem 1.25rem; }
+            header { flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
+            article h1 { font-size: 1.5rem; }
+            nav { gap: 1rem; }
         }
     </style>
 </head>
 <body>
-    <div class="bg-grid"></div>
-    <div class="bg-glow bg-glow-1"></div>
-    <div class="bg-glow bg-glow-2"></div>
-    <div class="progress-bar" id="progressBar"></div>
-    
-    <nav>
-        <div class="inner">
-            <a href="../index.html" class="logo">abdulla<span>.</span>sajad</a>
-            <div class="nav-btns">
-                <a href="../index.html#blog" class="nav-btn">[back]</a>
-                <button class="nav-btn" id="themeToggle">[theme]</button>
-            </div>
-        </div>
-    </nav>
-
     <div class="container">
-        <div class="article-layout">
-            <div class="main-content">
-                <div class="meta">
-                    <span class="cat">[agentic engineering]</span>
-                    <span class="date">feb 2026</span>
-                </div>
-                
-                <h1>Agentic Engineering: Building Autonomous AI Systems That Actually Work</h1>
-                <p class="subtitle">A comprehensive deep-dive into the engineering principles, architectures, and patterns behind building production-ready autonomous AI agents in 2026.</p>
-                
-                <div class="author">
-                    <div class="author-avatar">AS</div>
-                    <div>
-                        <div class="author-name">Abdulla Sajad</div>
-                        <div class="author-info">Software Engineer // AI Systems Builder</div>
-                    </div>
-                </div>
-                
-                <div class="content">
-                    <section id="intro">
-                <h2>1. Introduction to Agentic Engineering</h2>
-                <p>We've moved past the era of simple chatbots and static prompts. Agentic engineering is the discipline of building AI systems that can perceive, reason, plan, and act autonomously to accomplish complex goals. It's not just about making AI say things—it's about making AI <em>do</em> things.</p>
-                
-                <p>The difference is fundamental. Traditional software follows explicit instructions. Traditional AI (LLMs) predicts text based on patterns. Agentic systems combine both: they use LLMs as reasoning engines that can invoke tools, maintain state, and iterate toward goals.</p>
-                
-                <div class="highlight">
-                    <p>Agentic engineering represents a paradigm shift: we're no longer programming explicit instructions, but programming <em>capabilities</em> and <em>behaviors</em> that agents can apply autonomously.</p>
-                </div>
-                
-                <h3>Why Agentic Engineering Matters Now</h3>
-                <p>The convergence of several factors has made agentic engineering practical in 2026:</p>
-                <ul>
-                    <li><strong>Reasoning models:</strong> Models like Claude with extended thinking, DeepSeek R2, and GPT-5 can reason through multi-step problems</li>
-                    <li><strong>Reliable function calling:</strong> Tool use is no longer hit-or-miss; models consistently output correct JSON</li>
-                    <li><strong>Longer contexts:</strong> 100K+ token contexts allow agents to maintain rich state</li>
-                    <li><strong>Mature frameworks:</strong> LangGraph, CrewAI, and others provide production-grade abstractions</li>
-                    <li><strong>Real ROI:</strong> Agents are solving real problems in code generation, research, and automation</li>
-                </ul>
-            </section>
-
-            <section id="paradigm">
-                <h2>2. From Prompt to Agent: The Paradigm Shift</h2>
-                <p>Understanding the progression from basic prompts to full agents is crucial for grasping what agentic engineering actually involves.</p>
-                
-                <h3>The Progression</h3>
-                <div class="concept-grid">
-                    <div class="concept-card">
-                        <h4>Level 0: Static Prompts</h4>
-                        <p>Hardcoded prompts that always produce similar outputs. No state, no tools, no adaptation.</p>
-                    </div>
-                    <div class="concept-card">
-                        <h4>Level 1: Interactive Chat</h4>
-                        <p>Conversational interface with context window. Remembers current session but no persistent state.</p>
-                    </div>
-                    <div class="concept-card">
-                        <h4>Level 2: Tool-Augmented</h4>
-                        <p>LLM can call functions to fetch data, run code, but doesn't plan multi-step workflows.</p>
-                    </div>
-                    <div class="concept-card">
-                        <h4>Level 3: True Agents</h4>
-                        <p>Autonomous planning, execution, self-correction. Maintains memory, uses tools strategically.</p>
-                    </div>
-                </div>
-                
-                <h3>What Makes Something "Agentic"?</h3>
-                <p>Not every LLM application is an agent. True agents have these characteristics:</p>
-                <ul>
-                    <li><strong>Autonomy:</strong> Can make decisions without human intervention</li>
-                    <li><strong>Goal-orientation:</strong> Works toward end objectives, not just next-token prediction</li>
-                    <li><strong>Tool use:</strong> Can invoke external functions and APIs</li>
-                    <li><strong>Memory:</strong> Maintains state across interactions</li>
-                    <li><strong>Self-correction:</strong> Recognizes failures and tries alternatives</li>
-                    <li><strong>Planning:</strong> Can decompose complex goals into steps</li>
-                </ul>
-                
-                <div class="diagram">THE AGENT LOOP:
-
-  ┌────────────────────────────────────────┐
-  │              PERCEIVE                   │
-  │  - Get user request                    │
-  │  - Retrieve context/memory             │
-  │  - Observe environment state           │
-  └──────────────────┬─────────────────────┘
-                     ↓
-  ┌────────────────────────────────────────┐
-  │              REASON                    │
-  │  - Analyze the situation               │
-  │  - Determine best next action          │
-  │  - Plan execution strategy             │
-  └──────────────────┬─────────────────────┘
-                     ↓
-  ┌────────────────────────────────────────┐
-  │               ACT                      │
-  │  - Execute tool/action                 │
-  │  - Modify environment                 │
-  │  - Update internal state              │
-  └──────────────────┬─────────────────────┘
-                     ↓
-  ┌────────────────────────────────────────┐
-  │            OBSERVE                     │
-  │  - Get action result                   │
-  │  - Evaluate success                    │
-  │  - Loop if needed                      │
-  └────────────────────────────────────────┘</div>
-            </section>
-
-            <section id="architecture">
-                <h2>3. Agent Architecture Fundamentals</h2>
-                <p>Every agent system is built on a core architecture. Understanding these patterns is essential for building reliable agents.</p>
-                
-                <h3>Core Components</h3>
-                
-                <h4>The Reasoning Engine (LLM)</h4>
-                <p>At the heart of every agent is an LLM that serves as the "brain." It interprets requests, decides actions, and generates responses. The choice of model dramatically affects agent capability:</p>
-                <ul>
-                    <li><strong>Claude 4 Opus:</strong> Best for complex reasoning, research, and nuanced planning</li>
-                    <li><strong>Claude 4 Sonnet:</strong> Excellent balance of capability and speed for most agent tasks</li>
-                    <li><strong>GPT-5:</strong> Strong function calling, fast, native multimodal</li>
-                    <li><strong>DeepSeek R2:</strong> Open weights, strong reasoning, cost-effective</li>
-                    <li><strong>Gemini 2.5 Pro:</strong> Best-in-class long context for complex document tasks</li>
-                </ul>
-                
-                <h4>Tool System</h4>
-                <p>Tools extend what agents can do beyond text generation. Each tool has:</p>
-                <ul>
-                    <li><strong>Name:</strong> Unique identifier (e.g., "search_web", "run_code")</li>
-                    <li><strong>Description:</strong> Explains what the tool does and when to use it</li>
-                    <li><strong>Parameters:</strong> JSON schema defining required/optional inputs</li>
-                    <li><strong>Implementation:</strong> The actual code that executes</li>
-                    <li><strong>Error handling:</strong> How failures are communicated</li>
-                </ul>
-                
-                <h4>Memory Architecture</h4>
-                <p>Agents need multiple types of memory working together:</p>
-                <ul>
-                    <li><strong>Working memory:</strong> Current context in the active loop</li>
-                    <li><strong>Short-term memory:</strong> Recent conversation/history</li>
-                    <li><strong>Long-term memory:</strong> Persistent storage (vector DB, document store)</li>
-                    <li><strong>Procedural memory:</strong> How to do things (system prompts, patterns)</li>
-                </ul>
-            </section>
-
-            <section id="reasoning">
-                <h2>4. Reasoning & Decision Making</h2>
-                <p>How agents think and decide is the heart of agentic engineering. This has evolved significantly.</p>
-                
-                <h3>Reasoning Strategies</h3>
-                
-                <h4>Chain-of-Thought (CoT)</h4>
-                <p>The agent explicitly walks through its reasoning step by step. Works well for problems with clear logical progression.</p>
-                <div class="diagram">Problem: "If 5 developers take 10 days to build a feature,
-          how long would 10 developers take?"
-
-Reasoning:
-1. This is an inverse proportion problem
-2. Work = Developers × Days = 5 × 10 = 50 developer-days
-3. With 10 developers: 50 / 10 = 5 days
-4. Answer: 5 days</div>
-                
-                <h4>Tree of Thoughts (ToT)</h4>
-                <p>Agents explore multiple reasoning paths simultaneously, evaluating each branch. Good for complex decisions with many options.</p>
-                
-                <h4>ReAct (Reason + Act)</h4>
-                <p>Interleaves reasoning with tool use. Think, act, observe result, think again.</p>
-                <div class="diagram">Task: "Find the CEO of the company with the highest 
-            market cap in 2026"
-
-Thought: I need to find current market cap data
-Action: search("biggest company by market cap 2026")
-Observation: Nvidia is #1 with $3.2T market cap
-
-Thought: Now find who is CEO of Nvidia
-Action: search("Nvidia CEO 2026")
-Observation: Jensen Huang is CEO of Nvidia
-
-Thought: I have my answer
-Final Answer: Jensen Huang</div>
-                
-                <h4>Extended Thinking</h4>
-                <p>Newer models like Claude with extended thinking show their reasoning process internally, producing better results on complex tasks without explicit prompting.</p>
-                
-                <h3>Decision Frameworks</h3>
-                <div class="concept-grid">
-                    <div class="concept-card">
-                        <h4>Reactive</h4>
-                        <p>Responds to each input immediately. No explicit planning. Good for simple, linear tasks.</p>
-                    </div>
-                    <div class="concept-card">
-                        <h4>Deliberative</h4>
-                        <p>Plans before acting. Creates explicit plan, reviews it, then executes. Good for complex workflows.</p>
-                    </div>
-                    <div class="concept-card">
-                        <h4>Hybrid</h4>
-                        <p>Combines both. Plans when needed, reacts when sufficient. Most practical for production.</p>
-                    </div>
-                    <div class="concept-card">
-                        <h4>Meta-cognitive</h4>
-                        <p>Agent reflects on its own thinking process. Can recognize when to change strategy.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="tooling">
-                <h2>5. Tool Use & Function Calling</h2>
-                <p>Tools transform agents from text generators into action-takers. This is where the real power of agents emerges.</p>
-                
-                <h3>Function Calling Protocol</h3>
-                <p>Modern LLMs use structured output to call tools. Here's how it works:</p>
-                <pre><code># Define tools the agent can use
-tools = [
-    {
-        "name": "search",
-        "description": "Search the web for current information",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "query": {"type": "string", "description": "Search query"},
-                "num_results": {"type": "integer", "default": 5}
-            },
-            "required": ["query"]
-        }
-    },
-    {
-        "name": "execute_code",
-        "description": "Run Python code in a sandbox",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "code": {"type": "string", "description": "Code to execute"}
-            },
-            "required": ["code"]
-        }
-    }
-]
-
-# Agent decides to call a tool
-response = llm.chat([
-    {"role": "user", "content": "What's 2^20?"},
-    {"role": "system", "content": f"Tools available: {tools}"}
-])
-
-# If agent wants to use a tool:
-if response.tool_calls:
-    for call in response.tool_calls:
-        if call.function == "execute_code":
-            result = run_python(call.arguments.code)
-            # Return result to agent for next step</code></pre>
-                
-                <h3>Tool Design Best Practices</h3>
-                <ul>
-                    <li><strong>Clear, descriptive names:</strong> "search_documents" > "tool1"</li>
-                    <li><strong>Detailed descriptions:</strong> Explain when and why to use each tool</li>
-                    <li><strong>Minimal parameters:</strong> Fewer params = fewer errors</li>
-                    <li><strong>Helpful error messages:</strong> Return actionable error info</li>
-                    <li><strong>Idempotency:</strong> Same input = same output (safer for retries)</li>
-                </ul>
-                
-                <h3>Tool Categories by Risk Level</h3>
-                <div class="tech-card">
-                    <h4>Read-Only Tools</h4>
-                    <p>Search, read files, query databases, fetch URLs. Low risk.</p>
-                    <div class="tags">Risk: LOW</div>
-                </div>
-                <div class="tech-card">
-                    <h4>Write Tools</h4>
-                    <p>Create/update files, modify database records, send messages. Moderate risk.</p>
-                    <div class="tags">Risk: MEDIUM</div>
-                </div>
-                <div class="tech-card">
-                    <h4>Execution Tools</h4>
-                    <p>Run code, execute shell commands. High risk—requires sandboxing.</p>
-                    <div class="tags">Risk: HIGH</div>
-                </div>
-                <div class="tech-card">
-                    <h4>External Action Tools</h4>
-                    <p>Deploy code, make payments, post publicly. Very high risk—always require human approval.</p>
-                    <div class="tags">Risk: VERY HIGH</div>
-                </div>
-                
-                <div class="warning-box">
-                    <p><strong>Security Principle:</strong> Grant agents minimum permissions. Use sandboxes for code execution. Require human approval for irreversible actions. Log everything.</p>
-                </div>
-            </section>
-
-            <section id="memory">
-                <h2>6. Memory Systems</h2>
-                <p>Memory is what allows agents to work across sessions and maintain context for complex tasks.</p>
-                
-                <h3>Types of Memory</h3>
-                
-                <h4>Working Memory (Context Window)</h4>
-                <p>The immediate context the LLM can "see." Contains current conversation, recent tool results, and active task state.</p>
-                <p><strong>Challenge:</strong> Limited by context window size. Must manage carefully.</p>
-                
-                <h4>Episodic Memory (Session History)</h4>
-                <p>Past interactions with specific users or sessions. Stored in database, retrieved when relevant.</p>
-                <div class="diagram">User: "Remember I prefer dark mode"
-Agent: [Stores preference in episodic memory]
-
-Later:
-User: "What are my preferences?"
-Agent: [Retrieves from memory]
-    "You prefer dark mode, and you like concise responses"</div>
-                
-                <h4>Semantic Memory (Knowledge Base)</h4>
-                <p>Facts, documentation, domain knowledge. Typically stored in vector databases for semantic retrieval.</p>
-                <ul>
-                    <li>Product documentation</li>
-                    <li>Company policies</li>
-                    <li>Codebase information</li>
-                    <li>Domain expertise</li>
-                </ul>
-                
-                <h4>Procedural Memory</h4>
-                <p>How to accomplish tasks. Encoded in system prompts, few-shot examples, and learned patterns.</p>
-                
-                <h3>Implementation Patterns</h3>
-                <div class="concept-grid">
-                    <div class="concept-card">
-                        <h4>Summary Buffer</h4>
-                        <p>Summarize old conversation when context fills up. Preserve key info in compressed form.</p>
-                    </div>
-                    <div class="concept-card">
-                        <h4>Vector Retrieval</h4>
-                        <p>Store past interactions as embeddings. Retrieve semantically similar memories when needed.</p>
-                    </div>
-                    <div class="concept-card">
-                        <h4>Explicit Storage</h4>
-                        <p>Store key facts in structured database. Query directly rather than relying on LLM retrieval.</p>
-                    </div>
-                    <div class="concept-card">
-                        <h4>Hybrid Approach</h4>
-                        <p>Combine all three: summary for recent, vectors for semantic, explicit for critical facts.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="planning">
-                <h2>7. Planning & Execution</h2>
-                <p>Complex goals require planning. How agents break down and execute multi-step tasks is crucial.</p>
-                
-                <h3>Planning Strategies</h3>
-                
-                <h4>Task Decomposition</h4>
-                <p>Break large goal into smaller, manageable subtasks.</p>
-                <div class="diagram">Goal: "Build a REST API for a todo app"
-
-Decomposed:
-1. Design database schema
-2. Set up project structure
-3. Create user model & auth
-4. Create todo model
-5. Implement CRUD endpoints
-6. Add input validation
-7. Write tests
-8. Set up CI/CD</div>
-                
-                <h4>Dependency Management</h4>
-                <p>Identify which tasks depend on others. Execute in correct order or parallelize.</p>
-                <div class="diagram">Task: "Send weekly report to team"
-
-Dependencies:
-├── Query database for data
-│   └── (no dependencies)
-├── Generate charts
-│   └── (requires: database query)
-├── Write summary
-│   └── (requires: database query)
-├── Compile PDF
-│   └── (requires: charts + summary)
-└── Send email
-    └── (requires: PDF + team list)</div>
-                
-                <h4>Replanning on Failure</h4>
-                <p>When a plan fails, the agent should analyze why and create a new plan:</p>
-                <ul>
-                    <li>What specifically failed?</li>
-                    <li>Is the goal still achievable?</li>
-                    <li>What approach might work better?</li>
-                    <li>Should I ask for help or try again?</li>
-                </ul>
-                
-                <h3>Execution Patterns</h3>
-                <div class="step-list">
-                    <div class="step-item">
-                        <span class="step-num">1</span>
-                        <div class="step-content">
-                            <h5>Plan</h5>
-                            <p>Create explicit plan with steps and dependencies</p>
-                        </div>
-                    </div>
-                    <div class="step-item">
-                        <span class="step-num">2</span>
-                        <div class="step-content">
-                            <h5>Execute</h5>
-                            <p>Run each step, starting with those with no dependencies</p>
-                        </div>
-                    </div>
-                    <div class="step-item">
-                        <span class="step-num">3</span>
-                        <div class="step-content">
-                            <h5>Observe</h5>
-                            <p>Check results of each action</p>
-                        </div>
-                    </div>
-                    <div class="step-item">
-                        <span class="step-num">4</span>
-                        <div class="step-content">
-                            <h5>Evaluate</h5>
-                            <p>Did it work? Is the goal achieved?</p>
-                        </div>
-                    </div>
-                    <div class="step-item">
-                        <span class="step-num">5</span>
-                        <div class="step-content">
-                            <h5>Adapt</h5>
-                            <p>If failed, replan. If succeeded, complete.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="multiagent">
-                <h2>8. Multi-Agent Systems</h2>
-                <p>Multiple agents collaborating can accomplish more than single agents. This is where agentic engineering gets really interesting.</p>
-                
-                <h3>Why Multi-Agent?</h3>
-                <ul>
-                    <li><strong>Specialization:</strong> Different agents for different tasks</li>
-                    <li><strong>Parallelism:</strong> Work on independent tasks simultaneously</li>
-                    <li><strong>Robustness:</strong> One agent fails, others continue</li>
-                    <li><strong>Perspectives:</strong> Multiple agents can review and improve work</li>
-                </ul>
-                
-                <h3>Architectural Patterns</h3>
-                
-                <h4>Supervisor Pattern</h4>
-                <div class="diagram">        [Supervisor Agent]
-         ↙        ↓        ↘
-   [Research] [Write] [Review]
-         ↘        ↙        ↗
-       [Shared Workspace]</div>
-                
-                <h4>Debate Pattern</h4>
-                <div class="diagram">[Agent A] → proposes solution
-        ↓
-[Agent B] → critiques
-        ↓
-[Agent A] → revises
-        ↓
-Repeat until consensus</div>
-                
-                <h4>Swarm Pattern</h4>
-                <div class="diagram">[Agent 1] ↔ [Agent 2] ↔ [Agent 3]
-    ↕           ↕           ↕
-[Agent 4] ↔ [Agent 5] ↔ [Agent 6]
-    All communicate in mesh</div>
-                
-                <h3>Coordination Challenges</h3>
-                <ul>
-                    <li><strong>Communication overhead:</strong> Sharing context efficiently</li>
-                    <li><strong>Consistency:</strong> Preventing conflicting changes</li>
-                    <li><strong>Cost:</strong> More agents = more LLM calls</li>
-                    <li><strong>Debugging:</strong> Harder to trace issues</li>
-                    <li><strong>Race conditions:</strong> Agents modifying same state</li>
-                </ul>
-            </section>
-
-            <section id="production">
-                <h2>9. Production Patterns</h2>
-                <p>Building a demo agent is easy. Building production agents requires addressing reliability, cost, and observability.</p>
-                
-                <h3>Essential Production Patterns</h3>
-                
-                <div class="tech-card">
-                    <h4>Guardrails</h4>
-                    <p>Prevent agents from harmful actions. Validate inputs, outputs, and tool calls.</p>
-                    <div class="tags">MAX ITERATIONS // INPUT VALIDATION // OUTPUT SANITIZATION</div>
-                </div>
-                
-                <div class="tech-card">
-                    <h4>Error Handling</h4>
-                    <p>Graceful degradation when things fail. Don't let agents hang or spiral.</p>
-                    <div class="tags">TIMEOUTS // RETRY LOGIC // FALLBACK BEHAVIOR</div>
-                </div>
-                
-                <div class="tech-card">
-                    <h4>Cost Management</h4>
-                    <p>Set budgets per task. Use cheaper models for simple decisions.</p>
-                    <div class="tags">MAX TOKENS // CACHING // MODEL ROUTING</div>
-                </div>
-                
-                <div class="tech-card">
-                    <h4>Human-in-the-Loop</h4>
-                    <p>Require approval for expensive or irreversible actions.</p>
-                    <div class="tags">CONFIRMATION PROMPTS // ESCALATION PATHS</div>
-                </div>
-                
-                <h3>Cost Optimization</h3>
-                <ul>
-                    <li>Cache common queries and responses</li>
-                    <li>Route simple tasks to cheaper models</li>
-                    <li>Set max iterations to prevent runaway loops</li>
-                    <li>Track costs per task type</li>
-                    <li>Implement per-user budgets</li>
-                </ul>
-                
-                <div class="diagram">TYPICAL AGENT COSTS:
-• Simple Q&A agent: $0.01-0.05 / request
-• Research agent (multi-step): $0.50-2.00 / task  
-• Coding agent with execution: $1-10 / task
-• Multi-agent complex workflow: $5-50 / task</div>
-            </section>
-
-            <section id="evaluation">
-                <h2>10. Evaluation & Observability</h2>
-                <p>How do you know if your agent is working well? Evaluation and observability are critical.</p>
-                
-                <h3>Evaluation Metrics</h3>
-                <ul>
-                    <li><strong>Task completion rate:</strong> % of tasks fully completed</li>
-                    <li><strong>Success rate:</strong> % of tasks completed successfully</li>
-                    <li><strong>Error rate:</strong> How often does the agent fail?</li>
-                    <li><strong>Token efficiency:</strong> Tokens used per successful task</li>
-                    <li><strong>Latency:</strong> Time from request to response</li>
-                    <li><strong>Human ratings:</strong> Quality feedback from users</li>
-                </ul>
-                
-                <h3>Observability Stack</h3>
-                <div class="concept-grid">
-                    <div class="concept-card">
-                        <h4>LangSmith</h4>
-                        <p>Anthropic's debugging and observability platform for LLM apps.</p>
-                    </div>
-                    <div class="concept-card">
-                        <h4>AgentOps</h4>
-                        <p>Open-source agent monitoring and evaluation.</p>
-                    </div>
-                    <div class="concept-card">
-                        <h4>Custom Logging</h4>
-                        <p>Track tool calls, reasoning traces, and outcomes.</p>
-                    </div>
-                    <div class="concept-card">
-                        <h4>Tracing</h4>
-                        <p>Full visibility into agent decision trees.</p>
-                    </div>
-                </div>
-                
-                <h3>What to Log</h3>
-                <ul>
-                    <li>Every LLM call (prompt + response)</li>
-                    <li>Every tool call and result</li>
-                    <li>Reasoning traces (when available)</li>
-                    <li>Errors and exceptions</li>
-                    <li>Token usage and costs</li>
-                    <li>Latency per step</li>
-                </ul>
-            </section>
-
-            <section id="future">
-                <h2>11. Future Directions</h2>
-                <p>Agentic engineering is evolving rapidly. Here's where I see things heading:</p>
-                
-                <h3>Near-term (2026-2027)</h3>
-                <ul>
-                    <li><strong>Better reasoning:</strong> Models that can plan longer and more reliably</li>
-                    <li><strong>Cheaper tools:</strong> More capable function calling at lower costs</li>
-                    <li><strong>Standardized evaluation:</strong> Industry benchmarks for agent performance</li>
-                    <li><strong>Better debugging:</strong> Improved tools for understanding agent behavior</li>
-                </ul>
-                
-                <h3>Medium-term (2027-2028)</h3>
-                <ul>
-                    <li><strong>Persistent agents:</strong> Agents that truly learn and remember across sessions</li>
-                    <li><strong>Multi-modal agents:</strong> Agents that can see, hear, and interact with the physical world</li>
-                    <li><strong>Composable architectures:</strong> Building blocks for assembling complex agents</li>
-                    <li><strong>Formal verification:</strong> Mathematical guarantees of agent behavior</li>
-                </ul>
-                
-                <h3>Long-term (2028+)</h3>
-                <ul>
-                    <li><strong>General agents:</strong> Agents that can handle any task</li>
-                    <li><strong>Self-improving agents:</strong> Agents that can improve their own capabilities</li>
-                    <li><strong>Agent societies:</strong> Complex multi-agent ecosystems</li>
-                </ul>
-                
-                <div class="highlight">
-                    <p>The key insight: We're not building agents to replace humans. We're building agents to handle the routine so humans can focus on the meaningful. The future is human-agent collaboration.</p>
-                </div>
-                
-                <h3>Getting Started</h3>
-                <p>If you're starting with agentic engineering:</p>
-                <ol>
-                    <li>Start with simple single-agent systems</li>
-                    <li>Use frameworks like LangChain/LangGraph</li>
-                    <li>Focus on tool design first—good tools make good agents</li>
-                    <li>Build observability from day one</li>
-                    <li>Start with low-risk applications</li>
-                    <li>Iterate based on real usage</li>
-                </ol>
-            </section>
-        </div>
-        
-        <div class="footer">
-            <div class="nav-links">
-                <a href="ai-agents-guide.html">
-                    <span class="label">← Previous</span>
-                    <span class="title">Building with AI Agents: A Practical Guide</span>
-                </a>
-                <a href="ai-coding-tools-2026.html">
-                    <span class="label">Next →</span>
-                    <span class="title">AI Coding Tools That Changed How I Work</span>
-                </a>
+        <header>
+            <div class="header-left">
+                <div class="name"><a href="../index.html">Abdulla Sajad</a></div>
+                <nav>
+                    <a href="../index.html">home</a>
+                    <a href="../index.html#projects">projects</a>
+                    <a href="../index.html#blog">writing</a>
+                    <a href="../index.html#skills">skills</a>
+                </nav>
             </div>
-        </div>
+            <button class="theme-toggle" id="themeToggle">theme</button>
+        </header>
+
+        <a href="../index.html#blog" class="back-link">← back to writing</a>
+
+        <article>
+            <h1>Agentic Engineering: Building Autonomous AI Systems That Actually Work</h1>
+            <div class="meta">
+                <span>Agentic Engineering</span>
+                <span>Feb 2026</span>
             </div>
-            
-            <aside class="toc-sidebar">
-                <div class="toc">
-                    <div class="toc-title">contents</div>
-                    <ol>
-                        <li><a href="#intro"><span class="num">01</span> intro</a></li>
-                        <li><a href="#paradigm"><span class="num">02</span> paradigm</a></li>
-                        <li><a href="#architecture"><span class="num">03</span> architecture</a></li>
-                        <li><a href="#reasoning"><span class="num">04</span> reasoning</a></li>
-                        <li><a href="#tooling"><span class="num">05</span> tooling</a></li>
-                        <li><a href="#memory"><span class="num">06</span> memory</a></li>
-                        <li><a href="#planning"><span class="num">07</span> planning</a></li>
-                        <li><a href="#multiagent"><span class="num">08</span> multi-agent</a></li>
-                        <li><a href="#production"><span class="num">09</span> production</a></li>
-                        <li><a href="#evaluation"><span class="num">10</span> evaluation</a></li>
-                        <li><a href="#future"><span class="num">11</span> future</a></li>
-                    </ol>
-                </div>
-            </aside>
-        </div>
+
+            <p>A comprehensive deep-dive into the engineering principles, architectures, and patterns behind building production-ready autonomous AI agents.</p>
+
+            <h2 id="intro">Introduction</h2>
+            <p>We've moved past the era of simple chatbots and static prompts. Agentic engineering is the discipline of building AI systems that can perceive, reason, plan, and act autonomously to accomplish complex goals.</p>
+
+            <h2 id="paradigm">The Paradigm Shift</h2>
+            <ul>
+                <li><strong>Level 0: Static Prompts</strong> - No state</li>
+                <li><strong>Level 1: Interactive Chat</strong> - Context aware</li>
+                <li><strong>Level 2: Tool-Augmented</strong> - Can call functions</li>
+                <li><strong>Level 3: True Agents</strong> - Autonomous</li>
+            </ul>
+
+            <h2 id="architecture">Core Architecture</h2>
+            <p>Every agent needs: Reasoning Engine (LLM), Tool System, Memory Architecture, and Orchestration.</p>
+
+            <h2 id="reasoning">Reasoning Strategies</h2>
+            <ul>
+                <li><strong>Chain-of-Thought</strong> - Step by step</li>
+                <li><strong>Tree of Thoughts</strong> - Multiple paths</li>
+                <li><strong>ReAct</strong> - Reasoning + Action</li>
+                <li><strong>Extended Thinking</strong> - Internal reasoning</li>
+            </ul>
+
+            <h2 id="production">Production Patterns</h2>
+            <p>Guardrails, error handling, cost management, and human-in-the-loop for production systems.</p>
+
+            <h2 id="future">Future</h2>
+            <p>Building agents to handle routine tasks so humans can focus on meaningful work.</p>
+        </article>
+
+        <footer>
+            <a href="https://github.com/sajadkoder" target="_blank" aria-label="GitHub">
+                <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://linkedin.com/in/abdullasajad" target="_blank" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://twitter.com/sajadkoder" target="_blank" aria-label="Twitter">
+                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="mailto:abdullasajad01@gmail.com" aria-label="Email">
+                <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+            </a>
+        </footer>
     </div>
 
     <script>
@@ -937,13 +284,6 @@ Repeat until consensus</div>
             const next = current === 'light' ? 'dark' : 'light';
             document.documentElement.setAttribute('data-theme', next);
             localStorage.setItem('theme', next);
-        });
-        
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('progressBar').style.width = scrolled + '%';
         });
     </script>
 </body>
