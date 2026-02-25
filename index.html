@@ -126,21 +126,6 @@
             text-decoration: none;
         }
         
-        .social {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-            font-size: 0.85rem;
-        }
-        
-        .social a {
-            color: var(--text-muted);
-        }
-        
-        .social a:hover {
-            color: var(--text);
-        }
-        
         section {
             margin-bottom: 3rem;
         }
@@ -273,32 +258,6 @@
             margin-bottom: 0.25rem;
         }
         
-        .education-item {
-            margin-bottom: 1rem;
-        }
-        
-        .education-item .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 0.25rem;
-        }
-        
-        .education-item h3 {
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-        
-        .education-item .year {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-        
-        .education-item .org {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-        
         footer {
             margin-top: 3rem;
             padding-top: 1.5rem;
@@ -328,37 +287,6 @@
             fill: currentColor;
         }
         
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            padding: 0.5rem;
-            font-size: 0.7rem;
-            cursor: pointer;
-            font-family: inherit;
-            border-radius: 4px;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .theme-toggle svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
-        
-        .theme-toggle:hover {
-            border-color: var(--text);
-            color: var(--text);
-        }
-        
-        .theme-toggle:hover {
-            border-color: var(--text);
-            color: var(--text);
-        }
-        
         @media (max-width: 600px) {
             .container {
                 padding: 2rem 1.25rem;
@@ -385,19 +313,6 @@
             
             nav a {
                 font-size: 0.85rem;
-            }
-            
-            .social {
-                gap: 0.75rem;
-                flex-wrap: wrap;
-            }
-            
-            .social a {
-                font-size: 0.8rem;
-            }
-            
-            .theme-toggle {
-                align-self: flex-start;
             }
             
             h2 {
@@ -430,10 +345,6 @@
                 font-size: 0.8rem;
             }
             
-            .education-item h3 {
-                font-size: 0.9rem;
-            }
-            
             footer {
                 gap: 1.25rem;
             }
@@ -451,10 +362,6 @@
             
             nav a {
                 font-size: 0.8rem;
-            }
-            
-            .social a {
-                font-size: 0.75rem;
             }
         }
     </style>
