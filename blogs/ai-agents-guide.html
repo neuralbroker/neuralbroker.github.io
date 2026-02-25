@@ -244,58 +244,1082 @@
 
             <p>From chatbots to autonomous agents—tools, patterns, and production realities.</p>
 
+            <h2 id="table-of-contents">Table of Contents</h2>
+            <ol>
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#what-are-agents">What Are AI Agents?</a></li>
+                <li><a href="#core-components">Core Architecture Components</a></li>
+                <li><a href="#architecture-patterns">Architecture Patterns</a></li>
+                <li><a href="#tool-design">Tool Design Best Practices</a></li>
+                <li><a href="#memory-systems">Memory Systems</a></li>
+                <li><a href="#frameworks">Popular Frameworks</a></li>
+                <li><a href="#production">Production Considerations</a></li>
+                <li><a href="#multi-agent">Multi-Agent Systems</a></li>
+                <li><a href="#mcp-protocol">Model Context Protocol (MCP)</a></li>
+                <li><a href="#a2a-protocol">Agent-to-Agent Protocol (A2A)</a></li>
+                <li><a href="#evaluation">Evaluation Strategies</a></li>
+                <li><a href="#deployment">Deployment Patterns</a></li>
+                <li><a href="#when-to-use">When to Use Agents</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+            </ol>
+
             <h2 id="intro">Introduction</h2>
-            <p>AI agents represent a paradigm shift in how we interact with large language models. Instead of single-turn conversations, agents can maintain state, use tools, and iteratively work toward goals. This guide covers the practical aspects of building agentic systems.</p>
+            <p>The landscape of artificial intelligence has undergone a fundamental transformation in recent years. What began as simple chatbots capable of answering questions has evolved into sophisticated systems that can reason, plan, and take autonomous actions to accomplish complex goals. This evolution represents more than just incremental improvement—it marks a paradigm shift in how we think about AI systems and their role in software architecture.</p>
+            <p>AI agents represent this new paradigm. Unlike traditional software that follows predetermined pathways or simple chatbots that respond to single prompts, agents maintain state, use tools, and iteratively work toward goals. They can perceive their environment, reason about the current situation, execute actions that modify that environment, and learn from the results. This capability stack transforms AI from a passive tool that answers questions into an active participant in accomplishing work.</p>
+            <p>The market for AI agent systems has grown explosively. In 2026, the market is projected to hit $8.5 billion, with forecasts pointing toward $35 billion by 2030. These are not speculative numbers from fringe analyst reports—57% of companies now deploy AI agents in production, and Gartner estimates that 40% of enterprise applications will feature task-specific agents by year's end, up from a mere 5% in 2024. The reason for this growth is architectural, not merely hype-driven. A single agent, no matter how capable the underlying model, hits a ceiling when faced with complex, multi-domain tasks. It has to hold the entire context, decide on the next action, execute it, evaluate the result, and repeat—all within a single reasoning loop. Multi-agent systems apply the same principle that's governed effective software engineering for decades: divide and conquer.</p>
+            <p>This guide covers the practical aspects of building agentic systems from the ground up. We'll explore the core components that power production AI agents, the architecture patterns that work for different use cases, and the real-world constraints that shape design decisions. Whether you're building your first agent or scaling existing systems to production, this guide provides the patterns and practices you need to succeed.</p>
 
             <h2 id="what-are-agents">What Are AI Agents?</h2>
-            <p>An AI agent is a system that uses an LLM as its reasoning engine to:</p>
-            <ul>
-                <li><strong>Perceive</strong> - Gather information from users, tools, or environment</li>
-                <li><strong>Reason</strong> - Analyze situation and decide on actions</li>
-                <li><strong>Act</strong> - Execute tools, modify state, or generate responses</li>
-                <li><strong>Iterate</strong> - Loop until goal is achieved or failure occurs</li>
-            </ul>
+            <p>An AI agent is a system that uses an LLM as its reasoning engine to accomplish goals through autonomous action. The key difference between a chatbot and an agent is autonomy and capability. A chatbot answers questions. An agent completes tasks. If you want to build AI agents that actually work, you need to understand four core components: the reasoning engine, the tool layer, the memory system, and the orchestration loop.</p>
+            <p>More concretely, an agent possesses core characteristics that allow it to act reliably and effectively in production environments. These characteristics include the ability to perceive information from users, tools, or the environment; the ability to analyze situations and decide on appropriate actions; the ability to execute tools, modify state, or generate responses; and the ability to iterate until goals are achieved or failure occurs.</p>
+            <p>It's important to distinguish between different levels of agentic capability. Not all AI applications require agent architecture. A support chatbot answering questions from a knowledge base is retrieval-augmented generation. A coding assistant suggesting completions is prompted inference. These simpler architectures are cheaper, faster, more reliable, and easier to debug. Agents become necessary when tasks require autonomous multi-step execution with decisions at each step. The key word is autonomous: if a human could reasonably approve each action, you probably don't need an agent. If the workflow requires dozens of decisions in seconds, an agent may be justified.</p>
+            <p>A useful definition emerges from this understanding: an agent is an LLM wrapped in a loop that can observe state, call tools, record results, and decide when it's done (or when to ask for help). Agentic patterns are repeatable mini-architectures for building those loops so they work in production: constrained, testable, observable, and safe.</p>
 
-            <h2 id="core-components">Core Components</h2>
-            <p>Every agent system has these building blocks:</p>
+            <h2 id="core-components">Core Architecture Components</h2>
+            <p>Every agent system has fundamental building blocks that work together to transform stateless language models into systems that learn, remember, and act autonomously. Understanding these components is essential for building reliable production agents.</p>
 
-            <h3>1. Reasoning Engine (LLM)</h3>
-            <p>The brain of the operation. Models like Claude, GPT-4, or open-source alternatives power the decision-making.</p>
+            <h3 id="reasoning-engine">1. Reasoning Engine (LLM)</h3>
+            <p>The brain of the operation. Models like Claude, GPT-4, Gemini, or open-source alternatives power the decision-making. Your LLM interprets instructions, decides which tools to use, and generates responses. In 2026, the practical choices span several categories, each with distinct tradeoffs.</p>
+            <p>Open-source models such as Llama 3 and Mistral are best for self-hosted deployments where data privacy is critical. They offer complete control over data and can be fine-tuned for specific domains, but require more infrastructure management and may not match the latest capabilities of commercial models.</p>
+            <p>Gemini from Google offers good multimodal capabilities and competitive pricing, making it attractive for applications that need to process images, audio, or video alongside text. The integration with Google's cloud infrastructure provides additional capabilities for enterprise deployments.</p>
+            <p>GPT-4o and GPT-5 from OpenAI remain versatile choices with a large ecosystem and strong function calling capabilities. The extensive tooling, documentation, and community support make them accessible for teams new to agent development.</p>
+            <p>The choice of model significantly impacts your agent's capabilities. Reasoning models like o1 or o3-mini excel at complex multi-step tasks where careful deliberation is required, though at higher cost and latency. Fast models like GPT-4o mini are suitable for simpler tasks where speed matters more than depth of reasoning.</p>
 
-            <h3>2. Tool System</h3>
-            <p>Functions the agent can call: search, code execution, API calls, file operations. Well-designed tools are crucial.</p>
+            <h3 id="tool-system">2. Tool System</h3>
+            <p>Functions the agent can call: search, code execution, API calls, file operations. Well-designed tools are crucial for agent reliability. Tools extend your agent's capabilities by using APIs from underlying applications or systems. For legacy systems without APIs, agents can rely on computer-use models to interact directly with graphical interfaces.</p>
+            <p>Each tool should have a standardized definition, enabling flexible, many-to-many relationships between agents and capabilities. Broadly speaking, agents need three types of tools. Information retrieval tools allow agents to search for relevant data, whether through web search, database queries, or document retrieval. Action tools enable agents to modify state by creating records, sending messages, or initiating processes. Computation tools let agents perform calculations, execute code, or process data.</p>
+            <p>Here's a minimal tool definition pattern in Python using the OpenAI Agents SDK:</p>
+<pre><code>from agents import Agent, function_tool
 
-            <h3>3. Memory</h3>
-            <p>State management across turns. Includes:</p>
-            <ul>
-                <li>Working memory (current context)</li>
-                <li>Short-term (conversation history)</li>
-                <li>Long-term (persistent storage)</li>
-            </ul>
+@function_tool
+def get_weather(location: str) -> str:
+    """Get the current weather for a location.
+    
+    Args:
+        location: City name or zip code
+        
+    Returns:
+        Weather description with temperature
+    """
+    # Implementation would call weather API
+    return f"The weather in {location} is 72°F and sunny"
 
-            <h3>4. Orchestration</h3>
-            <p>How the agent loops: React, Plan-Execute, or hybrid patterns.</p>
+weather_agent = Agent(
+    name="Weather agent",
+    instructions="You are a helpful agent who can talk to users about the weather.",
+    tools=[get_weather]
+)</code></pre>
+            <p>Tool definitions determine agent behavior more than any other factor. The LLM reads tool descriptions to decide when to use each tool. Vague descriptions produce unpredictable behavior; precise descriptions produce reliable agents. Tool design is prompt engineering in disguise. Every description, parameter name, and type annotation shapes LLM behavior.</p>
+
+            <h3 id="memory">3. Memory</h3>
+            <p>State management across turns. Includes working memory for current context, short-term memory for conversation history, and long-term memory for persistent storage. Memory is often where teams first encounter scaling challenges. As conversations grow longer, token costs increase and model attention wavers.</p>
+            <p>Layered memory architectures solve these problems by using different storage mechanisms for different types of information. Working memory holds the immediate context—the current task, recent tool results, and active plan. This typically lives in fast in-memory structures like Python dictionaries or Redis.</p>
+            <p>Short-term memory preserves conversation history but gets compressed over time. Rather than storing every message verbatim, agents can summarize older exchanges to preserve the essential information while reducing token usage. This summary approach maintains context without overwhelming the model's context window.</p>
+            <p>Long-term memory stores persistent information that should persist across sessions: user preferences, past successful approaches, learned facts about the domain. Vector databases excel at this, allowing semantic retrieval of relevant memories based on current context.</p>
+            <p>Here's a practical memory implementation using Redis for fast access:</p>
+<pre><code>import redis
+from dataclasses import dataclass
+from typing import Optional
+
+@dataclass
+class AgentMemory:
+    """Layered memory system for agents."""
+    redis_client: redis.Redis
+    
+    def store_working(self, session_id: str, data: dict, ttl: int = 3600):
+        """Store working memory with expiration."""
+        key = f"memory:working:{session_id}"
+        self.redis_client.setex(key, ttl, json.dumps(data))
+    
+    def get_working(self, session_id: str) -> Optional[dict]:
+        """Retrieve working memory."""
+        key = f"memory:working:{session_id}"
+        data = self.redis_client.get(key)
+        return json.loads(data) if data else None
+    
+    def store_longterm(self, session_id: str, content: str, metadata: dict):
+        """Store to long-term memory with vector embedding."""
+        # Would typically compute embedding and store in vector DB
+        key = f"memory:longterm:{session_id}"
+        self.redis_client.lpush(key, json.dumps({"content": content, "meta": metadata}))
+    
+    def summarize_and_store(self, session_id: str, messages: list):
+        """Compress conversation history into summary."""
+        # Use LLM to summarize, then store
+        summary = self._create_summary(messages)
+        self.store_working(session_id, {"summary": summary})</code></pre>
+
+            <h3 id="orchestration">4. Orchestration</h3>
+            <p>How the agent loops: React, Plan-Execute, or hybrid patterns. Orchestration determines the control flow of your agent—the rules governing how it decides what to do next, when to stop, and how to recover from errors.</p>
+            <p>The orchestration layer is where patterns like ReAct (Reasoning and Acting) and Plan-and-Execute live. These patterns provide structured approaches to multi-step reasoning that balance flexibility with reliability. More advanced patterns like Tree of Thoughts and Language Agent Tree Search (LATS) enable exploration of multiple reasoning paths before committing to a course of action.</p>
+
+            <h2 id="architecture-patterns">Architecture Patterns</h2>
+            <p>AI agent architectures fall into distinct patterns, each optimized for different constraints. Choosing the right pattern depends on your task's characteristics: whether steps are predictable, whether real-time adaptation is needed, and how complex the overall workflow is.</p>
+
+            <h3 id="react-pattern">1. ReAct Pattern (Reasoning + Acting)</h3>
+            <p>The most common pattern for production agents. ReAct agents excel when tasks require iterative refinement and real-time adaptation to unexpected conditions. The agent reasons about the current state, takes an action, observes the result, and repeats until completion.</p>
+            <p>The key advantage of ReAct is its ability to handle unexpected situations dynamically. If a tool fails or returns unexpected results, the agent can adjust its approach midstream. This makes ReAct ideal for exploratory tasks where the solution path isn't predictable upfront.</p>
+            <p>The tradeoff is increased latency through sequential processing and less predictable costs, since you can't know in advance how many steps a task will require. Here's a production ReAct agent implementation:</p>
+<pre><code>from langchain.agents import AgentExecutor, create_openai_tools_agent
+from langchain.tools import Tool
+from langchain_openai import ChatOpenAI
+from typing import List
+
+class ReActAgent:
+    """Production ReAct agent with structured tools."""
+    
+    def __init__(self, model: str = "gpt-4o", tools: List[Tool] = None):
+        self.llm = ChatOpenAI(model=model, temperature=0)
+        self.tools = tools or self._setup_tools()
+        self.agent = create_openai_tools_agent(self.llm, self.tools)
+        self.executor = AgentExecutor.from_agent_and_tools(
+            agent=self.agent,
+            tools=self.tools,
+            max_iterations=15,
+            early_stopping_method="generate",
+            handle_parsing_errors=True
+        )
+    
+    def _setup_tools(self) -> List[Tool]:
+        """Define available tools."""
+        return [
+            Tool(
+                name="search",
+                func=self._search_impl,
+                description="Search the web for information. Input should be a search query."
+            ),
+            Tool(
+                name="calculator",
+                func=self._calculate_impl,
+                description="Perform mathematical calculations. Input should be a mathematical expression."
+            )
+        ]
+    
+    def run(self, query: str) -> dict:
+        """Execute agent on a query."""
+        try:
+            result = self.agent.invoke({"input": query})
+            return {
+                "success": True,
+                "output": result["output"],
+                "steps": result.get("intermediate_steps", [])
+            }
+        except Exception as e:
+            return {
+                "success": False,
+                "error": str(e),
+                "output": None
+            }</code></pre>
+
+            <h3 id="plan-execute">2. Plan-and-Execute Pattern</h3>
+            <p>In contrast to ReAct's dynamic approach, Plan-and-Execute first creates a detailed plan, then executes each step methodically. This pattern works well when the overall task structure is predictable and you can enumerate the steps needed to complete it.</p>
+            <p>The advantage is clearer reasoning visibility—you can see the entire plan before execution begins, making it easier to validate and debug. Cost becomes more predictable since you know the number of steps upfront. The tradeoff is that if your initial plan is wrong or the environment changes mid-execution, the workflow may fail without recovery.</p>
+            <p>Here's a Plan-and-Execute implementation:</p>
+<pre><code>from typing import List, Dict, Any
+from dataclasses import dataclass
+from enum import Enum
+
+class StepStatus(Enum):
+    PENDING = "pending"
+    IN_PROGRESS = "in_progress"
+    COMPLETED = "completed"
+    FAILED = "failed"
+
+@dataclass
+class ExecutionStep:
+    """A single step in the execution plan."""
+    id: int
+    description: str
+    tool: str
+    parameters: Dict[str, Any]
+    status: StepStatus = StepStatus.PENDING
+    result: Any = None
+    error: str = None
+
+class PlanExecuteAgent:
+    """Plan-then-execute agent pattern."""
+    
+    def __init__(self, llm, tools: List[Tool]):
+        self.llm = llm
+        self.tools = {t.name: t for t in tools}
+    
+    async def execute(self, task: str) -> Dict:
+        # Phase 1: Planning
+        plan = await self._create_plan(task)
+        
+        # Phase 2: Execution
+        results = []
+        for step in plan.steps:
+            step.status = StepStatus.IN_PROGRESS
+            result = await self._execute_step(step)
+            step.result = result
+            step.status = StepStatus.COMPLETED if result.success else StepStatus.FAILED
+            
+            if not result.success and plan.on_failure == "abort":
+                break
+            
+            results.append(result)
+        
+        return {"plan": plan, "results": results}
+    
+    async def _create_plan(self, task: str) -> ExecutionPlan:
+        """Use LLM to create detailed execution plan."""
+        prompt = f"""Create a detailed plan to accomplish this task: {task}
+        
+For each step, specify:
+1. What needs to be done
+2. Which tool to use
+3. What parameters are needed
+
+Return as a JSON plan."""
+        # Parse LLM response into ExecutionPlan
+        pass
+    
+    async def _execute_step(self, step: ExecutionStep) -> StepResult:
+        """Execute a single step."""
+        tool = self.tools.get(step.tool)
+        if not tool:
+            return StepResult(success=False, error=f"Unknown tool: {step.tool}")
+        
+        try:
+            result = await tool.ainvoke(step.parameters)
+            return StepResult(success=True, output=result)
+        except Exception as e:
+            return StepResult(success=False, error=str(e))</code></pre>
+
+            <h3 id="multi-agent-patterns">3. Multi-Agent Patterns</h3>
+            <p>For highly complex, multi-domain problems requiring different expertise, multi-agent systems apply the divide-and-conquer principle. Rather than one agent handling everything, specialized agents handle specific aspects, coordinated through various patterns.</p>
+            <p>The sequential pipeline pattern is the simplest: Agent A completes its work, passes the result to Agent B, which passes its result to Agent C, and so on. This works when your task has strict linear dependencies—where each step genuinely requires the full output of the previous step.</p>
+            <p>The supervisor pattern uses a central coordinator to delegate work to specialized agents. The supervisor analyzes the incoming task, breaks it into subtasks, assigns each to the appropriate specialist, and aggregates results. This pattern works well when tasks vary significantly in type and require different expertise.</p>
+            <p>The parallel execution pattern runs independent subtasks simultaneously, then merges results. This maximizes throughput when work can be decomposed into independent pieces. The challenge is managing dependencies—when subtasks have shared dependencies, you need careful orchestration.</p>
+            <p>A critical design rule for multi-agent systems: exactly one agent must be designated as the orchestrator to prevent coordination conflicts. If multiple agents try to coordinate simultaneously, you'll encounter race conditions and inconsistent state.</p>
+            <p>Here's a supervisor pattern implementation:</p>
+<pre><code>from langgraph.graph import StateGraph, START, END
+from langgraph.prebuilt import create_react_agent
+from typing import TypedDict
+
+class AgentState(TypedDict):
+    task: str
+    research_results: str
+    analysis: str
+    final_output: str
+    next_agent: str
+
+# Create specialized agents
+researcher = create_react_agent(
+    model=ChatAnthropic(model="claude-sonnet-4-20250514"),
+    tools=[web_search, arxiv_search],
+    name="researcher"
+)
+
+analysis_agent = create_react_agent(
+    model=ChatAnthropic(model="claude-sonnet-4-20250514"),
+    tools=[data_analysis, visualization],
+    name="analyst"
+)
+
+writer_agent = create_react_agent(
+    model=ChatAnthropic(model="claude-sonnet-4-20250514"),
+    tools=[document_writer],
+    name="writer"
+)
+
+# Supervisor logic
+def supervisor_node(state: AgentState) -> AgentState:
+    """Decide which agent to route to next."""
+    task = state["task"]
+    
+    if not state.get("research_results"):
+        return {"next_agent": "researcher"}
+    elif not state.get("analysis"):
+        return {"next_agent": "analyst"}
+    else:
+        return {"next_agent": "writer"}
+
+# Build workflow graph
+graph = StateGraph(AgentState)
+graph.add_node("supervisor", supervisor_node)
+graph.add_node("researcher", researcher)
+graph.add_node("analyst", analysis_agent)
+graph.add_node("writer", writer_agent)
+
+graph.add_edge(START, "supervisor")
+graph.add_conditional_edges(
+    "supervisor",
+    lambda x: x["next_agent"],
+    {"researcher": "researcher", "analyst": "analyst", "writer": "writer"}
+)
+graph.add_edge("researcher", "supervisor")
+graph.add_edge("analyst", "supervisor")
+graph.add_edge("writer", END)
+
+workflow = graph.compile()</code></pre>
+
+            <h2 id="tool-design">Tool Design Best Practices</h2>
+            <p>Tools are the means by which agents interact with the world. Poorly designed tools lead to unpredictable behavior, failed tasks, and frustrated users. Well-designed tools are precise, idempotent, and provide clear feedback.</p>
+            <p>Tool descriptions should be comprehensive and precise. Consider the difference between "Search the knowledge base" and "Search the knowledge base for product specifications, troubleshooting guides, and FAQs. Returns relevant documents with excerpts." The more specific description produces more reliable behavior.</p>
+            <p>Parameter validation is critical. Tools should validate their inputs before proceeding, returning clear error messages when parameters are invalid. This prevents agents from proceeding with bad data and makes debugging easier when things go wrong.</p>
+            <p>Side effects should be idempotent where possible. An idempotent operation produces the same result regardless of how many times it's called with the same parameters. This matters because agents may retry operations, and non-idempotent operations can lead to duplicate records or inconsistent state.</p>
+            <p>Time and cost budgets should be built into tool definitions. Each tool call has computational cost, and runaway agents can accumulate significant expenses. Implement timeouts and budget limits at the tool level.</p>
+            <p>More tools means more confusion. Start with 3-5 essential tools. Add more only when you have a clear use case and evidence that the agent can reliably choose among them. The max_steps parameter is critical—without it, a confused agent can loop forever, burning tokens and accomplishing nothing.</p>
+            <p>Here's an example of well-structured tool definitions:</p>
+<pre><code>from typing import List, Optional
+from pydantic import BaseModel, Field
+
+class SearchParams(BaseModel):
+    """Parameters for web search."""
+    query: str = Field(..., description="Search query, max 200 characters")
+    max_results: int = Field(default=5, ge=1, le=10, description="Number of results to return")
+    language: Optional[str] = Field(default="en", description="ISO language code")
+
+class DatabaseQueryParams(BaseModel):
+    """Parameters for database queries."""
+    table: str = Field(..., description="Table name to query")
+    filters: dict = Field(default_factory=dict, description="WHERE clause filters")
+    limit: int = Field(default=100, ge=1, le=1000, description="Max rows to return")
+    
+    def validate_filters(self):
+        """Ensure filters are safe."""
+        allowed_keys = {"status", "created_at", "user_id", "category"}
+        for key in self.filters:
+            if key not in allowed_keys:
+                raise ValueError(f"Unsafe filter key: {key}")
+
+def create_search_tool() -> Tool:
+    """Create a well-documented search tool."""
+    return Tool(
+        name="web_search",
+        func=search_impl,
+        description="""Search the web for information on a topic.
+        
+        Use this when you need current information, facts, or news.
+        Not for historical data that might be in a database.
+        
+        Args:
+            query: The search query (1-200 chars)
+            max_results: Number of results (1-10, default 5)
+            language: ISO language code (default: en)
+        
+        Returns:
+            List of results with title, url, and snippet""",
+        args_schema=SearchParams
+    )</code></pre>
+
+            <h2 id="memory-systems">Memory Systems</h2>
+            <p>Memory is what allows agents to maintain context across turns, learn from past interactions, and provide personalized experiences. A sophisticated memory system is essential for production agents that handle complex, multi-turn conversations.</p>
+            <p>The layered memory approach organizes memory by retention period and access speed. Working memory provides instant access to current context—the task at hand, recent tool results, and active plans. This typically lives in fast in-memory structures with sub-millisecond access times.</p>
+            <p>Short-term memory handles conversation history that remains relevant for the current session but grows less important over time. As the conversation extends, older messages can be summarized to preserve essential information while reducing token usage.</p>
+            <p>Long-term memory stores persistent information across sessions: user preferences, learned domain knowledge, past successful approaches. Vector databases excel at this by enabling semantic retrieval—finding relevant memories based on meaning rather than exact matches.</p>
+            <p>Semantic caching complements memory systems by recognizing similar queries and returning cached responses. At high scale, well-tuned semantic caching can reduce LLM API costs by 40-60% while improving latency for repeat queries.</p>
+            <p>Here's a comprehensive memory implementation:</p>
+<pre><code>import redis
+from typing import Optional, List, Dict, Any
+from dataclasses import dataclass, field
+import json
+
+@dataclass
+class MemoryConfig:
+    """Configuration for memory system."""
+    working_ttl: int = 3600  # 1 hour
+    summary_threshold: int = 10  # messages before summarizing
+    longterm_top_k: int = 5
+    
+class AgentMemorySystem:
+    """Production memory system with layered storage."""
+    
+    def __init__(self, config: MemoryConfig, redis_client: redis.Redis, vector_store):
+        self.config = config
+        self.redis = redis_client
+        self.vector_store = vector_store
+        self.llm = ChatOpenAI(model="gpt-4o")
+    
+    async def get_context(self, session_id: str) -> Dict[str, Any]:
+        """Retrieve all relevant context for a session."""
+        working = self._get_working_memory(session_id)
+        summary = self._get_summary(session_id)
+        longterm = self._get_longterm_memories(session_id, working.get("task", ""))
+        
+        return {
+            "working": working,
+            "summary": summary,
+            "longterm": longterm,
+            "recent_messages": await self._get_recent_messages(session_id)
+        }
+    
+    async def store_interaction(
+        self, 
+        session_id: str, 
+        messages: List[Dict],
+        tool_calls: List[Dict],
+        result: Any
+    ):
+        """Store an interaction to appropriate memory layers."""
+        # Store in working memory
+        await self._store_working_memory(session_id, {
+            "last_tool_calls": tool_calls,
+            "last_result": result,
+            "message_count": len(messages)
+        })
+        
+        # Check if we need to summarize
+        if len(messages) >= self.config.summary_threshold:
+            await self._create_and_store_summary(session_id, messages)
+        
+        # Store important interactions to long-term memory
+        if self._is_notable_interaction(tool_calls, result):
+            await self._store_longterm(session_id, messages, tool_calls, result)
+    
+    async def _create_and_store_summary(self, session_id: str, messages: List[Dict]):
+        """Compress conversation history into summary."""
+        prompt = f"""Summarize this conversation concisely, preserving key information:
+        
+{messages}
+        
+Include: user goals, important facts learned, tools used, current status."""
+        
+        summary = self.llm.invoke(prompt)
+        await self._store_summary(session_id, summary)
+    
+    def _is_notable_interaction(self, tool_calls: List[Dict], result: Any) -> bool:
+        """Determine if interaction is worth storing long-term."""
+        # Store if tool succeeded and provided valuable info
+        if result.get("success") and tool_calls:
+            return True
+        return False</code></pre>
 
             <h2 id="frameworks">Popular Frameworks</h2>
-            <ul>
-                <li><strong>LangChain/LangGraph</strong> - Most popular, flexible</li>
-                <li><strong>CrewAI</strong> - Multi-agent orchestration</li>
-                <li><strong>AutoGen</strong> - Microsoft's agent framework</li>
-                <li><strong>SmolAgents</strong> - Lightweight, simple</li>
-            </ul>
+            <p>The agent framework landscape has matured considerably. Here's a practical comparison of the leading options based on benchmarks and real-world usage patterns.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Framework</th>
+                        <th>Best For</th>
+                        <th>Strengths</th>
+                        <th>Weaknesses</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>LangGraph</strong></td>
+                        <td>Complex workflows with state management</td>
+                        <td>Fastest (2.2x CrewAI), explicit state, mature ecosystem</td>
+                        <td>Can be over-abstracted for simple cases</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CrewAI</strong></td>
+                        <td>Multi-agent collaboration</td>
+                        <td>Great for multi-agent systems, clear abstractions</td>
+                        <td>Slower execution, less flexible</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AutoGen</strong></td>
+                        <td>Microsoft ecosystem, research</td>
+                        <td>Strong Microsoft integration, flexible</td>
+                        <td>Steeper learning curve</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SmolAgents</strong></td>
+                        <td>Simple, lightweight agents</td>
+                        <td>Minimal dependencies, easy to understand</td>
+                        <td>Limited enterprise features</td>
+                    </tr>
+                    <tr>
+                        <td><strong>OpenAI Agents SDK</strong></td>
+                        <td>OpenAI ecosystem users</td>
+                        <td>Excellent function calling, good documentation</td>
+                        <td>Tied to OpenAI models</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>LangGraph, built on top of LangChain, models agent workflows as directed graphs with explicit state management. Benchmark results show it's the fastest framework—approximately 2.2 times faster than CrewAI on equivalent tasks.</p>
+            <p>CrewAI excels at multi-agent systems where you need agents to collaborate. Its role-based agent definitions make it easy to create specialist agents that work together on complex tasks.</p>
+            <p>Sometimes the best choice is building from scratch. If your agent does one thing well, you might not need a framework at all. Simple agents can be implemented with minimal code, giving you more control and fewer dependencies.</p>
 
             <h2 id="production">Production Considerations</h2>
-            <p>Building demos is easy. Production agents require:</p>
-            <ul>
-                <li><strong>Guardrails</strong> - Prevent harmful actions</li>
-                <li><strong>Error handling</strong> - Graceful failures</li>
-                <li><strong>Observability</strong> - LangSmith, custom logging</li>
-                <li><strong>Cost control</strong> - Token budgets, caching</li>
-                <li><strong>Human-in-loop</strong> - Approval for risky actions</li>
-            </ul>
+            <p>Building demos is easy. Production agents require additional considerations around reliability, security, observability, and cost control.</p>
+
+            <h3 id="guardrails">Guardrails</h3>
+            <p>Prevent harmful actions before they occur. Guardrails are the policy layer that constrains what your agent can do. They operate at multiple levels: input validation rejects malicious or malformed inputs before they reach the agent; output filtering ensures responses meet safety standards; action pre-checking validates that planned actions are allowed.</p>
+            <p>OWASP identifies "Excessive Agency" as a top risk for AI applications: LLMs taking actions beyond intended scope. Policy-as-code approaches directly mitigate this risk by explicitly defining what actions are permitted and requiring approval for sensitive operations.</p>
+<pre><code>from typing import List, Optional
+from enum import Enum
+from dataclasses import dataclass
+
+class ActionRisk(Enum):
+    LOW = "low"
+    MEDIUM = "medium"
+    HIGH = "high"
+    CRITICAL = "critical"
+
+@dataclass
+class GuardrailConfig:
+    """Configuration for agent guardrails."""
+    require_approval_for_risk: ActionRisk = ActionRisk.HIGH
+    allowed_tool_names: List[str] = None
+    blocked_patterns: List[str] = None
+    max_steps_per_session: int = 50
+    max_cost_per_session: float = 10.0
+
+class GuardrailSystem:
+    """Production guardrail system."""
+    
+    def __init__(self, config: GuardrailConfig):
+        self.config = config
+        self.session_costs: Dict[str, float] = {}
+        self.session_steps: Dict[str, int] = {}
+    
+    async def check_action(self, session_id: str, action: AgentAction) -> ApprovalResult:
+        """Check if action is allowed."""
+        # Check step budget
+        if self.session_steps.get(session_id, 0) >= self.config.max_steps_per_session:
+            return ApprovalResult(approved=False, reason="Step budget exceeded")
+        
+        # Check cost budget
+        estimated_cost = self._estimate_cost(action)
+        current_cost = self.session_costs.get(session_id, 0)
+        if current_cost + estimated_cost > self.config.max_cost_per_session:
+            return ApprovalResult(approved=False, reason="Cost budget exceeded")
+        
+        # Check tool whitelist
+        if self.config.allowed_tool_names:
+            if action.tool_name not in self.config.allowed_tool_names:
+                return ApprovalResult(approved=False, reason="Tool not allowed")
+        
+        # Check risk level
+        risk = self._assess_risk(action)
+        if risk.value >= self.config.require_approval_for_risk.value:
+            return ApprovalResult(approved=False, reason="Requires approval", needs_human=True)
+        
+        return ApprovalResult(approved=True)
+    
+    def record_action(self, session_id: str, action: AgentAction, cost: float):
+        """Record action for budget tracking."""
+        self.session_steps[session_id] = self.session_steps.get(session_id, 0) + 1
+        self.session_costs[session_id] = self.session_costs.get(session_id, 0) + cost</code></pre>
+
+            <h3 id="error-handling">Error Handling</h3>
+            <p>Graceful failures prevent agent crashes from becoming system failures. Agents encounter errors frequently—API timeouts, tool failures, invalid responses—and must handle these gracefully without crashing or entering infinite loops.</p>
+            <p>Circuit breaker patterns prevent cascade failures when tools become unreliable. When a tool fails repeatedly, the circuit breaker opens and future calls fail fast rather than wasting resources on likely-failed operations.</p>
+<pre><code>from enum import Enum
+from dataclasses import dataclass
+import asyncio
+import time
+
+class CircuitState(Enum):
+    CLOSED = "closed"  # Normal operation
+    OPEN = "open"  # Failing fast
+    HALF_OPEN = "half_open"  # Testing recovery
+
+@dataclass
+class CircuitBreakerConfig:
+    failure_threshold: int = 5
+    recovery_timeout: int = 60
+    half_open_max_calls: int = 3
+
+class CircuitBreaker:
+    """Circuit breaker for tool calls."""
+    
+    def __init__(self, config: CircuitBreakerConfig):
+        self.config = config
+        self.state = CircuitState.CLOSED
+        self.failure_count = 0
+        self.last_failure_time = None
+        self.half_open_calls = 0
+    
+    async def call(self, func, *args, **kwargs):
+        if self.state == CircuitState.OPEN:
+            if time.time() - self.last_failure_time > self.config.recovery_timeout:
+                self.state = CircuitState.HALF_OPEN
+                self.half_open_calls = 0
+            else:
+                raise CircuitOpenError("Circuit is open")
+        
+        try:
+            result = await func(*args, **kwargs)
+            self._on_success()
+            return result
+        except Exception as e:
+            self._on_failure()
+            raise
+    
+    def _on_success(self):
+        self.failure_count = 0
+        if self.state == CircuitState.HALF_OPEN:
+            self.half_open_calls += 1
+            if self.half_open_calls >= self.config.half_open_max_calls:
+                self.state = CircuitState.CLOSED
+    
+    def _on_failure(self):
+        self.failure_count += 1
+        self.last_failure_time = time.time()
+        if self.failure_count >= self.config.failure_threshold:
+            self.state = CircuitState.OPEN</code></pre>
+
+            <h3 id="observability">Observability</h3>
+            <p>Every action is logged, traced, and measurable. Without traces, you can't debug or improve agent behavior. Production agents need comprehensive observability at three levels: logging captures individual events; tracing tracks the full execution path through tools and decisions; metrics provide aggregate performance and reliability data.</p>
+            <p>LangSmith provides excellent tracing for LangChain-based agents. For custom implementations, OpenTelemetry integration provides vendor-neutral observability. The key is capturing enough detail to reconstruct any agent execution for debugging.</p>
+<pre><code>from opentelemetry import trace
+from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from prometheus_client import Counter, Histogram
+
+# Configure tracing
+trace.set_tracer_provider(TracerProvider())
+tracer = trace.get_tracer(__name__)
+
+# Define metrics
+AGENT_REQUESTS = Counter(
+    'agent_requests_total',
+    'Total agent requests',
+    ['agent_name', 'status']
+)
+AGENT_LATENCY = Histogram(
+    'agent_latency_seconds',
+    'Agent request latency',
+    ['agent_name']
+)
+AGENT_TOKENS = Counter(
+    'agent_tokens_total',
+    'Total tokens consumed',
+    ['agent_name', 'model']
+)
+TOOL_USAGE = Counter(
+    'tool_usage_total',
+    'Tool invocation count',
+    ['tool_name', 'status']
+)
+
+class ObservableAgent:
+    """Agent with full observability."""
+    
+    def __init__(self, agent, agent_name: str):
+        self.agent = agent
+        self.agent_name = agent_name
+    
+    async def execute(self, query: str) -> dict:
+        with tracer.start_as_current_span("agent.execute") as span:
+            span.set_attribute("query.length", len(query))
+            span.set_attribute("agent.name", self.agent_name)
+            
+            start_time = time.time()
+            try:
+                result = await self.agent.execute(query)
+                
+                span.set_attribute("result.success", True)
+                span.set_attribute("result.steps", len(result.get("steps", [])))
+                
+                AGENT_REQUESTS.labels(agent_name=self.agent_name, status="success").inc()
+                
+                return result
+            except Exception as e:
+                span.set_attribute("result.success", False)
+                span.set_attribute("error", str(e))
+                span.record_exception(e)
+                
+                AGENT_REQUESTS.labels(agent_name=self.agent_name, status="error").inc()
+                raise
+            finally:
+                duration = time.time() - start_time
+                AGENT_LATENCY.labels(agent_name=self.agent_name).observe(duration)</code></pre>
+
+            <h3 id="cost-control">Cost Control</h3>
+            <p>Token budgets and caching prevent runaway expenses. Agents are expensive—a simple LLM application makes one inference call per user interaction, while an agent might make five to fifty calls per task. Without controls, costs can spiral quickly.</p>
+            <p>Context management has the most impact on cost: summarize old messages, set strict context limits, and cache aggressively. Token budgets per session prevent single conversations from accumulating excessive costs.</p>
+            <p>Semantic caching reduces costs for repeat queries by recognizing similar requests and returning cached responses. At scale, well-tuned caching can reduce LLM API costs by 40-60%.</p>
+            <p>Model routing sends simple tasks to cheaper, faster models while reserving powerful models for complex reasoning. This optimization alone can reduce costs significantly without sacrificing quality on complex tasks.</p>
+
+            <h3 id="human-in-loop">Human-in-the-Loop</h3>
+            <p>Approval for risky actions keeps humans in the loop for consequential decisions. High-stakes decisions typically call for human approval gates, complete audit trails, and explicit oversight paths.</p>
+            <p>Implement support for human-in-the-loop interruption points where humans can pause, guide, or terminate agent execution. This is essential for production systems where errors can have real consequences.</p>
+            <p>The key principle: if a human could reasonably approve each action, you probably don't need an agent. Agents are justified when the workflow requires dozens of decisions in seconds. Even then, humans should be able to intervene for exceptional cases.</p>
+
+            <h2 id="multi-agent">Multi-Agent Systems</h2>
+            <p>The era of the single, monolithic AI agent is winding down—and honestly, it's about time. A single agent hits a ceiling when faced with complex, multi-domain tasks. Multi-agent systems apply the divide-and-conquer principle, breaking complex workflows into specialized sub-tasks handled by purpose-built agents.</p>
+            <p>Multi-agent setups can improve throughput and resilience by running sub-tasks in parallel and isolating failures. If one agent fails, the others continue operating. This modularity also makes it easier to update or improve individual agents without affecting the entire system.</p>
+            <p>However, multi-agent systems introduce coordination overhead. You need to manage communication between agents, handle conflicts, and ensure consistent state. The complexity is justified only when the task genuinely benefits from specialization.</p>
+            <p>The supervisor pattern works well for many use cases. A central coordinator analyzes the incoming task, breaks it into subtasks, assigns each to the appropriate specialist agent, and aggregates results. The supervisor doesn't need to be a full agent—it can be a simple routing layer that delegates based on task characteristics.</p>
+            <p>For more complex scenarios, hierarchical agents provide additional structure. A coordinator agent manages research, analysis, and action agents, each of which manages its own sub-agents. This mirrors traditional organizational structures and scales well for enterprise applications.</p>
+            <p>Here's a more sophisticated multi-agent implementation:</p>
+<pre><code>from typing import TypedDict, Literal
+from langgraph.graph import StateGraph, END
+
+class MultiAgentState(TypedDict):
+    """State for hierarchical multi-agent system."""
+    task: str
+    task_type: str  # "research", "analysis", "creation", "general"
+    coordinator_plan: list
+    research_results: list
+    analysis_results: dict
+    final_response: str
+    agent_outputs: dict
+
+class HierarchicalAgentSystem:
+    """Multi-level agent organization."""
+    
+    def __init__(self):
+        self.coordinator = self._create_coordinator()
+        self.research_team = self._create_research_team()
+        self.analysis_team = self._create_analysis_team()
+        self.action_team = self._create_action_team()
+    
+    def _create_coordinator(self):
+        """Top-level coordinator that routes tasks."""
+        return create_react_agent(
+            model=ChatAnthropic(model="claude-sonnet-4"),
+            tools=[plan_router],
+            name="coordinator"
+        )
+    
+    def _create_research_team(self):
+        """Team of research agents."""
+        return {
+            "web": create_react_agent(
+                model=ChatAnthropic(model="claude-sonnet-4"),
+                tools=[web_search],
+                name="web_researcher"
+            ),
+            "academic": create_react_agent(
+                model=ChatAnthropic(model="claude-sonnet-4"),
+                tools=[arxiv_search, pubmed_search],
+                name="academic_researcher"
+            ),
+            "internal": create_react_agent(
+                model=ChatAnthropic(model="claude-sonnet-4"),
+                tools=[internal_db, internal_docs],
+                name="internal_researcher"
+            )
+        }
+    
+    def execute(self, task: str) -> dict:
+        """Execute task through hierarchical agents."""
+        # Step 1: Coordinator analyzes and plans
+        plan = self.coordinator.invoke({"task": task})
+        
+        # Step 2: Research phase - parallel execution
+        research_tasks = plan["research_requirements"]
+        research_results = self._run_parallel(
+            self.research_team, 
+            research_tasks
+        )
+        
+        # Step 3: Analysis phase
+        analysis = self.analysis_team.invoke({
+            "task": task,
+            "research": research_results
+        })
+        
+        # Step 4: Action phase
+        final = self.action_team.invoke({
+            "task": task,
+            "analysis": analysis
+        })
+        
+        return final</code></pre>
+
+            <h2 id="mcp-protocol">Model Context Protocol (MCP)</h2>
+            <p>If multi-agent architecture is the skeleton, the Model Context Protocol is the nervous system. Announced by Anthropic in November 2024 and now governed by the Linux Foundation's Agentic AI Foundation, MCP has become the de facto standard for agent-to-tool communication.</p>
+            <p>The analogy that stuck is "USB-C for AI": a single, standardized interface that allows any agent to connect to any tool or data source. Before MCP, every team building agents was solving the same integration problems independently—connecting LLMs to databases, file systems, APIs, and more. MCP standardizes these connections.</p>
+            <p>MCP defines three core primitives for different interaction patterns. Resources are data sources the agent can access—databases, files, APIs. Tools are functions the agent can invoke to take actions. Prompts are reusable templates for common tasks.</p>
+            <p>The Python SDK makes it straightforward to expose services as MCP-compatible tools and resources:</p>
+<pre><code>from mcp.server import Server
+from mcp.types import Tool, Resource
+from pydantic import AnyUrl
+
+server = Server("my-agent-server")
+
+@server.list_tools()
+async def list_tools() -> list[Tool]:
+    """List available tools."""
+    return [
+        Tool(
+            name="search_database",
+            description="Search the company database for records",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "query": {"type": "string", "description": "Search query"},
+                    "limit": {"type": "integer", "description": "Max results", "default": 10}
+                },
+                "required": ["query"]
+            }
+        ),
+        Tool(
+            name="send_notification",
+            description="Send a notification to a channel",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "channel": {"type": "string"},
+                    "message": {"type": "string"}
+                },
+                "required": ["channel", "message"]
+            }
+        )
+    ]
+
+@server.call_tool()
+async def call_tool(name: str, arguments: dict) -> str:
+    """Execute a tool call."""
+    if name == "search_database":
+        return await search_company_db(arguments["query"], arguments.get("limit", 10))
+    elif name == "send_notification":
+        return await send_to_channel(arguments["channel"], arguments["message"])
+    raise ValueError(f"Unknown tool: {name}")
+
+@server.list_resources()
+async def list_resources() -> list[Resource]:
+    """List available resources."""
+    return [
+        Resource(
+            uri=AnyUrl("company://employees/schema"),
+            name="employee_schema",
+            description="Database schema for employee table"
+        )
+    ]</code></pre>
+            <p>Key enhancements in 2026 include multimodal support, allowing tools and resources to handle images, video, and audio natively. A tool can now return an annotated image or accept an audio clip as input, with the protocol handling serialization and streaming. The move to the Linux Foundation ensures continued open governance and community-driven evolution.</p>
+
+            <h2 id="a2a-protocol">Agent-to-Agent Protocol (A2A)</h2>
+            <p>While MCP standardizes how agents talk to tools, the Agent-to-Agent Protocol (A2A) standardizes how agents talk to each other. Launched by Google with more than 50 partners (including Atlassian, Salesforce, and SAP), A2A is now also governed by the Linux Foundation.</p>
+            <p>A2A is built on three foundational ideas. Task-oriented interaction means agents communicate about accomplishing specific goals rather than just exchanging messages. Agent Cards are JSON metadata that let agents discover each other's capabilities—each agent publishes what it can do and how to invoke it. Negotiation allows agents to agree on how they'll work together rather than having a rigid protocol dictate interaction.</p>
+            <p>The wire protocol uses JSON-RPC 2.0 over HTTP(S), deliberately simple and familiar. Every A2A interaction is a request-response pattern. Version 0.3 of the specification added gRPC support, enabling high-performance binary communication for demanding workloads.</p>
+            <p>The combination of MCP and A2A creates a powerful interoperability layer. An orchestrator agent uses A2A to delegate work to specialist agents, each of which uses MCP to connect to tools and data sources. This separation of concerns—agents talk to agents via A2A, agents talk to tools via MCP—provides clean architecture.</p>
+            <p>Here's an A2A agent implementation:</p>
+<pre><code>from a2a import Agent, AgentCard, A2AServer
+from typing import Dict, Any
+
+# Define agent capabilities
+research_agent_card = AgentCard(
+    name="Research Agent",
+    description="Specialized in finding and summarizing information",
+    skills=["web_search", "document_analysis", "summarization"],
+    endpoint="http://research-agent:8000"
+)
+
+class ResearchAgent:
+    """Agent that can be discovered via A2A."""
+    
+    def __init__(self):
+        self.card = research_agent_card
+        self.tools = [web_search_tool, summarizer_tool]
+    
+    async def execute_task(self, task: Dict[str, Any]) -> Dict[str, Any]:
+        """Execute a research task."""
+        task_type = task.get("type")
+        
+        if task_type == "web_search":
+            return await self._web_search(task["query"])
+        elif task_type == "summarize":
+            return await self._summarize(task["content"])
+        else:
+            return {"error": f"Unknown task type: {task_type}"}
+    
+    async def _web_search(self, query: str) -> Dict:
+        results = await self.tools["web_search"].invoke(query)
+        summary = await self.tools["summarizer"].invoke(results)
+        return {"results": results, "summary": summary}
+
+# Create A2A server
+a2a_server = A2AServer(
+    agent=ResearchAgent(),
+    card=research_agent_card
+)
+
+await a2a_server.start()</code></pre>
+
+            <h2 id="evaluation">Evaluation Strategies</h2>
+            <p>Evals are not optional—test full trajectories, not only final answers. Evaluating agents is fundamentally different from evaluating simple LLM applications because you need to assess not just the final output but the entire reasoning path.</p>
+            <p>Evaluate full trajectories: tool choice correctness, argument validity, step count, and intermediate outcomes. An agent might produce the right final answer but take an inefficient path, or might produce a wrong answer despite good reasoning. Both cases matter.</p>
+            <p>Build eval datasets with realistic cases—ideally 20-50 examples that cover the range of tasks your agent should handle. Include edge cases and failure modes, not just happy paths. The goal is to catch regressions before they reach production.</p>
+            <p>Test both success rate and efficiency metrics. Success rate measures whether the agent accomplishes the task. Efficiency measures how many steps, tokens, and time it takes. A perfect success rate is meaningless if the agent is 10x slower than necessary.</p>
+            <p>Here's an evaluation framework implementation:</p>
+<pre><code>from dataclasses import dataclass
+from typing import List, Dict, Any, Optional
+from enum import Enum
+
+class EvalResult(Enum):
+    PASS = "pass"
+    FAIL = "fail"
+    PARTIAL = "partial"
+
+@dataclass
+class TrajectoryEval:
+    """Evaluation of a full agent trajectory."""
+    task_id: str
+    task: str
+    expected_outcome: Any
+    actual_outcome: Any
+    tool_sequence: List[str]
+    tool_arguments: List[Dict]
+    errors: List[str]
+    result: EvalResult
+    
+    @property
+    def tool_choice_accuracy(self) -> float:
+        """Percentage of correct tool choices."""
+        # Would compare against ideal sequence
+        pass
+    
+    @property
+    def efficiency_score(self) -> float:
+        """Score based on steps vs optimal."""
+        pass
+
+class AgentEvaluator:
+    """Framework for evaluating agent performance."""
+    
+    def __init__(self, agent, eval_dataset: List[Dict]):
+        self.agent = agent
+        self.eval_dataset = eval_dataset
+    
+    async def run_evaluation(self) -> Dict[str, Any]:
+        """Run full evaluation suite."""
+        results = []
+        
+        for test_case in self.eval_dataset:
+            trajectory = await self.agent.execute(test_case["task"])
+            eval_result = self._evaluate_trajectory(
+                test_case,
+                trajectory
+            )
+            results.append(eval_result)
+        
+        return self._aggregate_results(results)
+    
+    def _evaluate_trajectory(
+        self, 
+        test_case: Dict, 
+        trajectory: Dict
+    ) -> TrajectoryEval:
+        """Evaluate a single trajectory."""
+        # Check outcome correctness
+        outcome_correct = self._check_outcome(
+            test_case["expected"],
+            trajectory["output"]
+        )
+        
+        # Check tool selection
+        tool_correct = self._check_tool_sequence(
+            test_case.get("expected_tools", []),
+            trajectory["tool_calls"]
+        )
+        
+        # Determine overall result
+        if outcome_correct and tool_correct:
+            result = EvalResult.PASS
+        elif outcome_correct or tool_correct:
+            result = EvalResult.PARTIAL
+        else:
+            result = EvalResult.FAIL
+        
+        return TrajectoryEval(
+            task_id=test_case["id"],
+            task=test_case["task"],
+            expected_outcome=test_case["expected"],
+            actual_outcome=trajectory["output"],
+            tool_sequence=[t["name"] for t in trajectory.get("tool_calls", [])],
+            tool_arguments=[t["input"] for t in trajectory.get("tool_calls", [])],
+            errors=trajectory.get("errors", []),
+            result=result
+        )
+    
+    def _aggregate_results(self, results: List[TrajectoryEval]) -> Dict:
+        """Aggregate evaluation results."""
+        total = len(results)
+        passed = sum(1 for r in results if r.result == EvalResult.PASS)
+        
+        return {
+            "total": total,
+            "passed": passed,
+            "failed": total - passed,
+            "pass_rate": passed / total,
+            "avg_tool_accuracy": sum(r.tool_choice_accuracy for r in results) / total,
+            "avg_efficiency": sum(r.efficiency_score for r in results) / total
+        }</code></pre>
+
+            <h2 id="deployment">Deployment Patterns</h2>
+            <p>Production deployment requires thinking about scaling, reliability, and integration. Several patterns have emerged as particularly effective for agent systems.</p>
+            <p>The "Agent as a Service" pattern works well for product agents. Tools are internal API calls, and a backend service exposes endpoints for running agents. This pattern provides clear boundaries, easy scaling, and straightforward monitoring. The key is limiting which tools each agent can access—don't let every agent have every tool.</p>
+            <p>Serverless agent functions work for event-driven workloads where agents are invoked occasionally. Each invocation spawns a fresh agent that runs to completion. This pattern is simple to manage but has cold start latency. It suits workloads with predictable, intermittent demand.</p>
+            <p>Long-running agents maintain persistent state and handle continuous streams of requests. This pattern suits conversational agents and monitoring systems. It requires more sophisticated state management but provides lower latency after initial startup.</p>
+            <p>Here's a deployment-ready agent service:</p>
+<pre><code>from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from typing import Optional
+import asyncio
+
+app = FastAPI(title="Agent Service")
+
+class AgentRequest(BaseModel):
+    session_id: str
+    task: str
+    context: Optional[dict] = None
+
+class AgentResponse(BaseModel):
+    session_id: str
+    result: dict
+    steps: int
+    tokens_used: int
+    latency_ms: int
+
+class AgentService:
+    """Production agent service."""
+    
+    def __init__(self):
+        self.agent = self._create_agent()
+        self.circuit_breakers = {}
+    
+    async def execute(self, request: AgentRequest) -> AgentResponse:
+        start_time = time.time()
+        
+        # Get or create session context
+        context = await self._get_session_context(request.session_id)
+        if request.context:
+            context.update(request.context)
+        
+        # Execute with timeout
+        try:
+            result = await asyncio.wait_for(
+                self.agent.execute(request.task, context),
+                timeout=120.0
+            )
+        except asyncio.TimeoutError:
+            raise HTTPException(status_code=504, detail="Agent timeout")
+        
+        latency_ms = int((time.time() - start_time) * 1000)
+        
+        return AgentResponse(
+            session_id=request.session_id,
+            result=result,
+            steps=result.get("steps", 0),
+            tokens_used=result.get("tokens", 0),
+            latency_ms=latency_ms
+        )
+
+agent_service = AgentService()
+
+@app.post("/agent/execute", response_model=AgentResponse)
+async def execute_agent(request: AgentRequest):
+    """Execute an agent task."""
+    return await agent_service.execute(request)
+
+@app.get("/agent/health")
+async def health_check():
+    """Health check endpoint."""
+    return {"status": "healthy"}</code></pre>
+
+            <h2 id="when-to-use">When to Use Agents</h2>
+            <p>Most LLM applications don't need agents. Understanding when agents add value versus when they add unnecessary complexity is crucial for making good architectural decisions.</p>
+            <p>Choose direct LLM calls when tasks are simple and single-step. If a user asks a question and gets an answer, that's retrieval-augmented generation, not an agent. These simpler architectures are cheaper, faster, more reliable, and easier to debug.</p>
+            <p>Choose agents when three conditions hold. First, the task genuinely requires tool use—taking actions that modify state, not just information retrieval. Searching a database is retrieval; creating a support ticket is action. Second, the sequence of actions cannot be predetermined. If you know the steps in advance, use workflows. Agents are for situations where the LLM must decide what to do based on intermediate results. Third, human-in-the-loop approval latency is unacceptable. If users can wait for confirmation dialogs, build a workflow instead.</p>
+            <p>A practical heuristic for your first agent use case: look for workflows you personally spend thirty minutes or more on weekly. Tedious, repetitive work with clear success criteria makes the best starting point. You understand the domain deeply, can evaluate quality accurately, and the time investment justifies engineering effort.</p>
+            <p>Avoid starting with high-stakes decisions or workflows where failure modes are unclear. Those become tractable later, once you've built experience with simpler agents.</p>
 
             <h2 id="conclusion">Conclusion</h2>
-            <p>AI agents are transforming what AI can do. Start simple, iterate based on real usage, and always prioritize reliability over capability. The future is agentic.</p>
+            <p>AI agents represent a fundamental shift in how we build AI-powered systems—from passive tools that answer questions to active participants that accomplish goals. The components, patterns, and practices outlined in this guide provide a foundation for building production-ready agents.</p>
+            <p>The key insight is that building agents that work in production is more about solid engineering than about cutting-edge AI. Clear instructions, reliable tools, graceful error handling, and relentless testing matter more than the latest model or framework. The agents that work in production are boring by demo standards. They don't try to do everything. They do one thing well, handle edge cases gracefully, and get better over time through feedback and iteration.</p>
+            <p>Start simple. Ship fast. Iterate based on real usage. That's how you build AI agents that actually work.</p>
+            <p>The future is agentic. The tools and frameworks exist today to build sophisticated multi-agent systems that can handle complex, real-world tasks. The patterns are documented, the protocols are standardizing, and the ecosystem is maturing. What remains is the engineering work of turning demos into reliable production systems.</p>
         </article>
 
         <footer>

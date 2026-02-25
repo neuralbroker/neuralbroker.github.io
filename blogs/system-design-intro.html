@@ -63,20 +63,480 @@
         <article>
             <h1>Introduction to System Design</h1>
             <div class="meta"><span>System Design</span><span>Jan 2026</span></div>
+
             <p>Thinking about systems at scale—from load balancers to consistency models.</p>
-            <h2 id="basics">Core Concepts</h2>
+
+            <h2 id="table-of-contents">Table of Contents</h2>
+            <ol>
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#fundamentals">Core Fundamentals</a></li>
+                <li><a href="#scalability">Scalability</a></li>
+                <li><a href="#load-balancing">Load Balancing</a></li>
+                <li><a href="#caching">Caching</a></li>
+                <li><a href="#databases">Databases</a></li>
+                <li><a href="#cap-theorem">CAP Theorem</a></li>
+                <li><a href="#communication">Communication Patterns</a></li>
+                <li><a href="#reliability">Reliability & Fault Tolerance</a></li>
+                <li><a href="#patterns">Design Patterns</a></li>
+                <li><a href="#framework">A Framework for System Design</a></li>
+                <li><a href="#common-systems">Common Systems to Design</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+            </ol>
+
+            <h2 id="intro">Introduction</h2>
+            <p>Software applications regularly experience catastrophic crashes when massive network traffic spikes occur suddenly. A solitary server might perform flawlessly when handling a relatively small number of computational tasks. However, a severe hardware limitation becomes painfully apparent when millions of concurrent network requests flood the digital infrastructure simultaneously.</p>
+            <p>System design is the methodical engineering process of defining the overall architecture and internal data flow of a software product. Proper architectural planning completely prevents catastrophic downtime and confidently ensures highly reliable platform functionality. By deeply understanding exactly how different software components interact, developers can successfully prevent structural system bottlenecks entirely.</p>
+            <p>System Design is the process of creating software systems that scale, stay reliable under pressure, and evolve over time without breaking. It is one of the most important skills in software engineering for succeeding in interviews and for solving real-world engineering challenges. Whether you're designing a microservice for a startup or architecting a global platform for millions of users, the principles remain the same.</p>
+
+            <h2 id="fundamentals">Core Fundamentals</h2>
+            <p>Before diving into components and patterns, you need a mental model of what makes large-scale systems work. System Design isn't about copying diagrams you've seen online—it's about understanding the underlying principles that drive every architectural decision.</p>
+
+            <h3>Latency vs Throughput</h3>
+            <p>These two metrics are the foundation of performance measurement:</p>
+            <p><strong>Latency</strong> refers to how long it takes to process a single request. It's the time between initiating an action and receiving its result. Low-latency systems feel fast and responsive.</p>
+            <p><strong>Throughput</strong> measures how many requests can be processed in a given time period. High-throughput systems handle heavy traffic volumes.</p>
+            <p>The key insight: optimizing for one often impacts the other. A system optimized for low latency might process fewer requests per second. The right balance depends on your use case.</p>
+
+            <h3>Reliability vs Availability</h3>
+            <p>These terms are often used interchangeably but mean different things:</p>
+            <p><strong>Reliability</strong> means the system performs correctly even when things go wrong. A reliable system produces correct results consistently.</p>
+            <p><strong>Availability</strong> means the system is ready to serve requests when needed. An available system responds to queries, even if the answers might not be the most recent.</p>
+            <p>A system can be available without being reliable (always responds but with wrong data) and reliable without being available (correct but offline). The design challenge is balancing both.</p>
+
+            <h3>Stateless vs Stateful</h3>
+            <p><strong>Stateless services</strong> don't store any client-specific data between requests. Every request contains all information needed to process it. This makes horizontal scaling straightforward—you can add or remove instances without worrying about data consistency.</p>
+            <p><strong>Stateful services</strong> maintain client context across requests. They remember who the client is and what they're doing. This enables richer interactions but makes scaling and failover more complex.</p>
+            <p>Modern architectures prefer stateless services for the application layer, pushing state to databases and caches where it can be managed more effectively.</p>
+
+            <h2 id="scalability">Scalability</h2>
+            <p>Scalability means your system can handle increased loads—more users, data, or traffic—without a proportional drop in performance. There are two primary architectural methods to scale a software application:</p>
+
+            <h3>Vertical Scaling (Scale-Up)</h3>
+            <p>Vertical scaling involves adding significantly more computational power to a single existing server. Engineers upgrade the CPU, add more RAM, or increase storage capacity.</p>
+            <p>The advantages are simplicity—you don't change the software architecture—and improved performance for applications that don't distribute well.</p>
+            <p>However, vertical scaling has severe and unavoidable physical hardware limitations. A single motherboard can only hold a mathematically specific amount of memory and processor chips. Additionally, there's a single point of failure—if that one powerful machine fails, the entire system goes down.</p>
+
+            <h3>Horizontal Scaling (Scale-Out)</h3>
+            <p>Horizontal scaling permanently solves the physical limitations associated with upgrading a single machine. Instead of buying one massive server, engineers add multiple smaller independent servers to the network infrastructure.</p>
+            <p>These independent servers connect securely together to form a large distributed computing cluster. When network traffic increases, the system simply provisions new machines to share the heavy workload evenly. This approach offers nearly infinite expansion capabilities for massive software platforms.</p>
+            <p>If one server in the cluster inevitably crashes, the remaining backend servers continue processing network requests without interruption. Horizontal scaling is the required technical standard for building highly available systems in 2026.</p>
+
+            <h2 id="load-balancing">Load Balancing</h2>
+            <p>When a system utilizes horizontal scaling, a new technical challenge immediately appears. The internal network must figure out how to direct incoming web traffic to multiple different servers. Sending all user requests to the first server would logically cause an immediate platform crash.</p>
+            <p>This routing dilemma is exactly where a load balancer becomes absolutely necessary.</p>
+
+            <h3>How Load Balancers Work</h3>
+            <p>A load balancer is a dedicated software program that sits directly in front of the server cluster. It systematically acts as the primary entry point for all incoming external network traffic. When a client application sends a web request, the load balancer receives the data packets first.</p>
+            <p>The load balancer then uses specific mathematical algorithms to route requests to the most appropriate backend server:</p>
             <ul>
-                <li><strong>Latency vs Throughput</strong> - Speed vs volume</li>
-                <li><strong>CAP Theorem</strong> - Consistency, Availability, Partition tolerance</li>
-                <li><strong>Load Balancing</strong> - Distributing traffic across servers</li>
-                <li><strong>Caching</strong> - Speeding up data access</li>
+                <li><strong>Round Robin:</strong> Simply sends the first request to the first server, the second to the second server, and so on. Works well when servers have equal capacity.</li>
+                <li><strong>Least Connections:</strong> Routes to the server with the fewest active connections. Better for varying request complexities.</li>
+                <li><strong>IP Hash:</strong> Routes based on client IP, ensuring consistent session handling.</li>
+                <li><strong>Weighted:</strong> Distributes based on server capacity, sending more traffic to more powerful machines.</li>
             </ul>
+
+            <h3>Health Checks</h3>
+            <p>Load balancers continuously monitor server health through periodic checks. If a specific server fails to respond to the automated health check, the load balancer formally marks it as dead. The load balancer immediately stops routing new traffic to the failed machine until the server recovers. This silent failover protects user experience.</p>
+
+            <h3>Types of Load Balancers</h3>
+            <p><strong>Layer 4 (Transport):</strong> Makes routing decisions based on IP and port numbers. Faster but less intelligent.</p>
+            <p><strong>Layer 7 (Application):</strong> Can make decisions based on HTTP headers, URLs, or content. More flexible but slightly slower.</p>
+
+            <h2 id="caching">Caching</h2>
+            <p>Fetching requested data directly from a primary database is computationally expensive and quite slow. If thousands of connected clients request the exact same database records simultaneously, the database will quickly become overwhelmed.</p>
+            <p>A cache is a temporary data storage layer specifically designed to solve this severe latency problem. When an application server needs specific data, it checks the high-speed cache layer first. If the data exists in cache (a "cache hit"), the system returns it immediately without touching the database. Only when data isn't cached (a "cache miss") does the system query the database.</p>
+
+            <h3>Cache Strategies</h3>
+            <p><strong>Cache-aside:</strong> The application checks the cache first, then populates it from the database on misses. This gives applications control but requires manual cache management.</p>
+            <p><strong>Write-through:</strong> Data is written to both cache and database simultaneously. Ensures consistency but adds write latency.</p>
+            <p><strong>Write-back:</strong> Data is written to cache first, then asynchronously written to the database. Fastest writes but risks data loss if cache fails.</p>
+            <p><strong>Time-to-Live (TTL):</strong> Cached data expires after a specified duration, ensuring freshness.</p>
+
+            <h3>Cache Invalidation</h3>
+            <p>One of the hardest problems in computer science. When underlying data changes, you must invalidate stale cache entries. Common strategies include immediate invalidation, TTL-based expiration, and probabilistic eviction.</p>
+
+            <h3>Popular Cache Technologies</h3>
+            <p><strong>Redis:</strong> In-memory data structure store, used as database, cache, and message broker. Supports various data structures and persistence options.</p>
+            <p><strong>Memcached:</strong> Simple, high-performance distributed memory object caching system. Simpler than Redis but less feature-rich.</p>
+
             <h2 id="databases">Databases</h2>
-            <p>Choosing between SQL and NoSQL, understanding ACID vs BASE, and when to use each.</p>
-            <h2 id="scalability">Scalability Patterns</h2>
-            <p>Horizontal vs vertical scaling, sharding strategies, and when to scale.</p>
-            <h2 id="practical">Practical Skills</h2>
-            <p>System design isn't just theory—it's about making tradeoffs. Practice by designing common systems: URL shortener, Twitter feed, etc.</p>
+            <p>Databases are a foundational component of any system design. Different types suit different needs:</p>
+
+            <h3>SQL (Relational) Databases</h3>
+            <p>SQL databases like PostgreSQL, MySQL, and Oracle ensure strict consistency through ACID properties:</p>
+            <ul>
+                <li><strong>Atomicity:</strong> Transactions are all-or-nothing</li>
+                <li><strong>Consistency:</strong> Data remains valid after transactions</li>
+                <li><strong>Isolation:</strong> Concurrent transactions don't interfere</li>
+                <li><strong>Durability:</strong> Committed data survives crashes</li>
+            </ul>
+            <p>Best for: Data with complex relationships, financial transactions, applications requiring strong consistency.</p>
+
+            <h3>NoSQL Databases</h3>
+            <p>NoSQL databases favor flexibility and horizontal scalability:</p>
+            <ul>
+                <li><strong>Document stores</strong> (MongoDB): Flexible schemas, JSON-like documents</li>
+                <li><strong>Key-value stores</strong> (DynamoDB): Simple lookups, extremely fast</li>
+                <li><strong>Wide-column stores</strong> (Cassandra): High write throughput, time-series data</li>
+                <li><strong>Graph databases</strong> (Neo4j): Relationship-heavy data</li>
+            </ul>
+            <p>Best for: Unstructured data, massive scale, rapid development cycles.</p>
+
+            <h3>When to Use What</h3>
+            <p>Choose SQL when you need complex queries, transactions, or referential integrity. Choose NoSQL when you need horizontal scale, flexible schemas, or are storing semi-structured data like JSON.</p>
+
+            <h3>Database Scaling Patterns</h3>
+            <p><strong>Read Replicas:</strong> Create copies of the database to handle read-heavy workloads. Writes go to the primary; reads distribute to replicas.</p>
+            <p><strong>Sharding (Horizontal Partitioning):</strong> Split large datasets into smaller chunks across multiple databases. Each shard contains a subset of data, reducing load on any single database.</p>
+            <p><strong>Connection Pooling:</strong> Reuse database connections rather than creating new ones for each request, reducing overhead.</p>
+
+            <h2 id="cap-theorem">CAP Theorem</h2>
+            <p>The CAP theorem states that in a distributed system, you can only guarantee two of the following three properties at once:</p>
+            <ul>
+                <li><strong>Consistency:</strong> Every read receives the most recent write</li>
+                <li><strong>Availability:</strong> Every request receives a non-error response</li>
+                <li><strong>Partition Tolerance:</strong> System continues operating despite network partitions</li>
+            </ul>
+            <p>Here's the critical insight: network partitions will happen. They are not optional to handle. Therefore, in practice, you're always choosing between consistency and availability during a partition.</p>
+            <p><strong>CP (Consistency + Partition Tolerance):</strong> Systems like ZooKeeper and etcd choose consistency. They'll reject requests rather than return potentially stale data.</p>
+            <p><strong>AP (Availability + Partition Tolerance):</strong> Systems like Cassandra and DynamoDB choose availability. They'll return potentially stale data rather than reject requests.</p>
+            <p><strong>CA (Consistency + Availability):</strong> Only possible when there are no partitions—which means single-node systems or systems that don't scale horizontally.</p>
+
+            <h2 id="communication">Communication Patterns</h2>
+            <p>How services communicate determines latency, coupling, and failure propagation:</p>
+
+            <h3>Synchronous (REST, gRPC)</h3>
+            <p>Client sends a request and waits for a response. Simple to understand and debug, but creates tight coupling and can cause cascading failures when services are down.</p>
+
+            <h3>Asynchronous (Message Queues)</h3>
+            <p>Services communicate through message brokers like Kafka or RabbitMQ. Producers send messages; consumers process them independently. This decouples services temporally—you don't need both running simultaneously.</p>
+            <p>Benefits include improved fault tolerance, better load leveling, and service independence. Tradeoffs include increased complexity and eventual consistency.</p>
+
+            <h3>Event-Driven Architecture</h3>
+            <p>Services emit events when something happens; other services react to those events. This enables loose coupling, scalability, and audit trails. Common implementations include event sourcing and CQRS.</p>
+
+            <h2 id="reliability">Reliability & Fault Tolerance</h2>
+            <p>Distributed systems must handle failures gracefully. The defining challenge is that partial failure is normal—some parts work while others don't.</p>
+
+            <h3>Redundancy</h3>
+            <p>Run multiple instances of critical components. If one fails, others continue serving. Load balancers automatically route around failures when properly configured.</p>
+
+            <h3>Circuit Breakers</h3>
+            <p>Prevent cascading failures by stopping requests to a failing service. Like electrical circuit breakers: when too many failures occur, the "breaker trips" and fast-fails requests rather than waiting for timeouts.</p>
+            <p>States: Closed (normal operation), Open (fail fast), Half-Open (test if service recovered).</p>
+
+            <h3>Graceful Degradation</h3>
+            <p>Design systems to provide partial functionality when components fail. If recommendation engine fails, show popular items instead. If payment processing fails, allow viewing but not purchasing.</p>
+
+            <h3>Rate Limiting</h3>
+            <p>Protect services from being overwhelmed by limiting requests per time period. Can be applied per user, per IP, or globally. Essential for preventing abuse and ensuring fair resource allocation.</p>
+
+            <h3>Backpressure</h3>
+            <p>When downstream services can't keep up, signal upstream to slow down rather than letting queues grow unbounded. Prevents memory exhaustion and cascading failures.</p>
+
+            <h2 id="patterns">Design Patterns</h2>
+            <p>System design patterns represent solutions that have emerged repeatedly in real systems facing similar constraints. Understanding the constraint that gave birth to a pattern is more important than memorizing its name.</p>
+
+            <h3>API Gateway</h3>
+            <p>A single entry point that sits between clients and backend services. It acts as a reverse proxy, handling authentication, rate limiting, request routing, and protocol translation.</p>
+
+            <h3>Service Discovery</h3>
+            <p>Services need to find each other dynamically. Client-side discovery (client asks registry) or server-side discovery (load balancer asks registry). Tools include Consul, Eureka, and Kubernetes DNS.</p>
+
+            <h3>CQRS (Command Query Responsibility Segregation)</h3>
+            <p>Separate read and write models. The write model handles business logic; the read model is optimized for queries. Enables independent scaling and specialized optimization.</p>
+
+            <h3>Saga Pattern</h3>
+            <p>Manages distributed transactions across multiple services by breaking them into a sequence of local transactions. If one step fails, compensating transactions undo previous steps.</p>
+
+            <h3>Sidecar Pattern</h3>
+            <p>Deploy helper components alongside the main service (like a sidecar on a motorcycle). Common uses include logging, monitoring, or proxying network traffic without modifying the main application.</p>
+
+            <h3>Strangler Fig Pattern</h3>
+            <p>Gradually replace a legacy system by running it alongside the new system, routing an increasing percentage of traffic to the new system over time.</p>
+
+            <h3>Anti-Corruption Layer</h3>
+            <p>When integrating with legacy systems, add a layer that translates between the old and new interfaces, protecting your new design from the old system's quirks.</p>
+
+            <h2 id="framework">A Framework for System Design</h2>
+            <p>When faced with an open-ended System Design question, follow this structured approach:</p>
+
+            <h3>1. Requirements Clarification</h3>
+            <p>Start by separating functional scope from quality targets. Functional scope defines what operations exist. Quality targets define how those operations must behave at scale and under failure.</p>
+            <p>Ask: What are we building? Who uses it? How many users? What are the critical features?</p>
+
+            <h3>2. High-Level Architecture</h3>
+            <p>Lay out the key building blocks: load balancer, application servers, database, cache, CDN if applicable. Define the happy path for data flow.</p>
+
+            <h3>3. Data Model Design</h3>
+            <p>What data needs to be stored? What's the schema? How do components access and modify data? Consider both the write path and read path.</p>
+
+            <h3>4. Scale Considerations</h3>
+            <p>Address scalability: How will you handle more traffic? Introduce caching, read replicas, database sharding, or partitioning as needed.</p>
+
+            <h3>5. Trade-offs Analysis</h3>
+            <p>Be explicit about what you're trading. Every decision involves trade-offs: consistency vs availability, simplicity vs scalability, latency vs throughput.</p>
+
+            <h3>6. Failure Scenarios</h3>
+            <p>Address reliability: What happens when components fail? How do you prevent cascading failures? What's your recovery strategy?</p>
+
+            <h2 id="microservices">Microservices Architecture</h2>
+            <p>In 2026, microservices architecture has become the dominant approach for building large-scale applications. Rather than building a single monolithic application, teams decompose their systems into smaller, independently deployable services that communicate over well-defined APIs.</p>
+
+            <h3>When Microservices Make Sense</h3>
+            <p>Microservices shine when you have multiple teams working on different features, each needing to deploy independently. They enable technology diversity—different services can use different databases, programming languages, and frameworks based on their specific needs. This architectural style also improves fault isolation: a failure in one service doesn't necessarily bring down the entire system.</p>
+            <p>However, microservices introduce significant complexity. Distributed systems are harder to debug, harder to test, and require sophisticated orchestration. The network becomes unreliable, and you must handle partial failures gracefully. Before adopting microservices, ensure your organization is ready for this complexity.</p>
+
+            <h3>Service Communication</h3>
+            <p>Services communicate through either synchronous or asynchronous patterns. Synchronous communication typically uses REST APIs or gRPC, where a client sends a request and waits for a response. Asynchronous communication uses message queues like Apache Kafka or RabbitMQ, where services publish and subscribe to events without direct coupling.</p>
+            <p>The choice between synchronous and asynchronous communication affects system behavior significantly. Synchronous patterns are simpler to understand but create tighter coupling and can cause cascading failures. Asynchronous patterns improve resilience and decoupling but introduce complexity in message ordering and exactly-once delivery.</p>
+
+            <h3>API Gateways</h3>
+            <p>An API gateway acts as a single entry point for clients, handling request routing, composition, and protocol translation. It can authenticate requests, rate limit traffic, aggregate responses from multiple backend services, and provide caching. Popular options include Kong, AWS API Gateway, and NGINX.</p>
+
+            <h3>Service Mesh</h3>
+            <p>A service mesh adds infrastructure support for service-to-service communication, handling load balancing, service discovery, encryption, and observability without requiring code changes. Istio, Linkerd, and Consul Connect are popular service mesh implementations that provide these capabilities transparently.</p>
+
+            <h2 id="distributed-systems">Distributed Systems Fundamentals</h2>
+            <p>Building systems that span multiple machines introduces fundamental challenges that don't exist in single-node applications. Understanding these challenges is essential for system design.</p>
+
+            <h3>The Two Generals Problem</h3>
+            <p>This classic problem illustrates the impossibility of reaching agreement over an unreliable network. If two generals coordinating an attack can't reliably confirm that their messages were delivered, they can't guarantee synchronization. This problem underlies all consensus challenges in distributed systems.</p>
+
+            <h3>Byzantine Generals Problem</h3>
+            <p>An extension where some generals might act maliciously or send contradictory information. Blockchain and certain aerospace systems must solve this harder problem. Practical solutions typically assume a maximum number of faulty nodes and use consensus algorithms that work despite those failures.</p>
+
+            <h3>Consensus Algorithms</h3>
+            <p>When multiple nodes need to agree on a value, consensus algorithms solve this problem. Raft is designed to be understandable—leaders are elected, log entries are replicated, and safety guarantees ensure consistency. Paxos, though harder to implement, provides similar guarantees and influenced many distributed systems. Etcd and Consul use Raft, while ZooKeeper uses a Paxos variant.</p>
+
+            <h3>Distributed Transactions</h3>
+            <p>Coordinating changes across multiple services requires careful design. Two-phase commit (2PC) provides atomicity but blocks while the coordinator is unavailable. Saga pattern breaks transactions into a sequence of local transactions with compensating actions for rollback. Choose based on your consistency requirements and tolerance for complexity.</p>
+
+            <h2 id="cdn">Content Delivery Networks</h2>
+            <p>CDNs dramatically improve performance by caching content at edge locations closer to users. When a user requests content, the CDN serves it from the nearest edge location rather than the origin server, reducing latency and load on your infrastructure.</p>
+
+            <h3>How CDNs Work</h3>
+            <p>CDNs maintain a global network of servers that cache static assets like images, videos, JavaScript, and CSS. When a user visits your site, they're automatically routed to the nearest CDN edge. The edge server serves cached content if available; otherwise, it fetches from origin, caches, and serves.</p>
+
+            <h3>Dynamic Content</h3>
+            <p>While static content caching is straightforward, dynamic content requires more sophisticated approaches. Edge computing allows running serverless functions at edge locations, enabling personalization and real-time processing without returning to origin. Techniques like stale-while-revalidate serve cached content while refreshing in the background.</p>
+
+            <h3>CDN Considerations</h3>
+            <p>CDNs provide significant benefits but come with tradeoffs. Cache invalidation can be tricky—CDNs may serve stale content until TTL expires. Costs can increase with bandwidth usage. Some content may not benefit from caching. Evaluate whether CDN usage makes sense for your traffic patterns.</p>
+
+            <h2 id="security">Security in Distributed Systems</h2>
+            <p>Security must be considered from the ground up in system design. The attack surface in distributed systems is larger, and vulnerabilities can be exploited in novel ways.</p>
+
+            <h3>Authentication and Authorization</h3>
+            <p>Authentication verifies identity—confirming who you are. Authorization determines what you can do—checking permissions. OAuth 2.0 and OpenID Connect provide standard protocols for authentication. JWTs (JSON Web Tokens) enable stateless authentication across services. Service-to-service authentication often uses mTLS (mutual TLS) or API keys.</p>
+
+            <h3>Defense in Depth</h3>
+            <p>Never rely on a single security layer. Implement multiple defenses: network segmentation limits blast radius, firewalls filter traffic, WAFs block malicious requests, input validation prevents injection attacks, and least privilege principles minimize damage from compromised accounts.</p>
+
+            <h3>Secrets Management</h3>
+            <p>Never hardcode secrets in source code. Use dedicated secrets management systems like HashiCorp Vault, AWS Secrets Manager, or Azure Key Vault. These systems provide secure storage, access control, auditing, and rotation of API keys, passwords, and certificates.</p>
+
+            <h2 id="observability">Observability and Monitoring</h2>
+            <p>Understanding system behavior in production requires robust observability. The three pillars—logs, metrics, and traces—provide different views into system health.</p>
+
+            <h3>Logs</h3>
+            <p>Structured logs with consistent formats and appropriate levels (debug, info, warn, error) form the foundation. Use correlation IDs to trace requests across services. Aggregate logs centrally using the ELK stack (Elasticsearch, Logstash, Kibana), Splunk, or cloud-native solutions like CloudWatch Logs.</p>
+
+            <h3>Metrics</h3>
+            <p>Quantitative measurements like request rate, error rate, latency, and resource utilization enable dashboards and alerting. Use metrics to establish baseline behavior and detect anomalies. Prometheus with Grafana provides powerful open-source metrics and visualization.</p>
+
+            <h3>Distributed Tracing</h3>
+            <p>When a request spans multiple services, tracing follows its path and captures timing at each step. This is invaluable for understanding latency bottlenecks and debugging issues. Jaeger, Zipkin, and AWS X-Ray provide distributed tracing capabilities.</p>
+
+            <h3>The Golden Signals</h3>
+            <p>Focus on four key metrics: latency (how long requests take), traffic (how much demand exists), errors (failure rate), and saturation (how close to capacity). Monitor these across all services to understand system health holistically.</p>
+
+            <h2 id="data-engineering">Data Engineering Fundamentals</h2>
+            <p>Modern applications often require processing data at scale. Understanding data pipelines, stream processing, and data warehousing enables building comprehensive data systems.</p>
+
+            <h3>Batch vs Stream Processing</h3>
+            <p>Batch processing handles large volumes of data at scheduled intervals—suitable for reports, aggregations, and ETL jobs. Stream processing handles data in real-time as it arrives—suitable for analytics, alerts, and live dashboards. Lambda and Kappa architectures provide patterns for combining both approaches.</p>
+
+            <h3>Data Lakes and Warehouses</h3>
+            <p>Data lakes store raw data inexpensively, supporting diverse formats and analytics. Data warehouses organize structured data optimized for analytical queries. In 2026, the line blurs with platforms like Snowflake, BigQuery, and Databricks offering both capabilities.</p>
+
+            <h3>Change Data Capture</h3>
+            <p>CDC (Change Data Capture) tracks database changes and propagates them to downstream systems in real-time. Tools like Debezium, AWS DMS, and native database features enable building responsive data pipelines without polling or batch jobs.</p>
+
+            <h2 id="cloud-native">Cloud Native Architecture</h2>
+            <p>Cloud native architecture leverages cloud platform capabilities to build resilient, scalable, and manageable systems. Understanding cloud patterns is essential for modern system design.</p>
+
+            <h3>Serverless</h3>
+            <p>Serverless computing (AWS Lambda, Azure Functions, Google Cloud Functions) lets you run code without managing servers. Pay only for compute used—ideal for variable workloads, event-driven processing, and reducing operational overhead. Tradeoffs include cold starts, limited execution time, and vendor lock-in.</p>
+
+            <h3>Container Orchestration</h3>
+            <p>Kubernetes has become the standard for container orchestration, providing declarative deployment, scaling, and management. Understand pods, services, deployments, ConfigMaps, and secrets. Managed Kubernetes (EKS, GKE, AKS) reduces operational burden while providing Kubernetes benefits.</p>
+
+            <h3>Infrastructure as Code</h3>
+            <p>Define infrastructure in code using Terraform, Pulumi, or cloud-native solutions. IaC enables version control, review processes, and reproducible environments. It forms the foundation for GitOps practices where infrastructure changes flow through the same pipeline as application code.</p>
+
+            <h2 id="performance-optimization">Performance Optimization</h2>
+            <p>Optimizing system performance requires understanding where time is spent and targeting the right bottlenecks. Premature optimization is wasteful; optimize where it matters.</p>
+
+            <h3>Profiling First</h3>
+            <p>Before optimizing, measure. Use profilers to identify CPU hotspots, memory profilers to find leaks, and database query analyzers to find slow queries. Instrumentation should be built into production systems to enable continuous performance monitoring.</p>
+
+            <h3>Common Bottlenecks</h3>
+            <p>Network latency often dominates in distributed systems. Database queries—especially N+1 problems—frequently cause performance issues. Synchronous blocking calls create unnecessary waiting. Unoptimized algorithms introduce unnecessary complexity. Identify and address these systematically.</p>
+
+            <h3>Caching Strategies</h3>
+            <p>Caching is one of the most impactful optimizations. Cache at multiple levels: CDN for static assets, application cache for frequent queries, database query cache, and in-memory caching with Redis or Memcached. Choose cache aside, write through, or write back strategies based on consistency requirements.</p>
+
+            <h3>Database Optimization</h3>
+            <p>Create appropriate indexes—compound indexes for multi-column queries. Analyze query execution plans to identify inefficient operations. Consider denormalization for read-heavy workloads. Use connection pooling to reduce connection overhead. Partition or shard when single-database capacity is exceeded.</p>
+
+            <h2 id="real-world-design">Real-World System Design Examples</h2>
+            <p>Let's apply system design principles to real-world scenarios that illustrate the trade-offs involved.</p>
+
+            <h3>Designing a URL Shortener</h3>
+            <p>A URL shortener like bit.ly requires generating unique short codes, storing mappings between codes and URLs, and redirecting users. The key decisions include: how to generate unique IDs (random vs deterministic), how to handle high redirect traffic (CDN, caching), and database scaling (read replicas vs sharding). Start with a single database, add caching for hot URLs, then scale reads with replicas.</p>
+
+            <h3>Designing a Twitter Clone</h3>
+            <p>Twitter presents interesting design challenges around timeline generation. The core question is fan-out: should timelines be computed at read time or written at tweet time? Read-time fan-out is simpler but slower for users with many follows. Write-time fan-out is faster but more complex and can delay tweet posting. Most systems use hybrid approaches.</p>
+
+            <h3>Designing a Video Streaming Service</h3>
+            <p>Video streaming involves upload processing (transcoding to multiple qualities), storage (object storage vs CDN), and delivery (adaptive bitrate streaming). Key decisions include: transcoding pipeline architecture, CDN strategy for global delivery, and how to handle viral content that creates sudden load spikes.</p>
+
+            <h3>Designing a Distributed Cache</h3>
+            <p>A distributed cache like Redis or Memcached requires data partitioning (consistent hashing), replication for availability, and eviction policies. Consider: eventual vs strong consistency, single-node vs cluster mode, persistence options, and cache invalidation strategies.</p>
+
+            <h3>Designing a Search Engine</h3>
+            <p>Search engines like Elasticsearch or Solr require inverted indexes for fast full-text search, text analysis pipelines for tokenization and stemming, relevance scoring algorithms, and distributed indexing for scalability. Consider how to handle ranking, faceted search, and real-time indexing.</p>
+
+            <h3>Designing a Payment System</h3>
+            <p>Payment systems require strong consistency (ACID transactions), fraud detection integration, idempotency guarantees, and compliance with PCI-DSS. Key decisions include: synchronous vs asynchronous processing, retry strategies, and how to handle partial failures.</p>
+
+            <h3>Designing a Real-Time Notifications System</h3>
+            <p>Notification systems must deliver messages with low latency to potentially millions of users. Consider: WebSocket vs polling, message delivery guarantees, offline message handling, and notification preferences management.</p>
+
+            <h2 id="scalability-patterns">Scalability Patterns in Detail</h2>
+            <p>Understanding specific scalability patterns helps you apply them appropriately:</p>
+
+            <h3>Database Sharding Strategies</h3>
+            <p>When a single database can't handle your load, sharding distributes data across multiple databases. Key decisions include: sharding key selection, cross-shard queries, rebalancing, and handling skewed data distributions.</p>
+
+            <h4>Horizontal vs Vertical Sharding</h4>
+            <p>Horizontal sharding splits rows across databases—each shard contains a subset of rows. Vertical sharding splits columns—different shards contain different columns. Most systems use both: data is horizontally sharded, and large columns or tables might be vertically partitioned.</p>
+
+            <h4>Sharding Key Selection</h4>
+            <p>Choosing the right shard key is critical. It should evenly distribute data, minimize cross-shard queries, and match your access patterns. Poor shard key selection causes hot spots and performance problems.</p>
+
+            <h3>Read Replica Architectures</h3>
+            <p>Read replicas provide read scalability and fault tolerance. Write goes to primary; reads distribute to replicas. Considerations include: replication lag handling, failover procedures, and when to use synchronous vs asynchronous replication.</p>
+
+            <h3>CQRS Pattern</h3>
+            <p>Command Query Responsibility Segregation separates read and write models. Write model handles updates; read model is optimized for queries. This enables independent scaling and specialized optimization for each model.</p>
+
+            <h2 id="reliability-patterns">Reliability Patterns in Detail</h2>
+            <p>Building reliable systems requires designing for failure:</p>
+
+            <h3>Bulkheads</h3>
+            <p>Isolate failures to prevent cascade. Similar to ship bulkheads that contain flooding, bulkhead patterns isolate system components so failure in one doesn't bring down all others.</p>
+
+            <h3>Dead Letter Queues</h3>
+            <p>When message processing fails repeatedly, move to a dead letter queue for manual investigation. This prevents poison messages from blocking the queue while preserving them for debugging.</p>
+
+            <h3>Idempotency</h3>
+            <p>Design operations to be idempotent—applying multiple times has the same effect as applying once. This enables safe retries without duplicate effects. Use unique identifiers for operations to detect duplicates.</p>
+
+            <h3>Graceful Degradation</h3>
+            <p>When full functionality isn't available, provide what's possible. If search fails, show cached results. If recommendations fail, show popular items. Always provide the best possible user experience given current constraints.</p>
+
+            <h2 id="consistency-models">Consistency Models</h2>
+            <p>Understanding consistency models helps you choose the right approach:</p>
+
+            <h3>Strong Consistency</h3>
+            <p>All reads see the most recent write. Guarantees data is current but requires coordination that impacts availability and latency. Used when correctness is critical—financial transactions, inventory management.</p>
+
+            <h3>Eventual Consistency</h3>
+            <p>Writes propagate asynchronously; reads may see stale data temporarily. Provides high availability and low latency but requires application logic to handle inconsistency. Used when availability matters more than immediate consistency—social media likes, analytics.</p>
+
+            <h3>Causal Consistency</h3>
+            <p>Respects causality—if A causes B, B sees A's effects. Weaker than strong but stronger than eventual. Used in collaborative applications where order matters but not global synchrony.</p>
+
+            <h3>Read Your Writes Consistency</h3>
+            <p>After a write, reads see that write. Simple but useful. User sees their own updates immediately even if other users see them later.</p>
+
+            <h2 id="api-design">API Design</h2>
+            <p>APIs are the interface between services. Good API design enables evolution and integration:</p>
+
+            <h3>RESTful APIs</h3>
+            <p>REST uses resources as the core concept. GET retrieves, POST creates, PUT updates, DELETE removes. Use nouns for resources, verbs for operations. Provide pagination for collections. Use standard HTTP status codes.</p>
+
+            <h3>GraphQL</h3>
+            <p>GraphQL lets clients specify exactly what data they need. Single endpoint, flexible queries, no over-fetching. Good for mobile apps and complex frontend requirements. Tradeoffs include caching complexity and query validation.</p>
+
+            <h3>gRPC</h3>
+            <p>gRPC uses protocol buffers for efficient binary serialization. Fast, type-safe, great for service-to-service communication. Requires code generation and has higher barrier to entry than REST.</p>
+
+            <h3>Versioning</h3>
+            <p>APIs evolve. Version through URL path (/v1/), query parameter, or header. Plan for deprecation—give clients time to migrate. Document breaking changes clearly.</p>
+
+            <h2 id="message-queues">Message Queues Deep Dive</h2>
+            <p>Asynchronous communication decouples services:</p>
+
+            <h3>Apache Kafka</h3>
+            <p>Distributed log with durable storage. High throughput, scalable, supports replay. Used for event streaming, audit logs, and data pipelines. Complex but powerful.</p>
+
+            <h3>RabbitMQ</h3>
+            <p>Flexible messaging with exchange types (direct, topic, fanout). Easier to get started than Kafka. Good for task queues and simpler use cases.</p>
+
+            <h3>AWS SQS</h3>
+            <p>Fully managed queue service. Pay per use, no servers to manage. Simple but less flexible than self-hosted options. Great for AWS-centric architectures.</p>
+
+            <h3>Message Patterns</h3>
+            <p>Point-to-point: one producer, one consumer. Pub/sub: one producer, multiple consumers. Competing consumers: multiple consumers, each message processed once. Choose based on your requirements.</p>
+
+            <h2 id="testing-strategies">Testing Strategies</h2>
+            <p>Testing distributed systems requires different approaches:</p>
+
+            <h3>Unit Tests</h3>
+            <p>Test individual components in isolation. Mock dependencies. Fast feedback during development. Cover business logic thoroughly.</p>
+
+            <h3>Integration Tests</h3>
+            <p>Test how components work together. Use real databases, message queues—don't mock everything. Verify integration points work correctly.</p>
+
+            <h3>Contract Testing</h3>
+            <p>Verify services adhere to agreed interfaces. Consumer-driven contracts let consumers define what they need from providers. Independent teams can evolve services safely.</p>
+
+            <h3>Chaos Engineering</h3>
+            <p>Intentionally inject failures to test system resilience. Kill processes, introduce latency, simulate network partitions. Learn how your system fails before users experience failures.</p>
+
+            <h2 id="deployment-strategies">Deployment Strategies</h2>
+            <p>How you deploy affects reliability and velocity:</p>
+
+            <h3>Blue-Green Deployments</h3>
+            <p>Run two identical production environments. Deploy new version to inactive environment, test, then switch traffic. Instant rollback possible. Requires double infrastructure.</p>
+
+            <h3>Canary Deployments</h3>
+            <p>Gradually shift traffic to new version. Start with 1%, increase if metrics look good. Limited blast radius if problems occur. Requires traffic management infrastructure.</p>
+
+            <h3>Rolling Deployments</h3>
+            <p>Deploy new version to instances one at a time. No double infrastructure. Slower than blue-green. Problems might affect all users before completion.</p>
+
+            <h3>Feature Flags</h3>
+            <p>Toggle features independent of deployment. Release to subsets of users, quick rollback without redeployment. Used by most modern teams for continuous delivery.</p>
+
+            <h2 id="common-systems">Common Systems to Design</h2>
+            <p>Practice designing these common systems to build intuition:</p>
+            <ul>
+                <li><strong>URL Shortener:</strong> Think redirect logic, unique ID generation, counter database</li>
+                <li><strong>Twitter/X:</strong> Consider tweet storage, fan-out on write vs read, timeline generation</li>
+                <li><strong>YouTube/Netflix:</strong> Video storage, transcoding, CDN distribution, streaming protocol</li>
+                <li><strong>WhatsApp:</strong> Message ordering, delivery guarantees, offline support</li>
+                <li><strong>Distributed Cache:</strong> Eviction policies, consistency, cache invalidation</li>
+                <li><strong>Rate Limiter:</strong> Algorithms, storage backend, distributed enforcement</li>
+            </ul>
+
+            <h2 id="conclusion">Conclusion</h2>
+            <p>System Design is about thinking holistically. It involves understanding how to build a feature and how that feature interacts with the broader system. The key is starting simple and evolving based on constraints.</p>
+            <p>Remember: every choice involves trade-offs. A system optimized for one thing sacrifices another. The best designers understand these trade-offs and choose deliberately based on actual requirements, not imagined ones.</p>
+            <p>Practice is essential. Design common systems, understand why they work the way they do, and you'll develop the judgment to handle any System Design challenge.</p>
         </article>
         <footer>
             <a href="https://github.com/sajadkoder" target="_blank" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>

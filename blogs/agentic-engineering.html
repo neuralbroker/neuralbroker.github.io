@@ -3,282 +3,571 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agentic Engineering: The Future of Autonomous AI Systems | Abdulla Sajad</title>
+    <title>Agentic Engineering: The Complete Guide to Building Autonomous AI Systems in 2026 | Abdulla Sajad</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        :root {
-            --bg: #0a0a0c;
-            --bg-secondary: #121215;
-            --text: #d4d4d4;
-            --text-secondary: #9a9a9a;
-            --text-muted: #6a6a6a;
-            --border: #2a2a2e;
-            --accent: #e0e0e0;
-            --link: #7cb3f0;
-            --link-hover: #9ecaff;
-        }
-        
-        [data-theme="light"] {
-            --bg: #fafafa;
-            --bg-secondary: #ffffff;
-            --text: #1a1a1a;
-            --text-secondary: #555555;
-            --text-muted: #888888;
-            --border: #e5e5e5;
-            --accent: #000000;
-            --link: #2563eb;
-            --link-hover: #1d4ed8;
-        }
-        
+        :root { --bg: #0a0a0c; --bg-secondary: #121215; --text: #d4d4d4; --text-secondary: #9a9a9a; --text-muted: #6a6a6a; --border: #2a2a2e; --link: #7cb3f0; --link-hover: #9ecaff; }
+        [data-theme="light"] { --bg: #fafafa; --bg-secondary: #ffffff; --text: #1a1a1a; --text-secondary: #555555; --text-muted: #888888; --border: #e5e --link: #2563eb;5e5; --link-hover: #1d4ed8; }
         html { scroll-behavior: smooth; }
-        
-        body {
-            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-            font-size: 15px;
-            transition: background 0.3s, color 0.3s;
-        }
-        
+        body { font-family: 'IBM Plex Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 15px; transition: background 0.3s, color 0.3s; }
         a { color: var(--link); text-decoration: none; transition: color 0.2s; }
         a:hover { color: var(--link-hover); text-decoration: underline; }
-        
-        .container {
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-        }
-        
-        header {
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-        
-        .header-left { flex: 1; }
-        
-        .name {
-            font-size: 1.75rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-        }
-        
+        .container { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem; }
+        header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+        .name { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
         .name a { color: var(--text); }
         .name a:hover { color: var(--link); text-decoration: none; }
-        
-        nav {
-            display: flex;
-            gap: 1.25rem;
-            flex-wrap: wrap;
-            font-size: 0.9rem;
-        }
-        
+        nav { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.9rem; }
         nav a { color: var(--text-secondary); }
         nav a:hover { color: var(--text); text-decoration: none; }
-        
-        .back-link {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            display: inline-block;
-        }
-        
+        .back-link { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem; display: inline-block; }
         .back-link:hover { color: var(--link); }
-        
-        article h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            line-height: 1.3;
-            margin-bottom: 0.75rem;
-        }
-        
-        .meta {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-        
+        article h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.3; margin-bottom: 0.75rem; }
+        .meta { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; }
         .meta span { margin-right: 1rem; }
-        
-        article {
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-        
-        article h2 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text);
-            margin: 2.5rem 0 1rem;
-        }
-        
-        article h3 {
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--text);
-            margin: 1.75rem 0 0.75rem;
-        }
-        
-        article p { margin-bottom: 1rem; }
-        
+        article { color: var(--text-secondary); line-height: 1.85; }
+        article h2 { font-size: 1.35rem; font-weight: 600; color: var(--text); margin: 3rem 0 1.25rem; }
+        article h3 { font-size: 1.1rem; font-weight: 600; color: var(--text); margin: 2rem 0 0.75rem; }
+        article h4 { font-size: 1rem; font-weight: 600; color: var(--text); margin: 1.5rem 0 0.5rem; }
+        article p { margin-bottom: 1.25rem; }
         article ul, article ol { margin: 1rem 0 1.5rem 1.5rem; }
-        
-        article li { margin-bottom: 0.5rem; }
-        
+        article li { margin-bottom: 0.6rem; }
         article strong { color: var(--text); font-weight: 600; }
-        
-        article code {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9em;
-            background: var(--bg-secondary);
-            padding: 0.2rem 0.4rem;
-            border-radius: 3px;
-        }
-        
-        article pre {
-            background: var(--bg-secondary);
-            padding: 1rem;
-            overflow-x: auto;
-            border-radius: 6px;
-            margin: 1.5rem 0;
-            font-size: 0.85rem;
-            line-height: 1.6;
-        }
-        
+        article code { font-family: 'IBM Plex Mono', monospace; font-size: 0.9em; background: var(--bg-secondary); padding: 0.2rem 0.4rem; border-radius: 3px; }
+        article pre { background: var(--bg-secondary); padding: 1rem; overflow-x: auto; border-radius: 6px; margin: 1.5rem 0; font-size: 0.85rem; line-height: 1.6; }
         article pre code { background: none; padding: 0; }
-        
-        article blockquote {
-            border-left: 3px solid var(--border);
-            padding-left: 1rem;
-            margin: 1.5rem 0;
-            color: var(--text-muted);
-            font-style: italic;
-        }
-        
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            padding: 0.3rem 0.6rem;
-            font-size: 0.7rem;
-            cursor: pointer;
-            font-family: inherit;
-            border-radius: 3px;
-            transition: all 0.2s;
-        }
-        
+        article blockquote { border-left: 3px solid var(--border); padding-left: 1rem; margin: 1.5rem 0; color: var(--text-muted); font-style: italic; }
+        article .highlight-box { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin: 2rem 0; }
+        article .toc { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin: 2rem 0; }
+        article .toc h3 { margin-top: 0; font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+        article .toc ul { margin: 1rem 0 0; }
+        article .comparison-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        article .comparison-table th, article .comparison-table td { border: 1px solid var(--border); padding: 0.75rem; text-align: left; font-size: 0.9rem; }
+        article .comparison-table th { background: var(--bg-secondary); font-weight: 600; }
+        .theme-toggle { position: fixed; top: 1.25rem; right: 1.25rem; background: var(--bg); border: 1px solid var(--border); color: var(--text-muted); padding: 0.5rem; cursor: pointer; font-family: inherit; border-radius: 6px; transition: all 0.2s; z-index: 100; }
+        .theme-toggle svg { width: 18px; height: 18px; fill: currentColor; }
         .theme-toggle:hover { border-color: var(--text); color: var(--text); }
-        
-        footer {
-            margin-top: 4rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-        }
-        
+        footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted); display: flex; justify-content: center; gap: 1.5rem; }
         footer a { color: var(--text-muted); }
         footer a:hover { color: var(--link); }
         footer a svg { width: 20px; height: 20px; fill: currentColor; }
-        
-        @media (max-width: 600px) {
-            .container { padding: 2rem 1.25rem; }
-            header { flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
-            article h1 { font-size: 1.5rem; }
-            nav { gap: 1rem; }
-        }
+        @media (max-width: 600px) { .container { padding: 2rem 1.25rem; } article h1 { font-size: 1.5rem; } article h2 { font-size: 1.2rem; } }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" id="themeToggle"><svg viewBox="0 0 24 24"><path d="M12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0-7V0m0 12v2m7 7h-2M0 12h2m3.52-8.52l1.76-1.76m0 0l1.76 1.76M5.28 5.28m0 0l-1.76 1.76m14.44 14.44l-1.76-1.76m0 0l1.76 1.76M5.28 18.72l-1.76-1.76"/></svg></button>
     <div class="container">
         <header>
-            <div class="header-left">
-                <div class="name"><a href="../index.html">Abdulla Sajad</a></div>
-                <nav>
-                    <a href="../index.html">home</a>
-                    <a href="../index.html#projects">projects</a>
-                    <a href="../index.html#blog">writing</a>
-                    <a href="../index.html#skills">skills</a>
-                </nav>
-            </div>
-            <button class="theme-toggle" id="themeToggle">theme</button>
+            <div class="name"><a href="../index.html">Abdulla Sajad</a></div>
+            <nav>
+                <a href="../index.html">home</a>
+                <a href="../index.html#projects">projects</a>
+                <a href="../index.html#blog">writing</a>
+                <a href="../index.html#skills">skills</a>
+            </nav>
         </header>
-
         <a href="../index.html#blog" class="back-link">← back to writing</a>
-
         <article>
-            <h1>Agentic Engineering: Building Autonomous AI Systems That Actually Work</h1>
-            <div class="meta">
-                <span>Agentic Engineering</span>
-                <span>Feb 2026</span>
+            <h1>Agentic Engineering: The Complete Guide to Building Autonomous AI Systems in 2026</h1>
+            <div class="meta"><span>Agentic Engineering</span><span>Feb 2026</span><span>~25 min read</span></div>
+
+            <div class="toc">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#introduction">1. Introduction: The Paradigm Shift</a></li>
+                    <li><a href="#what-is-agentic">2. What Makes AI "Agentic"?</a></li>
+                    <li><a href="#core-components">3. Core Components of Agentic Systems</a></li>
+                    <li><a href="#architectural-patterns">4. Architectural Patterns in 2026</a></li>
+                    <li><a href="#reasoning-strategies">5. Reasoning & Decision-Making Strategies</a></li>
+                    <li><a href="#tool-use">6. Tool Use & Function Calling</a></li>
+                    <li><a href="#memory-systems">7. Memory Systems</a></li>
+                    <li><a href="#planning-execution">8. Planning & Execution Patterns</a></li>
+                    <li><a href="#multi-agent">9. Multi-Agent Systems</a></li>
+                    <li><a href="#frameworks">10. Frameworks & Libraries</a></li>
+                    <li><a href="#production">11. Production Considerations</a></li>
+                    <li><a href="#evaluation">12. Evaluation & Observability</a></li>
+                    <li><a href="#future">13. Future Directions</a></li>
+                    <li><a href="#conclusion">14. Conclusion</a></li>
+                </ul>
             </div>
 
-            <p>A comprehensive deep-dive into the engineering principles, architectures, and patterns behind building production-ready autonomous AI agents.</p>
+            <h2 id="introduction">1. Introduction: The Paradigm Shift</h2>
+            <p>We've reached a pivotal moment in artificial intelligence. The era of simple chatbots and static prompts—systems that generate a single response and wait for input—is rapidly giving way to something fundamentally different. Welcome to the age of agentic AI.</p>
+            <p>Agentic engineering represents not merely an incremental improvement in how we interact with AI, but a fundamental architectural paradigm shift in how we build intelligent systems. While traditional AI applications function as sophisticated question-answering machines, agentic systems transform large language models into autonomous entities capable of perceiving their environment, reasoning about complex goals, planning multi-step workflows, executing actions, and iterating based on feedback—all with minimal human intervention.</p>
+            <p>The numbers tell a compelling story. According to recent industry analysis, by 2026, approximately 40% of enterprise applications will incorporate some form of agentic AI capability. Venture capital investment in agentic AI startups has tripled year-over-year, with companies building production-ready autonomous systems raising record rounds. Major cloud providers—AWS, Azure, and Google Cloud—have all released dedicated agent frameworks and orchestration tools, recognizing that the future of enterprise AI lies not in static chat interfaces but in dynamic, goal-oriented autonomous systems.</p>
+            <p>This comprehensive guide dives deep into the engineering principles, architectural patterns, and practical implementation strategies that define successful agentic AI systems in 2026. Whether you're architecting your first agent or scaling production deployments, this resource provides the foundation you need to build systems that actually work in the real world.</p>
 
-            <h2 id="intro">Introduction</h2>
-            <p>We've moved past the era of simple chatbots and static prompts. Agentic engineering is the discipline of building AI systems that can perceive, reason, plan, and act autonomously to accomplish complex goals.</p>
+            <h2 id="what-is-agentic">2. What Makes AI "Agentic"?</h2>
+            <p>The term "agentic" gets thrown around constantly in 2026, often without precise definition. Understanding what genuinely distinguishes agentic AI from traditional AI systems is crucial for making architectural decisions.</p>
+            
+            <h3>2.1 The Defining Characteristics</h3>
+            <p>According to the IEEE Standards Association and leading AI research organizations, an AI system earns the "agentic" designation when it demonstrates these core properties:</p>
+            
+            <h4>Autonomy</h4>
+            <p>Agentic systems can make decisions and take actions without requiring human approval for every step. They operate with a degree of independence, exercising judgment within defined boundaries. This doesn't mean unlimited freedom—rather, it means the system can execute complex workflows while only escalating to humans for exceptional cases or decisions that exceed its authority.</p>
+            
+            <h4>Goal-Orientation</h4>
+            <p>Traditional AI responds to prompts with a single output. Agentic systems, conversely, work toward end objectives. They understand not just what they're asked to do, but why—and they can decompose abstract goals into concrete, achievable steps. When given a complex task like "research this topic and write a report," an agent doesn't just generate text; it plans research steps, executes them systematically, synthesizes findings, and produces the final deliverable.</p>
+            
+            <h4>Tool Use</h4>
+            <p>Perhaps the most practically important characteristic: agentic systems can invoke external tools. They can search the web, execute code, interact with APIs, read and write files, send messages, and manipulate their environment. This capability transforms AI from a text generator into a system that can actually <em>do</em> things in the world.</p>
+            
+            <h4>Stateful Persistence</h4>
+            <p>Agentic systems maintain memory across interactions. They remember previous steps in a workflow, accumulate context as they work, and can resume interrupted tasks. This persistence enables the kind of long-running, multi-session workflows that distinguish agents from stateless chatbots.</p>
+            
+            <h4>Self-Correction</h4>
+            <p>When approaches fail, agentic systems can recognize the failure, reason about what went wrong, and adjust their strategy. This meta-cognitive capability—the ability to think about their own thinking and modify their approach—is what enables agents to handle genuinely novel situations.</p>
 
-            <h2 id="paradigm">The Paradigm Shift</h2>
+            <h3>2.2 The Evolution from Chatbots to Agents</h3>
+            <p>Understanding where we are requires understanding where we've been. The progression from basic AI to agentic systems follows a clear trajectory:</p>
+            
+            <table class="comparison-table">
+                <tr><th>Level</th><th>Description</th><th>Example</th></tr>
+                <tr><td>Level 0: Static Prompts</td><td>Hardcoded prompts with no state or adaptation</td><td>Simple FAQ bots</td></tr>
+                <tr><td>Level 1: Interactive Chat</td><td>Conversational with session context</td><td>ChatGPT, Claude</td></tr>
+                <tr><td>Level 2: Tool-Augmented</td><td>Can call functions but doesn't plan workflows</td><td>GPT-4 with plugins</td></tr>
+                <tr><td>Level 3: True Agents</td><td>Autonomous planning, execution, and self-correction</td><td>Claude Agent, Cursor</td></tr>
+                <tr><td>Level 4: Multi-Agent Systems</td><td>Multiple specialized agents collaborating</td><td>CrewAI, AutoGen</td></tr>
+            </table>
+            
+            <p>Most production systems in early 2026 hover between Level 2 and Level 3. True Level 4 systems remain largely experimental, though they're increasingly common in research settings and pilot programs.</p>
+
+            <h2 id="core-components">3. Core Components of Agentic Systems</h2>
+            <p>Every production-ready agentic system shares a common architectural foundation. Understanding these components—and how they interact—is essential for building reliable systems.</p>
+            
+            <h3>3.1 The Reasoning Engine (LLM)</h3>
+            <p>At the heart of every agent sits a large language model that serves as the "brain." But not just any model will do. The choice of reasoning engine dramatically affects what your agent can accomplish.</p>
+            
+            <h4>Model Selection Considerations</h4>
+            <p>Different models excel at different tasks, and understanding these tradeoffs is crucial:</p>
             <ul>
-                <li><strong>Level 0: Static Prompts</strong> - No state</li>
-                <li><strong>Level 1: Interactive Chat</strong> - Context aware</li>
-                <li><strong>Level 2: Tool-Augmented</strong> - Can call functions</li>
-                <li><strong>Level 3: True Agents</strong> - Autonomous</li>
+                <li><strong>Claude 4 (Anthropic):</strong> The 2026 leader for complex reasoning, code generation, and nuanced understanding. The extended thinking capabilities in Claude 4 Opus make it particularly effective for multi-step planning. Pricing reflects this capability—expect to pay premium rates for Opus, with Sonnet offering excellent value for simpler tasks.</li>
+                <li><strong>GPT-5 (OpenAI):</strong> Maintains strong position with excellent function calling, multimodal capabilities, and the most mature tool ecosystem. The reasoning models (o1, o3) excel at mathematical and logical tasks.</li>
+                <li><strong>DeepSeek R1:</strong> The breakthrough open-weights model of 2026. Demonstrated reasoning capabilities competitive with proprietary models while being significantly cheaper to deploy. Ideal for organizations requiring customization and data privacy.</li>
+                <li><strong>Gemini 2.5 Pro (Google):</strong> Best-in-class context window (up to 1M tokens) makes it exceptional for document-heavy workflows. The multimodal native capabilities are unmatched.</li>
+                <li><strong>Qwen 3 (Alibaba):</strong> Strong performance especially for non-English languages, with increasingly competitive reasoning capabilities at lower cost points </ul>
+            
+.</li>
+                       <div class="highlight-box">
+                <strong>Key Insight:</strong> In production systems, most deployments use a model consortium—different models for different task types. Use premium models for complex reasoning, mid-tier models for routine tasks, and specialized models for domain-specific work. This approach optimizes both cost and capability.
+            </div>
+            
+            <h3>3.2 The Tool System</h3>
+            <p>Tools transform agents from impressive text generators into systems that can actually <em>do</em> things. The design of your tool system often determines whether your agent succeeds or fails.</p>
+            
+            <h4>Tool Definition Structure</h4>
+            <p>Modern agent frameworks use structured schemas to define tools. Here's what each tool should include:</p>
+            <pre><code>// Example tool definition schema
+{
+  "name": "search_web",
+  "description": "Search the web for current information on a topic",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "The search query"
+      },
+      "num_results": {
+        "type": "integer",
+        "default": 5,
+        "description": "Number of results to return"
+      }
+    },
+    "required": ["query"]
+  }
+}</code></pre>
+            
+            <h4>Categories of Tools</h4>
+            <p>Tools typically fall into several categories, each with different risk profiles:</p>
+            <ul>
+                <li><strong>Read-Only Tools:</strong> Search, document retrieval, database queries. Lowest risk—these can typically be used freely.</li>
+                <li><strong>Information Retrieval:</strong> API calls, database reads. Moderate risk—ensure proper authentication and rate limiting.</li>
+                <li><strong>Write Tools:</strong> File creation, database updates, sending messages. Higher risk—implement proper authorization checks.</li>
+                <li><strong>Execution Tools:</strong> Code execution, shell commands, deployment triggers. Highest risk—always require human approval or implement strict guardrails.</li>
+            </ul>
+            
+            <h4>Tool Design Best Practices</h4>
+            <p>After analyzing hundreds of production agent deployments, these principles emerge as consistently important:</p>
+            <ul>
+                <li><strong>Descriptive naming:</strong> "search_documents" is better than "tool1"</li>
+                <li><strong>Comprehensive descriptions:</strong> Explain not just what the tool does, but when and why to use it</li>
+                <li><strong>Minimal parameters:</strong> Fewer parameters = fewer errors. Only require what's essential</li>
+                <li><strong>Idempotency:</strong> Same input should produce same output. Enables safe retries</li>
+                <li><strong>Helpful errors:</strong> Return actionable error messages, not just "error occurred"</li>
+            </ul>
+            
+            <h3>3.3 Memory Architecture</h3>
+            <p>Memory enables agents to accumulate context and work across sessions. Modern systems use a layered memory architecture:</p>
+            
+            <h4>Working Memory (Context Window)</h4>
+            <p>The immediate context visible to the LLM. In 2026, context windows have expanded dramatically—some models support 1M+ tokens. However, this is expensive and slow. Best practice: use working memory for immediate task context only.</p>
+            
+            <h4>Short-Term Memory (Conversation History)</h4>
+            <p>Recent interactions stored in fast storage (Redis, in-memory). Used to maintain conversational coherence. Implement summary-based compression when history exceeds context limits.</p>
+            
+            <h4>Long-Term Memory (Persistent Storage)</h4>
+            <p>Facts, preferences, learned patterns stored in vector databases or structured stores. Retrieved contextually when relevant. Implement semantic search for retrieval.</p>
+            
+            <h4>Procedural Memory (System Prompts)</h4>
+            <p>How to do things—encoded in system prompts, few-shot examples, and retrieved patterns. This is how agents "learn" procedures without fine-tuning.</p>
+
+            <h2 id="architectural-patterns">4. Architectural Patterns in 2026</h2>
+            <p>The agentic AI field has matured significantly, with several robust architectural patterns emerging as best practices. These patterns represent lessons learned from thousands of production deployments.</p>
+            
+            <h3>4.1 The Plan-then-Execute Pattern</h3>
+            <p>One of the most important architectural innovations of 2025-2026 is the separation of strategic planning from tactical execution. This pattern, formalized in academic research as "Plan-then-Execute" (P-t-E), has proven essential for building reliable agents.</p>
+            
+            <p>The core insight: models that plan comprehensively before acting produce more reliable results than those that act reactively. The pattern works as follows:</p>
+            <ol>
+                <li><strong>Decompose:</strong> Break the goal into discrete steps</li>
+                <li><strong>Analyze:</strong> Identify dependencies between steps</li>
+                <li><strong>Sequentialize:</strong> Order steps accounting for dependencies</li>
+                <li><strong>Execute:</strong> Run steps in order</li>
+                <li><strong>Validate:</strong> Check each step's output</li>
+                <li><strong>Adapt:</strong> Re-plan if needed based on failures</li>
+            </ol>
+            
+            <div class="highlight-box">
+                <strong>Security Note:</strong> Research from late 2025 (particularly the paper "Architecting Resilient LLM Agents") highlighted that Plan-then-Execute provides significant security benefits. By separating planning from execution, you can validate plans before execution, implement approval gates for sensitive operations, and maintain audit trails of intended vs. executed actions.
+            </div>
+            
+            <h3>4.2 The ReAct Pattern</h3>
+            <p>Reason + Act (ReAct) interleaves reasoning with tool use. Instead of reasoning complete plans upfront, the agent thinks, acts on that thought, observes the result, and continues. This pattern excels when:</p>
+            <ul>
+                <li>Steps depend on previous results</li>
+                <li>Information is discovered during execution</li>
+                <li>The environment is dynamic</li>
+            </ul>
+            
+            <h3>4.3 The Tool-Last Pattern</h3>
+            <p>Counter-intuitively, sometimes the best approach is to have the agent reason extensively <em>before</em> calling any tools. This "Tool-Last" pattern reduces unnecessary API calls and improves reasoning quality by providing all available context to the model before it decides what actions to take.</p>
+            
+            <h3>4.4 The Reflexion Pattern</h3>
+            <p>Reflexion adds explicit self-reflection to the agent loop. After completing a task, the agent evaluates its performance, identifies areas for improvement, and incorporates these insights into future iterations. This pattern dramatically improves agents working on repetitive tasks.</p>
+            
+            <h3>4.5 Model-Agnostic Tool Use</h3>
+            <p>Modern production systems increasingly implement tool selection as a separate reasoning step. Rather than relying on the LLM to always choose the right tool, implement explicit tool selection logic that can be tuned independently from the model. This improves reliability and enables optimization.</p>
+
+            <h2 id="reasoning-strategies">5. Reasoning & Decision-Making Strategies</h2>
+            <p>How agents think is fundamentally different from how traditional software decides. Understanding these reasoning strategies—and when to apply each—is essential for building effective agents.</p>
+            
+            <h3>5.1 Chain-of-Thought (CoT)</h3>
+            <p>Chain-of-Thought prompts the model to show its reasoning step-by-step. This works exceptionally well for problems with clear logical progression:</p>
+            <pre><code>Problem: Calculate compound interest on $10,000 at 5% annual 
+interest compounded monthly for 3 years
+
+Reasoning:
+1. Principal (P) = $10,000
+2. Annual rate (r) = 5% = 0.05
+3. Monthly rate = 0.05/12 = 0.004167
+4. Number of periods (n) = 3 × 12 = 36 months
+5. Formula: A = P(1 + r/n)^(nt)
+6. A = 10000(1 + 0.05/12)^36
+7. A = 10000(1.004167)^36
+8. A = 10000 × 1.1614 ≈ $11,614
+
+Answer: $11,614</code></pre>
+            
+            <h3>5.2 Tree of Thoughts (ToT)</h3>
+            <p>For complex decisions with multiple valid paths, Tree of Thoughts explores reasoning branches in parallel, evaluating each path before selecting the best option. This pattern is particularly effective for:</p>
+            <ul>
+                <li>Strategic planning</li>
+                <li>Multi-criteria decision making</li>
+                <li>Creative problem solving</li>
+            </ul>
+            
+            <h3>5.3 Extended Thinking</h3>
+            <p>The 2025-2026 breakthrough in reasoning: models that show extensive internal reasoning (not just the output, but the reasoning process). Claude's extended thinking, OpenAI's o-series, and DeepSeek R1 all demonstrate that allowing models more "thinking time" (through longer contexts or explicit reasoning steps) produces substantially better results on complex tasks.</p>
+            
+            <h3>5.4 Meta-Cognition</h3>
+            <p>The most sophisticated agents implement meta-cognition—the ability to think about their own thinking. This includes:</p>
+            <ul>
+                <li>Recognizing when they don't know something</li>
+                <li>Detecting confidence levels in their answers</li>
+                <li>Identifying when to ask for clarification</li>
+                <li>Knowing when to escalate to humans</li>
             </ul>
 
-            <h2 id="architecture">Core Architecture</h2>
-            <p>Every agent needs: Reasoning Engine (LLM), Tool System, Memory Architecture, and Orchestration.</p>
-
-            <h2 id="reasoning">Reasoning Strategies</h2>
+            <h2 id="tool-use">6. Tool Use & Function Calling</h2>
+            <p>Tool use is where agents become genuinely useful. This section covers the technical implementation and best practices for building robust tool systems.</p>
+            
+            <h3>6.1 Function Calling Protocols</h3>
+            <p>Modern LLMs use structured output to call tools. The protocol typically works as follows:</p>
+            <ol>
+                <li>The agent decides to use a tool</li>
+                <li>The model outputs a structured call with tool name and parameters</li>
+                <li>The system validates and executes the tool</li>
+                <li>Results are returned to the agent</li>
+                <li>The agent incorporates results into continued reasoning</li>
+            </ol>
+            
+            <h3>6.2 Handling Tool Failures</h3>
+            <p>Tool failures are inevitable in production. Robust agents implement comprehensive error handling:</p>
             <ul>
-                <li><strong>Chain-of-Thought</strong> - Step by step</li>
-                <li><strong>Tree of Thoughts</strong> - Multiple paths</li>
-                <li><strong>ReAct</strong> - Reasoning + Action</li>
-                <li><strong>Extended Thinking</strong> - Internal reasoning</li>
+                <li><strong>Retry logic:</strong> Automatic retry for transient failures (network timeouts, rate limits)</li>
+                <li><strong>Fallback tools:</strong> If primary search fails, try backup</li>
+                <li><strong>Graceful degradation:</strong> Continue with partial information when tools fail</li>
+                <li><strong>Error propagation:</strong> Distinguish recoverable from non-recoverable errors</li>
+            </ul>
+            
+            <h3>6.3 Tool Selection Optimization</h3>
+            <p>Rather than relying entirely on the model's judgment, implement explicit tool routing based on:</p>
+            <ul>
+                <li>Task classification</li>
+                <li>Required capabilities</li>
+                <li>Cost and latency considerations</li>
+                <li>Historical success rates</li>
             </ul>
 
-            <h2 id="production">Production Patterns</h2>
-            <p>Guardrails, error handling, cost management, and human-in-the-loop for production systems.</p>
+            <h2 id="memory-systems">7. Memory Systems</h2>
+            <p>Memory distinguishes agents from stateless chatbots. This section covers implementing robust memory systems for production.</p>
+            
+            <h3>7.1 Vector Memory Implementation</h3>
+            <p>Semantic memory—remembering facts and past interactions—is typically implemented using vector databases:</p>
+            <ul>
+                <li><strong>Pinecone:</strong> Managed solution, excellent performance</li>
+                <li><strong>Weaviate:</strong> Open-source, strong hybrid search</li>
+                <li><strong>Chroma:</strong> Lightweight, great for prototyping</li>
+                <li><strong>pgvector:</strong> PostgreSQL extension, good if already using Postgres</li>
+            </ul>
+            
+            <h3>7.2 Memory Retrieval Strategies</h3>
+            <p>Retrieval quality dramatically affects agent performance:</p>
+            <ul>
+                <li><strong>Semantic similarity:</strong> Find contextually similar memories</li>
+                <li><strong>Recency weighting:</strong> Prioritize recent interactions</li>
+                <li><strong>Importance scoring:</strong> Remember significant events more strongly</li>
+                <li><strong>Diversification:</strong> Avoid retrieving all similar memories</li>
+            </ul>
+            
+            <h3>7.3 Memory Consolidation</h3>
+            <p>As agents accumulate memories, they must periodically consolidate—transforming detailed records into compressed summaries. This prevents context window overflow while preserving essential information.</p>
 
-            <h2 id="future">Future</h2>
-            <p>Building agents to handle routine tasks so humans can focus on meaningful work.</p>
+            <h2 id="planning-execution">8. Planning & Execution Patterns</h2>
+            <p>Complex goals require systematic planning. This section covers patterns for reliable planning and execution.</p>
+            
+            <h3>8.1 Task Decomposition</h3>
+            <p>Breaking complex goals into manageable subtasks is fundamental. Techniques include:</p>
+            <ul>
+                <li><strong>Linear decomposition:</strong> Sequential steps where each depends on the previous</li>
+                <li><strong>Hierarchical decomposition:</strong> Goals broken into sub-goals with their own sub-goals</li>
+                <li><strong>Parallel decomposition:</strong> Independent tasks that can execute concurrently</li>
+            </ul>
+            
+            <h3>8.2 Dependency Management</h3>
+            <p>Understanding what must happen before what is crucial for efficient execution. Build dependency graphs that:</p>
+            <ul>
+                <li>Identify all task dependencies</li>
+                <li>Execute independent tasks in parallel</li>
+                <li>Handle missing dependencies gracefully</li>
+                <li>Support dynamic replanning when dependencies change</li>
+            </ul>
+            
+            <h3>8.3 Replanning Strategies</h3>
+            <p>Plans fail. Robust agents replan effectively:</p>
+            <ul>
+                <li><strong>Failure analysis:</strong> Understand <em>why</em> the plan failed</li>
+                <li><strong>Alternative generation:</strong> Generate new approaches</li>
+                <li><strong>Recovery planning:</strong> How to get back on track</li>
+                <li><strong>Escalation:</strong> When to involve humans</li>
+            </ul>
+
+            <h2 id="multi-agent">9. Multi-Agent Systems</h2>
+            <p>Single agents have limits. Multi-agent systems—multiple specialized agents collaborating—represent the next frontier.</p>
+            
+            <h3>9.1 When to Use Multi-Agent Systems</h3>
+            <p>Multi-agent architectures make sense when:</p>
+            <ul>
+                <li>Different expertise is needed for different aspects of a task</li>
+                <li>Multiple perspectives improve outcomes (debate, review)</li>
+                <li>Scale requires parallel processing</li>
+                <li>Specialization improves efficiency</li>
+            </ul>
+            
+            <h3>9.2 Architectural Patterns</h3>
+            <h4>Supervisor Pattern</h4>
+            <p>A central agent coordinates specialized sub-agents, delegating tasks and synthesizing results.</p>
+            
+            <h4>Debate Pattern</h4>
+            <p>Multiple agents propose solutions, critique each other, and iterate toward better answers. Effective for complex decisions requiring diverse perspectives.</p>
+            
+            <h4>Swarm Pattern</h4>
+            <p>Large numbers of simple agents that collectively solve problems through emergent behavior. Best for massive parallelization.</p>
+            
+            <h4>Pipeline Pattern</h4>
+            <p>Agents arranged in sequence, each adding value to the output. Similar to assembly lines in manufacturing.</p>
+            
+            <h3>9.3 Coordination Challenges</h3>
+            <p>Multi-agent systems introduce complexity:</p>
+            <ul>
+                <li><strong>Communication overhead:</strong> Sharing context between agents</li>
+                <li><strong>Consistency:</strong> Preventing conflicting changes</li>
+                <li><strong>Cost:</strong> More agents = more API calls</li>
+                <li><strong>Debugging:</strong> Harder to trace issues across agents</li>
+                <li><strong>Race conditions:</strong> Concurrent modifications to shared state</li>
+            </ul>
+
+            <h2 id="frameworks">10. Frameworks & Libraries</h2>
+            <p>The tooling ecosystem has matured significantly. Here's what's available in 2026:</p>
+            
+            <h3>10.1 Comprehensive Frameworks</h3>
+            <table class="comparison-table">
+                <tr><th>Framework</th><th>Best For</th><th>Key Features</th></tr>
+                <tr><td>LangChain/LangGraph</td><td>General-purpose agents</td><td>Mature ecosystem, extensive integrations</td></tr>
+                <tr><td>OpenAI Agents SDK</td><td>OpenAI-powered agents</td><td>Native tool support, production features</td></tr>
+                <tr><td>CrewAI</td><td>Multi-agent systems</td><td>Role-based agents, sequential/parallel execution</td></tr>
+                <tr><td>AutoGen (Microsoft)</td><td>Complex workflows</td><td>Conversational agents, code generation</td></tr>
+                <tr><td>SmolAgents</td><td>Lightweight applications</td><td>Simple API, minimal dependencies</td></tr>
+            </table>
+            
+            <h3>10.2 Specialized Tools</h3>
+            <ul>
+                <li><strong>Claude Code:</strong> CLI agent for terminal workflows</li>
+                <li><strong>Cursor:</strong> AI-native IDE with agent capabilities</li>
+                <li><strong>Windsurf (Cascade):</strong> AI-assisted IDE from Codeium</li>
+                <li><strong>Amazon Q Developer:</strong> Enterprise-focused, AWS integration</li>
+            </ul>
+            
+            <h3>10.3 Infrastructure Tools</h3>
+            <ul>
+                <li><strong>Temporal:</strong> Workflow orchestration with durability</li>
+                <li><strong>LangSmith:</strong> Observability and evaluation</li>
+                <li><strong>AgentOps:</strong> Agent-specific monitoring</li>
+                <li><strong>Portkey:</strong> Unified API gateway</li>
+            </ul>
+
+            <h2 id="production">11. Production Considerations</h2>
+            <p>Building a demo agent is straightforward. Building production agents that are reliable, scalable, and secure requires additional considerations.</p>
+            
+            <h3>11.1 Guardrails</h3>
+            <p>Guardrails prevent harmful actions and ensure appropriate behavior:</p>
+            <ul>
+                <li><strong>Input validation:</strong> Sanitize and validate all inputs</li>
+                <li><strong>Output filtering:</strong> Check outputs for policy violations</li>
+                <li><strong>Rate limiting:</strong> Prevent abuse and manage costs</li>
+                <li><strong>Content filtering:</strong> Block harmful requests</li>
+                <li><strong>Boundary enforcement:</strong> Prevent actions outside permitted scope</li>
+            </ul>
+            
+            <h3>11.2 Security</h3>
+            <p>Security must be foundational, not added later:</p>
+            <ul>
+                <li><strong>Tool permissions:</strong> Grant minimum required access</li>
+                <li><strong>Sandboxing:</strong> Isolate code execution</li>
+                <li><strong>Audit logging:</strong> Complete trails of all actions</li>
+                <li><strong>Secrets management:</strong> Never hardcode credentials</li>
+                <li><strong>Human approval:</strong> Require confirmation for sensitive operations</li>
+            </ul>
+            
+            <h3>11.3 Cost Management</h3>
+            <p>Agent costs can escalate rapidly. Implement controls:</p>
+            <ul>
+                <li><strong>Per-request budgets:</strong> Maximum tokens per task</li>
+                <li><strong>Model routing:</strong> Use cheaper models for simpler tasks</li>
+                <li><strong>Caching:</strong> Cache common queries and results</li>
+                <li><strong>Token monitoring:</strong> Track usage by task type</li>
+                <li><strong>User quotas:</strong> Limit per-user consumption</li>
+            </ul>
+            
+            <h3>11.4 Error Handling</h3>
+            <p>Graceful degradation is essential:</p>
+            <ul>
+                <li><strong>Timeout handling:</strong> Don't let agents hang indefinitely</li>
+                <li><strong>Retry logic:</strong> Automatic retry with backoff</li>
+                <li><strong>Fallback behavior:</strong> What to do when things fail</li>
+                <li><strong>State recovery:</strong> Resume from checkpoints</li>
+            </ul>
+
+            <h2 id="evaluation">12. Evaluation & Observability</h2>
+            <p>What gets measured gets improved. Evaluating and observing agents requires different approaches than traditional software.</p>
+            
+            <h3>12.1 Evaluation Metrics</h3>
+            <ul>
+                <li><strong>Task completion rate:</strong> % of tasks fully completed</li>
+                <li><strong>Success rate:</strong> % completed successfully</li>
+                <li><strong>Error rate:</strong> How often does the agent fail?</li>
+                <li><strong>Token efficiency:</strong> Tokens per successful task</li>
+                <li><strong>Latency:</strong> Time from request to response</li>
+                <li><strong>Human ratings:</strong> Quality feedback from users</li>
+            </ul>
+            
+            <h3>12.2 Observability Stack</h3>
+            <ul>
+                <li><strong>LangSmith:</strong> Anthropic's comprehensive debugging platform</li>
+                <li><strong>AgentOps:</strong> Open-source agent monitoring</li>
+                <li><strong>Custom dashboards:</strong> Build with Grafana + Prometheus</li>
+                <li><strong>Distributed tracing:</strong> Understand agent decision paths</li>
+            </ul>
+            
+            <h3>12.3 What to Log</h3>
+            <p>Essential logging includes:</p>
+            <ul>
+                <li>Every LLM call (prompt + response)</li>
+                <li>Every tool call and result</li>
+                <li>Reasoning traces (when available)</li>
+                <li>Errors and exceptions</li>
+                <li>Token usage and costs</li>
+                <li>Latency per step</li>
+            </ul>
+
+            <h2 id="future">13. Future Directions</h2>
+            <p>The agentic AI field is evolving rapidly. Here's where things are heading:</p>
+            
+            <h3>13.1 Near-Term (2026-2027)</h3>
+            <ul>
+                <li><strong>Better reasoning:</strong> Models with longer effective "thinking time"</li>
+                <li><strong>Cheaper tools:</strong> More capable function calling at lower costs</li>
+                <li><strong>Standardized evaluation:</strong> Industry benchmarks for agent performance</li>
+                <li><strong>Better debugging:</strong> Improved tools for understanding agent behavior</li>
+            </ul>
+            
+            <h3>13.2 Medium-Term (2027-2028)</h3>
+            <ul>
+                <li><strong>Persistent agents:</strong> Agents that learn and remember across sessions</li>
+                <li><strong>Multi-modal agents:</strong> Agents that can see, hear, and interact physically</li>
+                <li><strong>Composable architectures:</strong> Building blocks for assembling complex agents</li>
+                <li><strong>Formal verification:</strong> Mathematical guarantees of agent behavior</li>
+            </ul>
+            
+            <h3>13.3 Long-Term (2028+)</h3>
+            <ul>
+                <li><strong>General agents:</strong> Agents that can handle any task</li>
+                <li><strong>Self-improving agents:</strong> Agents that improve their own capabilities</li>
+                <li><strong>Agent societies:</strong> Complex ecosystems of collaborating agents</li>
+            </ul>
+
+            <h2 id="conclusion">14. Conclusion</h2>
+            <p>Agentic engineering represents the most significant architectural shift in AI since the introduction of transformers. We're moving from AI as a tool we use to AI as a collaborator that works alongside us.</p>
+            
+            <p>The key insight remains: we're not building agents to replace humans, but to handle the routine so humans can focus on the meaningful. The future is human-agent collaboration.</p>
+            
+            <p>To get started with agentic engineering:</p>
+            <ol>
+                <li>Start with simple single-agent systems</li>
+                <li>Use established frameworks (LangChain, CrewAI)</li>
+                <li>Focus on tool design—good tools make good agents</li>
+                <li>Build observability from day one</li>
+                <li>Start with low-risk applications</li>
+                <li>Iterate based on real usage</li>
+            </ol>
+            
+            <p>The tools, patterns, and practices in this guide provide the foundation. The rest is experimentation, learning, and iteration. Welcome to the agentic era.</p>
         </article>
-
         <footer>
-            <a href="https://github.com/sajadkoder" target="_blank" aria-label="GitHub">
-                <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-            </a>
-            <a href="https://linkedin.com/in/abdullasajad" target="_blank" aria-label="LinkedIn">
-                <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </a>
-            <a href="https://twitter.com/sajadkoder" target="_blank" aria-label="Twitter">
-                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="mailto:abdullasajad01@gmail.com" aria-label="Email">
-                <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
-            </a>
+            <a href="https://github.com/sajadkoder" target="_blank" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+            <a href="https://linkedin.com/in/abdullasajad" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="https://twitter.com/sajadkoder" target="_blank" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="mailto:abdullasajad01@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg></a>
         </footer>
     </div>
-
     <script>
         const toggle = document.getElementById('themeToggle');
         const saved = localStorage.getItem('theme') || 'dark';
         if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
-        
         toggle.addEventListener('click', () => {
             const current = document.documentElement.getAttribute('data-theme');
             const next = current === 'light' ? 'dark' : 'light';
