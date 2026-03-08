@@ -82,6 +82,21 @@
         }
         
         .summary { color: var(--text-dim); font-size: 14px; line-height: 1.8; }
+        .summary-list { list-style: none; margin-top: 0.5rem; }
+        .summary-list li { 
+            font-size: 13px; 
+            color: var(--text-dim); 
+            margin-bottom: 0.5rem; 
+            padding-left: 1rem;
+            position: relative;
+            line-height: 1.5;
+        }
+        .summary-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
         
         .project { margin-bottom: 1.5rem; }
         .project-header { display: flex; justify-content: space-between; margin-bottom: 0.25rem; flex-wrap: wrap; gap: 0.5rem; }
@@ -129,7 +144,7 @@
     <div class="container">
         <header>
             <h1>Abdulla Sajad</h1>
-            <p class="title">software engineer // ai engineer</p>
+            <p class="title">software engineer and ai engineer</p>
             <div class="meta">
                 <span><a href="mailto:abdullasajad01@gmail.com">abdullasajad01@gmail.com</a></span>
                 <span><a href="https://github.com/sajadkoder" target="_blank">github.com/sajadkoder</a></span>
@@ -140,7 +155,16 @@
 
         <section>
             <div class="section-title">summary</div>
-            <p class="summary">Final-year CS student building full-stack apps with AI integration. Experienced in React, TypeScript, Supabase, and Gemini AI integration. Learning LLM engineering and RAG. Looking for roles where I can ship impactful products.</p>
+            <ul class="summary-list">
+                <li>Full-stack development with React, TypeScript, Spring Boot, FastAPI</li>
+                <li>AI/ML integration experience with Gemini AI, LangChain, RAG pipelines</li>
+                <li>Built production-ready applications with Supabase, PostgreSQL, Redis</li>
+                <li>Deployed applications using Docker, Vercel, cloud platforms</li>
+                <li>Open source contributor with 8+ projects on GitHub</li>
+                <li>Published technical blogs on AI engineering, system design, DSA</li>
+                <li>Strong fundamentals in data structures and algorithms</li>
+                <li>Quick learner exploring LLM engineering and autonomous agents</li>
+            </ul>
         </section>
 
         <section>
