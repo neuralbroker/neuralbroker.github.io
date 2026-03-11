@@ -1,660 +1,883 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdulla Sajad</title>
-    <meta name="description" content="Software Engineer and AI Engineer - Building full-stack applications with focus on backend systems and AI integration">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Abdulla Sajad">
-    <meta property="og:description" content="Software Engineer and AI Engineer">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://sajad.dev">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Abdulla Sajad">
-    <meta name="twitter:description" content="Software Engineer and AI Engineer">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        :root {
-            --bg: #0a0a0c;
-            --bg-secondary: #121215;
-            --text: #d4d4d4;
-            --text-secondary: #9a9a9a;
-            --text-muted: #6a6a6a;
-            --border: #2a2a2e;
-            --accent: #e0e0e0;
-            --link: #7cb3f0;
-            --link-hover: #9ecaff;
-        }
-        
-        [data-theme="light"] {
-            --bg: #fafafa;
-            --bg-secondary: #ffffff;
-            --text: #1a1a1a;
-            --text-secondary: #555555;
-            --text-muted: #888888;
-            --border: #e5e5e5;
-            --accent: #000000;
-            --link: #2563eb;
-            --link-hover: #1d4ed8;
-        }
-        
-        html { scroll-behavior: smooth; }
-        
-        body {
-            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.65;
-            font-size: 15px;
-            transition: background 0.3s, color 0.3s;
-        }
-        
-        a { color: var(--link); text-decoration: none; transition: color 0.2s; }
-        a:hover { color: var(--link-hover); text-decoration: underline; }
-        
-        .container {
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-        }
-        
-        header {
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .theme-toggle {
-            position: fixed;
-            top: 1.25rem;
-            right: 1.25rem;
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            border-radius: 50%;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-        }
-        
-        .theme-toggle svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
-        
-        .theme-toggle:hover {
-            color: var(--text);
-        }
-        
-        .header-left {
-            flex: 1;
-        }
-        
-        .name {
-            font-size: 1.75rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-        }
-        
-        .tagline {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .tagline span {
-            color: var(--text-muted);
-        }
-        
-        nav {
-            display: flex;
-            gap: 1.25rem;
-            flex-wrap: wrap;
-            font-size: 0.9rem;
-        }
-        
-        nav a {
-            color: var(--text-secondary);
-        }
-        
-        nav a:hover {
-            color: var(--text);
-            text-decoration: none;
-        }
-        
-        section {
-            margin-bottom: 3rem;
-        }
-        
-        h2 {
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            margin-bottom: 1.25rem;
-        }
-        
-        .about p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 0.75rem;
-        }
-        
-        .project {
-            margin-bottom: 1.75rem;
-        }
-        
-        .project-header {
-            display: flex;
-            align-items: baseline;
-            gap: 0.75rem;
-            margin-bottom: 0.35rem;
-        }
-        
-        .project h3 {
-            font-size: 1rem;
-            font-weight: 500;
-        }
-        
-        .project .status {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-        }
-        
-        .project .status.finished::before {
-            content: "— ";
-        }
-        
-        .project p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 0.5rem;
-        }
-        
-        .project .tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-        
-        .project .tags span:not(:last-child)::after {
-            content: "·";
-            margin-left: 0.5rem;
-        }
-        
-        .project-link {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 0.35rem;
-        }
-        
-        .blog-item {
-            display: block;
-            padding: 0.85rem 0;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .blog-item:last-child { border-bottom: none; }
-        
-        .blog-item:hover { text-decoration: none; }
-        
-        .blog-item .meta {
-            display: flex;
-            gap: 0.75rem;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-bottom: 0.25rem;
-        }
-        
-        .blog-item h3 {
-            font-size: 0.95rem;
-            font-weight: 500;
-            margin-bottom: 0.2rem;
-            color: var(--text);
-        }
-        
-        .blog-item:hover h3 {
-            color: var(--link);
-        }
-        
-        .blog-item p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-        
-        .skills {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem 2rem;
-        }
-        
-        .skill-group {
-            margin-bottom: 0.5rem;
-        }
-        
-        .skill-group h4 {
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            margin-bottom: 0.35rem;
-        }
-        
-        .skill-group ul {
-            list-style: none;
-        }
-        
-        .skill-group li {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.25rem;
-        }
-        
-        footer {
-            margin-top: 3rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-        
-        footer span {
-            width: 100%;
-            text-align: center;
-            margin-top: 1rem;
-        }
-        
-        footer a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            transition: color 0.2s;
-        }
-        
-        footer a:hover {
-            color: var(--link);
-        }
-        
-        footer a svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-        
-        @media (max-width: 600px) {
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Abdulla Sajad</title>
+        <meta
+            name="description"
+            content="Software Engineer and AI Engineer - Building full-stack applications with focus on backend systems and AI integration"
+        />
+
+        <!-- Open Graph -->
+        <meta property="og:title" content="Abdulla Sajad" />
+        <meta
+            property="og:description"
+            content="Software Engineer and AI Engineer"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://sajad.dev" />
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Abdulla Sajad" />
+        <meta
+            name="twitter:description"
+            content="Software Engineer and AI Engineer"
+        />
+
+        <!-- Favicon -->
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>"
+        />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            :root {
+                --bg: #0a0a0c;
+                --bg-secondary: #121215;
+                --text: #d4d4d4;
+                --text-secondary: #9a9a9a;
+                --text-muted: #6a6a6a;
+                --border: #2a2a2e;
+                --accent: #e0e0e0;
+                --link: #7cb3f0;
+                --link-hover: #9ecaff;
+            }
+
+            [data-theme="light"] {
+                --bg: #fafafa;
+                --bg-secondary: #ffffff;
+                --text: #1a1a1a;
+                --text-secondary: #555555;
+                --text-muted: #888888;
+                --border: #e5e5e5;
+                --accent: #000000;
+                --link: #2563eb;
+                --link-hover: #1d4ed8;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                font-family:
+                    "IBM Plex Sans",
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    sans-serif;
+                background: var(--bg);
+                color: var(--text);
+                line-height: 1.65;
+                font-size: 15px;
+                transition:
+                    background 0.3s,
+                    color 0.3s;
+            }
+
+            a {
+                color: var(--link);
+                text-decoration: none;
+                transition: color 0.2s;
+            }
+            a:hover {
+                color: var(--link-hover);
+                text-decoration: underline;
+            }
+
             .container {
-                padding: 2rem 1.25rem;
+                max-width: 680px;
+                margin: 0 auto;
+                padding: 3rem 1.5rem;
             }
-            
+
+            .animate {
+                opacity: 0;
+                transform: translateY(20px);
+                animation: fadeInUp 0.6s ease forwards;
+                will-change: opacity, transform;
+            }
+
+            .animate-delay-1 {
+                animation-delay: 0.1s;
+            }
+            .animate-delay-2 {
+                animation-delay: 0.2s;
+            }
+            .animate-delay-3 {
+                animation-delay: 0.3s;
+            }
+            .animate-delay-4 {
+                animation-delay: 0.4s;
+            }
+
+            @keyframes fadeInUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .project {
+                animation-delay: 0.15s;
+            }
+            .blog-item {
+                animation-delay: 0.1s;
+            }
+            .skill-group {
+                animation-delay: 0.1s;
+            }
+
+            header {
+                margin-bottom: 3rem;
+                padding-bottom: 2rem;
+                border-bottom: 1px solid var(--border);
+            }
+
             .theme-toggle {
-                top: 1rem;
-                right: 1rem;
+                position: fixed;
+                top: 1.25rem;
+                right: 1.25rem;
+                background: transparent;
+                border: none;
+                color: var(--text-muted);
+                width: 40px;
+                height: 40px;
+                cursor: pointer;
+                border-radius: 50%;
+                transition: all 0.2s;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 100;
             }
-            
+
+            .theme-toggle svg {
+                width: 18px;
+                height: 18px;
+                fill: currentColor;
+            }
+
+            .theme-toggle:hover {
+                color: var(--text);
+            }
+
+            .header-profile {
+                display: flex;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+
+            .profile-image {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 2px solid var(--border);
+                flex-shrink: 0;
+            }
+
+            .header-content {
+                flex: 1;
+            }
+
             .name {
-                font-size: 1.5rem;
-                padding-right: 2.5rem;
+                font-size: 1.75rem;
+                font-weight: 600;
+                letter-spacing: -0.02em;
+                margin-bottom: 0.5rem;
             }
-            
+
             .tagline {
-                font-size: 0.9rem;
-            }
-            
-            nav {
-                gap: 0.75rem;
-                flex-wrap: wrap;
-            }
-            
-            nav a {
-                font-size: 0.85rem;
-            }
-            
-            h2 {
-                font-size: 0.65rem;
+                color: var(--text-secondary);
+                font-size: 1rem;
                 margin-bottom: 1rem;
             }
-            
-            .project h3 {
-                font-size: 0.95rem;
+
+            .tagline span {
+                color: var(--text-muted);
             }
-            
-            .project p {
-                font-size: 0.85rem;
-            }
-            
-            .project .tags {
-                font-size: 0.7rem;
-            }
-            
-            .skills {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .blog-item h3 {
+
+            nav {
+                display: flex;
+                gap: 1.25rem;
+                flex-wrap: wrap;
                 font-size: 0.9rem;
             }
-            
-            .blog-item p {
-                font-size: 0.8rem;
-            }
-            
-            footer {
-                gap: 1.25rem;
-            }
-            
-            footer a svg {
-                width: 22px;
-                height: 22px;
-            }
-        }
-        
-        @media (max-width: 400px) {
-            .name {
-                font-size: 1.35rem;
-            }
-            
+
             nav a {
-                font-size: 0.8rem;
+                color: var(--text-secondary);
             }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <div class="name">Abdulla Sajad</div>
-            <div class="tagline">
-                Software Engineer <span>//</span> AI Engineer
-            </div>
-            <nav>
-                <a href="#about">about</a>
-                <a href="#projects">projects</a>
-                <a href="#blog">writing</a>
-                <a href="#skills">skills</a>
-            </nav>
-        </header>
 
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-        </button>
+            nav a:hover {
+                color: var(--text);
+                text-decoration: none;
+            }
 
-        <section id="about" class="about">
-            <h2>About</h2>
-            <p>
-                Final-year CS student building full-stack applications with focus on backend systems and AI integration. 
-                Currently exploring LLM engineering, RAG pipelines, and autonomous agents.
-            </p>
-            <p>
-                Based in Kerala, India. Open to opportunities.
-            </p>
-        </section>
+            section {
+                margin-bottom: 3rem;
+            }
 
-        <section id="projects">
-            <h2>Projects</h2>
-            
-            <div class="project">
-                <div class="project-header">
-                    <h3><a href="https://github.com/sajadkoder/Anogram">Anogram</a></h3>
-                    <span class="status">in progress</span>
-                </div>
-                <p>Decentralized offline-capable messaging with Telegram-inspired UI and Bluetooth mesh networking. 100% offline, peer-to-peer, privacy-first.</p>
-                <div class="tags">
-                    <span>Kotlin</span><span>Jetpack Compose</span><span>BLE Mesh</span><span>Clean Architecture</span>
-                </div>
-            </div>
+            h2 {
+                font-size: 0.7rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                color: var(--text-muted);
+                margin-bottom: 1.25rem;
+            }
 
-            <div class="project">
-                <div class="project-header">
-                    <h3><a href="https://github.com/sajadkoder/sentinel-ml">SentinelML</a></h3>
-                    <span class="status">in progress</span>
-                </div>
-                <p>Production-ready real-time fraud detection system. FastAPI, scikit-learn, Redis caching, MLflow tracking, Docker deployment.</p>
-                <div class="tags">
-                    <span>Python</span><span>FastAPI</span><span>ML</span><span>Docker</span>
-                </div>
-            </div>
+            .about p {
+                color: var(--text-secondary);
+                font-size: 0.95rem;
+                line-height: 1.7;
+                margin-bottom: 0.75rem;
+            }
 
-            <div class="project">
-                <div class="project-header">
-                    <h3><a href="https://github.com/sajadkoder/esencelab">Esencelab</a></h3>
-                    <span class="status">in progress</span>
-                </div>
-                <p>AI-powered campus recruitment platform with resume parsing, job matching, and role-based dashboards.</p>
-                <div class="tags">
-                    <span>Next.js</span><span>TypeScript</span><span>FastAPI</span><span>Supabase</span><span>Gemini AI</span>
-                </div>
-            </div>
+            .project {
+                margin-bottom: 1.75rem;
+            }
 
-            <div class="project">
-                <div class="project-header">
-                    <h3><a href="https://github.com/sajadkoder/speakswap">SpeakSwap</a></h3>
-                    <span class="status finished">finished</span>
-                </div>
-                <p>Real-time voice translation web app. Migrated from Android to web with speech-to-text and multi-language translation.</p>
-                <div class="tags">
-                    <span>Next.js</span><span>TypeScript</span><span>Web Speech API</span>
-                </div>
-                <a href="https://speakswap.vercel.app" class="project-link">speakswap.vercel.app →</a>
-            </div>
+            .project-header, .blog-header {
+                display: flex;
+                align-items: baseline;
+                gap: 0.75rem;
+                margin-bottom: 0.35rem;
+            }
 
-            <div class="project">
-                <div class="project-header">
-                    <h3><a href="https://github.com/sajadkoder/zordcoder">ZordCoder</a></h3>
-                    <span class="status">in progress</span>
-                </div>
-                <p>Multilingual coding assistant for mobile (Termux) with GGUF inference, CLI and web interface, streaming responses.</p>
-                <div class="tags">
-                    <span>Python</span><span>llama.cpp</span><span>Next.js</span><span>CLI</span>
-                </div>
-            </div>
+            .project h3, .blog-header h3 {
+                font-size: 1rem;
+                font-weight: 500;
+            }
 
-            <div class="project">
-                <div class="project-header">
-                    <h3><a href="https://github.com/sajadkoder/koder-ide">Koder IDE</a></h3>
-                    <span class="status">in progress</span>
-                </div>
-                <p>Native Android code editor with syntax highlighting for 14+ languages. Jetpack Compose, Material 3.</p>
-                <div class="tags">
-                    <span>Kotlin</span><span>Android</span><span>Jetpack Compose</span>
-                </div>
-            </div>
+            .project .status, .blog-header .status {
+                font-size: 0.7rem;
+                color: var(--text-muted);
+            }
 
-            <div class="project">
-                <div class="project-header">
-                    <h3><a href="https://github.com/sajadkoder/smart-task-ai">Smart Task AI</a></h3>
-                    <span class="status finished">finished</span>
-                </div>
-                <p>AI-powered Kanban task manager with drag-drop, AI categorization, priority suggestions, and productivity analytics.</p>
-                <div class="tags">
-                    <span>Java</span><span>Spring Boot</span><span>React</span><span>WebSocket</span>
-                </div>
-            </div>
+            .project .status.finished::before, .blog-header .status.finished::before {
+                content: "— ";
+            }
 
-            <div class="project">
-                <div class="project-header">
-                    <h3><a href="https://github.com/sajadkoder/lexora-ai">Lexora AI</a></h3>
-                    <span class="status">in progress</span>
-                </div>
-                <p>AI-powered application exploring language model capabilities.</p>
-                <div class="tags">
-                    <span>Python</span><span>AI/ML</span>
-                </div>
-            </div>
-        </section>
+            .project p, .blog-item > p {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                line-height: 1.6;
+                margin-bottom: 0.5rem;
+            }
 
-        <section id="blog">
-            <h2>Writing</h2>
-            
-            <a href="blogs/agentic-engineering.html" class="blog-item">
-                <div class="meta">
-                    <span>Feb 2026</span>
-                    <span>Agentic Engineering</span>
-                </div>
-                <h3>Agentic Engineering: Building Autonomous AI Systems That Actually Work</h3>
-                <p>A comprehensive deep-dive into the engineering principles, architectures, and patterns behind production-ready autonomous AI agents.</p>
-            </a>
-            
-            <a href="blogs/ai-agents-guide.html" class="blog-item">
-                <div class="meta">
-                    <span>Jan 2026</span>
-                    <span>AI Agents</span>
-                </div>
-                <h3>Building with AI Agents: A Practical Guide</h3>
-                <p>From chatbots to autonomous agents—tools, patterns, and production realities.</p>
-            </a>
-            
-            <a href="blogs/ai-coding-tools-2026.html" class="blog-item">
-                <div class="meta">
-                    <span>Dec 2025</span>
-                    <span>AI Tools</span>
-                </div>
-                <h3>AI Coding Tools That Changed How I Work</h3>
-                <p>From Cursor to OpenHands, exploring AI-powered dev tools that actually help ship code faster.</p>
-            </a>
-            
-            <a href="blogs/llm-landscape-2026.html" class="blog-item">
-                <div class="meta">
-                    <span>Oct 2025</span>
-                    <span>LLM</span>
-                </div>
-                <h3>The LLM Landscape: What's Actually Useful in 2026</h3>
-                <p>Breaking down the models that matter, from reasoning models to coding assistants.</p>
-            </a>
-            
-            <a href="blogs/system-design-intro.html" class="blog-item">
-                <div class="meta">
-                    <span>Aug 2025</span>
-                    <span>System Design</span>
-                </div>
-                <h3>Introduction to System Design</h3>
-                <p>Thinking about systems at scale—from load balancers to consistency models.</p>
-            </a>
-            
-            <a href="blogs/learning-ai-engineering.html" class="blog-item">
-                <div class="meta">
-                    <span>Jun 2025</span>
-                    <span>Learning</span>
-                </div>
-                <h3>Learning AI Engineering as a Software Developer</h3>
-                <p>My journey from traditional SWE to AI engineering. What worked, what didn't.</p>
-            </a>
-            
-            <a href="blogs/dsa-real-world.html" class="blog-item">
-                <div class="meta">
-                    <span>Sep 2025</span>
-                    <span>Fundamentals</span>
-                </div>
-                <h3>DSA in the Real World: Beyond LeetCode</h3>
-                <p>When and why to use data structures in production code, not just interviews.</p>
-            </a>
-            
-            <a href="blogs/neurosymbolic-ai-military.html" class="blog-item">
-                <div class="meta">
-                    <span>Jul 2025</span>
-                    <span>AI Research</span>
-                </div>
-                <h3>Neurosymbolic AI in Military Systems</h3>
-                <p>Combining neural networks with symbolic reasoning for explainable military AI.</p>
-            </a>
-        </section>
+            .project .tags, .blog-item .tags {
+                display: flex;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                font-size: 0.75rem;
+                color: var(--text-muted);
+            }
 
-        <section id="skills">
-            <h2>Skills</h2>
-            <div class="skills">
-                <div class="skill-group">
-                    <h4>Languages</h4>
-                    <ul>
-                        <li>Python</li>
-                        <li>Java</li>
-                        <li>TypeScript</li>
-                        <li>Kotlin</li>
-                    </ul>
-                </div>
-                <div class="skill-group">
-                    <h4>Frameworks</h4>
-                    <ul>
-                        <li>React / Next.js</li>
-                        <li>FastAPI</li>
-                        <li>Spring Boot</li>
-                        <li>Android</li>
-                    </ul>
-                </div>
-                <div class="skill-group">
-                    <h4>AI / ML</h4>
-                    <ul>
-                        <li>LangChain</li>
-                        <li>OpenAI API</li>
-                        <li>RAG Pipelines</li>
-                        <li>Prompt Engineering</li>
-                    </ul>
-                </div>
-                <div class="skill-group">
-                    <h4>Tools</h4>
-                    <ul>
-                        <li>Docker</li>
-                        <li>Git</li>
-                        <li>Supabase</li>
-                        <li>Linux</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+            .project .tags span:not(:last-child)::after, .blog-item .tags span:not(:last-child)::after {
+                content: "·";
+                margin-left: 0.5rem;
+            }
 
-        <footer>
-            <a href="https://github.com/sajadkoder" target="_blank" aria-label="GitHub">
-                <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-            </a>
-            <a href="https://linkedin.com/in/abdullasajad" target="_blank" aria-label="LinkedIn">
-                <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </a>
-            <a href="mailto:abdullasajad01@gmail.com" aria-label="Email">
-                <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
-            </a>
-            <span>© 2026 Abdulla Sajad</span>
-        </footer>
-    </div>
+            .project-link {
+                font-size: 0.8rem;
+                color: var(--text-muted);
+                margin-top: 0.35rem;
+            }
 
-    <script>
-        const toggle = document.getElementById('themeToggle');
-        const saved = localStorage.getItem('theme') || 'dark';
-        if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
-        
-        toggle.addEventListener('click', () => {
-            const current = document.documentElement.getAttribute('data-theme');
-            const next = current === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
-        });
-    </script>
-</body>
+            .blog-item {
+                display: block;
+                padding: 0.85rem 0;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .blog-item:last-child {
+                border-bottom: none;
+            }
+
+            .blog-item:hover {
+                text-decoration: none;
+            }
+
+            .blog-item .meta {
+                display: flex;
+                gap: 0.75rem;
+                font-size: 0.75rem;
+                color: var(--text-muted);
+                margin-bottom: 0.25rem;
+            }
+
+            .blog-item h3 {
+                font-size: 0.95rem;
+                font-weight: 500;
+                margin-bottom: 0.2rem;
+                color: var(--text);
+            }
+
+            .blog-item:hover h3 {
+                color: var(--link);
+            }
+
+            .blog-item p {
+                font-size: 0.85rem;
+                color: var(--text-secondary);
+            }
+
+            .skills {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem 2rem;
+            }
+
+            .skill-group {
+                margin-bottom: 0.5rem;
+            }
+
+            .skill-group h4 {
+                font-size: 0.75rem;
+                font-weight: 500;
+                color: var(--text-muted);
+                margin-bottom: 0.35rem;
+            }
+
+            .skill-group ul {
+                list-style: none;
+            }
+
+            .skill-group li {
+                font-size: 0.85rem;
+                color: var(--text-secondary);
+                margin-bottom: 0.25rem;
+            }
+
+            footer {
+                margin-top: 3rem;
+                padding-top: 1.5rem;
+                border-top: 1px solid var(--border);
+                font-size: 0.8rem;
+                color: var(--text-muted);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+
+            footer span {
+                width: 100%;
+                text-align: center;
+                margin-top: 1rem;
+            }
+
+            footer a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--text-muted);
+                transition: color 0.2s;
+            }
+
+            footer a:hover {
+                color: var(--link);
+            }
+
+            footer a svg {
+                width: 20px;
+                height: 20px;
+                fill: currentColor;
+            }
+
+            @media (max-width: 600px) {
+                .container {
+                    padding: 2rem 1.25rem;
+                }
+
+                .theme-toggle {
+                    top: 1rem;
+                    right: 1rem;
+                }
+
+                .header-profile {
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    gap: 1rem;
+                }
+
+                .profile-image {
+                    width: 70px;
+                    height: 70px;
+                }
+
+                .header-content {
+                    width: 100%;
+                }
+
+                .name {
+                    font-size: 1.5rem;
+                    padding-right: 2.5rem;
+                }
+
+                .tagline {
+                    font-size: 0.9rem;
+                }
+
+                nav {
+                    gap: 0.75rem;
+                    flex-wrap: wrap;
+                }
+
+                nav a {
+                    font-size: 0.85rem;
+                }
+
+                h2 {
+                    font-size: 0.65rem;
+                    margin-bottom: 1rem;
+                }
+
+                .project h3 {
+                    font-size: 0.95rem;
+                }
+
+                .project p {
+                    font-size: 0.85rem;
+                }
+
+                .project .tags {
+                    font-size: 0.7rem;
+                }
+
+                .skills {
+                    grid-template-columns: 1fr;
+                    gap: 1rem;
+                }
+
+                .blog-item h3 {
+                    font-size: 0.9rem;
+                }
+
+                .blog-item p {
+                    font-size: 0.8rem;
+                }
+
+                footer {
+                    gap: 1.25rem;
+                }
+
+                footer a svg {
+                    width: 22px;
+                    height: 22px;
+                }
+            }
+
+            @media (max-width: 400px) {
+                .name {
+                    font-size: 1.35rem;
+                }
+
+                nav a {
+                    font-size: 0.8rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header class="animate">
+                <div class="header-profile">
+                    <img src="profile.jpg" alt="Abdulla Sajad" class="profile-image" loading="eager" decoding="async" width="80" height="80" />
+                    <div class="header-content">
+                        <div class="name">Abdulla Sajad</div>
+                        <div class="tagline">
+                            Software Engineer <span>//</span> AI Engineer
+                        </div>
+                        <nav>
+                            <a href="#about">about</a>
+                            <a href="#projects">projects</a>
+                            <a href="#blog">writing</a>
+                            <a href="#skills">skills</a>
+                            <!-- Replace with your resume file, e.g., resume.pdf -->
+                            <a href="resume.pdf" target="_blank" download
+                                >resume</a
+                            >
+                        </nav>
+                    </div>
+                </div>
+            </header>
+
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                aria-label="Toggle theme"
+            >
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+                    <circle cx="12" cy="12" r="5" />
+                    <path
+                        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+                    />
+                </svg>
+            </button>
+
+            <section id="about" class="about animate">
+                <h2>About</h2>
+                <p>
+                    Final-year CS student building full-stack applications with
+                    focus on backend systems and AI integration. Currently
+                    exploring LLM engineering, RAG pipelines, and autonomous
+                    agents.
+                </p>
+                <p>Based in Kerala, India. Open to opportunities.</p>
+            </section>
+
+            <section id="projects" class="animate animate-delay-1">
+                <h2>Projects</h2>
+
+                <div class="project">
+                    <div class="project-header">
+                        <h3>
+                            <a href="https://github.com/sajadkoder/Anogram"
+                                >Anogram</a
+                            >
+                        </h3>
+                        <span class="status">in progress</span>
+                    </div>
+                    <p>
+                        Decentralized offline-capable messaging with
+                        Telegram-inspired UI and Bluetooth mesh networking. 100%
+                        offline, peer-to-peer, privacy-first.
+                    </p>
+                    <div class="tags">
+                        <span>Kotlin</span><span>Jetpack Compose</span
+                        ><span>BLE Mesh</span><span>Clean Architecture</span>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <h3>
+                            <a href="https://github.com/sajadkoder/sentinel-ml"
+                                >SentinelML</a
+                            >
+                        </h3>
+                        <span class="status">in progress</span>
+                    </div>
+                    <p>
+                        Production-ready real-time fraud detection system.
+                        FastAPI, scikit-learn, Redis caching, MLflow tracking,
+                        Docker deployment.
+                    </p>
+                    <div class="tags">
+                        <span>Python</span><span>FastAPI</span><span>ML</span
+                        ><span>Docker</span>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <h3>
+                            <a href="https://github.com/sajadkoder/esencelab"
+                                >Esencelab</a
+                            >
+                        </h3>
+                        <span class="status">in progress</span>
+                    </div>
+                    <p>
+                        AI-powered campus recruitment platform with resume
+                        parsing, job matching, and role-based dashboards.
+                    </p>
+                    <div class="tags">
+                        <span>Next.js</span><span>TypeScript</span
+                        ><span>FastAPI</span><span>Supabase</span
+                        ><span>Gemini AI</span>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <h3>
+                            <a href="https://github.com/sajadkoder/speakswap"
+                                >SpeakSwap</a
+                            >
+                        </h3>
+                        <span class="status finished">finished</span>
+                    </div>
+                    <p>
+                        Real-time voice translation web app. Migrated from
+                        Android to web with speech-to-text and multi-language
+                        translation.
+                    </p>
+                    <div class="tags">
+                        <span>Next.js</span><span>TypeScript</span
+                        ><span>Web Speech API</span>
+                    </div>
+                    <a href="https://speakswap.vercel.app" class="project-link"
+                        >speakswap.vercel.app →</a
+                    >
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <h3>
+                            <a href="https://github.com/sajadkoder/zordcoder"
+                                >ZordCoder</a
+                            >
+                        </h3>
+                        <span class="status">in progress</span>
+                    </div>
+                    <p>
+                        Multilingual coding assistant for mobile (Termux) with
+                        GGUF inference, CLI and web interface, streaming
+                        responses.
+                    </p>
+                    <div class="tags">
+                        <span>Python</span><span>llama.cpp</span
+                        ><span>Next.js</span><span>CLI</span>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <h3>
+                            <a href="https://github.com/sajadkoder/koder-ide"
+                                >Koder IDE</a
+                            >
+                        </h3>
+                        <span class="status">in progress</span>
+                    </div>
+                    <p>
+                        Native Android code editor with syntax highlighting for
+                        14+ languages. Jetpack Compose, Material 3.
+                    </p>
+                    <div class="tags">
+                        <span>Kotlin</span><span>Android</span
+                        ><span>Jetpack Compose</span>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <h3>
+                            <a
+                                href="https://github.com/sajadkoder/smart-task-ai"
+                                >Smart Task AI</a
+                            >
+                        </h3>
+                        <span class="status finished">finished</span>
+                    </div>
+                    <p>
+                        AI-powered Kanban task manager with drag-drop, AI
+                        categorization, priority suggestions, and productivity
+                        analytics.
+                    </p>
+                    <div class="tags">
+                        <span>Java</span><span>Spring Boot</span
+                        ><span>React</span><span>WebSocket</span>
+                    </div>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <h3>
+                            <a href="https://github.com/sajadkoder/lexora-ai"
+                                >Lexora AI</a
+                            >
+                        </h3>
+                        <span class="status">in progress</span>
+                    </div>
+                    <p>
+                        AI-powered application exploring language model
+                        capabilities.
+                    </p>
+                    <div class="tags">
+                        <span>Python</span><span>AI/ML</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="blog" class="animate animate-delay-2">
+                <h2>Writing</h2>
+
+                <a href="blogs/agentic-engineering.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>Agentic Engineering: Building Autonomous AI Systems That Actually Work</h3>
+                        <span class="status finished">Feb 2026</span>
+                    </div>
+                    <p>A comprehensive deep-dive into the engineering principles, architectures, and patterns behind production-ready autonomous AI agents.</p>
+                    <div class="tags"><span>Agentic Engineering</span><span>AI</span></div>
+                </a>
+
+                <a href="blogs/ai-agents-guide.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>Building with AI Agents: A Practical Guide</h3>
+                        <span class="status finished">Jan 2026</span>
+                    </div>
+                    <p>From chatbots to autonomous agents—tools, patterns, and production realities.</p>
+                    <div class="tags"><span>AI Agents</span><span>Guide</span></div>
+                </a>
+
+                <a href="blogs/ai-coding-tools-2026.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>AI Coding Tools That Changed How I Work</h3>
+                        <span class="status finished">Dec 2025</span>
+                    </div>
+                    <p>From Cursor to OpenHands, exploring AI-powered dev tools that actually help ship code faster.</p>
+                    <div class="tags"><span>AI Tools</span><span>Productivity</span></div>
+                </a>
+
+                <a href="blogs/llm-landscape-2026.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>The LLM Landscape: What's Actually Useful in 2026</h3>
+                        <span class="status finished">Oct 2025</span>
+                    </div>
+                    <p>Breaking down the models that matter, from reasoning models to coding assistants.</p>
+                    <div class="tags"><span>LLM</span><span>AI</span></div>
+                </a>
+
+                <a href="blogs/system-design-intro.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>Introduction to System Design</h3>
+                        <span class="status finished">Aug 2025</span>
+                    </div>
+                    <p>Thinking about systems at scale—from load balancers to consistency models.</p>
+                    <div class="tags"><span>System Design</span><span>Architecture</span></div>
+                </a>
+
+                <a href="blogs/learning-ai-engineering.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>Learning AI Engineering as a Software Developer</h3>
+                        <span class="status finished">Jun 2025</span>
+                    </div>
+                    <p>My journey from traditional SWE to AI engineering. What worked, what didn't.</p>
+                    <div class="tags"><span>Learning</span><span>Career</span></div>
+                </a>
+
+                <a href="blogs/dsa-real-world.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>DSA in the Real World: Beyond LeetCode</h3>
+                        <span class="status finished">Sep 2025</span>
+                    </div>
+                    <p>When and why to use data structures in production code, not just interviews.</p>
+                    <div class="tags"><span>Fundamentals</span><span>DSA</span></div>
+                </a>
+
+                <a href="blogs/neurosymbolic-ai-military.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>Neurosymbolic AI in Military Systems</h3>
+                        <span class="status finished">Jul 2025</span>
+                    </div>
+                    <p>Combining neural networks with symbolic reasoning for explainable military AI.</p>
+                    <div class="tags"><span>AI Research</span><span>Neurosymbolic</span></div>
+                </a>
+            </section>
+
+            <section id="skills" class="animate animate-delay-3">
+                <h2>Skills</h2>
+                <div class="skills">
+                    <div class="skill-group">
+                        <h4>Languages</h4>
+                        <ul>
+                            <li>Python</li>
+                            <li>Java</li>
+                            <li>TypeScript</li>
+                            <li>Kotlin</li>
+                        </ul>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Frameworks</h4>
+                        <ul>
+                            <li>React / Next.js</li>
+                            <li>FastAPI</li>
+                            <li>Spring Boot</li>
+                            <li>Android</li>
+                        </ul>
+                    </div>
+                    <div class="skill-group">
+                        <h4>AI / ML</h4>
+                        <ul>
+                            <li>LangChain</li>
+                            <li>OpenAI API</li>
+                            <li>RAG Pipelines</li>
+                            <li>Prompt Engineering</li>
+                        </ul>
+                    </div>
+                    <div class="skill-group">
+                        <h4>Tools</h4>
+                        <ul>
+                            <li>Docker</li>
+                            <li>Git</li>
+                            <li>Supabase</li>
+                            <li>Linux</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="animate animate-delay-4">
+                <a
+                    href="https://github.com/sajadkoder"
+                    target="_blank"
+                    aria-label="GitHub"
+                >
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                        />
+                    </svg>
+                </a>
+                <a
+                    href="https://linkedin.com/in/abdullasajad"
+                    target="_blank"
+                    aria-label="LinkedIn"
+                >
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                        />
+                    </svg>
+                </a>
+                <a href="mailto:abdullasajad01@gmail.com" aria-label="Email">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"
+                        />
+                    </svg>
+                </a>
+                <span>© 2026 Abdulla Sajad</span>
+            </footer>
+        </div>
+
+        <script>
+            const toggle = document.getElementById("themeToggle");
+            const saved = localStorage.getItem("theme") || "dark";
+            if (saved === "light")
+                document.documentElement.setAttribute("data-theme", "light");
+
+            toggle.addEventListener("click", () => {
+                const current =
+                    document.documentElement.getAttribute("data-theme");
+                const next = current === "light" ? "dark" : "light";
+                document.documentElement.setAttribute("data-theme", next);
+                localStorage.setItem("theme", next);
+            });
+        </script>
+    </body>
 </html>

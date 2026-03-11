@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,72 +6,38 @@
     <title>Agentic Engineering: The Complete Guide to Building Autonomous AI Systems in 2026 | Abdulla Sajad</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --bg: #0a0a0c; --bg-secondary: #121215; --text: #d4d4d4; --text-secondary: #9a9a9a; --text-muted: #6a6a6a; --border: #2a2a2e; --link: #7cb3f0; --link-hover: #9ecaff; }
-        [data-theme="light"] { --bg: #fafafa; --bg-secondary: #ffffff; --text: #1a1a1a; --text-secondary: #555555; --text-muted: #888888; --border: #e5e --link: #2563eb;5e5; --link-hover: #1d4ed8; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'IBM Plex Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 15px; transition: background 0.3s, color 0.3s; }
-        a { color: var(--link); text-decoration: none; transition: color 0.2s; }
-        a:hover { color: var(--link-hover); text-decoration: underline; }
-        .container { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem; }
-        header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
-        .name { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
-        .name a { color: var(--text); }
-        .name a:hover { color: var(--link); text-decoration: none; }
-        nav { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.9rem; }
-        nav a { color: var(--text-secondary); }
-        nav a:hover { color: var(--text); text-decoration: none; }
-        .back-link { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem; display: inline-block; }
-        .back-link:hover { color: var(--link); }
-        article h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.3; margin-bottom: 0.75rem; }
-        .meta { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; }
-        .meta span { margin-right: 1rem; }
-        article { color: var(--text-secondary); line-height: 1.85; }
-        article h2 { font-size: 1.35rem; font-weight: 600; color: var(--text); margin: 3rem 0 1.25rem; }
-        article h3 { font-size: 1.1rem; font-weight: 600; color: var(--text); margin: 2rem 0 0.75rem; }
-        article h4 { font-size: 1rem; font-weight: 600; color: var(--text); margin: 1.5rem 0 0.5rem; }
-        article p { margin-bottom: 1.25rem; }
-        article ul, article ol { margin: 1rem 0 1.5rem 1.5rem; }
-        article li { margin-bottom: 0.6rem; }
-        article strong { color: var(--text); font-weight: 600; }
-        article code { font-family: 'IBM Plex Mono', monospace; font-size: 0.9em; background: var(--bg-secondary); padding: 0.2rem 0.4rem; border-radius: 3px; }
-        article pre { background: var(--bg-secondary); padding: 1rem; overflow-x: auto; border-radius: 6px; margin: 1.5rem 0; font-size: 0.85rem; line-height: 1.6; }
-        article pre code { background: none; padding: 0; }
-        article blockquote { border-left: 3px solid var(--border); padding-left: 1rem; margin: 1.5rem 0; color: var(--text-muted); font-style: italic; }
-        article .highlight-box { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin: 2rem 0; }
-        article .toc { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin: 2rem 0; }
-        article .toc h3 { margin-top: 0; font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
-        article .toc ul { margin: 1rem 0 0; }
-        article .comparison-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
-        article .comparison-table th, article .comparison-table td { border: 1px solid var(--border); padding: 0.75rem; text-align: left; font-size: 0.9rem; }
-        article .comparison-table th { background: var(--bg-secondary); font-weight: 600; }
-        .theme-toggle { position: fixed; top: 1.25rem; right: 1.25rem; background: var(--bg); border: 1px solid var(--border); color: var(--text-muted); padding: 0.5rem; cursor: pointer; font-family: inherit; border-radius: 6px; transition: all 0.2s; z-index: 100; }
-        .theme-toggle svg { width: 18px; height: 18px; fill: currentColor; }
-        .theme-toggle:hover { border-color: var(--text); color: var(--text); }
-        footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted); display: flex; justify-content: center; gap: 1.5rem; }
-        footer a { color: var(--text-muted); }
-        footer a:hover { color: var(--link); }
-        footer a svg { width: 20px; height: 20px; fill: currentColor; }
-        @media (max-width: 600px) { .container { padding: 2rem 1.25rem; } article h1 { font-size: 1.5rem; } article h2 { font-size: 1.2rem; } }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../site.css">
 </head>
-<body>
-    <button class="theme-toggle" id="themeToggle"><svg viewBox="0 0 24 24"><path d="M12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3zm0-7V0m0 12v2m7 7h-2M0 12h2m3.52-8.52l1.76-1.76m0 0l1.76 1.76M5.28 5.28m0 0l-1.76 1.76m14.44 14.44l-1.76-1.76m0 0l1.76 1.76M5.28 18.72l-1.76-1.76"/></svg></button>
-    <div class="container">
-        <header>
-            <div class="name"><a href="../index.html">Abdulla Sajad</a></div>
-            <nav>
-                <a href="../index.html">home</a>
-                <a href="../index.html#projects">projects</a>
-                <a href="../index.html#blog">writing</a>
-                <a href="../index.html#skills">skills</a>
+<body class="blog-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="page-shell">
+        <header class="site-header" data-reveal>
+            <a class="brand" href="../index.html" aria-label="Abdulla Sajad home">
+                <span class="brand-name">Abdulla Sajad</span>
+                <span class="brand-role">Software Engineer / AI Engineer</span>
+            </a>
+
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#writing">Writing</a>
+                <a href="../index.html#skills">Skills</a>
+                <a href="../index.html#contact">Contact</a>
             </nav>
+
+            <div class="header-actions">
+                <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+                    <span class="theme-toggle-label">Dark</span>
+                </button>
+            </div>
         </header>
-        <a href="../index.html#blog" class="back-link">← back to writing</a>
-        <article>
-            <h1>Agentic Engineering: The Complete Guide to Building Autonomous AI Systems in 2026</h1>
+
+        <main id="main" class="post-wrap">
+            <a class="back-link" href="../index.html#writing">Back to writing</a>
+            <article class="post-content surface-panel" data-reveal>
+<h1>Agentic Engineering: The Complete Guide to Building Autonomous AI Systems in 2026</h1>
             <div class="meta"><span>Agentic Engineering</span><span>Feb 2026</span><span>~25 min read</span></div>
 
             <div class="toc">
@@ -95,9 +61,9 @@
             </div>
 
             <h2 id="introduction">1. Introduction: The Paradigm Shift</h2>
-            <p>We've reached a pivotal moment in artificial intelligence. The era of simple chatbots and static prompts—systems that generate a single response and wait for input—is rapidly giving way to something fundamentally different. Welcome to the age of agentic AI.</p>
-            <p>Agentic engineering represents not merely an incremental improvement in how we interact with AI, but a fundamental architectural paradigm shift in how we build intelligent systems. While traditional AI applications function as sophisticated question-answering machines, agentic systems transform large language models into autonomous entities capable of perceiving their environment, reasoning about complex goals, planning multi-step workflows, executing actions, and iterating based on feedback—all with minimal human intervention.</p>
-            <p>The numbers tell a compelling story. According to recent industry analysis, by 2026, approximately 40% of enterprise applications will incorporate some form of agentic AI capability. Venture capital investment in agentic AI startups has tripled year-over-year, with companies building production-ready autonomous systems raising record rounds. Major cloud providers—AWS, Azure, and Google Cloud—have all released dedicated agent frameworks and orchestration tools, recognizing that the future of enterprise AI lies not in static chat interfaces but in dynamic, goal-oriented autonomous systems.</p>
+            <p>We've reached a pivotal moment in artificial intelligence. The era of simple chatbots and static prompts, systems that generate a single response and wait for input, is rapidly giving way to something fundamentally different. Welcome to the age of agentic AI.</p>
+            <p>Agentic engineering represents not merely an incremental improvement in how we interact with AI, but a fundamental architectural paradigm shift in how we build intelligent systems. While traditional AI applications function as sophisticated question-answering machines, agentic systems transform large language models into autonomous entities capable of perceiving their environment, reasoning about complex goals, planning multi-step workflows, executing actions, and iterating based on feedback, all with minimal human intervention.</p>
+            <p>The numbers tell a compelling story. According to recent industry analysis, by 2026, approximately 40% of enterprise applications will incorporate some form of agentic AI capability. Venture capital investment in agentic AI startups has tripled year-over-year, with companies building production-ready autonomous systems raising record rounds. Major cloud providers, AWS, Azure, and Google Cloud, have all released dedicated agent frameworks and orchestration tools, recognizing that the future of enterprise AI lies not in static chat interfaces but in dynamic, goal-oriented autonomous systems.</p>
             <p>This comprehensive guide dives deep into the engineering principles, architectural patterns, and practical implementation strategies that define successful agentic AI systems in 2026. Whether you're architecting your first agent or scaling production deployments, this resource provides the foundation you need to build systems that actually work in the real world.</p>
 
             <h2 id="what-is-agentic">2. What Makes AI "Agentic"?</h2>
@@ -107,10 +73,10 @@
             <p>According to the IEEE Standards Association and leading AI research organizations, an AI system earns the "agentic" designation when it demonstrates these core properties:</p>
             
             <h4>Autonomy</h4>
-            <p>Agentic systems can make decisions and take actions without requiring human approval for every step. They operate with a degree of independence, exercising judgment within defined boundaries. This doesn't mean unlimited freedom—rather, it means the system can execute complex workflows while only escalating to humans for exceptional cases or decisions that exceed its authority.</p>
+            <p>Agentic systems can make decisions and take actions without requiring human approval for every step. They operate with a degree of independence, exercising judgment within defined boundaries. This doesn't mean unlimited freedom, rather, it means the system can execute complex workflows while only escalating to humans for exceptional cases or decisions that exceed its authority.</p>
             
             <h4>Goal-Orientation</h4>
-            <p>Traditional AI responds to prompts with a single output. Agentic systems, conversely, work toward end objectives. They understand not just what they're asked to do, but why—and they can decompose abstract goals into concrete, achievable steps. When given a complex task like "research this topic and write a report," an agent doesn't just generate text; it plans research steps, executes them systematically, synthesizes findings, and produces the final deliverable.</p>
+            <p>Traditional AI responds to prompts with a single output. Agentic systems, conversely, work toward end objectives. They understand not just what they're asked to do, but why, and they can decompose abstract goals into concrete, achievable steps. When given a complex task like "research this topic and write a report," an agent doesn't just generate text; it plans research steps, executes them systematically, synthesizes findings, and produces the final deliverable.</p>
             
             <h4>Tool Use</h4>
             <p>Perhaps the most practically important characteristic: agentic systems can invoke external tools. They can search the web, execute code, interact with APIs, read and write files, send messages, and manipulate their environment. This capability transforms AI from a text generator into a system that can actually <em>do</em> things in the world.</p>
@@ -119,7 +85,7 @@
             <p>Agentic systems maintain memory across interactions. They remember previous steps in a workflow, accumulate context as they work, and can resume interrupted tasks. This persistence enables the kind of long-running, multi-session workflows that distinguish agents from stateless chatbots.</p>
             
             <h4>Self-Correction</h4>
-            <p>When approaches fail, agentic systems can recognize the failure, reason about what went wrong, and adjust their strategy. This meta-cognitive capability—the ability to think about their own thinking and modify their approach—is what enables agents to handle genuinely novel situations.</p>
+            <p>When approaches fail, agentic systems can recognize the failure, reason about what went wrong, and adjust their strategy. This meta-cognitive capability, the ability to think about their own thinking and modify their approach, is what enables agents to handle genuinely novel situations.</p>
 
             <h3>2.2 The Evolution from Chatbots to Agents</h3>
             <p>Understanding where we are requires understanding where we've been. The progression from basic AI to agentic systems follows a clear trajectory:</p>
@@ -136,7 +102,7 @@
             <p>Most production systems in early 2026 hover between Level 2 and Level 3. True Level 4 systems remain largely experimental, though they're increasingly common in research settings and pilot programs.</p>
 
             <h2 id="core-components">3. Core Components of Agentic Systems</h2>
-            <p>Every production-ready agentic system shares a common architectural foundation. Understanding these components—and how they interact—is essential for building reliable systems.</p>
+            <p>Every production-ready agentic system shares a common architectural foundation. Understanding these components, and how they interact, is essential for building reliable systems.</p>
             
             <h3>3.1 The Reasoning Engine (LLM)</h3>
             <p>At the heart of every agent sits a large language model that serves as the "brain." But not just any model will do. The choice of reasoning engine dramatically affects what your agent can accomplish.</p>
@@ -144,15 +110,15 @@
             <h4>Model Selection Considerations</h4>
             <p>Different models excel at different tasks, and understanding these tradeoffs is crucial:</p>
             <ul>
-                <li><strong>Claude 4 (Anthropic):</strong> The 2026 leader for complex reasoning, code generation, and nuanced understanding. The extended thinking capabilities in Claude 4 Opus make it particularly effective for multi-step planning. Pricing reflects this capability—expect to pay premium rates for Opus, with Sonnet offering excellent value for simpler tasks.</li>
+                <li><strong>Claude 4 (Anthropic):</strong> The 2026 leader for complex reasoning, code generation, and nuanced understanding. The extended thinking capabilities in Claude 4 Opus make it particularly effective for multi-step planning. Pricing reflects this capability, expect to pay premium rates for Opus, with Sonnet offering excellent value for simpler tasks.</li>
                 <li><strong>GPT-5 (OpenAI):</strong> Maintains strong position with excellent function calling, multimodal capabilities, and the most mature tool ecosystem. The reasoning models (o1, o3) excel at mathematical and logical tasks.</li>
                 <li><strong>DeepSeek R1:</strong> The breakthrough open-weights model of 2026. Demonstrated reasoning capabilities competitive with proprietary models while being significantly cheaper to deploy. Ideal for organizations requiring customization and data privacy.</li>
                 <li><strong>Gemini 2.5 Pro (Google):</strong> Best-in-class context window (up to 1M tokens) makes it exceptional for document-heavy workflows. The multimodal native capabilities are unmatched.</li>
-                <li><strong>Qwen 3 (Alibaba):</strong> Strong performance especially for non-English languages, with increasingly competitive reasoning capabilities at lower cost points </ul>
-            
-.</li>
-                       <div class="highlight-box">
-                <strong>Key Insight:</strong> In production systems, most deployments use a model consortium—different models for different task types. Use premium models for complex reasoning, mid-tier models for routine tasks, and specialized models for domain-specific work. This approach optimizes both cost and capability.
+                <li><strong>Qwen 3 (Alibaba):</strong> Strong performance, especially for non-English languages, with increasingly competitive reasoning capability at lower cost points.</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>Key Insight:</strong> In production systems, most deployments use a model consortium, different models for different task types. Use premium models for complex reasoning, mid-tier models for routine tasks, and specialized models for domain-specific work. This approach optimizes both cost and capability.
             </div>
             
             <h3>3.2 The Tool System</h3>
@@ -184,10 +150,10 @@
             <h4>Categories of Tools</h4>
             <p>Tools typically fall into several categories, each with different risk profiles:</p>
             <ul>
-                <li><strong>Read-Only Tools:</strong> Search, document retrieval, database queries. Lowest risk—these can typically be used freely.</li>
-                <li><strong>Information Retrieval:</strong> API calls, database reads. Moderate risk—ensure proper authentication and rate limiting.</li>
-                <li><strong>Write Tools:</strong> File creation, database updates, sending messages. Higher risk—implement proper authorization checks.</li>
-                <li><strong>Execution Tools:</strong> Code execution, shell commands, deployment triggers. Highest risk—always require human approval or implement strict guardrails.</li>
+                <li><strong>Read-Only Tools:</strong> Search, document retrieval, database queries. Lowest risk, these can typically be used freely.</li>
+                <li><strong>Information Retrieval:</strong> API calls, database reads. Moderate risk, ensure proper authentication and rate limiting.</li>
+                <li><strong>Write Tools:</strong> File creation, database updates, sending messages. Higher risk, implement proper authorization checks.</li>
+                <li><strong>Execution Tools:</strong> Code execution, shell commands, deployment triggers. Highest risk, always require human approval or implement strict guardrails.</li>
             </ul>
             
             <h4>Tool Design Best Practices</h4>
@@ -204,7 +170,7 @@
             <p>Memory enables agents to accumulate context and work across sessions. Modern systems use a layered memory architecture:</p>
             
             <h4>Working Memory (Context Window)</h4>
-            <p>The immediate context visible to the LLM. In 2026, context windows have expanded dramatically—some models support 1M+ tokens. However, this is expensive and slow. Best practice: use working memory for immediate task context only.</p>
+            <p>The immediate context visible to the LLM. In 2026, context windows have expanded dramatically, some models support 1M+ tokens. However, this is expensive and slow. Best practice: use working memory for immediate task context only.</p>
             
             <h4>Short-Term Memory (Conversation History)</h4>
             <p>Recent interactions stored in fast storage (Redis, in-memory). Used to maintain conversational coherence. Implement summary-based compression when history exceeds context limits.</p>
@@ -213,7 +179,7 @@
             <p>Facts, preferences, learned patterns stored in vector databases or structured stores. Retrieved contextually when relevant. Implement semantic search for retrieval.</p>
             
             <h4>Procedural Memory (System Prompts)</h4>
-            <p>How to do things—encoded in system prompts, few-shot examples, and retrieved patterns. This is how agents "learn" procedures without fine-tuning.</p>
+            <p>How to do things, encoded in system prompts, few-shot examples, and retrieved patterns. This is how agents "learn" procedures without fine-tuning.</p>
 
             <h2 id="architectural-patterns">4. Architectural Patterns in 2026</h2>
             <p>The agentic AI field has matured significantly, with several robust architectural patterns emerging as best practices. These patterns represent lessons learned from thousands of production deployments.</p>
@@ -253,7 +219,7 @@
             <p>Modern production systems increasingly implement tool selection as a separate reasoning step. Rather than relying on the LLM to always choose the right tool, implement explicit tool selection logic that can be tuned independently from the model. This improves reliability and enables optimization.</p>
 
             <h2 id="reasoning-strategies">5. Reasoning & Decision-Making Strategies</h2>
-            <p>How agents think is fundamentally different from how traditional software decides. Understanding these reasoning strategies—and when to apply each—is essential for building effective agents.</p>
+            <p>How agents think is fundamentally different from how traditional software decides. Understanding these reasoning strategies, and when to apply each, is essential for building effective agents.</p>
             
             <h3>5.1 Chain-of-Thought (CoT)</h3>
             <p>Chain-of-Thought prompts the model to show its reasoning step-by-step. This works exceptionally well for problems with clear logical progression:</p>
@@ -264,11 +230,11 @@ Reasoning:
 1. Principal (P) = $10,000
 2. Annual rate (r) = 5% = 0.05
 3. Monthly rate = 0.05/12 = 0.004167
-4. Number of periods (n) = 3 × 12 = 36 months
+4. Number of periods (n) = 3 x  12 = 36 months
 5. Formula: A = P(1 + r/n)^(nt)
 6. A = 10000(1 + 0.05/12)^36
 7. A = 10000(1.004167)^36
-8. A = 10000 × 1.1614 ≈ $11,614
+8. A = 10000 x  1.1614 approximately $11,614
 
 Answer: $11,614</code></pre>
             
@@ -284,7 +250,7 @@ Answer: $11,614</code></pre>
             <p>The 2025-2026 breakthrough in reasoning: models that show extensive internal reasoning (not just the output, but the reasoning process). Claude's extended thinking, OpenAI's o-series, and DeepSeek R1 all demonstrate that allowing models more "thinking time" (through longer contexts or explicit reasoning steps) produces substantially better results on complex tasks.</p>
             
             <h3>5.4 Meta-Cognition</h3>
-            <p>The most sophisticated agents implement meta-cognition—the ability to think about their own thinking. This includes:</p>
+            <p>The most sophisticated agents implement meta-cognition, the ability to think about their own thinking. This includes:</p>
             <ul>
                 <li>Recognizing when they don't know something</li>
                 <li>Detecting confidence levels in their answers</li>
@@ -327,7 +293,7 @@ Answer: $11,614</code></pre>
             <p>Memory distinguishes agents from stateless chatbots. This section covers implementing robust memory systems for production.</p>
             
             <h3>7.1 Vector Memory Implementation</h3>
-            <p>Semantic memory—remembering facts and past interactions—is typically implemented using vector databases:</p>
+            <p>Semantic memory, remembering facts and past interactions, is typically implemented using vector databases:</p>
             <ul>
                 <li><strong>Pinecone:</strong> Managed solution, excellent performance</li>
                 <li><strong>Weaviate:</strong> Open-source, strong hybrid search</li>
@@ -345,7 +311,7 @@ Answer: $11,614</code></pre>
             </ul>
             
             <h3>7.3 Memory Consolidation</h3>
-            <p>As agents accumulate memories, they must periodically consolidate—transforming detailed records into compressed summaries. This prevents context window overflow while preserving essential information.</p>
+            <p>As agents accumulate memories, they must periodically consolidate, transforming detailed records into compressed summaries. This prevents context window overflow while preserving essential information.</p>
 
             <h2 id="planning-execution">8. Planning & Execution Patterns</h2>
             <p>Complex goals require systematic planning. This section covers patterns for reliable planning and execution.</p>
@@ -377,7 +343,7 @@ Answer: $11,614</code></pre>
             </ul>
 
             <h2 id="multi-agent">9. Multi-Agent Systems</h2>
-            <p>Single agents have limits. Multi-agent systems—multiple specialized agents collaborating—represent the next frontier.</p>
+            <p>Single agents have limits. Multi-agent systems, multiple specialized agents collaborating, represent the next frontier.</p>
             
             <h3>9.1 When to Use Multi-Agent Systems</h3>
             <p>Multi-agent architectures make sense when:</p>
@@ -549,31 +515,28 @@ Answer: $11,614</code></pre>
             <ol>
                 <li>Start with simple single-agent systems</li>
                 <li>Use established frameworks (LangChain, CrewAI)</li>
-                <li>Focus on tool design—good tools make good agents</li>
+                <li>Focus on tool design, good tools make good agents</li>
                 <li>Build observability from day one</li>
                 <li>Start with low-risk applications</li>
                 <li>Iterate based on real usage</li>
             </ol>
             
             <p>The tools, patterns, and practices in this guide provide the foundation. The rest is experimentation, learning, and iteration. Welcome to the agentic era.</p>
-        </article>
-        <footer>
-            <a href="https://github.com/sajadkoder" target="_blank" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
-            <a href="https://linkedin.com/in/abdullasajad" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-            <a href="https://twitter.com/sajadkoder" target="_blank" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-            <a href="mailto:abdullasajad01@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg></a>
+            </article>
+        </main>
+
+        <footer class="site-footer" data-reveal>
+            <div class="footer-links">
+                <a class="inline-link" href="https://github.com/sajadkoder" target="_blank" rel="noreferrer">GitHub</a>
+                <a class="inline-link" href="https://linkedin.com/in/abdullasajad" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a class="inline-link" href="mailto:abdullasajad01@gmail.com">abdullasajad01@gmail.com</a>
+            </div>
+            <p class="footer-note">&copy; 2026 Abdulla Sajad. Long form notes on software, AI, and systems.</p>
         </footer>
     </div>
-    <script>
-        const toggle = document.getElementById('themeToggle');
-        const saved = localStorage.getItem('theme') || 'dark';
-        if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
-        toggle.addEventListener('click', () => {
-            const current = document.documentElement.getAttribute('data-theme');
-            const next = current === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
-        });
-    </script>
+
+    <script src="../site.js"></script>
 </body>
 </html>
+
+

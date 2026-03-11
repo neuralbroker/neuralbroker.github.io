@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,62 +6,38 @@
     <title>Neurosymbolic AI in Military Systems | Abdulla Sajad</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --bg: #0a0a0c; --bg-secondary: #121215; --text: #d4d4d4; --text-secondary: #9a9a9a; --text-muted: #6a6a6a; --border: #2a2a2e; --link: #7cb3f0; --link-hover: #9ecaff; }
-        [data-theme="light"] { --bg: #fafafa; --bg-secondary: #ffffff; --text: #1a1a1a; --text-secondary: #555555; --text-muted: #888888; --border: #e5e5e5; --link: #2563eb; --link-hover: #1d4ed8; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'IBM Plex Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 15px; transition: background 0.3s, color 0.3s; }
-        a { color: var(--link); text-decoration: none; transition: color 0.2s; }
-        a:hover { color: var(--link-hover); text-decoration: underline; }
-        .container { max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem; }
-        header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
-        .header-left { flex: 1; }
-        .name { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
-        .name a { color: var(--text); }
-        .name a:hover { color: var(--link); text-decoration: none; }
-        nav { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.9rem; }
-        nav a { color: var(--text-secondary); }
-        nav a:hover { color: var(--text); text-decoration: none; }
-        .back-link { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem; display: inline-block; }
-        .back-link:hover { color: var(--link); }
-        article h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em 1.3; line-height:; margin-bottom: 0.75rem; }
-        .meta { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; }
-        .meta span { margin-right: 1rem; }
-        article { color: var(--text-secondary); line-height: 1.8; }
-        article h2 { font-size: 1.25rem; font-weight: 600; color: var(--text); margin: 2.5rem 0 1rem; }
-        article h3 { font-size: 1.05rem; font-weight: 600; color: var(--text); margin: 1.75rem 0 0.75rem; }
-        article p { margin-bottom: 1rem; }
-        article ul, article ol { margin: 1rem 0 1.5rem 1.5rem; }
-        article li { margin-bottom: 0.5rem; }
-        article strong { color: var(--text); font-weight: 600; }
-        .theme-toggle { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 0.3rem 0.6rem; font-size: 0.7rem; cursor: pointer; font-family: inherit; border-radius: 3px; transition: all 0.2s; }
-        .theme-toggle:hover { border-color: var(--text); color: var(--text); }
-        footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted); display: flex; justify-content: center; gap: 1.5rem; }
-        footer a { color: var(--text-muted); }
-        footer a:hover { color: var(--link); }
-        footer a svg { width: 20px; height: 20px; fill: currentColor; }
-        @media (max-width: 600px) { .container { padding: 2rem 1.25rem; } header { flex-direction: column; gap: 1rem; margin-bottom: 2rem; } article h1 { font-size: 1.5rem; } nav { gap: 1rem; } }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../site.css">
 </head>
-<body>
-    <div class="container">
-        <header>
-            <div class="header-left">
-                <div class="name"><a href="../index.html">Abdulla Sajad</a></div>
-                <nav>
-                    <a href="../index.html">home</a>
-                    <a href="../index.html#projects">projects</a>
-                    <a href="../index.html#blog">writing</a>
-                    <a href="../index.html#skills">skills</a>
-                </nav>
+<body class="blog-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="page-shell">
+        <header class="site-header" data-reveal>
+            <a class="brand" href="../index.html" aria-label="Abdulla Sajad home">
+                <span class="brand-name">Abdulla Sajad</span>
+                <span class="brand-role">Software Engineer / AI Engineer</span>
+            </a>
+
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#writing">Writing</a>
+                <a href="../index.html#skills">Skills</a>
+                <a href="../index.html#contact">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+                    <span class="theme-toggle-label">Dark</span>
+                </button>
             </div>
-            <button class="theme-toggle" id="themeToggle">theme</button>
         </header>
-        <a href="../index.html#blog" class="back-link">← back to writing</a>
-        <article>
-            <h1>Neurosymbolic AI in Military Systems</h1>
+
+        <main id="main" class="post-wrap">
+            <a class="back-link" href="../index.html#writing">Back to writing</a>
+            <article class="post-content surface-panel" data-reveal>
+<h1>Neurosymbolic AI in Military Systems</h1>
             <div class="meta"><span>AI Research</span><span>Oct 2025</span></div>
 
             <p>Combining neural networks with symbolic reasoning for explainable military AI.</p>
@@ -80,7 +56,7 @@
             </ol>
 
             <h2 id="intro">Introduction</h2>
-            <p>Artificial intelligence has undergone significant transformation, moving from symbolic systems to neural networks and now toward a hybrid approach that combines the best of both worlds. In military applications, where decisions can have life-or-death consequences and accountability is paramount, this hybrid approach—known as neurosymbolic AI—has emerged as a critical technology.</p>
+            <p>Artificial intelligence has undergone significant transformation, moving from symbolic systems to neural networks and now toward a hybrid approach that combines the best of both worlds. In military applications, where decisions can have life-or-death consequences and accountability is paramount, this hybrid approach, known as neurosymbolic AI, has emerged as a critical technology.</p>
             <p>The U.S. Department of Defense has recognized this shift. In January 2026, the DoD released its Artificial Intelligence Acceleration Strategy, promoting an "AI-first" military posture. This strategy emphasizes the integration of advanced AI capabilities across warfare, intelligence, and enterprise domains.</p>
 
             <h2 id="waves">The Three Waves of AI</h2>
@@ -90,7 +66,7 @@
             <p>Early AI systems relied on explicit rules and logic. These systems could reason through predefined rules but struggled with ambiguity and required extensive manual coding of knowledge. They excelled at well-defined tasks but failed when faced with the complexity of real-world scenarios.</p>
 
             <h3>Second Wave: Neural Networks</h3>
-            <p>Deep learning revolutionized AI by enabling systems to learn from data. Neural networks excel at pattern recognition—image classification, speech recognition, natural language processing. However, they operate as "black boxes" whose decisions are difficult to explain or verify.</p>
+            <p>Deep learning revolutionized AI by enabling systems to learn from data. Neural networks excel at pattern recognition, image classification, speech recognition, natural language processing. However, they operate as "black boxes" whose decisions are difficult to explain or verify.</p>
 
             <h3>Third Wave: Neurosymbolic AI</h3>
             <p>This emerging paradigm combines neural network adaptability with symbolic reasoning. The result is systems that can learn from data while also reasoning through explicit rules. This hybrid approach addresses the fundamental limitations of both earlier approaches.</p>
@@ -106,17 +82,17 @@
             </ul>
 
             <h3>How It Works</h3>
-            <p>A neurosymbolic system operates through a layered architecture that balances learning and logic. Neural networks process sensory input—images, text, sensor data—and produce representations. Symbolic systems then apply logical rules to these representations, enabling reasoning about relationships and constraints.</p>
+            <p>A neurosymbolic system operates through a layered architecture that balances learning and logic. Neural networks process sensory input, images, text, sensor data, and produce representations. Symbolic systems then apply logical rules to these representations, enabling reasoning about relationships and constraints.</p>
             <p>This architecture enables systems that can learn from experience while adhering to explicit constraints and providing explainable decisions.</p>
 
             <h2 id="why-military">Why Military Systems Need It</h2>
             <p>Military applications present unique challenges that pure neural or pure symbolic approaches struggle to address:</p>
 
             <h3>Explainability Requirements</h3>
-            <p>Military decisions require audit trails. When an autonomous system makes a decision, commanders need to understand why. Pure neural networks cannot provide this—they offer no explanation for their outputs. Symbolic systems provide clear logical chains, enabling decision review and accountability.</p>
+            <p>Military decisions require audit trails. When an autonomous system makes a decision, commanders need to understand why. Pure neural networks cannot provide this, they offer no explanation for their outputs. Symbolic systems provide clear logical chains, enabling decision review and accountability.</p>
 
             <h3>Safety and Reliability</h3>
-            <p>In safety-critical military systems, predictable behavior is essential. Neural networks can fail in unpredictable ways when inputs deviate from training data. Symbolic rules provide guarantees—systems can enforce hard constraints that must never be violated regardless of what the neural component suggests.</p>
+            <p>In safety-critical military systems, predictable behavior is essential. Neural networks can fail in unpredictable ways when inputs deviate from training data. Symbolic rules provide guarantees, systems can enforce hard constraints that must never be violated regardless of what the neural component suggests.</p>
 
             <h3>Adaptability with Constraints</h3>
             <p>Military environments change rapidly. Systems must learn new patterns while respecting constraints like rules of engagement. Neurosymbolic AI enables learning from new data while maintaining hard boundaries on acceptable behavior.</p>
@@ -132,7 +108,7 @@
             <p>These systems provide recommendations that are both data-informed and logically consistent with military principles.</p>
 
             <h3>Situation Awareness</h3>
-            <p>Understanding the battlespace requires processing vast sensor data while applying logical frameworks about entity relationships. Neural networks handle the perception—identifying objects, recognizing patterns—while symbolic reasoning infers relationships and predicts threats.</p>
+            <p>Understanding the battlespace requires processing vast sensor data while applying logical frameworks about entity relationships. Neural networks handle the perception, identifying objects, recognizing patterns, while symbolic reasoning infers relationships and predicts threats.</p>
             <p>This combination enables richer situational understanding than either approach alone.</p>
 
             <h3>Autonomous Systems</h3>
@@ -185,7 +161,7 @@
             <p>The trajectory is clear: neurosymbolic AI is becoming essential for military applications. The combination of learning capability with explainable reasoning addresses critical military requirements that pure approaches cannot meet.</p>
 
             <h3>DoD Strategy</h3>
-            <p>The DoD's AI Acceleration Strategy identifies several priority areas where advanced AI—including neurosymbolic approaches—will be applied:</p>
+            <p>The DoD's AI Acceleration Strategy identifies several priority areas where advanced AI, including neurosymbolic approaches, will be applied:</p>
             <ul>
                 <li>Warfighting: Agent networks for battle management</li>
                 <li>Intelligence: Accelerated capability development</li>
@@ -200,11 +176,11 @@
 
             <h3>Pure Neural Approaches</h3>
             <p>Neural networks, particularly deep learning models, have achieved remarkable success in pattern recognition tasks. They can identify objects in images, transcribe speech, translate languages, and generate human-like text. These capabilities stem from their ability to learn complex patterns directly from data without explicit programming.</p>
-            <p>However, neural networks have significant limitations. They require massive amounts of training data, compute resources, and electricity. They can fail in unpredictable ways when inputs differ from training data—a phenomenon known as out-of-distribution generalization failure. Most critically for military applications, they operate as "black boxes" whose decisions are extremely difficult to explain or verify.</p>
+            <p>However, neural networks have significant limitations. They require massive amounts of training data, compute resources, and electricity. They can fail in unpredictable ways when inputs differ from training data, a phenomenon known as out-of-distribution generalization failure. Most critically for military applications, they operate as "black boxes" whose decisions are extremely difficult to explain or verify.</p>
 
             <h3>Pure Symbolic Approaches</h3>
-            <p>Symbolic AI systems use explicit rules and logic to represent knowledge and reason about it. These systems can explain their reasoning step-by-step—they follow known logical paths from inputs to outputs. They can guarantee correctness when their rules are correct, and they can learn from fewer examples than neural approaches.</p>
-            <p>The limitation of symbolic AI is that encoding knowledge explicitly is extremely labor-intensive. Symbolic systems struggle with perceptual tasks—recognizing objects in images or understanding speech—which neural networks handle naturally. They also struggle with ambiguity and noise in real-world data.</p>
+            <p>Symbolic AI systems use explicit rules and logic to represent knowledge and reason about it. These systems can explain their reasoning step-by-step, they follow known logical paths from inputs to outputs. They can guarantee correctness when their rules are correct, and they can learn from fewer examples than neural approaches.</p>
+            <p>The limitation of symbolic AI is that encoding knowledge explicitly is extremely labor-intensive. Symbolic systems struggle with perceptual tasks, recognizing objects in images or understanding speech, which neural networks handle naturally. They also struggle with ambiguity and noise in real-world data.</p>
 
             <h3>The Neurosymmetric Advantage</h3>
             <p>Neurosymbolic AI aims to get the best of both worlds. Neural components handle perception and pattern recognition, learning from data to handle the complexity of real-world signals. Symbolic components provide reasoning, explainability, and the ability to incorporate explicit knowledge.</p>
@@ -238,17 +214,17 @@
             <p>Symbolic components require explicit knowledge. Organizations should begin documenting domain knowledge in forms that can be incorporated into neurosymbolic systems. This knowledge capture is time-consuming but essential for realizing the benefits of hybrid approaches.</p>
 
             <h3>Plan for Integration</h3>
-            <p>Neurosymbolic systems will likely work alongside existing systems. Planning for integration from the beginning—including data pipelines, user interfaces, and operational procedures—will smooth deployment and adoption.</p>
+            <p>Neurosymbolic systems will likely work alongside existing systems. Planning for integration from the beginning, including data pipelines, user interfaces, and operational procedures, will smooth deployment and adoption.</p>
 
             <h2 id="case-studies">Case Studies</h2>
             <p>Examining specific implementations provides insight into how neurosymbolic AI works in practice:</p>
 
             <h3>Situation Awareness System</h3>
-            <p>A military situation awareness system processed sensor data from multiple sources—radar, cameras, communications intercepts. Neural networks identified objects and activities from raw sensor data. Symbolic systems maintained a model of the battlespace and reasoned about relationships, intentions, and threats.</p>
-            <p>The neural components handled the perceptual complexity—identifying vehicles, weapons systems, and activities from noisy signals. The symbolic components applied military doctrine to interpret what those observations meant tactically. The combination provided both comprehensive perception and meaningful understanding.</p>
+            <p>A military situation awareness system processed sensor data from multiple sources, radar, cameras, communications intercepts. Neural networks identified objects and activities from raw sensor data. Symbolic systems maintained a model of the battlespace and reasoned about relationships, intentions, and threats.</p>
+            <p>The neural components handled the perceptual complexity, identifying vehicles, weapons systems, and activities from noisy signals. The symbolic components applied military doctrine to interpret what those observations meant tactically. The combination provided both comprehensive perception and meaningful understanding.</p>
 
             <h3>Logistics Optimization</h3>
-            <p>A logistics system optimized supply chain decisions for a military operation. Neural networks predicted demand based on historical patterns, weather, and operational tempo. Symbolic systems enforced constraints—transportation capacity, priority rules, storage limitations.</p>
+            <p>A logistics system optimized supply chain decisions for a military operation. Neural networks predicted demand based on historical patterns, weather, and operational tempo. Symbolic systems enforced constraints, transportation capacity, priority rules, storage limitations.</p>
             <p>The hybrid approach produced logistics plans that were both data-driven (accounting for patterns the neural networks identified) and compliant with military requirements (respecting constraints the symbolic systems encoded).</p>
 
             <h3>Training Simulator</h3>
@@ -259,7 +235,7 @@
             <p>Understanding the maturity of neurosymbolic AI helps set appropriate expectations:</p>
 
             <h3>Current Technology Readiness Level</h3>
-            <p>Neurosymbolic AI is moving from research to early deployment. Some applications—particularly those in laboratory or controlled operational settings—have reached technology readiness levels that support limited deployment. Broader deployment awaits further maturation.</p>
+            <p>Neurosymbolic AI is moving from research to early deployment. Some applications, particularly those in laboratory or controlled operational settings, have reached technology readiness levels that support limited deployment. Broader deployment awaits further maturation.</p>
             <p>The technology is sufficiently mature for proof-of-concept implementations and pilot programs. Organizations should experiment now to build expertise and understand the technology's capabilities and limitations. Full-scale deployment will require additional development and validation.</p>
 
             <h3>Maturity Gaps</h3>
@@ -293,8 +269,8 @@
             <p>Israel, South Korea, Australia, Japan, and other nations are developing military AI capabilities. Many of these efforts focus on specific applications relevant to national security requirements.</p>
 
             <h2 id="conclusion">Conclusion</h2>
-            <p>Neurosymbolic AI represents a fundamental advance in artificial intelligence—a third wave that combines the strengths of earlier approaches while addressing their limitations. For military applications, this hybrid approach offers something essential: systems that can learn and adapt while providing the explainability, safety guarantees, and accountability that defense applications require.</p>
-            <p>The challenges are real: more complex to implement, requiring expertise in both neural and symbolic approaches. But the benefits—explainable decisions, verifiable behavior, adaptable learning—make it essential for military use cases.</p>
+            <p>Neurosymbolic AI represents a fundamental advance in artificial intelligence, a third wave that combines the strengths of earlier approaches while addressing their limitations. For military applications, this hybrid approach offers something essential: systems that can learn and adapt while providing the explainability, safety guarantees, and accountability that defense applications require.</p>
+            <p>The challenges are real: more complex to implement, requiring expertise in both neural and symbolic approaches. But the benefits, explainable decisions, verifiable behavior, adaptable learning, make it essential for military use cases.</p>
             <p>As the DoD's investment in programs like ANSR demonstrates, neurosymbolic AI is not just an academic curiosity but a practical necessity for building the trustworthy, capable AI systems that modern military operations require.</p>
 
             <h2 id="technical-deep-dive">Technical Deep Dive: How Neurosymbolic Systems Work</h2>
@@ -304,7 +280,7 @@
             <p>Several architectural patterns have emerged for combining neural networks with symbolic reasoning. The primary approaches include:</p>
 
             <h4>Sequential Pipeline</h4>
-            <p>The simplest approach processes input through neural networks first, extracting features and producing representations that are then passed to symbolic systems for reasoning. This pipeline is straightforward to implement but has limitations—information loss during the transition between components can reduce overall system capability.</p>
+            <p>The simplest approach processes input through neural networks first, extracting features and producing representations that are then passed to symbolic systems for reasoning. This pipeline is straightforward to implement but has limitations, information loss during the transition between components can reduce overall system capability.</p>
 
             <h4>Tight Coupling</h4>
             <p>More sophisticated approaches tightly integrate neural and symbolic components, allowing them to jointly optimize toward shared objectives. Neural networks can learn to produce outputs that symbolic systems can more effectively reason over, while symbolic constraints can guide neural network training. This approach offers greater capability but requires more sophisticated training procedures.</p>
@@ -313,11 +289,11 @@
             <p>Some approaches embed symbolic knowledge directly into neural network architectures, creating "inductive biases" that guide learning. This can dramatically improve sample efficiency and provide guarantees about learned behavior. Knowledge graphs, logical rules, and structural constraints can all be incorporated this way.</p>
 
             <h3>Reasoning with Uncertainty</h3>
-            <p>Military applications must handle uncertainty—the world is noisy, sensors are imperfect, and adversaries actively work to create confusion. Pure neural approaches handle uncertainty naturally through probability distributions. Pure symbolic approaches typically assume perfect knowledge. Neurosymbolic systems must bridge this gap.</p>
+            <p>Military applications must handle uncertainty, the world is noisy, sensors are imperfect, and adversaries actively work to create confusion. Pure neural approaches handle uncertainty naturally through probability distributions. Pure symbolic approaches typically assume perfect knowledge. Neurosymbolic systems must bridge this gap.</p>
             <p>Probabilistic logic combines the representational power of symbolic logic with the ability to handle uncertainty. Bayesian networks, Markov logic networks, and probabilistic soft logic provide frameworks for reasoning about uncertain worlds while maintaining logical structure.</p>
 
             <h3>Learning from Limited Data</h3>
-            <p>Military scenarios often involve situations that rarely occur—extreme conditions, novel threats, edge cases. Pure neural approaches typically require massive datasets to learn effectively. Neurosymbolic systems can incorporate prior knowledge through symbolic rules, dramatically reducing the data required for learning.</p>
+            <p>Military scenarios often involve situations that rarely occur, extreme conditions, novel threats, edge cases. Pure neural approaches typically require massive datasets to learn effectively. Neurosymbolic systems can incorporate prior knowledge through symbolic rules, dramatically reducing the data required for learning.</p>
             <p>This is particularly valuable for military applications where training data may be limited due to the rarity of actual combat situations or the sensitivity of operational data.</p>
 
             <h2 id="defense-applications">Defense Applications in Detail</h2>
@@ -325,41 +301,41 @@
 
             <h3>Autonomous Vehicle Navigation</h3>
             <p>Military vehicles must operate in complex, dynamic environments including combat zones where conditions are unpredictable. Pure neural approaches can learn to navigate but may fail in novel situations. Pure symbolic approaches can reason about rules but struggle with perceptual complexity.</p>
-            <p>Neurosymbolic systems combine learned perceptual capabilities with symbolic reasoning about rules of the road, tactical considerations, and mission objectives. The symbolic layer can enforce hard constraints—"never enter this area," "maintain minimum distance from civilians"—that override learned behaviors when necessary.</p>
+            <p>Neurosymbolic systems combine learned perceptual capabilities with symbolic reasoning about rules of the road, tactical considerations, and mission objectives. The symbolic layer can enforce hard constraints, "never enter this area," "maintain minimum distance from civilians", that override learned behaviors when necessary.</p>
             <p>Systems like autonomous ground vehicles, unmanned aerial vehicles, and autonomous ships all benefit from this approach. The symbolic layer provides safety guarantees while the neural layer handles the complexity of real-world perception.</p>
 
             <h3>Intelligence Analysis</h3>
-            <p>Military intelligence analysts process enormous volumes of data from multiple sources—signals intelligence, imagery, human intelligence, open source. Finding patterns across these diverse sources requires both pattern recognition (where neural networks excel) and logical reasoning about relationships (where symbolic systems excel).</p>
+            <p>Military intelligence analysts process enormous volumes of data from multiple sources, signals intelligence, imagery, human intelligence, open source. Finding patterns across these diverse sources requires both pattern recognition (where neural networks excel) and logical reasoning about relationships (where symbolic systems excel).</p>
             <p>Neurosymbolic systems can identify patterns in imagery using neural networks, extract entities and relationships using symbolic NLP, and then reason about the implications using logical inference. An analyst might ask "what forces are positioned near this facility" and receive an answer that combines imagery analysis, textual reports, and logical deduction.</p>
 
             <h3>Cyber Operations</h3>
-            <p>Cyber defense requires detecting anomalies in network traffic, understanding attack patterns, and formulating appropriate responses—all while operating at machine speed. Neural networks can detect unusual patterns that indicate attacks, while symbolic systems can apply established security rules to determine appropriate responses.</p>
+            <p>Cyber defense requires detecting anomalies in network traffic, understanding attack patterns, and formulating appropriate responses, all while operating at machine speed. Neural networks can detect unusual patterns that indicate attacks, while symbolic systems can apply established security rules to determine appropriate responses.</p>
             <p>The combination enables systems that can identify novel attacks through learned patterns while responding according to established doctrine through symbolic rules. This is essential for defending against sophisticated adversaries who constantly evolve their techniques.</p>
 
             <h3>Decision Support</h3>
-            <p>Military commanders face complex decisions with many variables—available forces, enemy dispositions, terrain, weather, political constraints. Decision support systems must process this information and provide recommendations that account for both quantitative factors and qualitative considerations.</p>
+            <p>Military commanders face complex decisions with many variables, available forces, enemy dispositions, terrain, weather, political constraints. Decision support systems must process this information and provide recommendations that account for both quantitative factors and qualitative considerations.</p>
             <p>Neurosymbolic systems can learn patterns from historical decisions (neural component) while applying logical constraints that represent doctrine, rules of engagement, and legal requirements (symbolic component). The result is recommendations that are both data-driven and compliant with necessary constraints.</p>
 
             <h3>Logistics and Supply Chain</h3>
-            <p>Military logistics must move supplies across complex supply chains while adapting to changing conditions—demand shifts, transportation disruptions, priority changes. Neural networks can predict demand and identify patterns in supply chain data, while symbolic systems can enforce constraints and optimize within established rules.</p>
+            <p>Military logistics must move supplies across complex supply chains while adapting to changing conditions, demand shifts, transportation disruptions, priority changes. Neural networks can predict demand and identify patterns in supply chain data, while symbolic systems can enforce constraints and optimize within established rules.</p>
 
             <h2 id="implementation-challenges">Implementation Challenges</h2>
             <p>Building effective neurosymbolic systems requires addressing significant technical challenges:</p>
 
             <h3>Knowledge Acquisition</h3>
-            <p>Symbolic components require explicit knowledge—rules, constraints, relationships. Encoding military doctrine, operational procedures, and tactical knowledge in symbolic form is a massive undertaking requiring collaboration between AI experts and domain specialists.</p>
+            <p>Symbolic components require explicit knowledge, rules, constraints, relationships. Encoding military doctrine, operational procedures, and tactical knowledge in symbolic form is a massive undertaking requiring collaboration between AI experts and domain specialists.</p>
             <p>This "knowledge engineering" challenge has historically been a bottleneck for symbolic AI. Modern approaches attempt to learn symbolic representations from data where possible, but human expertise remains essential for critical knowledge.</p>
 
             <h3>Training Procedures</h3>
-            <p>Neural networks are typically trained through gradient-based optimization—straightforward in principle but complex in practice. Adding symbolic components with non-differentiable operations requires hybrid training procedures that can optimize across both components.</p>
+            <p>Neural networks are typically trained through gradient-based optimization, straightforward in principle but complex in practice. Adding symbolic components with non-differentiable operations requires hybrid training procedures that can optimize across both components.</p>
             <p>Techniques like differentiable logic, neural-guided search, and reinforcement learning from human feedback provide pathways for training neurosymbolic systems, but this remains an active area of research.</p>
 
             <h3>Scalability</h3>
-            <p>Scaling neural networks is well-understood—more data, more compute, bigger models. Scaling symbolic reasoning is more challenging—complex logical inference can be computationally intensive, and adding more rules can create conflicts or explosion in reasoning paths.</p>
+            <p>Scaling neural networks is well-understood, more data, more compute, bigger models. Scaling symbolic reasoning is more challenging, complex logical inference can be computationally intensive, and adding more rules can create conflicts or explosion in reasoning paths.</p>
             <p>Neurosymbolic systems must carefully manage the scalability of both components and their interaction. Techniques like approximate reasoning, hierarchical abstraction, and learning to shortcut symbolic inference help address this.</p>
 
             <h3>Validation and Verification</h3>
-            <p>Military systems require rigorous validation. Neural networks are notoriously difficult to verify—proving properties about their behavior is extremely challenging. Symbolic systems offer stronger guarantees but only over the domain they've been programmed to handle.</p>
+            <p>Military systems require rigorous validation. Neural networks are notoriously difficult to verify, proving properties about their behavior is extremely challenging. Symbolic systems offer stronger guarantees but only over the domain they've been programmed to handle.</p>
             <p>Neurosymbolic systems must validate both components and their interaction. This requires new testing and verification methodologies that can handle the complexity of hybrid systems while providing appropriate guarantees.</p>
 
             <h2 id="ethical-considerations">Ethical Considerations</h2>
@@ -390,7 +366,7 @@
             <p>Regulatory requirements for AI explainability are increasing globally. Military applications will need to meet these requirements while maintaining operational security. Neurosymbolic approaches may become more attractive as explainability mandates strengthen.</p>
 
             <h3>Coalition Operations</h3>
-            <p>Coalition military operations require interoperability between different nations' systems. Neurosymbolic AI's ability to combine learned behaviors with explicit rules may facilitate interoperability—partners can share symbolic rules while maintaining distinct learned components.</p>
+            <p>Coalition military operations require interoperability between different nations' systems. Neurosymbolic AI's ability to combine learned behaviors with explicit rules may facilitate interoperability, partners can share symbolic rules while maintaining distinct learned components.</p>
 
             <h2 id="comparative-approaches">Comparative Approaches: Global Military AI Strategies</h2>
             <p>Different nations have pursued different approaches to military AI:</p>
@@ -426,7 +402,7 @@
             <p>Developing and deploying neurosymbolic AI requires specialized workforce:</p>
 
             <h3>Skills Requirements</h3>
-            <p>Military AI development requires expertise in both neural and symbolic AI approaches—rare combination. Additional skills include: software engineering, systems integration, cybersecurity, and domain expertise in military operations.</p>
+            <p>Military AI development requires expertise in both neural and symbolic AI approaches, rare combination. Additional skills include: software engineering, systems integration, cybersecurity, and domain expertise in military operations.</p>
 
             <h3>Pipeline Development</h3>
             <p>Building the workforce requires investment in education and training. Military training programs, academic partnerships, and industry collaborations all contribute to developing needed expertise.</p>
@@ -441,22 +417,22 @@
             <p>Military operations require AI that works in contested, disconnected environments. Edge deployment requires AI systems that can operate without persistent network connectivity while still providing needed capabilities.</p>
 
             <h3>Adversarial Environment</h3>
-            <p>Adversaries will attempt to exploit AI systems—through adversarial inputs, data poisoning, model extraction, or other attacks. Military AI must be designed with adversarial robustness in mind.</p>
+            <p>Adversaries will attempt to exploit AI systems, through adversarial inputs, data poisoning, model extraction, or other attacks. Military AI must be designed with adversarial robustness in mind.</p>
 
             <h3>Legacy Integration</h3>
             <p>Military systems have long lifecycles. New AI capabilities must integrate with existing systems, requiring careful attention to interfaces, data formats, and operational procedures.</p>
 
             <h3>Lifecycle Management</h3>
-            <p>AI systems require ongoing maintenance—model updates, retraining, vulnerability patches. Military AI must account for entire system lifecycle, not just initial deployment.</p>
+            <p>AI systems require ongoing maintenance, model updates, retraining, vulnerability patches. Military AI must account for entire system lifecycle, not just initial deployment.</p>
 
             <h2 id="lessons-learned">Lessons from Commercial AI</h2>
             <p>Commercial AI development provides valuable lessons for military applications:</p>
 
             <h3>Start Small</h3>
-            <p>Commercial AI successes often began with limited deployments that expanded as capability and confidence grew. Military applications should follow similar patterns—start with lower-risk applications, expand as systems prove themselves.</p>
+            <p>Commercial AI successes often began with limited deployments that expanded as capability and confidence grew. Military applications should follow similar patterns, start with lower-risk applications, expand as systems prove themselves.</p>
 
             <h3>Iterate Rapidly</h3>
-            <p>Commercial AI improves through rapid iteration—frequent updates based on operational feedback. Military acquisition processes must adapt to enable similar cycles.</p>
+            <p>Commercial AI improves through rapid iteration, frequent updates based on operational feedback. Military acquisition processes must adapt to enable similar cycles.</p>
 
             <h3>Measure Everything</h3>
             <p>Commercial AI companies obsess over metrics. Military AI must develop appropriate metrics for capability, reliability, and safety. What gets measured gets improved.</p>
@@ -474,35 +450,32 @@
             <p>AI capabilities could trigger arms races as nations compete for technological advantage. Arms control agreements for AI may become necessary but face verification challenges.</p>
 
             <h3>Alliance Dynamics</h3>
-            <p>AI capabilities affect alliance relationships. Allies may share AI capabilities and doctrine, creating integrated coalition capabilities—or might compete for advantage.</p>
+            <p>AI capabilities affect alliance relationships. Allies may share AI capabilities and doctrine, creating integrated coalition capabilities, or might compete for advantage.</p>
 
             <h3>Civil-Military Fusion</h3>
-            <p>Commercial AI advances increasingly drive military AI capability. Civil-military fusion—the integration of commercial and military AI development—has become essential.</p>
+            <p>Commercial AI advances increasingly drive military AI capability. Civil-military fusion, the integration of commercial and military AI development, has become essential.</p>
 
             <h2 id="conclusion-final">Final Thoughts</h2>
             <p>Neurosymbolic AI represents a fundamental evolution in artificial intelligence capabilities. For military applications, it offers a pathway to systems that combine the learning power of neural networks with the reasoning capabilities and explainability of symbolic systems.</p>
-            <p>The challenges are substantial—knowledge acquisition, training complexity, validation, and ethical considerations all require careful attention. But the potential benefits for military capability are significant: systems that can learn from experience while providing the guarantees that defense applications require.</p>
+            <p>The challenges are substantial, knowledge acquisition, training complexity, validation, and ethical considerations all require careful attention. But the potential benefits for military capability are significant: systems that can learn from experience while providing the guarantees that defense applications require.</p>
             <p>As the DoD's investments demonstrate, the military significance of neurosymbolic AI is recognized at the highest levels. The technology is moving from research laboratories to operational consideration, with programs like ANSR leading the way.</p>
             <p>For those working in AI, the military domain presents both technical challenges and the opportunity to contribute to national security. For those in defense, understanding neurosymbolic AI is increasingly essential for evaluating future capabilities.</p>
             <p>The third wave of AI is here. Its military applications are just beginning to be explored.</p>
-        </article>
-        <footer>
-            <a href="https://github.com/sajadkoder" target="_blank" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
-            <a href="https://linkedin.com/in/abdullasajad" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-            <a href="https://twitter.com/sajadkoder" target="_blank" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-            <a href="mailto:abdullasajad01@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg></a>
+            </article>
+        </main>
+
+        <footer class="site-footer" data-reveal>
+            <div class="footer-links">
+                <a class="inline-link" href="https://github.com/sajadkoder" target="_blank" rel="noreferrer">GitHub</a>
+                <a class="inline-link" href="https://linkedin.com/in/abdullasajad" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a class="inline-link" href="mailto:abdullasajad01@gmail.com">abdullasajad01@gmail.com</a>
+            </div>
+            <p class="footer-note">&copy; 2026 Abdulla Sajad. Long form notes on software, AI, and systems.</p>
         </footer>
     </div>
-    <script>
-        const toggle = document.getElementById('themeToggle');
-        const saved = localStorage.getItem('theme') || 'dark';
-        if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
-        toggle.addEventListener('click', () => {
-            const current = document.documentElement.getAttribute('data-theme');
-            const next = current === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
-        });
-    </script>
+
+    <script src="../site.js"></script>
 </body>
 </html>
+
+
