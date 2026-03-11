@@ -387,9 +387,8 @@ footer a svg { width: 20px; height: 20px; fill: currentColor; }
         text-align: center;
         gap: 1rem;
     }
-    
+
     .profile-image { width: 70px; height: 70px; }
-    .header-content { width: 100%; }
     .name { font-size: 1.5rem; padding-right: 2.5rem; }
     .tagline { font-size: 0.9rem; }
     nav { gap: 0.75rem; flex-wrap: wrap; }
