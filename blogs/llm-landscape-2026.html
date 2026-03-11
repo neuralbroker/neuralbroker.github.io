@@ -1,500 +1,103 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The LLM Landscape: What's Actually Useful in 2026 | Abdulla Sajad</title>
+    <meta name="description" content="Breaking down the models that matter, from reasoning models to coding assistants.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../site.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
 </head>
-<body class="blog-page">
-    <a class="skip-link" href="#main">Skip to content</a>
-
-    <div class="page-shell">
-        <header class="site-header" data-reveal>
-            <a class="brand" href="../index.html" aria-label="Abdulla Sajad home">
-                <span class="brand-name">Abdulla Sajad</span>
-                <span class="brand-role">Software Engineer / AI Engineer</span>
-            </a>
-
-            <nav class="site-nav" aria-label="Primary navigation">
-                <a href="../index.html">Home</a>
-                <a href="../index.html#projects">Projects</a>
-                <a href="../index.html#writing">Writing</a>
-                <a href="../index.html#skills">Skills</a>
-                <a href="../index.html#contact">Contact</a>
-            </nav>
-
-            <div class="header-actions">
-                <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
-                    <span class="theme-toggle-label">Dark</span>
-                </button>
+<body>
+    <div class="container">
+        <header class="animate">
+            <div class="header-profile">
+                <img src="../profile.jpg" alt="Abdulla Sajad" class="profile-image" loading="eager" decoding="async" width="80" height="80">
+                <div class="header-content">
+                    <div class="name"><a href="../index.html" style="color:inherit;text-decoration:none;">Abdulla Sajad</a></div>
+                    <div class="tagline">Software Engineer <span>//</span> AI Engineer</div>
+                    <nav>
+                        <a href="../index.html#about">about</a>
+                        <a href="../index.html#projects">projects</a>
+                        <a href="../index.html#writing">writing</a>
+                        <a href="../index.html#skills">skills</a>
+                        <a href="../resume.pdf" target="_blank" download>resume</a>
+                    </nav>
+                </div>
             </div>
         </header>
 
-        <main id="main" class="post-wrap">
-            <a class="back-link" href="../index.html#writing">Back to writing</a>
-            <article class="post-content surface-panel" data-reveal>
-<h1>The LLM Landscape: What's Actually Useful in 2026</h1>
-            <div class="meta"><span>LLM</span><span>Jan 2026</span></div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
 
-            <p>Breaking down the models that matter, from reasoning models to coding assistants. A comprehensive guide to navigating the complex world of large language models in 2026.</p>
+        <a href="../index.html#writing" class="back-link">← Back to writing</a>
 
-            <h2 id="table-of-contents">Table of Contents</h2>
-            <ol>
-                <li><a href="#intro">Introduction: The Era of LLM Specialization</a></li>
-                <li><a href="#landscape">The 2026 LLM Landscape Overview</a></li>
-                <li><a href="#providers">Major LLM Providers</a></li>
-                <li><a href="#flagship-models">The Flagship Models</a></li>
-                <li><a href="#open-source">Open-Source Models</a></li>
-                <li><a href="#reasoning-models">Reasoning Models</a></li>
-                <li><a href="#coding-models">Coding Models</a></li>
-                <li><a href="#multimodal">Multimodal Models</a></li>
-                <li><a href="#benchmarks">Understanding Benchmarks</a></li>
-                <li><a href="#pricing">Pricing and Cost Considerations</a></li>
-                <li><a href="#context-windows">Context Windows</a></li>
-                <li><a href="#api">API and Integration Considerations</a></li>
-                <li><a href="#selection-guide">Model Selection Guide</a></li>
-                <li><a href="#best-practices">Best Practices for LLM Integration</a></li>
-                <li><a href="#future">The Road Ahead</a></li>
-                <li><a href="#conclusion">Conclusion</a></li>
-            </ol>
+        <article class="post-content">
+            <h1>The LLM Landscape: What's Actually Useful in 2026</h1>
+            <div class="post-meta">LLM · Oct 2025 · ~10 min read</div>
 
-            <h2 id="intro">Introduction: The Era of LLM Specialization</h2>
-            <p>The large language model landscape in 2026 has reached an inflection point. What was once a simple question of "which model is best" has fragmented into a nuanced ecosystem where different models excel at different tasks. The monolithic leaderboard is dead, welcome to the era of specialization.</p>
-            <p>I remember when choosing an LLM was straightforward: you picked GPT-4 or you didn't. Those days are gone. Now, between GPT-5, Claude 4, Gemini 3, DeepSeek, and dozens of open-source alternatives, choosing the right model requires understanding not just benchmark scores but tradeoffs between cost, speed, context capabilities, and task-specific performance.</p>
-            <p>The good news is that we're past the point where "best" means one model for everything. The challenge now is understanding which model to use for which task, and that's what this guide will help you with.</p>
+            <p>Breaking down the models that matter, from reasoning models to coding assistants.</p>
 
-            <h2 id="landscape">The 2026 LLM Landscape Overview</h2>
-            <p>The LLM market has matured significantly. We now have genuine specialization among frontier models, with different providers pursuing different architectural approaches and optimization targets. The three major players, OpenAI, Anthropic, and Google, have been joined by strong challengers including xAI (Grok), Alibaba (Qwen), and DeepSeek.</p>
-            <p>What makes 2026 different is that the "best" model truly depends on your use case. For the first time, we're seeing models that win on specific benchmarks while trailing on others. This isn't a flaw, it's the natural maturation of the field toward task-specific optimization. A model that excels at mathematical reasoning might not be the best choice for creative writing, and vice versa.</p>
-            <p>The overall rankings for February 2026 combine performance across reasoning, coding, knowledge, multimodal, and agentic capabilities. The top performers are remarkably close, with the top five models separated by just a few percentage points on comprehensive evaluations. This convergence means that for most practical applications, the differences between top models are smaller than the differences in how you use them.</p>
-
-            <h3>Key Trends in 2026</h3>
-            <p>Several key trends define this year's LLM landscape:</p>
-            <p><strong>Reasoning Models Emerge:</strong> A new category of models optimized for multi-step problem solving has emerged. These models "think" before responding, producing better reasoning but with higher latency.</p>
-            <p><strong>Open-Source maturation:</strong> Models like DeepSeek V3.2 and Qwen 3.5 have reached near-frontier performance while being self-hostable. This changes the economics of LLM deployment significantly.</p>
-            <p><strong>Price Competition:</strong> The cost of API access has dropped dramatically. What cost $20 per million tokens in 2023 now costs less than $1 for many models.</p>
-            <p><strong>Context Window Battles:</strong> Providers are competing on context length, with some offering up to 1 million tokens.</p>
-            <p><strong>Agent Optimization:</strong> Models are increasingly being optimized not just for quality but for agentic workflows, tool use, multi-step planning, and autonomous operation.</p>
-
-            <h2 id="providers">Major LLM Providers</h2>
-            <p>Understanding the providers is as important as understanding the models. Each provider has different strengths, pricing models, and ecosystem considerations.</p>
-
-            <h3>OpenAI</h3>
-            <p>OpenAI remains the dominant player, with the broadest ecosystem and most mature tooling. Their models are widely supported across frameworks, and their API is considered the industry standard. The key advantage is ecosystem: almost every AI tool supports OpenAI models, making integration straightforward.</p>
-            <p>OpenAI's strategy centers on being the default choice, the model that works with everything, has the best documentation, and is supported everywhere. They're not always the cheapest or the best on every benchmark, but they're the safest choice for most use cases.</p>
-
-            <h3>Anthropic</h3>
-            <p>Anthropic has carved out a strong position as the "premium" option, particularly for coding and complex reasoning tasks. Their Claude models consistently outperform on coding benchmarks, and their constitutional AI approach results in models that are more helpful and less likely to refuse benign requests.</p>
-            <p>The tradeoff is price: Anthropic's models are among the most expensive, reflecting their positioning as the quality choice for applications where correctness matters most.</p>
-
-            <h3>Google DeepMind</h3>
-            <p>Google's Gemini models have emerged as the price-performance champions. With the largest context windows and competitive pricing, Gemini is the default for high-volume applications and tasks requiring large document processing.</p>
-            <p>Google's multimodal capabilities are particularly strong, with native support for images, audio, and video that rivals or exceeds other providers. For applications that need to process multiple modalities, Gemini is often the best choice.</p>
-
-            <h3>DeepSeek</h3>
-            <p>DeepSeek has emerged as the open-source champion, offering near-frontier performance at a fraction of the cost. Their models are available both via API and for self-hosting, giving organizations flexibility in how they deploy.</p>
-            <p>The DeepSeek approach represents a significant challenge to the closed-model providers. By open-sourcing capable models, they've made advanced AI accessible to organizations that can't afford premium API costs.</p>
-
-            <h3>Alibaba (Qwen)</h3>
-            <p>Alibaba's Qwen models have surprised many observers with their quality. The Qwen 3.5 397B model in particular offers impressive capabilities, especially for multilingual tasks and instruction following.</p>
-
-            <h3>xAI (Grok)</h3>
-            <p>xAI's Grok models represent an interesting third path, with unique training approaches and integration with the X (Twitter) ecosystem. While not the leader in most benchmarks, Grok offers distinct capabilities, particularly for real-time information access.</p>
-
-            <h2 id="flagship-models">The Flagship Models</h2>
-            <p>Let's dive deep into the individual models that define the 2026 landscape.</p>
-
-            <h3>GPT-5.2 Pro (OpenAI)</h3>
-            <p>OpenAI's latest flagship claims the top spot with the highest reasoning scores ever seen from a production model. Its 93.2% on GPQA Diamond represents a new benchmark for expert-level question answering.</p>
-            <p>What makes GPT-5.2 Pro special is the combination of reasoning capability and broad competence. It's not the best at any single thing, but it's excellent at everything. This makes it the safe choice for applications that need to handle diverse tasks without routing to different models.</p>
-            <p>The model excels at general-purpose tasks with excellent tool support and the broadest ecosystem. If you need a single model for diverse workloads, GPT-5.2 Pro remains the safe choice.</p>
-            <p>Key capabilities include:</p>
-            <ul>
-                <li>Advanced reasoning with 93.2% on GPQA Diamond</li>
-                <li>Best-in-class tool calling and function execution</li>
-                <li>Strong multimodal understanding</li>
-                <li>Excellent code generation across languages</li>
-                <li>400K token context window</li>
-            </ul>
-            <p>The tradeoff is cost, at $10/$30 per million input/output tokens, it demands thoughtful routing strategies. For high-volume applications, this adds up quickly.</p>
-
-            <h3>Claude Opus 4.6 (Anthropic)</h3>
-            <p>Claude Opus 4.6 is a remarkably close second, and many developers find it the better practical choice. It leads the pack on SWE-Bench Verified at 72.5%, making it the strongest coder among frontier models by a significant margin.</p>
-            <p>What sets Claude apart is its approach to understanding codebases. Rather than just generating code, Claude seems to understand the relationships between code elements, producing solutions that fit better with existing codebases.</p>
-            <p>Claude 4's constitutional training approach yields remarkably low refusal rates on benign edge cases, roughly 40% lower than competing models. This matters in practice: you spend less time rephrasing requests to get the assistance you need.</p>
-            <p>The model also leads on Humanity's Last Exam among frontier models, signaling genuine depth in novel problem-solving rather than mere pattern matching. For tasks that require true reasoning rather than pattern recognition, Claude often outperforms.</p>
-            <p>The higher price ($15/$75 per million tokens) reflects Anthropic's positioning as the premium option for quality-critical applications. Many teams find the higher cost worthwhile for coding tasks where correctness matters.</p>
-
-            <h3>Claude Sonnet 4.6</h3>
-            <p>Sonnet serves as Anthropic's mid-tier option, offering much of Opus's capability at a lower price point. For many applications, Sonnet is the sweet spot: good enough quality at a reasonable price.</p>
-            <p>For agentic workflows in particular, Sonnet often provides the best balance. It has the highest agentic workflow Elo, suggesting it's particularly good at the kind of multi-step reasoning that agents require.</p>
-
-            <h3>Gemini 3 Pro (Google DeepMind)</h3>
-            <p>Google's Gemini 3 Pro has emerged as the price-performance champion. At $1.25/$5 per million tokens, it delivers approximately 80% of the capability at 8% of the cost compared to premium options.</p>
-            <p>This makes Gemini the default choice for high-volume production workloads where scale matters. If you're processing millions of requests, the cost difference is enormous.</p>
-            <p>Gemini leads on multiple individual benchmarks including HLE (44.4%), ARC-AGI-2 (77.1%), LiveCodeBench Pro, and BrowseComp. Its million-token context window remains the largest in the industry, and the rich multimodal input support (including audio and video) opens use cases other models can't handle.</p>
-            <p>The context window is perhaps Gemini's most distinctive feature. Being able to process a million tokens means you can feed entire codebases, lengthy documents, or multiple files in a single prompt. This enables entirely new use cases.</p>
-
-            <h3>Grok 4 Heavy (xAI)</h3>
-            <p>xAI's Grok 4 Heavy has made a dramatic entrance into the frontier model space. Its 50% score on Humanity's Last Exam, the hardest AI benchmark ever created, demonstrates reasoning capabilities that rival or exceed competitors.</p>
-            <p>At $3/$15 per million tokens, Grok 4 Heavy offers a middle ground between premium and budget options. It's more expensive than budget models but provides reasoning capabilities that justify the premium for certain tasks.</p>
-            <p>One unique aspect of Grok is its integration with real-time data from X (Twitter). For applications that need current information, this provides capabilities no other model offers.</p>
-
-            <h2 id="open-source">Open-Source Models</h2>
-            <p>The open-source ecosystem has matured dramatically. Models like DeepSeek V3.2, Qwen 3.5, and Llama 4 now compete with frontier models on many tasks while offering self-hosting capabilities that matter for privacy-sensitive applications.</p>
-
-            <h3>DeepSeek V3.2</h3>
-            <p>DeepSeek continues to be the story that reshapes the industry. Achieving near-frontier performance at approximately 10% of the cost, DeepSeek V3.2-Speciale proves that open-source models can compete on both performance and economics.</p>
-            <p>At $0.28/$1.10 per million tokens, it's unbeatable on price. For high-volume applications, this represents a massive cost savings compared to premium APIs.</p>
-            <p>DeepSeek V3.2 leads on SWE-Bench at 77.8% among open-weight models, making it the strongest choice for coding tasks if self-hosting is an option. The ability to run the model locally also addresses privacy concerns that prevent some organizations from using external APIs.</p>
-            <p>The tradeoffs include smaller context window (128K tokens) and less mature tooling ecosystem. But for many applications, these tradeoffs are acceptable given the cost savings.</p>
-
-            <h3>Qwen 3.5 (Alibaba)</h3>
-            <p>Qwen 3.5 represents Alibaba's push into the open-weight space with a 397B parameter model that offers impressive instruction following capabilities.</p>
-            <p>It leads on IFExec (76.5%) and MultiChallenge (67.6%), making it excellent for tasks requiring precise adherence to complex instructions. If your application involves following detailed instructions, Qwen is worth considering.</p>
-            <p>As an open-weight model available for free, Qwen 3.5 enables cost-free deployment if you have the computational resources to run a 397B parameter model. This changes the economics significantly for organizations with existing GPU infrastructure.</p>
-
-            <h3>Llama 4 Maverick (Meta)</h3>
-            <p>Meta's Llama 4 Maverick offers an open-weight option that cracks the top ten overall rankings. While not quite at frontier performance, it provides a solid choice for research applications and deployments requiring full data control.</p>
-            <p>Llama has the advantage of Meta's backing and the largest community of open-source developers. If you need support or want to fine-tune a model, Llama offers the best ecosystem.</p>
+            <h2 id="intro">Introduction</h2>
+            <p>The LLM landscape has exploded. Here's what's actually useful.</p>
 
             <h2 id="reasoning-models">Reasoning Models</h2>
-            <p>A new category has emerged: reasoning models optimized for multi-step problem solving. These models spend more compute during inference to "think through" problems before generating answers.</p>
-
-            <h3>The Reasoning Model Approach</h3>
-            <p>Unlike standard models that generate responses token-by-token, reasoning models use techniques like chain-of-thought to work through problems step-by-step. This produces better results for complex tasks but at the cost of latency.</p>
-            <p>The key insight is that some problems are worth the extra time. For simple queries, standard models are faster and equally good. But for complex reasoning, the additional compute pays off.</p>
-
-            <h3>OpenAI o3 Family</h3>
-            <p>The o3-mini model leads on mathematical reasoning with 96.7% on MATH benchmarks and 92.9% on HumanEval. These models excel at complex reasoning tasks where the answer requires careful step-by-step computation.</p>
-            <p>The tradeoff is latency, reasoning models take 2-10 seconds per response versus 200-400ms for faster models. For interactive applications, this might be too slow. But for applications where quality matters more than speed, o3 is excellent.</p>
-            <p>The o3 family represents a different optimization target: rather than minimizing latency, they're maximizing reasoning quality. This makes them ideal for tasks like mathematical problem-solving, complex analysis, and multi-step planning.</p>
-
-            <h3>DeepSeek R1</h3>
-            <p>DeepSeek R1 achieves 90.8% on MMLU and 97.3% on MATH benchmarks while being available as an open-source model. This makes advanced reasoning accessible to teams that want to self-host rather than rely on API providers.</p>
-            <p>The open-source availability is significant: organizations can run DeepSeek R1 locally, maintaining data privacy while benefiting from advanced reasoning capabilities.</p>
-
-            <h2 id="coding-models">Coding Models</h2>
-            <p>Coding capability has become one of the most competitive areas. The rankings based on LiveCodeBench, Terminal-Bench, and SciCode show:</p>
-            <ol>
-                <li>GPT-5.2 Codex - best for general code generation</li>
-                <li>Claude Opus 4.5/4.6 - best for understanding and maintaining codebases</li>
-                <li>GLM-4.7 Thinking - strong open-source option</li>
-            </ol>
-            <p>For coding specifically, Claude Opus leads on SWE-Bench Verified (72.5%), which tests the ability to solve real-world software engineering problems. This makes it the preferred choice for agents that need to understand existing codebases and make correct modifications.</p>
-
-            <h3>Why Claude Excels at Coding</h3>
-            <p>Claude's coding superiority comes from several factors:</p>
-            <p>First, its training emphasizes producing maintainable code, not just code that works. Claude seems to understand the importance of readability, proper naming, and code organization.</p>
-            <p>Second, Claude's longer context window allows it to see more of your codebase at once. When making changes, it can consider how those changes affect the broader system.</p>
-            <p>Third, Claude is better at following coding conventions. It pays attention to the existing style in your codebase and matches it, producing code that looks like it was written by your team.</p>
-
-            <h3>Coding Model Comparison</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Model</th>
-                        <th>SWE-Bench</th>
-                        <th>HumanEval</th>
-                        <th>Best For</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Claude Opus 4.6</td>
-                        <td>72.5%</td>
-                        <td>92%</td>
-                        <td>Codebase understanding</td>
-                    </tr>
-                    <tr>
-                        <td>GPT-5.2 Codex</td>
-                        <td>65%</td>
-                        <td>95%</td>
-                        <td>Code generation</td>
-                    </tr>
-                    <tr>
-                        <td>DeepSeek V3.2</td>
-                        <td>77.8%</td>
-                        <td>85%</td>
-                        <td>Self-hosting</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h2 id="multimodal">Multimodal Models</h2>
-            <p>Multimodal capabilities, ability to process and generate images, audio, and video, have become increasingly important. Here's how the major providers stack up.</p>
-
-            <h3>Gemini's Multimodal Leadership</h3>
-            <p>Google's Gemini leads in multimodal capabilities, with native support for text, images, audio, and video. This isn't bolted-on functionality, multimodal is central to the model's architecture.</p>
-            <p>For applications that need to process multiple modalities, Gemini is often the best choice. The integration between modalities is smoother, and the model can reason across modalities in ways that separate models cannot.</p>
-
-            <h3>GPT-5's Vision Capabilities</h3>
-            <p>OpenAI's GPT-5 has strong vision capabilities, though they're more oriented toward image understanding than generation. For applications that need to analyze images, GPT-5 is competitive.</p>
-
-            <h3>Claude's Approach</h3>
-            <p>Claude has historically been text-focused, though recent versions have added vision capabilities. For pure text tasks, Claude remains the leader, but for multimodal applications, other options may be better.</p>
-
-            <h2 id="benchmarks">Understanding Benchmarks</h2>
-            <p>With dozens of benchmarks circulating, it's important to understand what each measures:</p>
-
-            <h3>MMLU (Massive Multitask Language Understanding)</h3>
-            <p>The most widely cited benchmark, covering 57 subjects from humanities to science. Scores range from 0-100%, with frontier models hitting 85-90%.</p>
-            <p>Note that improvements at the high end are increasingly marginal, a 1% difference may not be perceptible in practice. A model scoring 88% vs 89% is essentially equivalent for most applications.</p>
-
-            <h3>GPQA (Graduate-Level Google-Proof Q&A)</h3>
-            <p>Questions requiring graduate-level domain expertise. Scores in the 80-95% range indicate expert-level performance. GPT-5.2 leads at 93.2%.</p>
-            <p>This benchmark is particularly relevant for applications that need domain expertise, like legal analysis or technical research.</p>
-
-            <h3>HumanEval / LiveCodeBench</h3>
-            <p>Code generation from docstrings and competitive programming. These benchmarks directly measure programming capability.</p>
-            <p>The top models achieve 90%+ on HumanEval, though real-world code quality involves more than solving isolated problems. A model that scores well on HumanEval might still produce code that doesn't integrate well with existing codebases.</p>
-
-            <h3>SWE-Bench Verified</h3>
-            <p>The most realistic coding benchmark: resolving actual GitHub issues in real open-source projects. Claude Opus 4.6 leads at 72.5%, meaning it can independently solve roughly 7 out of 10 real software engineering problems.</p>
-            <p>This is the benchmark that best predicts agentic coding capability, the ability to take a problem description and produce working code that solves it.</p>
-
-            <h3>MATH</h3>
-            <p>Mathematical problem-solving from elementary to competition level. o3-mini leads at 96.7%, demonstrating near-perfect performance on competition math problems.</p>
-            <p>For applications that need mathematical reasoning, this benchmark is the most predictive.</p>
-
-            <h3>Chatbot Arena</h3>
-            <p>Human preference voting through blind comparisons. This captures subjective quality that benchmarks may miss. The Elo scores here reflect real user preferences across diverse prompts.</p>
-            <p>Chatbot Arena is particularly useful for conversational applications, where user satisfaction matters more than benchmark scores.</p>
-
-            <h2 id="pricing">Pricing and Cost Considerations</h2>
-            <p>Pricing varies dramatically across providers. Here's the landscape in early 2026:</p>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Model</th>
-                        <th>Input ($/1M)</th>
-                        <th>Output ($/1M)</th>
-                        <th>Best For</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Gemini 2.5 Flash</td>
-                        <td>$0.10</td>
-                        <td>$0.40</td>
-                        <td>High-volume, cost-sensitive</td>
-                    </tr>
-                    <tr>
-                        <td>DeepSeek V3</td>
-                        <td>$0.27</td>
-                        <td>$1.10</td>
-                        <td>Open-source, self-hosting</td>
-                    </tr>
-                    <tr>
-                        <td>GPT-4o Mini</td>
-                        <td>$0.15</td>
-                        <td>$0.60</td>
-                        <td>Fast, cheap general purpose</td>
-                    </tr>
-                    <tr>
-                        <td>Gemini 3 Pro</td>
-                        <td>$1.25</td>
-                        <td>$5.00</td>
-                        <td>Price/performance balance</td>
-                    </tr>
-                    <tr>
-                        <td>GPT-5.2</td>
-                        <td>$2.50</td>
-                        <td>$10.00</td>
-                        <td>General purpose, agents</td>
-                    </tr>
-                    <tr>
-                        <td>GPT-5.2 Pro</td>
-                        <td>$10.00</td>
-                        <td>$30.00</td>
-                        <td>Maximum quality</td>
-                    </tr>
-                    <tr>
-                        <td>Claude Opus 4.6</td>
-                        <td>$15.00</td>
-                        <td>$75.00</td>
-                        <td>Premium coding, reasoning</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <p>The smart play for most teams is multi-model routing. Route reasoning-heavy tasks to capable but cheaper models, reserve premium models for tasks where quality differences matter, and use the cheapest viable option for high-volume, lower-stakes queries.</p>
-
-            <h3>The Economics of LLM Usage</h3>
-            <p>Understanding LLM economics is crucial for production deployments. Here are the key considerations:</p>
-            <p><strong>Input vs Output:</strong> Most providers charge differently for input and output tokens. Output is typically 2-3x more expensive because it requires more compute. This matters for applications with long responses.</p>
-            <p><strong>Context Caching:</strong> Some providers offer caching discounts for repeated context. If your application uses similar prompts, this can reduce costs significantly.</p>
-            <p><strong>Batching:</strong> For high-volume applications, batch processing can reduce costs. Rather than processing requests immediately, you batch them and process at designated times.</p>
-            <p><strong>Self-hosting:</strong> For extreme scale, self-hosting might be cheaper. But it requires significant infrastructure investment and expertise.</p>
-
-            <h2 id="context-windows">Context Windows</h2>
-            <p>Context window size determines how much information a model can consider at once. This matters for tasks involving large documents, codebases, or extended conversations.</p>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Model</th>
-                        <th>Context Window</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Gemini 3 Pro</td>
-                        <td>1M tokens</td>
-                    </tr>
-                    <tr>
-                        <td>Claude Sonnet 4.6</td>
-                        <td>200K tokens</td>
-                    </tr>
-                    <tr>
-                        <td>Claude Opus 4.6</td>
-                        <td>200K tokens</td>
-                    </tr>
-                    <tr>
-                        <td>GPT-5</td>
-                        <td>400K tokens</td>
-                    </tr>
-                    <tr>
-                        <td>DeepSeek V3</td>
-                        <td>128K tokens</td>
-                    </tr>
-                    <tr>
-                        <td>Qwen 3.5</td>
-                        <td>262K native (1M+ hosted)</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <p>Gemini's million-token context remains unique. In evaluations, it retrieved specific information from 500,000-token documents with 99% accuracy, a capability that enables entirely new use cases around large document analysis.</p>
-
-            <h3>When Context Matters</h3>
-            <p>Large context windows matter for:</p>
             <ul>
-                <li><strong>Codebase analysis:</strong> Understanding entire repositories at once</li>
-                <li><strong>Document processing:</strong> Summarizing or analyzing long documents</li>
-                <li><strong>Multi-file editing:</strong> Making coordinated changes across files</li>
-                <li><strong>Long conversations:</strong> Maintaining context over extended interactions</li>
+                <li><strong>Claude 4 (Opus/Sonnet):</strong> Best for complex reasoning, code generation</li>
+                <li><strong>GPT-o1/o3:</strong> Excellent for mathematical and logical tasks</li>
+                <li><strong>DeepSeek R1:</strong> Open-weights, competitive and cheaper</li>
             </ul>
 
-            <h2 id="api">API and Integration Considerations</h2>
-            <p>Beyond model quality, the API and integration experience matters for production deployments. Here's what to consider:</p>
+            <h2 id="coding-assistants">Coding Assistants</h2>
+            <ul>
+                <li><strong>Claude Code:</strong> CLI agent for terminal workflows</li>
+                <li><strong>Cursor:</strong> AI-native IDE with agent capabilities</li>
+                <li><strong>Windsurf:</strong> AI-assisted IDE from Codeium</li>
+            </ul>
 
-            <h3>Function Calling</h3>
-            <p>All major models support function calling, but the quality varies. For agentic applications, this is crucial. Claude and GPT have the most mature function calling implementations.</p>
+            <h2 id="context-window">Context Windows</h2>
+            <p>Gemini 2.5 Pro leads with up to 1M tokens - exceptional for document-heavy workflows.</p>
 
-            <h3>Streaming</h3>
-            <p>Streaming responses improve user experience by showing results as they're generated. All major providers support streaming.</p>
-
-            <h3>Rate Limits</h3>
-            <p>API rate limits can constrain production applications. Check limits carefully, especially for high-volume use cases.</p>
-
-            <h3>SDKs and Tools</h3>
-            <p>The availability of SDKs and tools affects development speed. OpenAI has the most mature ecosystem, with integrations for virtually every platform and framework.</p>
-
-            <h2 id="selection-guide">Model Selection Guide</h2>
-            <p>Here's a practical decision framework based on your primary use case:</p>
-
-            <h3>For Complex Reasoning</h3>
-            <p><strong>Primary:</strong> GPT-5.2 Pro (93.2% GPQA) or Claude Opus 4.6</p>
-            <p><strong>Budget:</strong> Gemini 3 Pro or DeepSeek R1</p>
-            <p>These models excel at multi-step problem solving where the answer requires careful reasoning rather than pattern matching.</p>
-
-            <h3>For Coding</h3>
-            <p><strong>Primary:</strong> Claude Opus 4.6 (72.5% SWE-Bench Verified)</p>
-            <p><strong>Agents:</strong> Claude Sonnet 4.6 (highest agentic workflow Elo)</p>
-            <p><strong>Open-source:</strong> DeepSeek V3.2 or Qwen 3.5</p>
-            <p>Claude leads because it produces more maintainable code that better fits existing codebases.</p>
-
-            <h3>For General Purpose / Chat</h3>
-            <p><strong>Primary:</strong> GPT-5.2</p>
-            <p><strong>Value:</strong> Gemini 3 Pro</p>
-            <p>GPT-5 offers the broadest ecosystem and best tool support. Gemini delivers 80% of the quality at 10% of the cost.</p>
-
-            <h3>For Price-Sensitive Applications</h3>
-            <p><strong>Best value:</strong> DeepSeek V3.2 ($0.28/1M input)</p>
-            <p><strong>Free open-weight:</strong> Qwen 3.5 or Llama 4</p>
-            <p>Open-source models have reached the point where they compete with closed APIs on quality while offering dramatic cost savings at scale.</p>
-
-            <h3>For Large Context Tasks</h3>
-            <p><strong>Primary:</strong> Gemini 3 Pro (1M tokens)</p>
-            <p>Only Gemini offers million-token context with strong retrieval accuracy. If you need to analyze documents larger than 200K tokens, Gemini is your only option.</p>
-
-            <h3>For Self-Hosting / Privacy</h3>
-            <p><strong>Best performance:</strong> DeepSeek V3.2</p>
-            <p><strong>Best flexibility:</strong> Qwen 3.5 (397B parameters)</p>
-            <p><strong>Best for inference cost:</strong> DeepSeek R1</p>
-            <p>These models can run on your own infrastructure, eliminating data privacy concerns and enabling unlimited usage at compute cost.</p>
-
-            <h2 id="best-practices">Best Practices for LLM Integration</h2>
-            <p>Getting the most out of LLM integration requires more than just picking the right model. Here are best practices:</p>
-
-            <h3>Implement Model Routing</h3>
-            <p>Don't use a single model for everything. Route simple queries to cheaper models and reserve premium models for complex tasks. This reduces costs while maintaining quality where it matters.</p>
-
-            <h3>Use Caching</h3>
-            <p>Cache responses for identical or similar queries. This reduces costs and improves latency. Many providers offer built-in caching; if not, implement it at the application level.</p>
-
-            <h3>Implement Proper Error Handling</h3>
-            <p>LLMs can fail or produce unexpected results. Implement proper error handling, including retries, fallbacks, and graceful degradation.</p>
-
-            <h3>Monitor Costs</h3>
-            <p>LLM costs can spiral unexpectedly. Implement cost monitoring and alerting to catch issues before they become problems.</p>
-
-            <h3>Test Extensively</h3>
-            <p>LLM behavior can vary. Test extensively with realistic inputs to understand how models perform on your specific use cases.</p>
-
-            <h2 id="future">The Road Ahead</h2>
-            <p>Several trends will shape the LLM landscape through the remainder of 2026 and beyond:</p>
-
-            <h3>Continued Specialization</h3>
-            <p>We'll see more task-specific models optimized for particular domains rather than general-purpose excellence. Coding models, mathematical reasoning models, and multimodal models will diverge further.</p>
-
-            <h3>Agentic Optimization</h3>
-            <p>Models will increasingly be optimized not just for quality on benchmarks but for agentic workflows, tool use, multi-step planning, and autonomous operation.</p>
-
-            <h3>Price Pressure</h3>
-            <p>Open-source models continue to close the gap with frontier models while dramatically reducing costs. This pressure will force API providers to compete on capability rather than exclusivity.</p>
-
-            <h3>Multimodal Maturity</h3>
-            <p>Models that truly understand and generate across modalities, text, images, audio, video, will become the default rather than the exception.</p>
+            <h2 id="recommendations">Recommendations</h2>
+            <ul>
+                <li>Use premium models for complex reasoning</li>
+                <li>Use mid-tier models for routine tasks</li>
+                <li>Use specialized models for domain-specific work</li>
+            </ul>
 
             <h2 id="conclusion">Conclusion</h2>
-            <p>The LLM landscape in 2026 offers something for every use case and budget. The key insight is that "best" is no longer a single answer, it depends entirely on your priorities.</p>
-            <p>For most teams, the pragmatic approach is multi-model routing. Use Gemini for high-volume cost-sensitive tasks, Claude for coding and quality-critical work, GPT-5 for general-purpose and agentic applications, and DeepSeek or Qwen when self-hosting makes sense.</p>
-            <p>The models are good enough now that the differentiation comes from how you use them rather than which one you choose. Focus on building robust routing logic, proper evaluation pipelines, and thoughtful cost management.</p>
-            <p>The model selection becomes easier when you know exactly what quality and cost constraints you're optimizing for. Take time to understand your requirements, test different models, and implement proper routing. The savings and quality improvements are worth the upfront investment.</p>
+            <p>The best model depends on your use case. Build a model consortium for production.</p>
+        </article>
 
-            <h2 id="quick-reference">Quick Reference</h2>
-            <ul>
-                <li><strong>Complex reasoning</strong> :  GPT-5.2 Pro, Claude Opus 4.6</li>
-                <li><strong>Speed/cost</strong> :  GPT-4o Mini, Gemini Flash, DeepSeek V3</li>
-                <li><strong>Coding</strong> :  Claude Opus 4.6, Claude Sonnet 4.6</li>
-                <li><strong>Self-hosted</strong> :  DeepSeek V3.2, Qwen 3.5</li>
-                <li><strong>Large context</strong> :  Gemini 3 Pro (1M tokens)</li>
-                <li><strong>Price/performance</strong> :  Gemini 3 Pro</li>
-                <li><strong>General purpose</strong> :  GPT-5.2</li>
-                <li><strong>Multimodal</strong> :  Gemini 3 Pro</li>
-            </ul>
-            </article>
-        </main>
-
-        <footer class="site-footer" data-reveal>
-            <div class="footer-links">
-                <a class="inline-link" href="https://github.com/sajadkoder" target="_blank" rel="noreferrer">GitHub</a>
-                <a class="inline-link" href="https://linkedin.com/in/abdullasajad" target="_blank" rel="noreferrer">LinkedIn</a>
-                <a class="inline-link" href="mailto:abdullasajad01@gmail.com">abdullasajad01@gmail.com</a>
-            </div>
-            <p class="footer-note">&copy; 2026 Abdulla Sajad. Long form notes on software, AI, and systems.</p>
+        <footer class="animate animate-delay-4">
+            <a href="https://github.com/sajadkoder" target="_blank" aria-label="GitHub">
+                <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://linkedin.com/in/abdullasajad" target="_blank" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="mailto:abdullasajad01@gmail.com" aria-label="Email">
+                <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+            </a>
+            <span>© 2026 Abdulla Sajad</span>
         </footer>
     </div>
 
-    <script src="../site.js"></script>
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const saved = localStorage.getItem('theme') || 'dark';
+        if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+        
+        toggle.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        });
+    </script>
 </body>
 </html>
-
-

@@ -1,634 +1,115 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning AI Engineering as a Software Developer | Abdulla Sajad</title>
+    <meta name="description" content="My journey from traditional SWE to AI engineering. What worked, what didn't.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../site.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
 </head>
-<body class="blog-page">
-    <a class="skip-link" href="#main">Skip to content</a>
-
-    <div class="page-shell">
-        <header class="site-header" data-reveal>
-            <a class="brand" href="../index.html" aria-label="Abdulla Sajad home">
-                <span class="brand-name">Abdulla Sajad</span>
-                <span class="brand-role">Software Engineer / AI Engineer</span>
-            </a>
-
-            <nav class="site-nav" aria-label="Primary navigation">
-                <a href="../index.html">Home</a>
-                <a href="../index.html#projects">Projects</a>
-                <a href="../index.html#writing">Writing</a>
-                <a href="../index.html#skills">Skills</a>
-                <a href="../index.html#contact">Contact</a>
-            </nav>
-
-            <div class="header-actions">
-                <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
-                    <span class="theme-toggle-label">Dark</span>
-                </button>
+<body>
+    <div class="container">
+        <header class="animate">
+            <div class="header-profile">
+                <img src="../profile.jpg" alt="Abdulla Sajad" class="profile-image" loading="eager" decoding="async" width="80" height="80">
+                <div class="header-content">
+                    <div class="name"><a href="../index.html" style="color:inherit;text-decoration:none;">Abdulla Sajad</a></div>
+                    <div class="tagline">Software Engineer <span>//</span> AI Engineer</div>
+                    <nav>
+                        <a href="../index.html#about">about</a>
+                        <a href="../index.html#projects">projects</a>
+                        <a href="../index.html#writing">writing</a>
+                        <a href="../index.html#skills">skills</a>
+                        <a href="../resume.pdf" target="_blank" download>resume</a>
+                    </nav>
+                </div>
             </div>
         </header>
 
-        <main id="main" class="post-wrap">
-            <a class="back-link" href="../index.html#writing">Back to writing</a>
-            <article class="post-content surface-panel" data-reveal>
-<h1>Learning AI Engineering as a Software Developer</h1>
-            <div class="meta"><span>Learning</span><span>Dec 2025</span></div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+
+        <a href="../index.html#writing" class="back-link">← Back to writing</a>
+
+        <article class="post-content">
+            <h1>Learning AI Engineering as a Software Developer</h1>
+            <div class="post-meta">Learning · Jun 2025 · ~10 min read</div>
 
             <p>My journey from traditional SWE to AI engineering. What worked, what didn't.</p>
 
-            <h2 id="table-of-contents">Table of Contents</h2>
-            <ol>
-                <li><a href="#intro">Introduction</a></li>
-                <li><a href="#what-is-ai-engineering">What is AI Engineering?</a></li>
-                <li><a href="#prerequisites">Prerequisites</a></li>
-                <li><a href="#phase1">Phase 1: Programming Fundamentals</a></li>
-                <li><a href="#phase2">Phase 2: Working with AI</a></li>
-                <li><a href="#phase3">Phase 3: LLM Engineering</a></li>
-                <li><a href="#phase4">Phase 4: Agent Systems</a></li>
-                <li><a href="#what-worked">What Worked</a></li>
-                <li><a href="#what-didnt">What Didn't</a></li>
-                <li><a href="#projects">Projects to Build</a></li>
-                <li><a href="#timeline">Realistic Timeline</a></li>
-                <li><a href="#advice">Final Advice</a></li>
-            </ol>
+            <h2 id="intro">Why AI Engineering?</h2>
+            <p>As a software developer, I saw AI transforming how we build software. I wanted to be part of this shift.</p>
 
-            <h2 id="intro">Introduction</h2>
-            <p>The field of AI engineering has exploded in recent years. What was once a niche specialization has become one of the most in-demand career paths in technology. Companies from early-stage startups to Fortune 500 enterprises are scrambling to integrate AI into their products and workflows.</p>
-            <p>As a software developer, you have a significant advantage: AI engineering is fundamentally software engineering with AI components. You don't need to throw away everything you know and start from scratch. You need to build on top of your existing skills while learning the new patterns and tools specific to AI development.</p>
-            <p>This guide shares my journey and the practical roadmap I followed to transition from traditional software engineering to AI engineering. It's not a shortcut, but it is a practical path that works.</p>
-
-            <h2 id="what-is-ai-engineering">What is AI Engineering?</h2>
-            <p>Before diving into the learning path, it's important to understand what AI engineers actually do. There's often confusion between AI engineers, machine learning engineers, and data scientists, these are distinct roles.</p>
-            <p><strong>AI Engineers</strong> build practical applications using existing AI models. They build chatbots, RAG pipelines, autonomous agents, and intelligent workflows that solve real problems. They're like car builders, not engine inventors, companies need people who can build the car, not people who design the engine.</p>
-            <p>AI engineers work on:</p>
+            <h2 id="started">How I Started</h2>
             <ul>
-                <li>Connecting AI capabilities to existing software, APIs, databases, and business workflows</li>
-                <li>Building the scaffolding that makes AI apps reliable, like prompt engineering frameworks and evaluation systems</li>
-                <li>Developing autonomous agents that can plan, use tools, make decisions, and execute complex multi-step tasks</li>
-                <li>Creating RAG systems that let AI models access and reason over your specific documents and knowledge bases</li>
-                <li>Building apps powered by large language models, including chatbots, research assistants, and customer support tools</li>
-            </ul>
-            <p>The key insight: you don't need an advanced degree in machine learning or AI. You need strong coding skills and the ability to integrate AI capabilities into software systems.</p>
-
-            <h2 id="prerequisites">Prerequisites</h2>
-            <p>Before diving into AI-specific topics, you need a solid foundation in programming. This is the step you absolutely cannot skip.</p>
-
-            <h3>Python</h3>
-            <p>Python is the language of AI. Almost every AI library, framework, and tool is built for Python first. You need production-level Python, not just tutorial-style coding.</p>
-            <p>Focus on these areas:</p>
-            <ul>
-                <li>Object-oriented programming basics</li>
-                <li>File handling and error handling</li>
-                <li>Working with APIs and JSON</li>
-                <li>Data structures: lists, dictionaries, sets</li>
-                <li>List comprehensions and generators</li>
-                <li>Virtual environments and package management</li>
+                <li>Started with OpenAI API tutorials</li>
+                <li>Built small projects with GPT-3</li>
+                <li>Learned prompt engineering basics</li>
             </ul>
 
-            <h3>API Design</h3>
-            <p>AI engineering involves building APIs that expose AI capabilities. Understanding REST API design, request/response handling, and authentication patterns is essential.</p>
-
-            <h3>Basic Data Skills</h3>
-            <p>You should be comfortable with:</p>
+            <h2 id="challenges">Challenges</h2>
             <ul>
-                <li>Working with JSON data</li>
-                <li>Parsing and manipulating text</li>
-                <li>Basic statistics (understanding averages, percentages)</li>
-                <li>File I/O operations</li>
+                <li><strong>Different mental model:</strong> Not traditional programming</li>
+                <li><strong>Uncertainty:</strong> Non-deterministic outputs</li>
+                <li><strong>Evaluation:</strong> Hard to measure quality</li>
             </ul>
-
-            <h2 id="phase1">Phase 1: Programming Fundamentals</h2>
-            <p>This phase makes or breaks your journey. I recommend spending 1.5 to 3 months here. Don't rush this foundation.</p>
-
-            <h3>What to Learn</h3>
-            <ul>
-                <li>Python syntax and core concepts</li>
-                <li>Working with external APIs (requests library)</li>
-                <li>Virtual environments (venv, conda)</li>
-                <li>Package management (pip)</li>
-                <li>Basic testing (pytest)</li>
-                <li>Git version control</li>
-            </ul>
-
-            <h3>Resources</h3>
-            <ul>
-                <li>Automate the Boring Stuff with Python by Al Sweigart</li>
-                <li>Real Python (realpython.com)</li>
-                <li>Python official documentation</li>
-            </ul>
-
-            <h3>How to Practice</h3>
-            <p>Build small automation scripts, API wrappers, or data processing tools. This phase separates people who can follow tutorials from people who can build systems.</p>
-
-            <h2 id="phase2">Phase 2: Working with AI</h2>
-            <p>Now you're ready to actually work with AI. This phase should be shorter than the previous two because you're building on what you already know.</p>
-
-            <h3>LLM API Basics</h3>
-            <p>Start by calling LLMs through their APIs. Learn to:</p>
-            <ul>
-                <li>Make API calls to OpenAI, Anthropic, or other providers</li>
-                <li>Understand prompt structure and parameters</li>
-                <li>Handle API responses</li>
-                <li>Manage API keys and authentication</li>
-                <li>Handle errors and retries</li>
-            </ul>
-
-            <h3>Prompt Engineering Fundamentals</h3>
-            <p>Prompt engineering is the art of getting good outputs from AI models. Key concepts include:</p>
-            <ul>
-                <li>Clear and specific instructions</li>
-                <li>System prompts vs user prompts</li>
-                <li>Few-shot learning (providing examples)</li>
-                <li>Temperature and other generation parameters</li>
-                <li>Token management and context windows</li>
-            </ul>
-
-            <h3>First AI Projects</h3>
-            <p>Build simple applications:</p>
-            <ul>
-                <li>A chatbot that answers questions about a specific topic</li>
-                <li>A text summarization tool</li>
-                <li>A simple Q&A system</li>
-            </ul>
-
-            <h2 id="phase3">Phase 3: LLM Engineering</h3>
-            <p>This is the phase that transforms you from someone who calls APIs into an AI engineer. Focus on these core areas:</p>
-
-            <h3>RAG (Retrieval-Augmented Generation)</h3>
-            <p>RAG systems let AI models access and reason over your specific documents. Learn:</p>
-            <ul>
-                <li>Text embedding and vector databases</li>
-                <li>Chunking strategies for documents</li>
-                <li>Semantic search implementation</li>
-                <li>Hybrid search approaches</li>
-                <li>RAG evaluation metrics</li>
-            </ul>
-
-            <h3>Key Tools</h3>
-            <ul>
-                <li><strong>LangChain:</strong> The most popular framework for building LLM applications</li>
-                <li><strong>LlamaIndex:</strong> Specialized for data ingestion and retrieval</li>
-                <li><strong>Vector Databases:</strong> Pinecone, Weaviate, Chroma, or pgvector</li>
-                <li><strong>Embedding Models:</strong> OpenAI embeddings, Hugging Face models</li>
-            </ul>
-
-            <h3>Building RAG Systems</h3>
-            <p>Start with simple RAG implementations and progressively add complexity:</p>
-            <ul>
-                <li>Basic document Q&A</li>
-                <li>Multi-document retrieval</li>
-                <li>Hybrid search with keyword and semantic</li>
-                <li>Query transformation and expansion</li>
-                <li>Agentic RAG with routing</li>
-            </ul>
-
-            <h2 id="phase4">Phase 4: Agent Systems</h2>
-            <p>Agents represent the cutting edge of AI application development. They can plan, use tools, and execute complex multi-step tasks.</p>
-
-            <h3>Core Agent Concepts</h3>
-            <ul>
-                <li>Tool use and function calling</li>
-                <li>Planning and replanning</li>
-                <li>Memory systems (short-term, long-term)</li>
-                <li>Agentic patterns (ReAct, Plan-Execute, etc.)</li>
-                <li>Guardrails and safety</li>
-            </ul>
-
-            <h3>Agent Frameworks</h3>
-            <ul>
-                <li><strong>LangGraph:</strong> Built on LangChain for complex agent workflows</li>
-                <li><strong>CrewAI:</strong> Multi-agent orchestration</li>
-                <li><strong>AutoGen:</strong> Microsoft's agent framework</li>
-                <li><strong>SmolAgents:</strong> Lightweight and simple</li>
-            </ul>
-
-            <h3>Production Considerations</h3>
-            <ul>
-                <li>Observability and tracing (LangSmith)</li>
-                <li>Evaluation frameworks</li>
-                <li>Cost management and monitoring</li>
-                <li>Human-in-the-loop patterns</li>
-                <li>Error handling and recovery</li>
-            </ul>
-
-            <h2 id="production-ai">Production AI Systems</h2>
-            <p>Building AI systems that work in production is fundamentally different from building prototypes. Production systems require robustness, monitoring, and maintainability.</p>
-
-            <h3>Evaluation and Testing</h3>
-            <p>Evaluating AI systems requires different approaches than traditional software testing. You need to test both the system behavior and the outputs. Key approaches include:</p>
-            <ul>
-                <li><strong>Unit tests for code:</strong> Test your application logic normally</li>
-                <li><strong>Integration tests:</strong> Test how components work together</li>
-                <li><strong>LLM evaluation:</strong> Test output quality using other LLMs or human evaluation</li>
-                <li><strong>Benchmark datasets:</strong> Create or use datasets representing expected inputs</li>
-                <li><strong>A/B testing:</strong> Compare different prompts or models in production</li>
-            </ul>
-
-            <h3>Observability</h3>
-            <p>AI systems need specialized observability. Traditional metrics aren't enough. You need to track:</p>
-            <ul>
-                <li>Token usage and costs</li>
-                <li>Latency per request</li>
-                <li>Response quality over time</li>
-                <li>Error rates and types</li>
-                <li>User satisfaction metrics</li>
-            </ul>
-
-            <h3>Cost Management</h3>
-            <p>AI costs can spiral quickly if not managed. Implement strategies like:</p>
-            <ul>
-                <li>Caching responses for repeated queries</li>
-                <li>Using cheaper models for simple tasks</li>
-                <li>Implementing rate limiting</li>
-                <li>Monitoring usage per user and feature</li>
-                <li>Setting up budget alerts</li>
-            </ul>
-
-            <h2 id="specializations">AI Engineering Specializations</h2>
-            <p>As you progress, you'll find areas where you want to specialize. Here are the main paths:</p>
-
-            <h3>LLM Platform Engineering</h3>
-            <p>Build internal platforms that make AI accessible to other developers. This involves:</p>
-            <ul>
-                <li>API gateways and rate limiting</li>
-                <li>Prompt management and versioning</li>
-                <li>Model routing and selection</li>
-                <li>Cost allocation and monitoring</li>
-            </ul>
-
-            <h3>AI Infrastructure</h3>
-            <p>Work on the infrastructure that powers AI systems:</p>
-            <ul>
-                <li>Vector database operations</li>
-                <li>ML model serving</li>
-                <li>Fine-tuning pipelines</li>
-                <li>GPU cluster management</li>
-            </ul>
-
-            <h3>AI Safety and Alignment</h3>
-            <p>Ensure AI systems behave correctly and safely:</p>
-            <ul>
-                <li>Guardrail implementation</li>
-                <li>Content filtering</li>
-                <li>Red teaming and adversarial testing</li>
-                <li>Policy enforcement</li>
-            </ul>
-
-            <h2 id="job-market">The AI Engineering Job Market</h2>
-            <p>The demand for AI engineers has exploded. Understanding what employers want helps you focus your learning.</p>
-
-            <h3>What Companies Look For</h3>
-            <p>Based on job postings and conversations with hiring managers, here's what matters:</p>
-            <ul>
-                <li><strong>Production experience:</strong> Can you build systems that actually work?</li>
-                <li><strong>Python mastery:</strong> The language of AI engineering</li>
-                <li><strong>LLM understanding:</strong> Not deep learning theory, but how to use LLMs effectively</li>
-                <li><strong>System design:</strong> Building reliable, scalable AI systems</li>
-                <li><strong>Problem-solving:</strong> AI engineering is about solving problems, not just using tools</li>
-            </ul>
-
-            <h3>Building Your Portfolio</h3>
-            <p>Employers want to see you can build things. Create:</p>
-            <ul>
-                <li>Public GitHub repositories with real projects</li>
-                <li>Blog posts explaining your work</li>
-                <li>Contributions to open source</li>
-                <li>Real-world applications (even if for yourself)</li>
-            </ul>
-
-            <h3>Interview Preparation</h3>
-            <p>AI engineering interviews typically cover:</p>
-            <ul>
-                <li><strong>Coding:</strong> Python, API integration, data handling</li>
-                <li><strong>System design:</strong> Design AI-powered features end-to-end</li>
-                <li><strong>LLM concepts:</strong> Prompt engineering, tokenization, limitations</li>
-                <li><strong>Your projects:</strong> Deep dive into what you built</li>
-            </ul>
-
-            <h2 id="community">Community and Resources</h2>
-            <p>Learning in public accelerates growth. The AI community is incredibly welcoming and active.</p>
-
-            <h3>Communities to Join</h3>
-            <ul>
-                <li><strong>LangChain Discord:</strong> Active community of LLM developers</li>
-                <li><strong>Hugging Face Forums:</strong> Great for model-related questions</li>
-                <li><strong>Subreddits:</strong> r/MachineLearning, r/LanguageTechnology</li>
-                <li><strong>Local meetups:</strong> Many cities have AI/ML meetups</li>
-            </ul>
-
-            <h3>Learning Resources</h3>
-            <ul>
-                <li><strong>Official documentation:</strong> Start here for any tool or API</li>
-                <li><strong>YouTube tutorials:</strong> Many excellent creators cover AI topics</li>
-                <li><strong>Courses:</strong> DeepLearning.AI, Coursera, Fast.ai</li>
-                <li><strong>Papers:</strong> Keep up with arXiv for latest research</li>
-            </ul>
-
-            <h3>Staying Updated</h3>
-            <p>The AI field moves fast. Stay current with:</p>
-            <ul>
-                <li>AI news newsletters (Ben's Bites, The Batch)</li>
-                <li>Twitter/X follows of key researchers and practitioners</li>
-                <li>GitHub trending repositories</li>
-                <li>Podcasts (Lex Fridman, Hard Fork)</li>
-            </ul>
-
-            <h2 id="advanced-topics">Advanced Topics</h2>
-            <p>Once you have the fundamentals, these advanced areas can differentiate you:</p>
-
-            <h3>Fine-Tuning</h3>
-            <p>While prompt engineering handles most cases, fine-tuning can help for specific domains or behaviors. Learn about:</p>
-            <ul>
-                <li>When fine-tuning makes sense</li>
-                <li>LoRA and QLoRA for efficient fine-tuning</li>
-                <li>Data preparation for fine-tuning</li>
-                <li>Evaluation of fine-tuned models</li>
-            </ul>
-
-            <h3>Multimodal AI</h3>
-            <p>AI that sees, hears, and creates. Build skills in:</p>
-            <ul>
-                <li>Image generation and editing (DALL-E, Stable Diffusion)</li>
-                <li>Audio transcription and generation</li>
-                <li>Video understanding</li>
-                <li>Cross-modal retrieval</li>
-            </ul>
-
-            <h3>Function Calling and Tools</h3>
-            <p>Making LLMs interact with the real world:</p>
-            <ul>
-                <li>Defining function schemas</li>
-                <li>Parsing and executing tool calls</li>
-                <li>Building tool chains</li>
-                <li>Security considerations</li>
-            </ul>
-
-            <h2 id="common-pitfalls">Common Pitfalls</h2>
-            <p>Avoid these mistakes that slow down your progress:</p>
-
-            <h3>Tool Chasing</h3>
-            <p>New frameworks appear weekly. Don't fall into the trap of constantly learning the latest tool instead of building. Master fundamentals first, the tools build on consistent concepts.</p>
-
-            <h3>Over-Engineering</h3>
-            <p>Start simple. Many AI applications work with straightforward approaches. Don't reach for agents, vector databases, and complex RAG pipelines when a simple prompt will do.</p>
-
-            <h3>Ignoring Costs</h3>
-            <p>AI can get expensive fast. Always be aware of costs. Implement limits, cache aggressively, and use cheaper models when possible.</p>
-
-            <h3>Skipping Evaluation</h3>
-            <p>Without evaluation, you have no idea if your system works. Build evaluation into your development process from the start.</p>
 
             <h2 id="what-worked">What Worked</h2>
-            <p>Looking back at my journey, here's what actually moved the needle:</p>
-
-            <h3>Building Projects</h3>
-            <p>Actual hands-on experience beats passive learning every time. I learned more from building a single RAG system from scratch than from reading dozens of tutorials. The struggle with real problems is where growth happens.</p>
-
-            <h3>Focusing on Engineering</h3>
-            <p>I focused on prompt engineering, API integration, and system building, not deep ML theory. You don't need to understand transformers deeply to use LLMs effectively. What you need is understanding how to integrate them into software systems.</p>
-
-            <h3>Starting Simple</h3>
-            <p>I followed a progression: chatbots first, then RAG systems, then agents. Each step built on the previous. Trying to jump straight to complex agent systems without understanding prompt fundamentals would have been overwhelming.</p>
-
-            <h3>Learning by Doing</h3>
-            <p>The barrier to entry is lower than you think. You can start building useful AI applications within weeks of starting to learn. Don't wait until you feel "ready."</p>
-
-            <h2 id="what-didnt">What Didn't Work</h2>
-            <p>Here's what I learned the hard way:</p>
-
-            <h3>Too Much Theory</h3>
-            <p>I spent too much time early on trying to understand the internal workings of transformers and deep learning architectures. While this knowledge is valuable for ML engineers, it's not necessary for AI engineering. You can build excellent AI applications without understanding how attention mechanisms work.</p>
-
-            <h3>Chasing Every New Tool</h3>
-            <p>The AI tool landscape changes weekly. New frameworks, new models, new patterns constantly emerge. I learned to master fundamentals first rather than chasing every new thing. The core concepts, APIs, prompts, RAG, agents, have remained stable even as tools evolve.</p>
-
-            <h3>Skipping the Basics</h3>
-            <p>When I tried to skip Python fundamentals and jump straight to AI libraries, I hit a wall. The time spent building a solid programming foundation paid dividends later.</p>
-
-            <h2 id="projects">Projects to Build</h2>
-            <p>Build these projects to demonstrate your skills. Start simple and progressively add complexity:</p>
-
-            <h3>Beginner Projects</h3>
             <ul>
-                <li>CLI chatbot with memory</li>
-                <li>Text summarization API</li>
-                <li>Simple Q&A bot over documents</li>
+                <li><strong>Building projects:</strong> Start small, iterate fast</li>
+                <li><strong>Reading papers:</strong> Stay updated on latest research</li>
+                <li><strong>Community:</strong> Join AI developer communities</li>
             </ul>
 
-            <h3>Intermediate Projects</h3>
+            <h2 id="frameworks">Key Frameworks</h2>
             <ul>
-                <li>Full RAG pipeline with vector database</li>
-                <li>Multi-document Q&A system</li>
-                <li>AI-powered search</li>
-                <li>Customer support chatbot</li>
+                <li><strong>LangChain:</strong> Most popular for building LLM apps</li>
+                <li><strong>LangGraph:</strong> For complex agent workflows</li>
+                <li><strong>LlamaIndex:</strong> For RAG applications</li>
             </ul>
 
-            <h3>Advanced Projects</h3>
+            <h2 id="advice">Advice for Developers</h2>
             <ul>
-                <li>Multi-agent system with specialized roles</li>
-                <li>Research assistant that browses and synthesizes</li>
-                <li>Code analysis and documentation tool</li>
-                <li>End-to-end AI application with evaluation</li>
+                <li>Start with API integrations, not model training</li>
+                <li>Learn prompt engineering - it's a skill</li>
+                <li>Focus on practical applications</li>
+                <li>Build real projects and share them</li>
             </ul>
 
-            <h2 id="timeline">Realistic Timeline</h2>
-            <p>Here's what the journey typically looks like:</p>
-            <ul>
-                <li><strong>Foundations + first apps:</strong> ~6 months (part-time)</li>
-                <li><strong>Advanced concepts:</strong> 6, 12 more months</li>
-                <li><strong>Job-ready:</strong> Typically 1-2 years of focused learning</li>
-            </ul>
-            <p>The key insight: you can start building and even working with AI much earlier. You don't need to "know everything" before you start building. The best way to learn is by doing.</p>
+            <h2 id="conclusion">Conclusion</h2>
+            <p>The best time to start was yesterday. The second best time is now. Start building!</p>
+        </article>
 
-            <h2 id="emerging-trends">Emerging Trends to Watch</h2>
-            <p>The AI landscape evolves rapidly. Stay ahead by understanding these emerging trends:</p>
-
-            <h3>Multimodal AI</h3>
-            <p>Models that understand and generate across multiple modalities, text, images, audio, video, are becoming the norm. Learn about:</p>
-            <ul>
-                <li>Vision-language models (GPT-4V, Claude 3, Gemini)</li>
-                <li>Image and video generation (DALL-E, Stable Diffusion, Sora)</li>
-                <li>Audio processing (Whisper, ElevenLabs)</li>
-                <li>Building multimodal applications</li>
-            </ul>
-
-            <h3>Small Language Models</h3>
-            <p>While frontier models get all the attention, small language models (SLMs) are becoming practical for edge deployment and cost-sensitive applications:</p>
-            <ul>
-                <li>Phi-3, Llama 3, Mistral models</li>
-                <li>On-device AI for mobile and edge</li>
-                <li>Fine-tuning smaller models for specific tasks</li>
-                <li>Cost-benefit analysis of model size</li>
-            </ul>
-
-            <h3>AI Agents in Production</h3>
-            <p>Agent systems are moving from research to production. Key developments include:</p>
-            <ul>
-                <li>Multi-agent collaboration frameworks</li>
-                <li>Reliable tool use and function calling</li>
-                <li>Agent evaluation and benchmarking</li>
-                <li>Autonomous vs human-in-the-loop patterns</li>
-            </ul>
-
-            <h3>Model Distillation and Compression</h3>
-            <p>Making large models smaller and faster:</p>
-            <ul>
-                <li>Knowledge distillation techniques</li>
-                <li>Quantization (INT8, INT4)</li>
-                <li>Pruning and architecture search</li>
-                <li>Edge deployment strategies</li>
-            </ul>
-
-            <h2 id="advanced-techniques">Advanced Techniques</h2>
-            <p>Once you have the basics, these advanced techniques differentiate expert practitioners:</p>
-
-            <h3>Prompt Engineering Patterns</h3>
-            <p>Advanced prompting goes beyond simple instructions:</p>
-            <ul>
-                <li><strong>Chain-of-Thought:</strong> Encourage step-by-step reasoning</li>
-                <li><strong>Tree of Thoughts:</strong> Explore multiple reasoning paths</li>
-                <li><strong>Self-Consistency:</strong> Generate multiple solutions and pick best</li>
-                <li><strong>ReAct:</strong> Combine reasoning with action</li>
-                <li><strong>Persona prompting:</strong> Define specific AI personalities</li>
-            </ul>
-
-            <h3>Advanced RAG Techniques</h3>
-            <p>Take your RAG systems to the next level:</p>
-            <ul>
-                <li>Query transformation (rewrite, expand, decompose)</li>
-                <li>Parent document retrieval</li>
-                <li>Hybrid search with reranking</li>
-                <li>Graph-based retrieval</li>
-                <li>Agentic RAG with self-correction</li>
-            </ul>
-
-            <h3>Fine-Tuning Deep Dive</h3>
-            <p>When prompt engineering isn't enough:</p>
-            <ul>
-                <li>Full fine-tuning vs parameter-efficient methods (LoRA)</li>
-                <li>Data preparation and curation</li>
-                <li>Evaluation and benchmarking</li>
-                <li>Continual learning considerations</li>
-                <li>When to fine-tune vs use RAG</li>
-            </ul>
-
-            <h2 id="building-portfolio">Building Your Professional Portfolio</h2>
-            <p>Your portfolio demonstrates your abilities to potential employers:</p>
-
-            <h3>GitHub Repository Best Practices</h3>
-            <p>Make your projects showcase-worthy:</p>
-            <ul>
-                <li>Clear README with problem, solution, and tech stack</li>
-                <li>Clean, documented code</li>
-                <li>Requirements.txt or package.json</li>
-                <li>Screenshots or demos for visual projects</li>
-                <li>Deployment instructions</li>
-            </ul>
-
-            <h3>Technical Writing</h3>
-            <p>Writing about your work accelerates learning and builds reputation:</p>
-            <ul>
-                <li>Blog posts explaining what you built</li>
-                <li>Code comments that explain why, not just what</li>
-                <li>Documentation for your projects</li>
-                <li>Answers on Stack Overflow or Reddit</li>
-            </ul>
-
-            <h3>Open Source Contributions</h3>
-            <p>Contributing to open source demonstrates collaboration:</p>
-            <ul>
-                <li>Start with documentation fixes</li>
-                <li>Look for "good first issue" labels</li>
-                <li>Contribute to AI libraries (LangChain, LlamaIndex)</li>
-                <li>Build utilities that others can use</li>
-            </ul>
-
-            <h2 id="salary-negotiation">Salary and Career Growth</h2>
-            <p>Understanding compensation helps you negotiate fairly:</p>
-
-            <h3>Salary Ranges</h3>
-            <p>AI engineering roles command premium compensation:</p>
-            <ul>
-                <li><strong>Entry-level (0-2 years):</strong> $120K-$180K base</li>
-                <li><strong>Mid-level (2-5 years):</strong> $150K-$250K base</li>
-                <li><strong>Senior (5+ years):</strong> $200K-$400K+ base</li>
-                <li><strong>Staff/Principal:</strong> $300K-$500K+ base</li>
-            </ul>
-            <p>Total compensation (including equity, bonuses) can significantly exceed these ranges at top companies.</p>
-
-            <h3>Negotiation Strategies</h3>
-            <p>Maximize your compensation:</p>
-            <ul>
-                <li>Research comp using levels.fyi, Glassdoor</li>
-                <li>Get multiple offers to create leverage</li>
-                <li>Consider total compensation, not just salary</li>
-                <li>Don't reveal your number first</li>
-                <li>Practice your pitch</li>
-            </ul>
-
-            <h3>Career Progression</h3>
-            <p>Typical progression in AI engineering:</p>
-            <ul>
-                <li><strong>IC Track:</strong> Junior :  Mid :  Senior :  Staff :  Principal</li>
-                <li><strong>Management:</strong> Senior :  Lead :  Manager :  Director :  VP</li>
-                <li><strong>Specialist:</strong> Deep expertise in specific domains</li>
-                <li><strong>Generalist:</strong> Breadth across AI and infrastructure</li>
-            </ul>
-
-            <h2 id="work-life">Work-Life Balance in AI</h2>
-            <p>Managing energy and avoiding burnout:</p>
-
-            <h3>Setting Boundaries</h3>
-            <p>The field moves fast but your health matters:</p>
-            <ul>
-                <li>Define "done" for projects</li>
-                <li>Take regular breaks from screens</li>
-                <li>Protect learning time from meetings</li>
-                <li>Don't check work on weekends</li>
-            </ul>
-
-            <h3>Continuous Learning Without Overwhelm</h3>
-            <p>Stay current without burning out:</p>
-            <ul>
-                <li>Follow a few key people/accounts, not everyone</li>
-                <li>Skim papers, read deeply only when relevant</li>
-                <li>Learn concepts, not every implementation detail</li>
-                <li>It's okay to not know everything</li>
-            </ul>
-
-            <h2 id="advice">Final Advice</h2>
-            <p>The field is wide open. The opportunities are massive. The key is to start building real skills rather than chasing hype.</p>
-            <p>My advice:</p>
-            <ul>
-                <li>Pick one thing from this roadmap and start today</li>
-                <li>Don't wait until you feel ready</li>
-                <li>Build real projects and share them publicly</li>
-                <li>Focus on fundamentals that don't change</li>
-                <li>Stay consistent, the field rewards persistence</li>
-            </ul>
-            <p>The best AI engineers I know learned by doing. They figured it out as they went. That's the only way to truly learn. The fundamentals I covered, Python, prompt engineering, RAG, and agents, these are the foundations everything builds on.</p>
-            <p>Start building. Use APIs. Learn by doing. The barrier to entry is lower than you think.</p>
-            </article>
-        </main>
-
-        <footer class="site-footer" data-reveal>
-            <div class="footer-links">
-                <a class="inline-link" href="https://github.com/sajadkoder" target="_blank" rel="noreferrer">GitHub</a>
-                <a class="inline-link" href="https://linkedin.com/in/abdullasajad" target="_blank" rel="noreferrer">LinkedIn</a>
-                <a class="inline-link" href="mailto:abdullasajad01@gmail.com">abdullasajad01@gmail.com</a>
-            </div>
-            <p class="footer-note">&copy; 2026 Abdulla Sajad. Long form notes on software, AI, and systems.</p>
+        <footer class="animate animate-delay-4">
+            <a href="https://github.com/sajadkoder" target="_blank" aria-label="GitHub">
+                <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://linkedin.com/in/abdullasajad" target="_blank" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="mailto:abdullasajad01@gmail.com" aria-label="Email">
+                <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+            </a>
+            <span>© 2026 Abdulla Sajad</span>
         </footer>
     </div>
 
-    <script src="../site.js"></script>
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const saved = localStorage.getItem('theme') || 'dark';
+        if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+        
+        toggle.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        });
+    </script>
 </body>
 </html>
-
-
