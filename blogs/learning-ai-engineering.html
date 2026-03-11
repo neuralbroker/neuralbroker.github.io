@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,62 +6,38 @@
     <title>Learning AI Engineering as a Software Developer | Abdulla Sajad</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --bg: #0a0a0c; --bg-secondary: #121215; --text: #d4d4d4; --text-secondary: #9a9a9a; --text-muted: #6a6a6a; --border: #2a2a2e; --link: #7cb3f0; --link-hover: #9ecaff; }
-        [data-theme="light"] { --bg: #fafafa; --bg-secondary: #ffffff; --text: #1a1a1a; --text-secondary: #555555; --text-muted: #888888; --border: #e5e5e5; --link: #2563eb; --link-hover: #1d4ed8; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'IBM Plex Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 15px; transition: background 0.3s, color 0.3s; }
-        a { color: var(--link); text-decoration: none; transition: color 0.2s; }
-        a:hover { color: var(--link-hover); text-decoration: underline; }
-        .container { max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem; }
-        header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
-        .header-left { flex: 1; }
-        .name { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
-        .name a { color: var(--text); }
-        .name a:hover { color: var(--link); text-decoration: none; }
-        nav { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.9rem; }
-        nav a { color: var(--text-secondary); }
-        nav a:hover { color: var(--text); text-decoration: none; }
-        .back-link { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem; display: inline-block; }
-        .back-link:hover { color: var(--link); }
-        article h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.3; margin-bottom: 0.75rem; }
-        .meta { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; }
-        .meta span { margin-right: 1rem; }
-        article { color: var(--text-secondary); line-height: 1.8; }
-        article h2 { font-size: 1.25rem; font-weight: 600; color: var(--text); margin: 2.5rem 0 1rem; }
-        article h3 { font-size: 1.05rem; font-weight: 600; color: var(--text); margin: 1.75rem 0 0.75rem; }
-        article p { margin-bottom: 1rem; }
-        article ul, article ol { margin: 1rem 0 1.5rem 1.5rem; }
-        article li { margin-bottom: 0.5rem; }
-        article strong { color: var(--text); font-weight: 600; }
-        .theme-toggle { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 0.3rem 0.6rem; font-size: 0.7rem; cursor: pointer; font-family: inherit; border-radius: 3px; transition: all 0.2s; }
-        .theme-toggle:hover { border-color: var(--text); color: var(--text); }
-        footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted); display: flex; justify-content: center; gap: 1.5rem; }
-        footer a { color: var(--text-muted); }
-        footer a:hover { color: var(--link); }
-        footer a svg { width: 20px; height: 20px; fill: currentColor; }
-        @media (max-width: 600px) { .container { padding: 2rem 1.25rem; } header { flex-direction: column; gap: 1rem; margin-bottom: 2rem; } article h1 { font-size: 1.5rem; } nav { gap: 1rem; } }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../site.css">
 </head>
-<body>
-    <div class="container">
-        <header>
-            <div class="header-left">
-                <div class="name"><a href="../index.html">Abdulla Sajad</a></div>
-                <nav>
-                    <a href="../index.html">home</a>
-                    <a href="../index.html#projects">projects</a>
-                    <a href="../index.html#blog">writing</a>
-                    <a href="../index.html#skills">skills</a>
-                </nav>
+<body class="blog-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="page-shell">
+        <header class="site-header" data-reveal>
+            <a class="brand" href="../index.html" aria-label="Abdulla Sajad home">
+                <span class="brand-name">Abdulla Sajad</span>
+                <span class="brand-role">Software Engineer / AI Engineer</span>
+            </a>
+
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#writing">Writing</a>
+                <a href="../index.html#skills">Skills</a>
+                <a href="../index.html#contact">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+                    <span class="theme-toggle-label">Dark</span>
+                </button>
             </div>
-            <button class="theme-toggle" id="themeToggle">theme</button>
         </header>
-        <a href="../index.html#blog" class="back-link">← back to writing</a>
-        <article>
-            <h1>Learning AI Engineering as a Software Developer</h1>
+
+        <main id="main" class="post-wrap">
+            <a class="back-link" href="../index.html#writing">Back to writing</a>
+            <article class="post-content surface-panel" data-reveal>
+<h1>Learning AI Engineering as a Software Developer</h1>
             <div class="meta"><span>Learning</span><span>Dec 2025</span></div>
 
             <p>My journey from traditional SWE to AI engineering. What worked, what didn't.</p>
@@ -88,8 +64,8 @@
             <p>This guide shares my journey and the practical roadmap I followed to transition from traditional software engineering to AI engineering. It's not a shortcut, but it is a practical path that works.</p>
 
             <h2 id="what-is-ai-engineering">What is AI Engineering?</h2>
-            <p>Before diving into the learning path, it's important to understand what AI engineers actually do. There's often confusion between AI engineers, machine learning engineers, and data scientists—these are distinct roles.</p>
-            <p><strong>AI Engineers</strong> build practical applications using existing AI models. They build chatbots, RAG pipelines, autonomous agents, and intelligent workflows that solve real problems. They're like car builders, not engine inventors—companies need people who can build the car, not people who design the engine.</p>
+            <p>Before diving into the learning path, it's important to understand what AI engineers actually do. There's often confusion between AI engineers, machine learning engineers, and data scientists, these are distinct roles.</p>
+            <p><strong>AI Engineers</strong> build practical applications using existing AI models. They build chatbots, RAG pipelines, autonomous agents, and intelligent workflows that solve real problems. They're like car builders, not engine inventors, companies need people who can build the car, not people who design the engine.</p>
             <p>AI engineers work on:</p>
             <ul>
                 <li>Connecting AI capabilities to existing software, APIs, databases, and business workflows</li>
@@ -104,7 +80,7 @@
             <p>Before diving into AI-specific topics, you need a solid foundation in programming. This is the step you absolutely cannot skip.</p>
 
             <h3>Python</h3>
-            <p>Python is the language of AI. Almost every AI library, framework, and tool is built for Python first. You need production-level Python—not just tutorial-style coding.</p>
+            <p>Python is the language of AI. Almost every AI library, framework, and tool is built for Python first. You need production-level Python, not just tutorial-style coding.</p>
             <p>Focus on these areas:</p>
             <ul>
                 <li>Object-oriented programming basics</li>
@@ -397,7 +373,7 @@
             <p>Avoid these mistakes that slow down your progress:</p>
 
             <h3>Tool Chasing</h3>
-            <p>New frameworks appear weekly. Don't fall into the trap of constantly learning the latest tool instead of building. Master fundamentals first—the tools build on consistent concepts.</p>
+            <p>New frameworks appear weekly. Don't fall into the trap of constantly learning the latest tool instead of building. Master fundamentals first, the tools build on consistent concepts.</p>
 
             <h3>Over-Engineering</h3>
             <p>Start simple. Many AI applications work with straightforward approaches. Don't reach for agents, vector databases, and complex RAG pipelines when a simple prompt will do.</p>
@@ -415,7 +391,7 @@
             <p>Actual hands-on experience beats passive learning every time. I learned more from building a single RAG system from scratch than from reading dozens of tutorials. The struggle with real problems is where growth happens.</p>
 
             <h3>Focusing on Engineering</h3>
-            <p>I focused on prompt engineering, API integration, and system building—not deep ML theory. You don't need to understand transformers deeply to use LLMs effectively. What you need is understanding how to integrate them into software systems.</p>
+            <p>I focused on prompt engineering, API integration, and system building, not deep ML theory. You don't need to understand transformers deeply to use LLMs effectively. What you need is understanding how to integrate them into software systems.</p>
 
             <h3>Starting Simple</h3>
             <p>I followed a progression: chatbots first, then RAG systems, then agents. Each step built on the previous. Trying to jump straight to complex agent systems without understanding prompt fundamentals would have been overwhelming.</p>
@@ -430,7 +406,7 @@
             <p>I spent too much time early on trying to understand the internal workings of transformers and deep learning architectures. While this knowledge is valuable for ML engineers, it's not necessary for AI engineering. You can build excellent AI applications without understanding how attention mechanisms work.</p>
 
             <h3>Chasing Every New Tool</h3>
-            <p>The AI tool landscape changes weekly. New frameworks, new models, new patterns constantly emerge. I learned to master fundamentals first rather than chasing every new thing. The core concepts—APIs, prompts, RAG, agents—have remained stable even as tools evolve.</p>
+            <p>The AI tool landscape changes weekly. New frameworks, new models, new patterns constantly emerge. I learned to master fundamentals first rather than chasing every new thing. The core concepts, APIs, prompts, RAG, agents, have remained stable even as tools evolve.</p>
 
             <h3>Skipping the Basics</h3>
             <p>When I tried to skip Python fundamentals and jump straight to AI libraries, I hit a wall. The time spent building a solid programming foundation paid dividends later.</p>
@@ -465,7 +441,7 @@
             <p>Here's what the journey typically looks like:</p>
             <ul>
                 <li><strong>Foundations + first apps:</strong> ~6 months (part-time)</li>
-                <li><strong>Advanced concepts:</strong> 6–12 more months</li>
+                <li><strong>Advanced concepts:</strong> 6, 12 more months</li>
                 <li><strong>Job-ready:</strong> Typically 1-2 years of focused learning</li>
             </ul>
             <p>The key insight: you can start building and even working with AI much earlier. You don't need to "know everything" before you start building. The best way to learn is by doing.</p>
@@ -474,7 +450,7 @@
             <p>The AI landscape evolves rapidly. Stay ahead by understanding these emerging trends:</p>
 
             <h3>Multimodal AI</h3>
-            <p>Models that understand and generate across multiple modalities—text, images, audio, video—are becoming the norm. Learn about:</p>
+            <p>Models that understand and generate across multiple modalities, text, images, audio, video, are becoming the norm. Learn about:</p>
             <ul>
                 <li>Vision-language models (GPT-4V, Claude 3, Gemini)</li>
                 <li>Image and video generation (DALL-E, Stable Diffusion, Sora)</li>
@@ -599,8 +575,8 @@
             <h3>Career Progression</h3>
             <p>Typical progression in AI engineering:</p>
             <ul>
-                <li><strong>IC Track:</strong> Junior → Mid → Senior → Staff → Principal</li>
-                <li><strong>Management:</strong> Senior → Lead → Manager → Director → VP</li>
+                <li><strong>IC Track:</strong> Junior :  Mid :  Senior :  Staff :  Principal</li>
+                <li><strong>Management:</strong> Senior :  Lead :  Manager :  Director :  VP</li>
                 <li><strong>Specialist:</strong> Deep expertise in specific domains</li>
                 <li><strong>Generalist:</strong> Breadth across AI and infrastructure</li>
             </ul>
@@ -634,28 +610,25 @@
                 <li>Don't wait until you feel ready</li>
                 <li>Build real projects and share them publicly</li>
                 <li>Focus on fundamentals that don't change</li>
-                <li>Stay consistent—the field rewards persistence</li>
+                <li>Stay consistent, the field rewards persistence</li>
             </ul>
-            <p>The best AI engineers I know learned by doing. They figured it out as they went. That's the only way to truly learn. The fundamentals I covered—Python, prompt engineering, RAG, and agents—these are the foundations everything builds on.</p>
+            <p>The best AI engineers I know learned by doing. They figured it out as they went. That's the only way to truly learn. The fundamentals I covered, Python, prompt engineering, RAG, and agents, these are the foundations everything builds on.</p>
             <p>Start building. Use APIs. Learn by doing. The barrier to entry is lower than you think.</p>
-        </article>
-        <footer>
-            <a href="https://github.com/sajadkoder" target="_blank" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
-            <a href="https://linkedin.com/in/abdullasajad" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-            <a href="https://twitter.com/sajadkoder" target="_blank" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-            <a href="mailto:abdullasajad01@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg></a>
+            </article>
+        </main>
+
+        <footer class="site-footer" data-reveal>
+            <div class="footer-links">
+                <a class="inline-link" href="https://github.com/sajadkoder" target="_blank" rel="noreferrer">GitHub</a>
+                <a class="inline-link" href="https://linkedin.com/in/abdullasajad" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a class="inline-link" href="mailto:abdullasajad01@gmail.com">abdullasajad01@gmail.com</a>
+            </div>
+            <p class="footer-note">&copy; 2026 Abdulla Sajad. Long form notes on software, AI, and systems.</p>
         </footer>
     </div>
-    <script>
-        const toggle = document.getElementById('themeToggle');
-        const saved = localStorage.getItem('theme') || 'dark';
-        if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
-        toggle.addEventListener('click', () => {
-            const current = document.documentElement.getAttribute('data-theme');
-            const next = current === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
-        });
-    </script>
+
+    <script src="../site.js"></script>
 </body>
 </html>
+
+

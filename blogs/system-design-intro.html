@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,65 +6,41 @@
     <title>Introduction to System Design | Abdulla Sajad</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --bg: #0a0a0c; --bg-secondary: #121215; --text: #d4d4d4; --text-secondary: #9a9a9a; --text-muted: #6a6a6a; --border: #2a2a2e; --link: #7cb3f0; --link-hover: #9ecaff; }
-        [data-theme="light"] { --bg: #fafafa; --bg-secondary: #ffffff; --text: #1a1a1a; --text-secondary: #555555; --text-muted: #888888; --border: #e5e5e5; --link: #2563eb; --link-hover: #1d4ed8; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'IBM Plex Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 15px; transition: background 0.3s, color 0.3s; }
-        a { color: var(--link); text-decoration: none; transition: color 0.2s; }
-        a:hover { color: var(--link-hover); text-decoration: underline; }
-        .container { max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem; }
-        header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
-        .header-left { flex: 1; }
-        .name { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
-        .name a { color: var(--text); }
-        .name a:hover { color: var(--link); text-decoration: none; }
-        nav { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.9rem; }
-        nav a { color: var(--text-secondary); }
-        nav a:hover { color: var(--text); text-decoration: none; }
-        .back-link { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem; display: inline-block; }
-        .back-link:hover { color: var(--link); }
-        article h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.3; margin-bottom: 0.75rem; }
-        .meta { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 2rem; }
-        .meta span { margin-right: 1rem; }
-        article { color: var(--text-secondary); line-height: 1.8; }
-        article h2 { font-size: 1.25rem; font-weight: 600; color: var(--text); margin: 2.5rem 0 1rem; }
-        article h3 { font-size: 1.05rem; font-weight: 600; color: var(--text); margin: 1.75rem 0 0.75rem; }
-        article p { margin-bottom: 1rem; }
-        article ul, article ol { margin: 1rem 0 1.5rem 1.5rem; }
-        article li { margin-bottom: 0.5rem; }
-        article strong { color: var(--text); font-weight: 600; }
-        .theme-toggle { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 0.3rem 0.6rem; font-size: 0.7rem; cursor: pointer; font-family: inherit; border-radius: 3px; transition: all 0.2s; }
-        .theme-toggle:hover { border-color: var(--text); color: var(--text); }
-        footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted); display: flex; justify-content: center; gap: 1.5rem; }
-        footer a { color: var(--text-muted); }
-        footer a:hover { color: var(--link); }
-        footer a svg { width: 20px; height: 20px; fill: currentColor; }
-        @media (max-width: 600px) { .container { padding: 2rem 1.25rem; } header { flex-direction: column; gap: 1rem; margin-bottom: 2rem; } article h1 { font-size: 1.5rem; } nav { gap: 1rem; } }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../site.css">
 </head>
-<body>
-    <div class="container">
-        <header>
-            <div class="header-left">
-                <div class="name"><a href="../index.html">Abdulla Sajad</a></div>
-                <nav>
-                    <a href="../index.html">home</a>
-                    <a href="../index.html#projects">projects</a>
-                    <a href="../index.html#blog">writing</a>
-                    <a href="../index.html#skills">skills</a>
-                </nav>
+<body class="blog-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="page-shell">
+        <header class="site-header" data-reveal>
+            <a class="brand" href="../index.html" aria-label="Abdulla Sajad home">
+                <span class="brand-name">Abdulla Sajad</span>
+                <span class="brand-role">Software Engineer / AI Engineer</span>
+            </a>
+
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#writing">Writing</a>
+                <a href="../index.html#skills">Skills</a>
+                <a href="../index.html#contact">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+                    <span class="theme-toggle-label">Dark</span>
+                </button>
             </div>
-            <button class="theme-toggle" id="themeToggle">theme</button>
         </header>
-        <a href="../index.html#blog" class="back-link">← back to writing</a>
-        <article>
-            <h1>Introduction to System Design</h1>
+
+        <main id="main" class="post-wrap">
+            <a class="back-link" href="../index.html#writing">Back to writing</a>
+            <article class="post-content surface-panel" data-reveal>
+<h1>Introduction to System Design</h1>
             <div class="meta"><span>System Design</span><span>Jan 2026</span></div>
 
-            <p>Thinking about systems at scale—from load balancers to consistency models.</p>
+            <p>Thinking about systems at scale, from load balancers to consistency models.</p>
 
             <h2 id="table-of-contents">Table of Contents</h2>
             <ol>
@@ -89,7 +65,7 @@
             <p>System Design is the process of creating software systems that scale, stay reliable under pressure, and evolve over time without breaking. It is one of the most important skills in software engineering for succeeding in interviews and for solving real-world engineering challenges. Whether you're designing a microservice for a startup or architecting a global platform for millions of users, the principles remain the same.</p>
 
             <h2 id="fundamentals">Core Fundamentals</h2>
-            <p>Before diving into components and patterns, you need a mental model of what makes large-scale systems work. System Design isn't about copying diagrams you've seen online—it's about understanding the underlying principles that drive every architectural decision.</p>
+            <p>Before diving into components and patterns, you need a mental model of what makes large-scale systems work. System Design isn't about copying diagrams you've seen online, it's about understanding the underlying principles that drive every architectural decision.</p>
 
             <h3>Latency vs Throughput</h3>
             <p>These two metrics are the foundation of performance measurement:</p>
@@ -104,17 +80,17 @@
             <p>A system can be available without being reliable (always responds but with wrong data) and reliable without being available (correct but offline). The design challenge is balancing both.</p>
 
             <h3>Stateless vs Stateful</h3>
-            <p><strong>Stateless services</strong> don't store any client-specific data between requests. Every request contains all information needed to process it. This makes horizontal scaling straightforward—you can add or remove instances without worrying about data consistency.</p>
+            <p><strong>Stateless services</strong> don't store any client-specific data between requests. Every request contains all information needed to process it. This makes horizontal scaling straightforward, you can add or remove instances without worrying about data consistency.</p>
             <p><strong>Stateful services</strong> maintain client context across requests. They remember who the client is and what they're doing. This enables richer interactions but makes scaling and failover more complex.</p>
             <p>Modern architectures prefer stateless services for the application layer, pushing state to databases and caches where it can be managed more effectively.</p>
 
             <h2 id="scalability">Scalability</h2>
-            <p>Scalability means your system can handle increased loads—more users, data, or traffic—without a proportional drop in performance. There are two primary architectural methods to scale a software application:</p>
+            <p>Scalability means your system can handle increased loads, more users, data, or traffic, without a proportional drop in performance. There are two primary architectural methods to scale a software application:</p>
 
             <h3>Vertical Scaling (Scale-Up)</h3>
             <p>Vertical scaling involves adding significantly more computational power to a single existing server. Engineers upgrade the CPU, add more RAM, or increase storage capacity.</p>
-            <p>The advantages are simplicity—you don't change the software architecture—and improved performance for applications that don't distribute well.</p>
-            <p>However, vertical scaling has severe and unavoidable physical hardware limitations. A single motherboard can only hold a mathematically specific amount of memory and processor chips. Additionally, there's a single point of failure—if that one powerful machine fails, the entire system goes down.</p>
+            <p>The advantages are simplicity, you don't change the software architecture, and improved performance for applications that don't distribute well.</p>
+            <p>However, vertical scaling has severe and unavoidable physical hardware limitations. A single motherboard can only hold a mathematically specific amount of memory and processor chips. Additionally, there's a single point of failure, if that one powerful machine fails, the entire system goes down.</p>
 
             <h3>Horizontal Scaling (Scale-Out)</h3>
             <p>Horizontal scaling permanently solves the physical limitations associated with upgrading a single machine. Instead of buying one massive server, engineers add multiple smaller independent servers to the network infrastructure.</p>
@@ -200,7 +176,7 @@
             <p>Here's the critical insight: network partitions will happen. They are not optional to handle. Therefore, in practice, you're always choosing between consistency and availability during a partition.</p>
             <p><strong>CP (Consistency + Partition Tolerance):</strong> Systems like ZooKeeper and etcd choose consistency. They'll reject requests rather than return potentially stale data.</p>
             <p><strong>AP (Availability + Partition Tolerance):</strong> Systems like Cassandra and DynamoDB choose availability. They'll return potentially stale data rather than reject requests.</p>
-            <p><strong>CA (Consistency + Availability):</strong> Only possible when there are no partitions—which means single-node systems or systems that don't scale horizontally.</p>
+            <p><strong>CA (Consistency + Availability):</strong> Only possible when there are no partitions, which means single-node systems or systems that don't scale horizontally.</p>
 
             <h2 id="communication">Communication Patterns</h2>
             <p>How services communicate determines latency, coupling, and failure propagation:</p>
@@ -209,14 +185,14 @@
             <p>Client sends a request and waits for a response. Simple to understand and debug, but creates tight coupling and can cause cascading failures when services are down.</p>
 
             <h3>Asynchronous (Message Queues)</h3>
-            <p>Services communicate through message brokers like Kafka or RabbitMQ. Producers send messages; consumers process them independently. This decouples services temporally—you don't need both running simultaneously.</p>
+            <p>Services communicate through message brokers like Kafka or RabbitMQ. Producers send messages; consumers process them independently. This decouples services temporally, you don't need both running simultaneously.</p>
             <p>Benefits include improved fault tolerance, better load leveling, and service independence. Tradeoffs include increased complexity and eventual consistency.</p>
 
             <h3>Event-Driven Architecture</h3>
             <p>Services emit events when something happens; other services react to those events. This enables loose coupling, scalability, and audit trails. Common implementations include event sourcing and CQRS.</p>
 
             <h2 id="reliability">Reliability & Fault Tolerance</h2>
-            <p>Distributed systems must handle failures gracefully. The defining challenge is that partial failure is normal—some parts work while others don't.</p>
+            <p>Distributed systems must handle failures gracefully. The defining challenge is that partial failure is normal, some parts work while others don't.</p>
 
             <h3>Redundancy</h3>
             <p>Run multiple instances of critical components. If one fails, others continue serving. Load balancers automatically route around failures when properly configured.</p>
@@ -284,7 +260,7 @@
             <p>In 2026, microservices architecture has become the dominant approach for building large-scale applications. Rather than building a single monolithic application, teams decompose their systems into smaller, independently deployable services that communicate over well-defined APIs.</p>
 
             <h3>When Microservices Make Sense</h3>
-            <p>Microservices shine when you have multiple teams working on different features, each needing to deploy independently. They enable technology diversity—different services can use different databases, programming languages, and frameworks based on their specific needs. This architectural style also improves fault isolation: a failure in one service doesn't necessarily bring down the entire system.</p>
+            <p>Microservices shine when you have multiple teams working on different features, each needing to deploy independently. They enable technology diversity, different services can use different databases, programming languages, and frameworks based on their specific needs. This architectural style also improves fault isolation: a failure in one service doesn't necessarily bring down the entire system.</p>
             <p>However, microservices introduce significant complexity. Distributed systems are harder to debug, harder to test, and require sophisticated orchestration. The network becomes unreliable, and you must handle partial failures gracefully. Before adopting microservices, ensure your organization is ready for this complexity.</p>
 
             <h3>Service Communication</h3>
@@ -307,7 +283,7 @@
             <p>An extension where some generals might act maliciously or send contradictory information. Blockchain and certain aerospace systems must solve this harder problem. Practical solutions typically assume a maximum number of faulty nodes and use consensus algorithms that work despite those failures.</p>
 
             <h3>Consensus Algorithms</h3>
-            <p>When multiple nodes need to agree on a value, consensus algorithms solve this problem. Raft is designed to be understandable—leaders are elected, log entries are replicated, and safety guarantees ensure consistency. Paxos, though harder to implement, provides similar guarantees and influenced many distributed systems. Etcd and Consul use Raft, while ZooKeeper uses a Paxos variant.</p>
+            <p>When multiple nodes need to agree on a value, consensus algorithms solve this problem. Raft is designed to be understandable, leaders are elected, log entries are replicated, and safety guarantees ensure consistency. Paxos, though harder to implement, provides similar guarantees and influenced many distributed systems. Etcd and Consul use Raft, while ZooKeeper uses a Paxos variant.</p>
 
             <h3>Distributed Transactions</h3>
             <p>Coordinating changes across multiple services requires careful design. Two-phase commit (2PC) provides atomicity but blocks while the coordinator is unavailable. Saga pattern breaks transactions into a sequence of local transactions with compensating actions for rollback. Choose based on your consistency requirements and tolerance for complexity.</p>
@@ -322,13 +298,13 @@
             <p>While static content caching is straightforward, dynamic content requires more sophisticated approaches. Edge computing allows running serverless functions at edge locations, enabling personalization and real-time processing without returning to origin. Techniques like stale-while-revalidate serve cached content while refreshing in the background.</p>
 
             <h3>CDN Considerations</h3>
-            <p>CDNs provide significant benefits but come with tradeoffs. Cache invalidation can be tricky—CDNs may serve stale content until TTL expires. Costs can increase with bandwidth usage. Some content may not benefit from caching. Evaluate whether CDN usage makes sense for your traffic patterns.</p>
+            <p>CDNs provide significant benefits but come with tradeoffs. Cache invalidation can be tricky, CDNs may serve stale content until TTL expires. Costs can increase with bandwidth usage. Some content may not benefit from caching. Evaluate whether CDN usage makes sense for your traffic patterns.</p>
 
             <h2 id="security">Security in Distributed Systems</h2>
             <p>Security must be considered from the ground up in system design. The attack surface in distributed systems is larger, and vulnerabilities can be exploited in novel ways.</p>
 
             <h3>Authentication and Authorization</h3>
-            <p>Authentication verifies identity—confirming who you are. Authorization determines what you can do—checking permissions. OAuth 2.0 and OpenID Connect provide standard protocols for authentication. JWTs (JSON Web Tokens) enable stateless authentication across services. Service-to-service authentication often uses mTLS (mutual TLS) or API keys.</p>
+            <p>Authentication verifies identity, confirming who you are. Authorization determines what you can do, checking permissions. OAuth 2.0 and OpenID Connect provide standard protocols for authentication. JWTs (JSON Web Tokens) enable stateless authentication across services. Service-to-service authentication often uses mTLS (mutual TLS) or API keys.</p>
 
             <h3>Defense in Depth</h3>
             <p>Never rely on a single security layer. Implement multiple defenses: network segmentation limits blast radius, firewalls filter traffic, WAFs block malicious requests, input validation prevents injection attacks, and least privilege principles minimize damage from compromised accounts.</p>
@@ -337,7 +313,7 @@
             <p>Never hardcode secrets in source code. Use dedicated secrets management systems like HashiCorp Vault, AWS Secrets Manager, or Azure Key Vault. These systems provide secure storage, access control, auditing, and rotation of API keys, passwords, and certificates.</p>
 
             <h2 id="observability">Observability and Monitoring</h2>
-            <p>Understanding system behavior in production requires robust observability. The three pillars—logs, metrics, and traces—provide different views into system health.</p>
+            <p>Understanding system behavior in production requires robust observability. The three pillars, logs, metrics, and traces, provide different views into system health.</p>
 
             <h3>Logs</h3>
             <p>Structured logs with consistent formats and appropriate levels (debug, info, warn, error) form the foundation. Use correlation IDs to trace requests across services. Aggregate logs centrally using the ELK stack (Elasticsearch, Logstash, Kibana), Splunk, or cloud-native solutions like CloudWatch Logs.</p>
@@ -355,7 +331,7 @@
             <p>Modern applications often require processing data at scale. Understanding data pipelines, stream processing, and data warehousing enables building comprehensive data systems.</p>
 
             <h3>Batch vs Stream Processing</h3>
-            <p>Batch processing handles large volumes of data at scheduled intervals—suitable for reports, aggregations, and ETL jobs. Stream processing handles data in real-time as it arrives—suitable for analytics, alerts, and live dashboards. Lambda and Kappa architectures provide patterns for combining both approaches.</p>
+            <p>Batch processing handles large volumes of data at scheduled intervals, suitable for reports, aggregations, and ETL jobs. Stream processing handles data in real-time as it arrives, suitable for analytics, alerts, and live dashboards. Lambda and Kappa architectures provide patterns for combining both approaches.</p>
 
             <h3>Data Lakes and Warehouses</h3>
             <p>Data lakes store raw data inexpensively, supporting diverse formats and analytics. Data warehouses organize structured data optimized for analytical queries. In 2026, the line blurs with platforms like Snowflake, BigQuery, and Databricks offering both capabilities.</p>
@@ -367,7 +343,7 @@
             <p>Cloud native architecture leverages cloud platform capabilities to build resilient, scalable, and manageable systems. Understanding cloud patterns is essential for modern system design.</p>
 
             <h3>Serverless</h3>
-            <p>Serverless computing (AWS Lambda, Azure Functions, Google Cloud Functions) lets you run code without managing servers. Pay only for compute used—ideal for variable workloads, event-driven processing, and reducing operational overhead. Tradeoffs include cold starts, limited execution time, and vendor lock-in.</p>
+            <p>Serverless computing (AWS Lambda, Azure Functions, Google Cloud Functions) lets you run code without managing servers. Pay only for compute used, ideal for variable workloads, event-driven processing, and reducing operational overhead. Tradeoffs include cold starts, limited execution time, and vendor lock-in.</p>
 
             <h3>Container Orchestration</h3>
             <p>Kubernetes has become the standard for container orchestration, providing declarative deployment, scaling, and management. Understand pods, services, deployments, ConfigMaps, and secrets. Managed Kubernetes (EKS, GKE, AKS) reduces operational burden while providing Kubernetes benefits.</p>
@@ -382,13 +358,13 @@
             <p>Before optimizing, measure. Use profilers to identify CPU hotspots, memory profilers to find leaks, and database query analyzers to find slow queries. Instrumentation should be built into production systems to enable continuous performance monitoring.</p>
 
             <h3>Common Bottlenecks</h3>
-            <p>Network latency often dominates in distributed systems. Database queries—especially N+1 problems—frequently cause performance issues. Synchronous blocking calls create unnecessary waiting. Unoptimized algorithms introduce unnecessary complexity. Identify and address these systematically.</p>
+            <p>Network latency often dominates in distributed systems. Database queries, especially N+1 problems, frequently cause performance issues. Synchronous blocking calls create unnecessary waiting. Unoptimized algorithms introduce unnecessary complexity. Identify and address these systematically.</p>
 
             <h3>Caching Strategies</h3>
             <p>Caching is one of the most impactful optimizations. Cache at multiple levels: CDN for static assets, application cache for frequent queries, database query cache, and in-memory caching with Redis or Memcached. Choose cache aside, write through, or write back strategies based on consistency requirements.</p>
 
             <h3>Database Optimization</h3>
-            <p>Create appropriate indexes—compound indexes for multi-column queries. Analyze query execution plans to identify inefficient operations. Consider denormalization for read-heavy workloads. Use connection pooling to reduce connection overhead. Partition or shard when single-database capacity is exceeded.</p>
+            <p>Create appropriate indexes, compound indexes for multi-column queries. Analyze query execution plans to identify inefficient operations. Consider denormalization for read-heavy workloads. Use connection pooling to reduce connection overhead. Partition or shard when single-database capacity is exceeded.</p>
 
             <h2 id="real-world-design">Real-World System Design Examples</h2>
             <p>Let's apply system design principles to real-world scenarios that illustrate the trade-offs involved.</p>
@@ -421,7 +397,7 @@
             <p>When a single database can't handle your load, sharding distributes data across multiple databases. Key decisions include: sharding key selection, cross-shard queries, rebalancing, and handling skewed data distributions.</p>
 
             <h4>Horizontal vs Vertical Sharding</h4>
-            <p>Horizontal sharding splits rows across databases—each shard contains a subset of rows. Vertical sharding splits columns—different shards contain different columns. Most systems use both: data is horizontally sharded, and large columns or tables might be vertically partitioned.</p>
+            <p>Horizontal sharding splits rows across databases, each shard contains a subset of rows. Vertical sharding splits columns, different shards contain different columns. Most systems use both: data is horizontally sharded, and large columns or tables might be vertically partitioned.</p>
 
             <h4>Sharding Key Selection</h4>
             <p>Choosing the right shard key is critical. It should evenly distribute data, minimize cross-shard queries, and match your access patterns. Poor shard key selection causes hot spots and performance problems.</p>
@@ -442,7 +418,7 @@
             <p>When message processing fails repeatedly, move to a dead letter queue for manual investigation. This prevents poison messages from blocking the queue while preserving them for debugging.</p>
 
             <h3>Idempotency</h3>
-            <p>Design operations to be idempotent—applying multiple times has the same effect as applying once. This enables safe retries without duplicate effects. Use unique identifiers for operations to detect duplicates.</p>
+            <p>Design operations to be idempotent, applying multiple times has the same effect as applying once. This enables safe retries without duplicate effects. Use unique identifiers for operations to detect duplicates.</p>
 
             <h3>Graceful Degradation</h3>
             <p>When full functionality isn't available, provide what's possible. If search fails, show cached results. If recommendations fail, show popular items. Always provide the best possible user experience given current constraints.</p>
@@ -451,13 +427,13 @@
             <p>Understanding consistency models helps you choose the right approach:</p>
 
             <h3>Strong Consistency</h3>
-            <p>All reads see the most recent write. Guarantees data is current but requires coordination that impacts availability and latency. Used when correctness is critical—financial transactions, inventory management.</p>
+            <p>All reads see the most recent write. Guarantees data is current but requires coordination that impacts availability and latency. Used when correctness is critical, financial transactions, inventory management.</p>
 
             <h3>Eventual Consistency</h3>
-            <p>Writes propagate asynchronously; reads may see stale data temporarily. Provides high availability and low latency but requires application logic to handle inconsistency. Used when availability matters more than immediate consistency—social media likes, analytics.</p>
+            <p>Writes propagate asynchronously; reads may see stale data temporarily. Provides high availability and low latency but requires application logic to handle inconsistency. Used when availability matters more than immediate consistency, social media likes, analytics.</p>
 
             <h3>Causal Consistency</h3>
-            <p>Respects causality—if A causes B, B sees A's effects. Weaker than strong but stronger than eventual. Used in collaborative applications where order matters but not global synchrony.</p>
+            <p>Respects causality, if A causes B, B sees A's effects. Weaker than strong but stronger than eventual. Used in collaborative applications where order matters but not global synchrony.</p>
 
             <h3>Read Your Writes Consistency</h3>
             <p>After a write, reads see that write. Simple but useful. User sees their own updates immediately even if other users see them later.</p>
@@ -475,7 +451,7 @@
             <p>gRPC uses protocol buffers for efficient binary serialization. Fast, type-safe, great for service-to-service communication. Requires code generation and has higher barrier to entry than REST.</p>
 
             <h3>Versioning</h3>
-            <p>APIs evolve. Version through URL path (/v1/), query parameter, or header. Plan for deprecation—give clients time to migrate. Document breaking changes clearly.</p>
+            <p>APIs evolve. Version through URL path (/v1/), query parameter, or header. Plan for deprecation, give clients time to migrate. Document breaking changes clearly.</p>
 
             <h2 id="message-queues">Message Queues Deep Dive</h2>
             <p>Asynchronous communication decouples services:</p>
@@ -499,7 +475,7 @@
             <p>Test individual components in isolation. Mock dependencies. Fast feedback during development. Cover business logic thoroughly.</p>
 
             <h3>Integration Tests</h3>
-            <p>Test how components work together. Use real databases, message queues—don't mock everything. Verify integration points work correctly.</p>
+            <p>Test how components work together. Use real databases, message queues, don't mock everything. Verify integration points work correctly.</p>
 
             <h3>Contract Testing</h3>
             <p>Verify services adhere to agreed interfaces. Consumer-driven contracts let consumers define what they need from providers. Independent teams can evolve services safely.</p>
@@ -537,24 +513,21 @@
             <p>System Design is about thinking holistically. It involves understanding how to build a feature and how that feature interacts with the broader system. The key is starting simple and evolving based on constraints.</p>
             <p>Remember: every choice involves trade-offs. A system optimized for one thing sacrifices another. The best designers understand these trade-offs and choose deliberately based on actual requirements, not imagined ones.</p>
             <p>Practice is essential. Design common systems, understand why they work the way they do, and you'll develop the judgment to handle any System Design challenge.</p>
-        </article>
-        <footer>
-            <a href="https://github.com/sajadkoder" target="_blank" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
-            <a href="https://linkedin.com/in/abdullasajad" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-            <a href="https://twitter.com/sajadkoder" target="_blank" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-            <a href="mailto:abdullasajad01@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg></a>
+            </article>
+        </main>
+
+        <footer class="site-footer" data-reveal>
+            <div class="footer-links">
+                <a class="inline-link" href="https://github.com/sajadkoder" target="_blank" rel="noreferrer">GitHub</a>
+                <a class="inline-link" href="https://linkedin.com/in/abdullasajad" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a class="inline-link" href="mailto:abdullasajad01@gmail.com">abdullasajad01@gmail.com</a>
+            </div>
+            <p class="footer-note">&copy; 2026 Abdulla Sajad. Long form notes on software, AI, and systems.</p>
         </footer>
     </div>
-    <script>
-        const toggle = document.getElementById('themeToggle');
-        const saved = localStorage.getItem('theme') || 'dark';
-        if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
-        toggle.addEventListener('click', () => {
-            const current = document.documentElement.getAttribute('data-theme');
-            const next = current === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
-        });
-    </script>
+
+    <script src="../site.js"></script>
 </body>
 </html>
+
+

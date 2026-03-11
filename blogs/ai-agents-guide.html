@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,243 +6,44 @@
     <title>Building with AI Agents: A Practical Guide | Abdulla Sajad</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        :root {
-            --bg: #0a0a0c;
-            --bg-secondary: #121215;
-            --text: #d4d4d4;
-            --text-secondary: #9a9a9a;
-            --text-muted: #6a6a6a;
-            --border: #2a2a2e;
-            --accent: #e0e0e0;
-            --link: #7cb3f0;
-            --link-hover: #9ecaff;
-        }
-        
-        [data-theme="light"] {
-            --bg: #fafafa;
-            --bg-secondary: #ffffff;
-            --text: #1a1a1a;
-            --text-secondary: #555555;
-            --text-muted: #888888;
-            --border: #e5e5e5;
-            --accent: #000000;
-            --link: #2563eb;
-            --link-hover: #1d4ed8;
-        }
-        
-        html { scroll-behavior: smooth; }
-        
-        body {
-            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-            font-size: 15px;
-            transition: background 0.3s, color 0.3s;
-        }
-        
-        a { color: var(--link); text-decoration: none; transition: color 0.2s; }
-        a:hover { color: var(--link-hover); text-decoration: underline; }
-        
-        .container {
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-        }
-        
-        header {
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-        
-        .header-left { flex: 1; }
-        
-        .name {
-            font-size: 1.75rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-        }
-        
-        .name a { color: var(--text); }
-        .name a:hover { color: var(--link); text-decoration: none; }
-        
-        nav {
-            display: flex;
-            gap: 1.25rem;
-            flex-wrap: wrap;
-            font-size: 0.9rem;
-        }
-        
-        nav a { color: var(--text-secondary); }
-        nav a:hover { color: var(--text); text-decoration: none; }
-        
-        .back-link {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            display: inline-block;
-        }
-        
-        .back-link:hover { color: var(--link); }
-        
-        article h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            line-height: 1.3;
-            margin-bottom: 0.75rem;
-        }
-        
-        .meta {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-        
-        .meta span { margin-right: 1rem; }
-        
-        article {
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-        
-        article h2 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text);
-            margin: 2.5rem 0 1rem;
-        }
-        
-        article h3 {
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--text);
-            margin: 1.75rem 0 0.75rem;
-        }
-        
-        article p {
-            margin-bottom: 1rem;
-        }
-        
-        article ul, article ol {
-            margin: 1rem 0 1.5rem 1.5rem;
-        }
-        
-        article li {
-            margin-bottom: 0.5rem;
-        }
-        
-        article strong {
-            color: var(--text);
-            font-weight: 600;
-        }
-        
-        article code {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9em;
-            background: var(--bg-secondary);
-            padding: 0.2rem 0.4rem;
-            border-radius: 3px;
-        }
-        
-        article pre {
-            background: var(--bg-secondary);
-            padding: 1rem;
-            overflow-x: auto;
-            border-radius: 6px;
-            margin: 1.5rem 0;
-            font-size: 0.85rem;
-            line-height: 1.6;
-        }
-        
-        article pre code {
-            background: none;
-            padding: 0;
-        }
-        
-        article blockquote {
-            border-left: 3px solid var(--border);
-            padding-left: 1rem;
-            margin: 1.5rem 0;
-            color: var(--text-muted);
-            font-style: italic;
-        }
-        
-        .theme-toggle {
-            background: none;
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            padding: 0.3rem 0.6rem;
-            font-size: 0.7rem;
-            cursor: pointer;
-            font-family: inherit;
-            border-radius: 3px;
-            transition: all 0.2s;
-        }
-        
-        .theme-toggle:hover {
-            border-color: var(--text);
-            color: var(--text);
-        }
-        
-        footer {
-            margin-top: 4rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-        }
-        
-        footer a { color: var(--text-muted); }
-        footer a:hover { color: var(--link); }
-        footer a svg { width: 20px; height: 20px; fill: currentColor; }
-        
-        @media (max-width: 600px) {
-            .container { padding: 2rem 1.25rem; }
-            header { flex-direction: column; gap: 1rem; margin-bottom: 2rem; }
-            article h1 { font-size: 1.5rem; }
-            nav { gap: 1rem; }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../site.css">
 </head>
-<body>
-    <div class="container">
-        <header>
-            <div class="header-left">
-                <div class="name"><a href="../index.html">Abdulla Sajad</a></div>
-                <nav>
-                    <a href="../index.html">home</a>
-                    <a href="../index.html#projects">projects</a>
-                    <a href="../index.html#blog">writing</a>
-                    <a href="../index.html#skills">skills</a>
-                </nav>
+<body class="blog-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="page-shell">
+        <header class="site-header" data-reveal>
+            <a class="brand" href="../index.html" aria-label="Abdulla Sajad home">
+                <span class="brand-name">Abdulla Sajad</span>
+                <span class="brand-role">Software Engineer / AI Engineer</span>
+            </a>
+
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="../index.html">Home</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#writing">Writing</a>
+                <a href="../index.html#skills">Skills</a>
+                <a href="../index.html#contact">Contact</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+                    <span class="theme-toggle-label">Dark</span>
+                </button>
             </div>
-            <button class="theme-toggle" id="themeToggle">theme</button>
         </header>
 
-        <a href="../index.html#blog" class="back-link">← back to writing</a>
-
-        <article>
-            <h1>Building with AI Agents: A Practical Guide</h1>
+        <main id="main" class="post-wrap">
+            <a class="back-link" href="../index.html#writing">Back to writing</a>
+            <article class="post-content surface-panel" data-reveal>
+<h1>Building with AI Agents: A Practical Guide</h1>
             <div class="meta">
                 <span>AI Agents</span>
                 <span>Feb 2026</span>
             </div>
 
-            <p>From chatbots to autonomous agents—tools, patterns, and production realities.</p>
+            <p>From chatbots to autonomous agents, tools, patterns, and production realities.</p>
 
             <h2 id="table-of-contents">Table of Contents</h2>
             <ol>
@@ -264,9 +65,9 @@
             </ol>
 
             <h2 id="intro">Introduction</h2>
-            <p>The landscape of artificial intelligence has undergone a fundamental transformation in recent years. What began as simple chatbots capable of answering questions has evolved into sophisticated systems that can reason, plan, and take autonomous actions to accomplish complex goals. This evolution represents more than just incremental improvement—it marks a paradigm shift in how we think about AI systems and their role in software architecture.</p>
+            <p>The landscape of artificial intelligence has undergone a fundamental transformation in recent years. What began as simple chatbots capable of answering questions has evolved into sophisticated systems that can reason, plan, and take autonomous actions to accomplish complex goals. This evolution represents more than just incremental improvement, it marks a paradigm shift in how we think about AI systems and their role in software architecture.</p>
             <p>AI agents represent this new paradigm. Unlike traditional software that follows predetermined pathways or simple chatbots that respond to single prompts, agents maintain state, use tools, and iteratively work toward goals. They can perceive their environment, reason about the current situation, execute actions that modify that environment, and learn from the results. This capability stack transforms AI from a passive tool that answers questions into an active participant in accomplishing work.</p>
-            <p>The market for AI agent systems has grown explosively. In 2026, the market is projected to hit $8.5 billion, with forecasts pointing toward $35 billion by 2030. These are not speculative numbers from fringe analyst reports—57% of companies now deploy AI agents in production, and Gartner estimates that 40% of enterprise applications will feature task-specific agents by year's end, up from a mere 5% in 2024. The reason for this growth is architectural, not merely hype-driven. A single agent, no matter how capable the underlying model, hits a ceiling when faced with complex, multi-domain tasks. It has to hold the entire context, decide on the next action, execute it, evaluate the result, and repeat—all within a single reasoning loop. Multi-agent systems apply the same principle that's governed effective software engineering for decades: divide and conquer.</p>
+            <p>The market for AI agent systems has grown explosively. In 2026, the market is projected to hit $8.5 billion, with forecasts pointing toward $35 billion by 2030. These are not speculative numbers from fringe analyst reports, 57% of companies now deploy AI agents in production, and Gartner estimates that 40% of enterprise applications will feature task-specific agents by year's end, up from a mere 5% in 2024. The reason for this growth is architectural, not merely hype-driven. A single agent, no matter how capable the underlying model, hits a ceiling when faced with complex, multi-domain tasks. It has to hold the entire context, decide on the next action, execute it, evaluate the result, and repeat, all within a single reasoning loop. Multi-agent systems apply the same principle that's governed effective software engineering for decades: divide and conquer.</p>
             <p>This guide covers the practical aspects of building agentic systems from the ground up. We'll explore the core components that power production AI agents, the architecture patterns that work for different use cases, and the real-world constraints that shape design decisions. Whether you're building your first agent or scaling existing systems to production, this guide provides the patterns and practices you need to succeed.</p>
 
             <h2 id="what-are-agents">What Are AI Agents?</h2>
@@ -313,7 +114,7 @@ weather_agent = Agent(
 
             <h3 id="memory">3. Memory</h3>
             <p>State management across turns. Includes working memory for current context, short-term memory for conversation history, and long-term memory for persistent storage. Memory is often where teams first encounter scaling challenges. As conversations grow longer, token costs increase and model attention wavers.</p>
-            <p>Layered memory architectures solve these problems by using different storage mechanisms for different types of information. Working memory holds the immediate context—the current task, recent tool results, and active plan. This typically lives in fast in-memory structures like Python dictionaries or Redis.</p>
+            <p>Layered memory architectures solve these problems by using different storage mechanisms for different types of information. Working memory holds the immediate context, the current task, recent tool results, and active plan. This typically lives in fast in-memory structures like Python dictionaries or Redis.</p>
             <p>Short-term memory preserves conversation history but gets compressed over time. Rather than storing every message verbatim, agents can summarize older exchanges to preserve the essential information while reducing token usage. This summary approach maintains context without overwhelming the model's context window.</p>
             <p>Long-term memory stores persistent information that should persist across sessions: user preferences, past successful approaches, learned facts about the domain. Vector databases excel at this, allowing semantic retrieval of relevant memories based on current context.</p>
             <p>Here's a practical memory implementation using Redis for fast access:</p>
@@ -350,7 +151,7 @@ class AgentMemory:
         self.store_working(session_id, {"summary": summary})</code></pre>
 
             <h3 id="orchestration">4. Orchestration</h3>
-            <p>How the agent loops: React, Plan-Execute, or hybrid patterns. Orchestration determines the control flow of your agent—the rules governing how it decides what to do next, when to stop, and how to recover from errors.</p>
+            <p>How the agent loops: React, Plan-Execute, or hybrid patterns. Orchestration determines the control flow of your agent, the rules governing how it decides what to do next, when to stop, and how to recover from errors.</p>
             <p>The orchestration layer is where patterns like ReAct (Reasoning and Acting) and Plan-and-Execute live. These patterns provide structured approaches to multi-step reasoning that balance flexibility with reliability. More advanced patterns like Tree of Thoughts and Language Agent Tree Search (LATS) enable exploration of multiple reasoning paths before committing to a course of action.</p>
 
             <h2 id="architecture-patterns">Architecture Patterns</h2>
@@ -413,7 +214,7 @@ class ReActAgent:
 
             <h3 id="plan-execute">2. Plan-and-Execute Pattern</h3>
             <p>In contrast to ReAct's dynamic approach, Plan-and-Execute first creates a detailed plan, then executes each step methodically. This pattern works well when the overall task structure is predictable and you can enumerate the steps needed to complete it.</p>
-            <p>The advantage is clearer reasoning visibility—you can see the entire plan before execution begins, making it easier to validate and debug. Cost becomes more predictable since you know the number of steps upfront. The tradeoff is that if your initial plan is wrong or the environment changes mid-execution, the workflow may fail without recovery.</p>
+            <p>The advantage is clearer reasoning visibility, you can see the entire plan before execution begins, making it easier to validate and debug. Cost becomes more predictable since you know the number of steps upfront. The tradeoff is that if your initial plan is wrong or the environment changes mid-execution, the workflow may fail without recovery.</p>
             <p>Here's a Plan-and-Execute implementation:</p>
 <pre><code>from typing import List, Dict, Any
 from dataclasses import dataclass
@@ -489,9 +290,9 @@ Return as a JSON plan."""
 
             <h3 id="multi-agent-patterns">3. Multi-Agent Patterns</h3>
             <p>For highly complex, multi-domain problems requiring different expertise, multi-agent systems apply the divide-and-conquer principle. Rather than one agent handling everything, specialized agents handle specific aspects, coordinated through various patterns.</p>
-            <p>The sequential pipeline pattern is the simplest: Agent A completes its work, passes the result to Agent B, which passes its result to Agent C, and so on. This works when your task has strict linear dependencies—where each step genuinely requires the full output of the previous step.</p>
+            <p>The sequential pipeline pattern is the simplest: Agent A completes its work, passes the result to Agent B, which passes its result to Agent C, and so on. This works when your task has strict linear dependencies, where each step genuinely requires the full output of the previous step.</p>
             <p>The supervisor pattern uses a central coordinator to delegate work to specialized agents. The supervisor analyzes the incoming task, breaks it into subtasks, assigns each to the appropriate specialist, and aggregates results. This pattern works well when tasks vary significantly in type and require different expertise.</p>
-            <p>The parallel execution pattern runs independent subtasks simultaneously, then merges results. This maximizes throughput when work can be decomposed into independent pieces. The challenge is managing dependencies—when subtasks have shared dependencies, you need careful orchestration.</p>
+            <p>The parallel execution pattern runs independent subtasks simultaneously, then merges results. This maximizes throughput when work can be decomposed into independent pieces. The challenge is managing dependencies, when subtasks have shared dependencies, you need careful orchestration.</p>
             <p>A critical design rule for multi-agent systems: exactly one agent must be designated as the orchestrator to prevent coordination conflicts. If multiple agents try to coordinate simultaneously, you'll encounter race conditions and inconsistent state.</p>
             <p>Here's a supervisor pattern implementation:</p>
 <pre><code>from langgraph.graph import StateGraph, START, END
@@ -561,7 +362,7 @@ workflow = graph.compile()</code></pre>
             <p>Parameter validation is critical. Tools should validate their inputs before proceeding, returning clear error messages when parameters are invalid. This prevents agents from proceeding with bad data and makes debugging easier when things go wrong.</p>
             <p>Side effects should be idempotent where possible. An idempotent operation produces the same result regardless of how many times it's called with the same parameters. This matters because agents may retry operations, and non-idempotent operations can lead to duplicate records or inconsistent state.</p>
             <p>Time and cost budgets should be built into tool definitions. Each tool call has computational cost, and runaway agents can accumulate significant expenses. Implement timeouts and budget limits at the tool level.</p>
-            <p>More tools means more confusion. Start with 3-5 essential tools. Add more only when you have a clear use case and evidence that the agent can reliably choose among them. The max_steps parameter is critical—without it, a confused agent can loop forever, burning tokens and accomplishing nothing.</p>
+            <p>More tools means more confusion. Start with 3-5 essential tools. Add more only when you have a clear use case and evidence that the agent can reliably choose among them. The max_steps parameter is critical, without it, a confused agent can loop forever, burning tokens and accomplishing nothing.</p>
             <p>Here's an example of well-structured tool definitions:</p>
 <pre><code>from typing import List, Optional
 from pydantic import BaseModel, Field
@@ -607,9 +408,9 @@ def create_search_tool() -> Tool:
 
             <h2 id="memory-systems">Memory Systems</h2>
             <p>Memory is what allows agents to maintain context across turns, learn from past interactions, and provide personalized experiences. A sophisticated memory system is essential for production agents that handle complex, multi-turn conversations.</p>
-            <p>The layered memory approach organizes memory by retention period and access speed. Working memory provides instant access to current context—the task at hand, recent tool results, and active plans. This typically lives in fast in-memory structures with sub-millisecond access times.</p>
+            <p>The layered memory approach organizes memory by retention period and access speed. Working memory provides instant access to current context, the task at hand, recent tool results, and active plans. This typically lives in fast in-memory structures with sub-millisecond access times.</p>
             <p>Short-term memory handles conversation history that remains relevant for the current session but grows less important over time. As the conversation extends, older messages can be summarized to preserve essential information while reducing token usage.</p>
-            <p>Long-term memory stores persistent information across sessions: user preferences, learned domain knowledge, past successful approaches. Vector databases excel at this by enabling semantic retrieval—finding relevant memories based on meaning rather than exact matches.</p>
+            <p>Long-term memory stores persistent information across sessions: user preferences, learned domain knowledge, past successful approaches. Vector databases excel at this by enabling semantic retrieval, finding relevant memories based on meaning rather than exact matches.</p>
             <p>Semantic caching complements memory systems by recognizing similar queries and returning cached responses. At high scale, well-tuned semantic caching can reduce LLM API costs by 40-60% while improving latency for repeat queries.</p>
             <p>Here's a comprehensive memory implementation:</p>
 <pre><code>import redis
@@ -731,7 +532,7 @@ Include: user goals, important facts learned, tools used, current status."""
                     </tr>
                 </tbody>
             </table>
-            <p>LangGraph, built on top of LangChain, models agent workflows as directed graphs with explicit state management. Benchmark results show it's the fastest framework—approximately 2.2 times faster than CrewAI on equivalent tasks.</p>
+            <p>LangGraph, built on top of LangChain, models agent workflows as directed graphs with explicit state management. Benchmark results show it's the fastest framework, approximately 2.2 times faster than CrewAI on equivalent tasks.</p>
             <p>CrewAI excels at multi-agent systems where you need agents to collaborate. Its role-based agent definitions make it easy to create specialist agents that work together on complex tasks.</p>
             <p>Sometimes the best choice is building from scratch. If your agent does one thing well, you might not need a framework at all. Simple agents can be implemented with minimal code, giving you more control and fewer dependencies.</p>
 
@@ -798,7 +599,7 @@ class GuardrailSystem:
         self.session_costs[session_id] = self.session_costs.get(session_id, 0) + cost</code></pre>
 
             <h3 id="error-handling">Error Handling</h3>
-            <p>Graceful failures prevent agent crashes from becoming system failures. Agents encounter errors frequently—API timeouts, tool failures, invalid responses—and must handle these gracefully without crashing or entering infinite loops.</p>
+            <p>Graceful failures prevent agent crashes from becoming system failures. Agents encounter errors frequently, API timeouts, tool failures, invalid responses, and must handle these gracefully without crashing or entering infinite loops.</p>
             <p>Circuit breaker patterns prevent cascade failures when tools become unreliable. When a tool fails repeatedly, the circuit breaker opens and future calls fail fast rather than wasting resources on likely-failed operations.</p>
 <pre><code>from enum import Enum
 from dataclasses import dataclass
@@ -924,7 +725,7 @@ class ObservableAgent:
                 AGENT_LATENCY.labels(agent_name=self.agent_name).observe(duration)</code></pre>
 
             <h3 id="cost-control">Cost Control</h3>
-            <p>Token budgets and caching prevent runaway expenses. Agents are expensive—a simple LLM application makes one inference call per user interaction, while an agent might make five to fifty calls per task. Without controls, costs can spiral quickly.</p>
+            <p>Token budgets and caching prevent runaway expenses. Agents are expensive, a simple LLM application makes one inference call per user interaction, while an agent might make five to fifty calls per task. Without controls, costs can spiral quickly.</p>
             <p>Context management has the most impact on cost: summarize old messages, set strict context limits, and cache aggressively. Token budgets per session prevent single conversations from accumulating excessive costs.</p>
             <p>Semantic caching reduces costs for repeat queries by recognizing similar requests and returning cached responses. At scale, well-tuned caching can reduce LLM API costs by 40-60%.</p>
             <p>Model routing sends simple tasks to cheaper, faster models while reserving powerful models for complex reasoning. This optimization alone can reduce costs significantly without sacrificing quality on complex tasks.</p>
@@ -935,10 +736,10 @@ class ObservableAgent:
             <p>The key principle: if a human could reasonably approve each action, you probably don't need an agent. Agents are justified when the workflow requires dozens of decisions in seconds. Even then, humans should be able to intervene for exceptional cases.</p>
 
             <h2 id="multi-agent">Multi-Agent Systems</h2>
-            <p>The era of the single, monolithic AI agent is winding down—and honestly, it's about time. A single agent hits a ceiling when faced with complex, multi-domain tasks. Multi-agent systems apply the divide-and-conquer principle, breaking complex workflows into specialized sub-tasks handled by purpose-built agents.</p>
+            <p>The era of the single, monolithic AI agent is winding down, and honestly, it's about time. A single agent hits a ceiling when faced with complex, multi-domain tasks. Multi-agent systems apply the divide-and-conquer principle, breaking complex workflows into specialized sub-tasks handled by purpose-built agents.</p>
             <p>Multi-agent setups can improve throughput and resilience by running sub-tasks in parallel and isolating failures. If one agent fails, the others continue operating. This modularity also makes it easier to update or improve individual agents without affecting the entire system.</p>
             <p>However, multi-agent systems introduce coordination overhead. You need to manage communication between agents, handle conflicts, and ensure consistent state. The complexity is justified only when the task genuinely benefits from specialization.</p>
-            <p>The supervisor pattern works well for many use cases. A central coordinator analyzes the incoming task, breaks it into subtasks, assigns each to the appropriate specialist agent, and aggregates results. The supervisor doesn't need to be a full agent—it can be a simple routing layer that delegates based on task characteristics.</p>
+            <p>The supervisor pattern works well for many use cases. A central coordinator analyzes the incoming task, breaks it into subtasks, assigns each to the appropriate specialist agent, and aggregates results. The supervisor doesn't need to be a full agent, it can be a simple routing layer that delegates based on task characteristics.</p>
             <p>For more complex scenarios, hierarchical agents provide additional structure. A coordinator agent manages research, analysis, and action agents, each of which manages its own sub-agents. This mirrors traditional organizational structures and scales well for enterprise applications.</p>
             <p>Here's a more sophisticated multi-agent implementation:</p>
 <pre><code>from typing import TypedDict, Literal
@@ -1019,8 +820,8 @@ class HierarchicalAgentSystem:
 
             <h2 id="mcp-protocol">Model Context Protocol (MCP)</h2>
             <p>If multi-agent architecture is the skeleton, the Model Context Protocol is the nervous system. Announced by Anthropic in November 2024 and now governed by the Linux Foundation's Agentic AI Foundation, MCP has become the de facto standard for agent-to-tool communication.</p>
-            <p>The analogy that stuck is "USB-C for AI": a single, standardized interface that allows any agent to connect to any tool or data source. Before MCP, every team building agents was solving the same integration problems independently—connecting LLMs to databases, file systems, APIs, and more. MCP standardizes these connections.</p>
-            <p>MCP defines three core primitives for different interaction patterns. Resources are data sources the agent can access—databases, files, APIs. Tools are functions the agent can invoke to take actions. Prompts are reusable templates for common tasks.</p>
+            <p>The analogy that stuck is "USB-C for AI": a single, standardized interface that allows any agent to connect to any tool or data source. Before MCP, every team building agents was solving the same integration problems independently, connecting LLMs to databases, file systems, APIs, and more. MCP standardizes these connections.</p>
+            <p>MCP defines three core primitives for different interaction patterns. Resources are data sources the agent can access, databases, files, APIs. Tools are functions the agent can invoke to take actions. Prompts are reusable templates for common tasks.</p>
             <p>The Python SDK makes it straightforward to expose services as MCP-compatible tools and resources:</p>
 <pre><code>from mcp.server import Server
 from mcp.types import Tool, Resource
@@ -1081,9 +882,9 @@ async def list_resources() -> list[Resource]:
 
             <h2 id="a2a-protocol">Agent-to-Agent Protocol (A2A)</h2>
             <p>While MCP standardizes how agents talk to tools, the Agent-to-Agent Protocol (A2A) standardizes how agents talk to each other. Launched by Google with more than 50 partners (including Atlassian, Salesforce, and SAP), A2A is now also governed by the Linux Foundation.</p>
-            <p>A2A is built on three foundational ideas. Task-oriented interaction means agents communicate about accomplishing specific goals rather than just exchanging messages. Agent Cards are JSON metadata that let agents discover each other's capabilities—each agent publishes what it can do and how to invoke it. Negotiation allows agents to agree on how they'll work together rather than having a rigid protocol dictate interaction.</p>
+            <p>A2A is built on three foundational ideas. Task-oriented interaction means agents communicate about accomplishing specific goals rather than just exchanging messages. Agent Cards are JSON metadata that let agents discover each other's capabilities, each agent publishes what it can do and how to invoke it. Negotiation allows agents to agree on how they'll work together rather than having a rigid protocol dictate interaction.</p>
             <p>The wire protocol uses JSON-RPC 2.0 over HTTP(S), deliberately simple and familiar. Every A2A interaction is a request-response pattern. Version 0.3 of the specification added gRPC support, enabling high-performance binary communication for demanding workloads.</p>
-            <p>The combination of MCP and A2A creates a powerful interoperability layer. An orchestrator agent uses A2A to delegate work to specialist agents, each of which uses MCP to connect to tools and data sources. This separation of concerns—agents talk to agents via A2A, agents talk to tools via MCP—provides clean architecture.</p>
+            <p>The combination of MCP and A2A creates a powerful interoperability layer. An orchestrator agent uses A2A to delegate work to specialist agents, each of which uses MCP to connect to tools and data sources. This separation of concerns, agents talk to agents via A2A, agents talk to tools via MCP, provides clean architecture.</p>
             <p>Here's an A2A agent implementation:</p>
 <pre><code>from a2a import Agent, AgentCard, A2AServer
 from typing import Dict, Any
@@ -1128,9 +929,9 @@ a2a_server = A2AServer(
 await a2a_server.start()</code></pre>
 
             <h2 id="evaluation">Evaluation Strategies</h2>
-            <p>Evals are not optional—test full trajectories, not only final answers. Evaluating agents is fundamentally different from evaluating simple LLM applications because you need to assess not just the final output but the entire reasoning path.</p>
+            <p>Evals are not optional, test full trajectories, not only final answers. Evaluating agents is fundamentally different from evaluating simple LLM applications because you need to assess not just the final output but the entire reasoning path.</p>
             <p>Evaluate full trajectories: tool choice correctness, argument validity, step count, and intermediate outcomes. An agent might produce the right final answer but take an inefficient path, or might produce a wrong answer despite good reasoning. Both cases matter.</p>
-            <p>Build eval datasets with realistic cases—ideally 20-50 examples that cover the range of tasks your agent should handle. Include edge cases and failure modes, not just happy paths. The goal is to catch regressions before they reach production.</p>
+            <p>Build eval datasets with realistic cases, ideally 20-50 examples that cover the range of tasks your agent should handle. Include edge cases and failure modes, not just happy paths. The goal is to catch regressions before they reach production.</p>
             <p>Test both success rate and efficiency metrics. Success rate measures whether the agent accomplishes the task. Efficiency measures how many steps, tokens, and time it takes. A perfect success rate is meaningless if the agent is 10x slower than necessary.</p>
             <p>Here's an evaluation framework implementation:</p>
 <pre><code>from dataclasses import dataclass
@@ -1239,7 +1040,7 @@ class AgentEvaluator:
 
             <h2 id="deployment">Deployment Patterns</h2>
             <p>Production deployment requires thinking about scaling, reliability, and integration. Several patterns have emerged as particularly effective for agent systems.</p>
-            <p>The "Agent as a Service" pattern works well for product agents. Tools are internal API calls, and a backend service exposes endpoints for running agents. This pattern provides clear boundaries, easy scaling, and straightforward monitoring. The key is limiting which tools each agent can access—don't let every agent have every tool.</p>
+            <p>The "Agent as a Service" pattern works well for product agents. Tools are internal API calls, and a backend service exposes endpoints for running agents. This pattern provides clear boundaries, easy scaling, and straightforward monitoring. The key is limiting which tools each agent can access, don't let every agent have every tool.</p>
             <p>Serverless agent functions work for event-driven workloads where agents are invoked occasionally. Each invocation spawns a fresh agent that runs to completion. This pattern is simple to manage but has cold start latency. It suits workloads with predictable, intermittent demand.</p>
             <p>Long-running agents maintain persistent state and handle continuous streams of requests. This pattern suits conversational agents and monitoring systems. It requires more sophisticated state management but provides lower latency after initial startup.</p>
             <p>Here's a deployment-ready agent service:</p>
@@ -1311,44 +1112,30 @@ async def health_check():
             <h2 id="when-to-use">When to Use Agents</h2>
             <p>Most LLM applications don't need agents. Understanding when agents add value versus when they add unnecessary complexity is crucial for making good architectural decisions.</p>
             <p>Choose direct LLM calls when tasks are simple and single-step. If a user asks a question and gets an answer, that's retrieval-augmented generation, not an agent. These simpler architectures are cheaper, faster, more reliable, and easier to debug.</p>
-            <p>Choose agents when three conditions hold. First, the task genuinely requires tool use—taking actions that modify state, not just information retrieval. Searching a database is retrieval; creating a support ticket is action. Second, the sequence of actions cannot be predetermined. If you know the steps in advance, use workflows. Agents are for situations where the LLM must decide what to do based on intermediate results. Third, human-in-the-loop approval latency is unacceptable. If users can wait for confirmation dialogs, build a workflow instead.</p>
+            <p>Choose agents when three conditions hold. First, the task genuinely requires tool use, taking actions that modify state, not just information retrieval. Searching a database is retrieval; creating a support ticket is action. Second, the sequence of actions cannot be predetermined. If you know the steps in advance, use workflows. Agents are for situations where the LLM must decide what to do based on intermediate results. Third, human-in-the-loop approval latency is unacceptable. If users can wait for confirmation dialogs, build a workflow instead.</p>
             <p>A practical heuristic for your first agent use case: look for workflows you personally spend thirty minutes or more on weekly. Tedious, repetitive work with clear success criteria makes the best starting point. You understand the domain deeply, can evaluate quality accurately, and the time investment justifies engineering effort.</p>
             <p>Avoid starting with high-stakes decisions or workflows where failure modes are unclear. Those become tractable later, once you've built experience with simpler agents.</p>
 
             <h2 id="conclusion">Conclusion</h2>
-            <p>AI agents represent a fundamental shift in how we build AI-powered systems—from passive tools that answer questions to active participants that accomplish goals. The components, patterns, and practices outlined in this guide provide a foundation for building production-ready agents.</p>
+            <p>AI agents represent a fundamental shift in how we build AI-powered systems, from passive tools that answer questions to active participants that accomplish goals. The components, patterns, and practices outlined in this guide provide a foundation for building production-ready agents.</p>
             <p>The key insight is that building agents that work in production is more about solid engineering than about cutting-edge AI. Clear instructions, reliable tools, graceful error handling, and relentless testing matter more than the latest model or framework. The agents that work in production are boring by demo standards. They don't try to do everything. They do one thing well, handle edge cases gracefully, and get better over time through feedback and iteration.</p>
             <p>Start simple. Ship fast. Iterate based on real usage. That's how you build AI agents that actually work.</p>
             <p>The future is agentic. The tools and frameworks exist today to build sophisticated multi-agent systems that can handle complex, real-world tasks. The patterns are documented, the protocols are standardizing, and the ecosystem is maturing. What remains is the engineering work of turning demos into reliable production systems.</p>
-        </article>
+            </article>
+        </main>
 
-        <footer>
-            <a href="https://github.com/sajadkoder" target="_blank" aria-label="GitHub">
-                <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-            </a>
-            <a href="https://linkedin.com/in/abdullasajad" target="_blank" aria-label="LinkedIn">
-                <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </a>
-            <a href="https://twitter.com/sajadkoder" target="_blank" aria-label="Twitter">
-                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="mailto:abdullasajad01@gmail.com" aria-label="Email">
-                <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
-            </a>
+        <footer class="site-footer" data-reveal>
+            <div class="footer-links">
+                <a class="inline-link" href="https://github.com/sajadkoder" target="_blank" rel="noreferrer">GitHub</a>
+                <a class="inline-link" href="https://linkedin.com/in/abdullasajad" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a class="inline-link" href="mailto:abdullasajad01@gmail.com">abdullasajad01@gmail.com</a>
+            </div>
+            <p class="footer-note">&copy; 2026 Abdulla Sajad. Long form notes on software, AI, and systems.</p>
         </footer>
     </div>
 
-    <script>
-        const toggle = document.getElementById('themeToggle');
-        const saved = localStorage.getItem('theme') || 'dark';
-        if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
-        
-        toggle.addEventListener('click', () => {
-            const current = document.documentElement.getAttribute('data-theme');
-            const next = current === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
-        });
-    </script>
+    <script src="../site.js"></script>
 </body>
 </html>
+
+
