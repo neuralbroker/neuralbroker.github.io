@@ -3,15 +3,14 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Abdulla Sajad</title>
-        <meta name="description" content="Software Engineer and AI Engineer - Building full-stack applications with focus on backend systems and AI integration" />
-        <meta property="og:title" content="Abdulla Sajad" />
-        <meta property="og:description" content="Software Engineer and AI Engineer" />
+        <title>Projects - Abdulla Sajad</title>
+        <meta name="description" content="Projects by Abdulla Sajad - Software Engineer and AI Engineer" />
+        <meta property="og:title" content="Projects - Abdulla Sajad" />
+        <meta property="og:description" content="Projects by Abdulla Sajad" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://sajad.dev" />
+        <meta property="og:url" content="https://sajad.dev/projects.html" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Abdulla Sajad" />
-        <meta name="twitter:description" content="Software Engineer and AI Engineer" />
+        <meta name="twitter:title" content="Projects - Abdulla Sajad" />
         <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,7 +21,7 @@
             .animate { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.6s ease forwards; will-change: opacity, transform; }
             .animate-delay-1 { animation-delay: 0.1s; }
             @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-            header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+            header { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
             .theme-toggle { position: fixed; top: 1.25rem; right: 1.25rem; background: transparent; border: none; color: var(--text-muted); width: 40px; height: 40px; cursor: pointer; border-radius: 50%; transition: all 0.2s; display: flex; align-items: center; justify-content: center; z-index: 100; }
             .theme-toggle svg { width: 18px; height: 18px; fill: currentColor; }
             .theme-toggle:hover { color: var(--text); }
@@ -36,9 +35,18 @@
             nav a { color: var(--text-secondary); }
             nav a:hover { color: var(--text); text-decoration: none; }
             nav a.active { color: var(--text); }
-            section { margin-bottom: 3rem; }
             h2 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 1.25rem; }
-            .about p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 0.75rem; }
+            .back-link { display: inline-block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+            .back-link:hover { color: var(--link); }
+            .project { margin-bottom: 1.75rem; }
+            .project-header { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.35rem; }
+            .project h3 { font-size: 1rem; font-weight: 500; }
+            .project .status { font-size: 0.7rem; color: var(--text-muted); }
+            .project .status.finished::before { content: "— "; }
+            .project p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.5rem; }
+            .project .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; font-size: 0.75rem; color: var(--text-muted); }
+            .project .tags span:not(:last-child)::after { content: "·"; margin-left: 0.5rem; }
+            .project-link { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.35rem; }
             footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted); display: flex; justify-content: center; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
             footer span { width: 100%; text-align: center; margin-top: 1rem; }
             footer a { display: flex; align-items: center; justify-content: center; color: var(--text-muted); transition: color 0.2s; }
@@ -53,6 +61,9 @@
                 .tagline { font-size: 0.9rem; }
                 nav { gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
                 nav a { font-size: 0.85rem; }
+                .project h3 { font-size: 0.95rem; }
+                .project p { font-size: 0.85rem; }
+                .project .tags { font-size: 0.7rem; }
                 footer { gap: 1.25rem; }
                 footer a svg { width: 22px; height: 22px; }
             }
@@ -68,8 +79,8 @@
                         <div class="name">Abdulla Sajad</div>
                         <div class="tagline">Software Engineer <span>//</span> AI Engineer</div>
                         <nav>
-                            <a href="index.html" class="active">home</a>
-                            <a href="projects.html">projects</a>
+                            <a href="index.html">home</a>
+                            <a href="projects.html" class="active">projects</a>
                             <a href="blog.html">writing</a>
                             <a href="skills.html">skills</a>
                             <a href="resume.pdf" target="_blank" download>resume</a>
@@ -85,10 +96,83 @@
                 </svg>
             </button>
 
-            <section class="about animate">
-                <h2>About</h2>
-                <p>Final-year CS student building full-stack applications with focus on backend systems and AI integration. Currently exploring LLM engineering, RAG pipelines, and autonomous agents.</p>
-                <p>Based in Kerala, India. Open to opportunities.</p>
+            <a href="index.html" class="back-link">← Back to home</a>
+
+            <section class="animate">
+                <h2>Projects</h2>
+
+                <div class="project">
+                    <div class="project-header">
+                        <h3><a href="https://github.com/sajadkoder/Anogram">Anogram</a></h3>
+                        <span class="status">in progress</span>
+                    </div>
+                    <p>Decentralized offline-capable messaging with Telegram-inspired UI and Bluetooth mesh networking. 100% offline, peer-to-peer, privacy-first.</p>
+                    <div class="tags"><span>Kotlin</span><span>Jetpack Compose</span><span>BLE Mesh</span><span>Clean Architecture</span></div>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <h3><a href="https://github.com/sajadkoder/sentinel-ml">SentinelML</a></h3>
+                        <span class="status">in progress</span>
+                    </div>
+                    <p>Production-ready real-time fraud detection system. FastAPI, scikit-learn, Redis caching, MLflow tracking, Docker deployment.</p>
+                    <div class="tags"><span>Python</span><span>FastAPI</span><span>ML</span><span>Docker</span></div>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <h3><a href="https://github.com/sajadkoder/esencelab">Esencelab</a></h3>
+                        <span class="status">in progress</span>
+                    </div>
+                    <p>AI-powered campus recruitment platform with resume parsing, job matching, and role-based dashboards.</p>
+                    <div class="tags"><span>Next.js</span><span>TypeScript</span><span>FastAPI</span><span>Supabase</span><span>Gemini AI</span></div>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <h3><a href="https://github.com/sajadkoder/speakswap">SpeakSwap</a></h3>
+                        <span class="status finished">finished</span>
+                    </div>
+                    <p>Real-time voice translation web app. Migrated from Android to web with speech-to-text and multi-language translation.</p>
+                    <div class="tags"><span>Next.js</span><span>TypeScript</span><span>Web Speech API</span></div>
+                    <a href="https://speakswap.vercel.app" class="project-link">speakswap.vercel.app →</a>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <h3><a href="https://github.com/sajadkoder/zordcoder">ZordCoder</a></h3>
+                        <span class="status">in progress</span>
+                    </div>
+                    <p>Multilingual coding assistant for mobile (Termux) with GGUF inference, CLI and web interface, streaming responses.</p>
+                    <div class="tags"><span>Python</span><span>llama.cpp</span><span>Next.js</span><span>CLI</span></div>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <h3><a href="https://github.com/sajadkoder/koder-ide">Koder IDE</a></h3>
+                        <span class="status">in progress</span>
+                    </div>
+                    <p>Native Android code editor with syntax highlighting for 14+ languages. Jetpack Compose, Material 3.</p>
+                    <div class="tags"><span>Kotlin</span><span>Android</span><span>Jetpack Compose</span></div>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <h3><a href="https://github.com/sajadkoder/smart-task-ai">Smart Task AI</a></h3>
+                        <span class="status finished">finished</span>
+                    </div>
+                    <p>AI-powered Kanban task manager with drag-drop, AI categorization, priority suggestions, and productivity analytics.</p>
+                    <div class="tags"><span>Java</span><span>Spring Boot</span><span>React</span><span>WebSocket</span></div>
+                </div>
+
+                <div class="project">
+                    <div class="project-header">
+                        <h3><a href="https://github.com/sajadkoder/lexora-ai">Lexora AI</a></h3>
+                        <span class="status">in progress</span>
+                    </div>
+                    <p>AI-powered application exploring language model capabilities.</p>
+                    <div class="tags"><span>Python</span><span>AI/ML</span></div>
+                </div>
             </section>
 
             <footer class="animate">

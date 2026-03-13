@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Writing - Abdulla Sajad</title>
+        <meta name="description" content="Writing by Abdulla Sajad - Software Engineer and AI Engineer" />
+        <meta property="og:title" content="Writing - Abdulla Sajad" />
+        <meta property="og:description" content="Writing by Abdulla Sajad" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://sajad.dev/blog.html" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Writing - Abdulla Sajad" />
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+        <style>
+            .container { max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem; }
+            .animate { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.6s ease forwards; will-change: opacity, transform; }
+            .animate-delay-1 { animation-delay: 0.1s; }
+            @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+            header { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+            .theme-toggle { position: fixed; top: 1.25rem; right: 1.25rem; background: transparent; border: none; color: var(--text-muted); width: 40px; height: 40px; cursor: pointer; border-radius: 50%; transition: all 0.2s; display: flex; align-items: center; justify-content: center; z-index: 100; }
+            .theme-toggle svg { width: 18px; height: 18px; fill: currentColor; }
+            .theme-toggle:hover { color: var(--text); }
+            .header-profile { display: flex; align-items: flex-start; gap: 1.5rem; }
+            .profile-image { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); flex-shrink: 0; }
+            .header-content { flex: 1; }
+            .name { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+            .tagline { color: var(--text-secondary); font-size: 1rem; margin-bottom: 1rem; }
+            .tagline span { color: var(--text-muted); }
+            nav { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.9rem; }
+            nav a { color: var(--text-secondary); }
+            nav a:hover { color: var(--text); text-decoration: none; }
+            nav a.active { color: var(--text); }
+            h2 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 1.25rem; }
+            .back-link { display: inline-block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+            .back-link:hover { color: var(--link); }
+            .blog-item { display: block; padding: 0.85rem 0; border-bottom: 1px solid var(--border); }
+            .blog-item:last-child { border-bottom: none; }
+            .blog-item:hover { text-decoration: none; }
+            .blog-header { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.35rem; }
+            .blog-item h3 { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.2rem; color: var(--text); }
+            .blog-item:hover h3 { color: var(--link); }
+            .blog-header .status { font-size: 0.7rem; color: var(--text-muted); }
+            .blog-header .status.finished::before { content: "— "; }
+            .blog-item p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; margin-bottom: 0.5rem; }
+            .blog-item .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; font-size: 0.75rem; color: var(--text-muted); }
+            .blog-item .tags span:not(:last-child)::after { content: "·"; margin-left: 0.5rem; }
+            footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted); display: flex; justify-content: center; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+            footer span { width: 100%; text-align: center; margin-top: 1rem; }
+            footer a { display: flex; align-items: center; justify-content: center; color: var(--text-muted); transition: color 0.2s; }
+            footer a:hover { color: var(--link); }
+            footer a svg { width: 20px; height: 20px; fill: currentColor; }
+            @media (max-width: 600px) {
+                .container { padding: 2rem 1.25rem; }
+                .theme-toggle { top: 1rem; right: 1rem; }
+                .header-profile { flex-direction: column; align-items: center; text-align: center; gap: 1rem; }
+                .profile-image { width: 70px; height: 70px; }
+                .name { font-size: 1.5rem; padding-right: 2.5rem; }
+                .tagline { font-size: 0.9rem; }
+                nav { gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+                nav a { font-size: 0.85rem; }
+                .blog-item h3 { font-size: 0.9rem; }
+                .blog-item p { font-size: 0.8rem; }
+                footer { gap: 1.25rem; }
+                footer a svg { width: 22px; height: 22px; }
+            }
+            @media (max-width: 400px) { .name { font-size: 1.35rem; } nav a { font-size: 0.8rem; } }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header class="animate">
+                <div class="header-profile">
+                    <img src="profile.jpg" alt="Abdulla Sajad" class="profile-image" loading="eager" decoding="async" width="80" height="80" />
+                    <div class="header-content">
+                        <div class="name">Abdulla Sajad</div>
+                        <div class="tagline">Software Engineer <span>//</span> AI Engineer</div>
+                        <nav>
+                            <a href="index.html">home</a>
+                            <a href="projects.html">projects</a>
+                            <a href="blog.html" class="active">writing</a>
+                            <a href="skills.html">skills</a>
+                            <a href="resume.pdf" target="_blank" download>resume</a>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5" />
+                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                </svg>
+            </button>
+
+            <a href="index.html" class="back-link">← Back to home</a>
+
+            <section class="animate">
+                <h2>Writing</h2>
+
+                <a href="blogs/ai-companies-scale-2026.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>How AI Companies Scale: The New Era of Software Development</h3>
+                        <span class="status finished">Mar 2026</span>
+                    </div>
+                    <p>A deep dive into how modern AI companies leverage artificial intelligence to accelerate development, reduce costs, and build products that were previously impossible.</p>
+                    <div class="tags"><span>AI Scaling</span><span>Engineering</span><span>Future</span></div>
+                </a>
+
+                <a href="blogs/opencode-guide-2026.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>The Complete Guide to Using OpenCode Effectively</h3>
+                        <span class="status finished">Mar 2026</span>
+                    </div>
+                    <p>Master the open-source AI coding agent with 100K+ GitHub stars. From installation to advanced workflows, prompts, skills, and production patterns.</p>
+                    <div class="tags"><span>OpenCode</span><span>AI Tools</span><span>Tutorial</span></div>
+                </a>
+
+                <a href="blogs/openclaw-guide-2026.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>The Complete Guide to OpenCLAW: Your 24/7 AI Agent</h3>
+                        <span class="status finished">Mar 2026</span>
+                    </div>
+                    <p>Master the open-source AI agent with 200K+ GitHub stars. Learn skills, MCP integration, workflows, and production deployment.</p>
+                    <div class="tags"><span>OpenCLAW</span><span>AI Agents</span><span>Automation</span></div>
+                </a>
+
+                <a href="blogs/agentic-engineering.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>Agentic Engineering: Building Autonomous AI Systems That Actually Work</h3>
+                        <span class="status finished">Feb 2026</span>
+                    </div>
+                    <p>A comprehensive deep-dive into the engineering principles, architectures, and patterns behind production-ready autonomous AI agents.</p>
+                    <div class="tags"><span>Agentic Engineering</span><span>AI</span></div>
+                </a>
+
+                <a href="blogs/ai-agents-guide.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>Building with AI Agents: A Practical Guide</h3>
+                        <span class="status finished">Jan 2026</span>
+                    </div>
+                    <p>From chatbots to autonomous agents—tools, patterns, and production realities.</p>
+                    <div class="tags"><span>AI Agents</span><span>Guide</span></div>
+                </a>
+
+                <a href="blogs/ai-coding-tools-2026.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>AI Coding Tools That Changed How I Work</h3>
+                        <span class="status finished">Dec 2025</span>
+                    </div>
+                    <p>From Cursor to OpenHands, exploring AI-powered dev tools that actually help ship code faster.</p>
+                    <div class="tags"><span>AI Tools</span><span>Productivity</span></div>
+                </a>
+
+                <a href="blogs/llm-landscape-2026.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>The LLM Landscape: What's Actually Useful in 2026</h3>
+                        <span class="status finished">Oct 2025</span>
+                    </div>
+                    <p>Breaking down the models that matter, from reasoning models to coding assistants.</p>
+                    <div class="tags"><span>LLM</span><span>AI</span></div>
+                </a>
+
+                <a href="blogs/system-design-intro.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>Introduction to System Design</h3>
+                        <span class="status finished">Aug 2025</span>
+                    </div>
+                    <p>Thinking about systems at scale—from load balancers to consistency models.</p>
+                    <div class="tags"><span>System Design</span><span>Architecture</span></div>
+                </a>
+
+                <a href="blogs/learning-ai-engineering.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>Learning AI Engineering as a Software Developer</h3>
+                        <span class="status finished">Jun 2025</span>
+                    </div>
+                    <p>My journey from traditional SWE to AI engineering. What worked, what didn't.</p>
+                    <div class="tags"><span>Learning</span><span>Career</span></div>
+                </a>
+
+                <a href="blogs/dsa-real-world.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>DSA in the Real World: Beyond LeetCode</h3>
+                        <span class="status finished">Sep 2025</span>
+                    </div>
+                    <p>When and why to use data structures in production code, not just interviews.</p>
+                    <div class="tags"><span>Fundamentals</span><span>DSA</span></div>
+                </a>
+
+                <a href="blogs/neurosymbolic-ai-military.html" class="blog-item">
+                    <div class="blog-header">
+                        <h3>Neurosymbolic AI in Military Systems</h3>
+                        <span class="status finished">Jul 2025</span>
+                    </div>
+                    <p>Combining neural networks with symbolic reasoning for explainable military AI.</p>
+                    <div class="tags"><span>AI Research</span><span>Neurosymbolic</span></div>
+                </a>
+            </section>
+
+            <footer class="animate">
+                <a href="https://github.com/sajadkoder" target="_blank" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <a href="https://linkedin.com/in/abdullasajad" target="_blank" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <a href="mailto:abdullasajad01@gmail.com" aria-label="Email">
+                    <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+                </a>
+                <span>© 2026 Abdulla Sajad</span>
+            </footer>
+        </div>
+
+        <script>
+            const toggle = document.getElementById("themeToggle");
+            const saved = localStorage.getItem("theme") || "dark";
+            if (saved === "light") document.documentElement.setAttribute("data-theme", "light");
+            toggle.addEventListener("click", () => {
+                const current = document.documentElement.getAttribute("data-theme");
+                const next = current === "light" ? "dark" : "light";
+                document.documentElement.setAttribute("data-theme", next);
+                localStorage.setItem("theme", next);
+            });
+        </script>
+    </body>
+</html>
