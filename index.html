@@ -3,19 +3,36 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="theme-color" content="#0a0a0c" />
+        <link rel="canonical" href="https://sajad.dev" />
         <title>Abdulla Sajad</title>
         <meta name="description" content="Software Engineer and AI Engineer - Building full-stack applications with focus on backend systems and AI integration" />
+        
+        <!-- Open Graph -->
         <meta property="og:title" content="Abdulla Sajad" />
         <meta property="og:description" content="Software Engineer and AI Engineer" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sajad.dev" />
+        
+        <!-- Twitter Card -->
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Abdulla Sajad" />
         <meta name="twitter:description" content="Software Engineer and AI Engineer" />
+        
+        <!-- Favicon -->
         <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>" />
+        
+        <!-- Performance: Preconnect to external resources -->
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+        
+        <!-- Fonts with display=swap to prevent FOIT -->
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+        <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
+        
         <link rel="stylesheet" href="styles.css" />
         <style>
             .container { max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem; }
@@ -63,7 +80,7 @@
         <div class="container">
             <header class="animate">
                 <div class="header-profile">
-                    <img src="profile.jpg" alt="Abdulla Sajad" class="profile-image" loading="eager" decoding="async" width="80" height="80" />
+                    <img src="profile.jpg" alt="Abdulla Sajad" class="profile-image" loading="eager" decoding="async" width="80" height="80" fetchpriority="high" />
                     <div class="header-content">
                         <div class="name">Abdulla Sajad</div>
                         <div class="tagline">Software Engineer <span>//</span> AI Engineer</div>
