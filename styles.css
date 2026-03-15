@@ -11,7 +11,6 @@
     --text-secondary: #9a9a9a;
     --text-muted: #6a6a6a;
     --border: #2a2a2e;
-    --accent: #e0e0e0;
     --link: #7cb3f0;
     --link-hover: #9ecaff;
 }
@@ -23,7 +22,6 @@
     --text-secondary: #555555;
     --text-muted: #888888;
     --border: #e5e5e5;
-    --accent: #000000;
     --link: #2563eb;
     --link-hover: #1d4ed8;
 }
@@ -56,9 +54,6 @@ a:hover { color: var(--link-hover); text-decoration: underline; }
 }
 
 .animate-delay-1 { animation-delay: 0.1s; }
-.animate-delay-2 { animation-delay: 0.2s; }
-.animate-delay-3 { animation-delay: 0.3s; }
-.animate-delay-4 { animation-delay: 0.4s; }
 
 @keyframes fadeInUp {
     to { opacity: 1; transform: translateY(0); }
