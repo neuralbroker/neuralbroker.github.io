@@ -13,6 +13,10 @@
     --border: #2a2a2e;
     --link: #7cb3f0;
     --link-hover: #9ecaff;
+    --glow: rgba(124, 179, 240, 0.15);
+    --card-bg: rgba(18, 18, 21, 0.7);
+    --gradient-start: #7cb3f0;
+    --gradient-end: #a78bfa;
 }
 
 [data-theme="light"] {
@@ -24,6 +28,10 @@
     --border: #e5e5e5;
     --link: #2563eb;
     --link-hover: #1d4ed8;
+    --glow: rgba(37, 99, 235, 0.1);
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --gradient-start: #2563eb;
+    --gradient-end: #7c3aed;
 }
 
 html { scroll-behavior: smooth; }
@@ -32,13 +40,33 @@ body {
     font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.65;
+    line-height: 1.7;
     font-size: 15px;
     transition: background 0.3s, color 0.3s;
+    position: relative;
+    overflow-x: hidden;
 }
 
-a { color: var(--link); text-decoration: none; transition: color 0.2s; }
-a:hover { color: var(--link-hover); text-decoration: underline; }
+body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 20%, var(--glow) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+    animation: gradientPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes gradientPulse {
+    0% { opacity: 0.5; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.1); }
+}
+
+a { color: var(--link); text-decoration: none; transition: color 0.2s ease, text-shadow 0.2s ease; }
+a:hover { color: var(--link-hover); text-decoration: none; text-shadow: 0 0 20px var(--glow); }
 
 .container {
     max-width: 680px;
@@ -63,33 +91,51 @@ header {
     margin-bottom: 3rem;
     padding-bottom: 2rem;
     border-bottom: 1px solid var(--border);
+    position: relative;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gradient-start), var(--gradient-end), transparent);
+    opacity: 0.5;
 }
 
 .theme-toggle {
     position: fixed;
     top: 1.25rem;
     right: 1.25rem;
-    background: transparent;
-    border: none;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
     color: var(--text-muted);
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     cursor: pointer;
-    border-radius: 50%;
-    transition: all 0.2s;
+    border-radius: 12px;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 100;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.theme-toggle svg {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
+.theme-toggle svg { width: 18px; height: 18px; fill: currentColor; transition: transform 0.3s ease; }
+
+.theme-toggle:hover { 
+    color: var(--text); 
+    border-color: var(--link);
+    box-shadow: 0 4px 20px var(--glow);
+    transform: translateY(-2px);
 }
 
-.theme-toggle:hover { color: var(--text); }
+.theme-toggle:active svg { transform: rotate(180deg); }
 
 .header-profile {
     display: flex;
@@ -102,36 +148,131 @@ header {
     height: 80px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--border);
     flex-shrink: 0;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.profile-image::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    z-index: -1;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.profile-image::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    z-index: -2;
+    opacity: 0;
+    filter: blur(15px);
+    transition: opacity 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 40px var(--glow);
+}
+
+.profile-image:hover::after { opacity: 0.5; }
 
 .header-content { flex: 1; }
 
 .name {
     font-size: 1.75rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: -0.02em;
     margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--text) 0%, var(--gradient-start) 50%, var(--gradient-end) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .tagline {
     color: var(--text-secondary);
     font-size: 1rem;
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tagline::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.9); }
 }
 
 .tagline span { color: var(--text-muted); }
 
 nav {
     display: flex;
-    gap: 1.25rem;
+    gap: 0.5rem;
     flex-wrap: wrap;
     font-size: 0.9rem;
 }
 
-nav a { color: var(--text-secondary); }
-nav a:hover { color: var(--text); text-decoration: none; }
+nav a {
+    color: var(--text-secondary);
+    padding: 0.5rem 0.85rem;
+    border-radius: 8px;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+nav a:hover { 
+    color: var(--text); 
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+nav a:hover::before { opacity: 1; }
+
+nav a.active {
+    color: var(--text);
+    font-weight: 500;
+}
+
+nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    border-radius: 2px;
+}
 
 section { margin-bottom: 3rem; }
 
@@ -153,6 +294,19 @@ h2 {
 
 .project, .blog-item {
     margin-bottom: 1.75rem;
+    padding: 1.25rem;
+    border-radius: 12px;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.project:hover, .blog-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border-color: var(--link);
 }
 
 .project-header, .blog-header {
@@ -204,8 +358,8 @@ h2 {
 
 .blog-item {
     display: block;
-    padding: 0.85rem 0;
-    border-bottom: 1px solid var(--border);
+    padding: 1.25rem;
+    border-bottom: none;
 }
 
 .blog-item:last-child { border-bottom: none; }
@@ -224,6 +378,14 @@ h2 {
     font-weight: 500;
     margin-bottom: 0.2rem;
     color: var(--text);
+    transition: color 0.2s ease;
+}
+
+.blog-item:hover h3 { color: var(--link); }
+
+.blog-item p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
 }
 
 .blog-item:hover h3 { color: var(--link); }
@@ -239,12 +401,28 @@ h2 {
     gap: 1rem 2rem;
 }
 
-.skill-group { margin-bottom: 0.5rem; }
+.skill-group { 
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.skill-group:hover {
+    transform: translateY(-2px);
+    border-color: var(--link);
+}
 
 .skill-group h4 {
     font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gradient-start);
     margin-bottom: 0.35rem;
 }
 
@@ -254,7 +432,10 @@ h2 {
     font-size: 0.85rem;
     color: var(--text-secondary);
     margin-bottom: 0.25rem;
+    transition: color 0.2s ease;
 }
+
+.skill-group:hover li { color: var(--text); }
 
 footer {
     margin-top: 3rem;
@@ -267,6 +448,18 @@ footer {
     align-items: center;
     gap: 1.5rem;
     flex-wrap: wrap;
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gradient-start), var(--gradient-end), transparent);
+    opacity: 0.3;
 }
 
 footer span {
@@ -280,10 +473,15 @@ footer a {
     align-items: center;
     justify-content: center;
     color: var(--text-muted);
-    transition: color 0.2s;
+    transition: all 0.2s ease;
+    padding: 0.5rem;
+    border-radius: 8px;
 }
 
-footer a:hover { color: var(--link); }
+footer a:hover { 
+    color: var(--link);
+    transform: translateY(-2px);
+}
 footer a svg { width: 20px; height: 20px; fill: currentColor; }
 
 .back-link {
@@ -384,15 +582,18 @@ footer a svg { width: 20px; height: 20px; fill: currentColor; }
     }
 
     .profile-image { width: 90px; height: 90px; }
-    .name { font-size: 1.5rem; padding-right: 2.5rem; }
-    .tagline { font-size: 0.9rem; }
-    nav { gap: 0.75rem; flex-wrap: wrap; }
-    nav a { font-size: 0.85rem; }
+    .name { font-size: 1.5rem; padding-right: 0; }
+    .tagline { font-size: 0.9rem; justify-content: center; }
+    nav { gap: 0.5rem; justify-content: center; }
+    nav a { font-size: 0.8rem; padding: 0.4rem 0.7rem; }
     h2 { font-size: 0.65rem; margin-bottom: 1rem; }
+    .project { padding: 1rem; }
     .project h3 { font-size: 0.95rem; }
     .project p { font-size: 0.85rem; }
     .project .tags { font-size: 0.7rem; }
-    .skills { grid-template-columns: 1fr; gap: 1rem; }
+    .skills { grid-template-columns: 1fr; gap: 0.75rem; }
+    .skill-group { padding: 0.85rem; }
+    .blog-item { padding: 1rem; }
     .blog-item h3 { font-size: 0.9rem; }
     .blog-item p { font-size: 0.8rem; }
     footer { gap: 1.25rem; }
@@ -400,9 +601,11 @@ footer a svg { width: 20px; height: 20px; fill: currentColor; }
     
     .post-content h1 { font-size: 1.25rem; }
     .post-content p, .post-content ul, .post-content ol { font-size: 0.9rem; }
+    
+    body::before { opacity: 0.3; }
 }
 
 @media (max-width: 400px) {
     .name { font-size: 1.35rem; }
-    nav a { font-size: 0.8rem; }
+    nav a { font-size: 0.75rem; padding: 0.35rem 0.6rem; }
 }
