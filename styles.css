@@ -109,8 +109,6 @@ header {
     margin-bottom: 0.75rem;
 }
 
-.tagline span { color: var(--text-muted); }
-
 nav {
     display: flex;
     gap: 0.25rem;
