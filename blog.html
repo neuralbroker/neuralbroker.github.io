@@ -3,90 +3,24 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="theme-color" content="#0a0a0c" />
-        <link rel="canonical" href="https://sajad.dev/blog.html" />
         <title>Writing - Abdulla Sajad</title>
         <meta name="description" content="Writing by Abdulla Sajad - Software Engineer and AI Engineer" />
-        
         <meta property="og:title" content="Writing - Abdulla Sajad" />
         <meta property="og:description" content="Writing by Abdulla Sajad" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://sajad.dev/blog.html" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Writing - Abdulla Sajad" />
-        
         <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>" />
-        
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        
-        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-        <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
-        
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="styles.css" />
-        <style>
-            .container { max-width: 680px; margin: 0 auto; padding: 3rem 1.5rem; }
-            .animate { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.6s ease forwards; will-change: opacity, transform; }
-            .animate-delay-1 { animation-delay: 0.1s; }
-            @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-            header { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
-            .theme-toggle { position: fixed; top: 1.25rem; right: 1.25rem; background: transparent; border: none; color: var(--text-muted); width: 40px; height: 40px; cursor: pointer; border-radius: 50%; transition: all 0.2s; display: flex; align-items: center; justify-content: center; z-index: 100; }
-            .theme-toggle svg { width: 18px; height: 18px; fill: currentColor; }
-            .theme-toggle:hover { color: var(--text); }
-            .header-profile { display: flex; align-items: flex-start; gap: 1.5rem; }
-            .profile-image { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); flex-shrink: 0; }
-            .header-content { flex: 1; }
-            .name { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
-            .tagline { color: var(--text-secondary); font-size: 1rem; margin-bottom: 1rem; }
-            .tagline span { color: var(--text-muted); }
-            nav { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.9rem; }
-            nav a { color: var(--text-secondary); }
-            nav a:hover { color: var(--text); text-decoration: none; }
-            nav a.active { color: var(--text); }
-            h2 { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 1.25rem; }
-            .back-link { display: inline-block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; }
-            .back-link:hover { color: var(--link); }
-            .blog-item { display: block; padding: 0.85rem 0; border-bottom: 1px solid var(--border); }
-            .blog-item:last-child { border-bottom: none; }
-            .blog-item:hover { text-decoration: none; }
-            .blog-header { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.35rem; }
-            .blog-item h3 { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.2rem; color: var(--text); }
-            .blog-item:hover h3 { color: var(--link); }
-            .blog-header .status { font-size: 0.7rem; color: var(--text-muted); }
-            .blog-header .status.finished::before { content: "— "; }
-            .blog-item p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; margin-bottom: 0.5rem; }
-            .blog-item .tags { display: flex; gap: 0.5rem; flex-wrap: wrap; font-size: 0.75rem; color: var(--text-muted); }
-            .blog-item .tags span:not(:last-child)::after { content: "·"; margin-left: 0.5rem; }
-            footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted); display: flex; justify-content: center; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
-            footer span { width: 100%; text-align: center; margin-top: 1rem; }
-            footer a { display: flex; align-items: center; justify-content: center; color: var(--text-muted); transition: color 0.2s; }
-            footer a:hover { color: var(--link); }
-            footer a svg { width: 20px; height: 20px; fill: currentColor; }
-            @media (max-width: 600px) {
-                .container { padding: 2rem 1.25rem; }
-                .theme-toggle { top: 1rem; right: 1rem; }
-                .header-profile { flex-direction: column; align-items: center; text-align: center; gap: 1rem; }
-                .profile-image { width: 90px; height: 90px; }
-                .name { font-size: 1.5rem; padding-right: 2.5rem; }
-                .tagline { font-size: 0.9rem; }
-                nav { gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
-                nav a { font-size: 0.85rem; }
-                .blog-item h3 { font-size: 0.9rem; }
-                .blog-item p { font-size: 0.8rem; }
-                footer { gap: 1.25rem; }
-                footer a svg { width: 22px; height: 22px; }
-            }
-            @media (max-width: 400px) { .name { font-size: 1.35rem; } nav a { font-size: 0.8rem; } }
-        </style>
     </head>
     <body>
         <div class="container">
             <header class="animate">
                 <div class="header-profile">
-                    <img src="profile.jpg" alt="Abdulla Sajad" class="profile-image" loading="eager" decoding="async" width="80" height="80" />
+                    <img src="profile.jpg" alt="Abdulla Sajad" class="profile-image" loading="eager" decoding="async" width="72" height="72" />
                     <div class="header-content">
                         <div class="name">Abdulla Sajad</div>
                         <div class="tagline">Software Engineer <span>//</span> AI Engineer</div>
