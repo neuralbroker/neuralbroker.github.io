@@ -182,8 +182,6 @@ h2 {
     color: var(--text-muted);
 }
 
-.project .status.finished::before { content: "— "; }
-
 .project p {
     color: var(--text-secondary);
     font-size: 0.875rem;
@@ -233,7 +231,6 @@ h2 {
 .blog-item:hover h3 { color: var(--link); }
 
 .blog-header .status { font-size: 0.7rem; color: var(--text-muted); }
-.blog-header .status::before { content: "— "; }
 
 .blog-item .meta {
     display: flex;
