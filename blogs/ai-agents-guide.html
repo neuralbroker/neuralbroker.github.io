@@ -5,10 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Building with AI Agents: A Practical Guide | Abdulla Sajad</title>
     <meta name="description" content="A beginner-friendly guide to building AI agents. From first concepts to working prototypes with LangChain, AutoGen, and CrewAI.">
+    <link rel="canonical" href="https://neuralbroker.github.io/sajad/blogs/ai-agents-guide.html">
     <meta property="og:title" content="Building with AI Agents: A Practical Guide | Abdulla Sajad">
     <meta property="og:description" content="A beginner-friendly guide to building AI agents. From first concepts to working prototypes with LangChain, AutoGen, and CrewAI.">
     <meta property="og:type" content="article">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:url" content="https://neuralbroker.github.io/sajad/blogs/ai-agents-guide.html">
+    <meta property="article:published_time" content="2026-01-01">
+    <meta property="article:author" content="Abdulla Sajad">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Building with AI Agents: A Practical Guide | Abdulla Sajad">
+    <meta name="twitter:description" content="A beginner-friendly guide to building AI agents. From first concepts to working prototypes with LangChain, AutoGen, and CrewAI.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,6 +29,21 @@
         .sidebar .toc a { color: var(--text-muted); }
         .sidebar .toc a:hover { color: var(--accent); }
     </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Building with AI Agents: A Practical Guide",
+  "url": "https://neuralbroker.github.io/sajad/blogs/ai-agents-guide.html",
+  "datePublished": "2026-01-01",
+  "author": {
+    "@type": "Person",
+    "name": "Abdulla Sajad",
+    "url": "https://neuralbroker.github.io/sajad/"
+  },
+  "description": "A beginner-friendly guide to building AI agents. From first concepts to working prototypes with LangChain, AutoGen, and CrewAI."
+}
+</script>
 </head>
 <body>
     <div class="reading-progress" id="readingProgress"></div>
@@ -42,7 +63,7 @@
                 <a href="../skills.html">skills</a>
             </nav>
             <div class="sidebar-social">
-                <a href="https://github.com/sajadkoder" target="_blank" aria-label="GitHub">
+                <a href="https://github.com/neuralbroker" target="_blank" aria-label="GitHub">
                     <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                 </a>
                 <a href="https://linkedin.com/in/abdullasajad" target="_blank" aria-label="LinkedIn">
@@ -54,7 +75,7 @@
             </div>
             <div class="sidebar-status">
                 <span>location: Kerala, IN</span>
-                <span>status: open to work</span>
+                <span>status: building</span>
             </div>
         </aside>
 
@@ -107,6 +128,37 @@
             <p>The progression is from reactive (chatbots) to interactive (assistants) to proactive (agents). Most commercial systems in 2026 are still assistants, but the boundary is blurring rapidly.</p>
 
             <h2 id="core-loop">The Agent Loop: Perceive, Think, Act</h2>
+
+            <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;margin:1.5rem 0;border:1px solid var(--border);background:var(--bg);display:block;">
+                <circle cx="200" cy="110" r="85" fill="none" stroke="var(--border)" stroke-width="1" stroke-dasharray="4"/>
+                <circle cx="200" cy="40" r="28" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                <text x="200" y="36" text-anchor="middle" fill="var(--accent)" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600">PERCEIVE</text>
+                <text x="200" y="50" text-anchor="middle" fill="var(--text-muted)" font-family="IBM Plex Mono, monospace" font-size="8">Input</text>
+
+                <circle cx="270" cy="110" r="28" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                <text x="270" y="106" text-anchor="middle" fill="var(--accent)" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600">THINK</text>
+                <text x="270" y="120" text-anchor="middle" fill="var(--text-muted)" font-family="IBM Plex Mono, monospace" font-size="8">Reason</text>
+
+                <circle cx="200" cy="180" r="28" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                <text x="200" y="176" text-anchor="middle" fill="var(--accent)" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600">ACT</text>
+                <text x="200" y="190" text-anchor="middle" fill="var(--text-muted)" font-family="IBM Plex Mono, monospace" font-size="8">Execute</text>
+
+                <circle cx="130" cy="110" r="28" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                <text x="130" y="106" text-anchor="middle" fill="var(--accent)" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600">OBSERVE</text>
+                <text x="130" y="120" text-anchor="middle" fill="var(--text-muted)" font-family="IBM Plex Mono, monospace" font-size="8">Result</text>
+
+                <path d="M 220 60 Q 250 75 255 90" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
+                <path d="M 255 130 Q 250 145 220 160" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
+                <path d="M 180 160 Q 150 145 145 130" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
+                <path d="M 145 90 Q 150 75 180 60" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+                <defs>
+                    <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                        <path d="M0,0 L6,3 L0,6" fill="var(--accent)"/>
+                    </marker>
+                </defs>
+            </svg>
+
             <p>Every agent follows a fundamental loop. Understanding this loop is the key to building effective agents.</p>
             <p><strong>Perceive</strong> means receiving input. This could be a user request, sensor data, an API response, or a scheduled trigger. The agent takes in information about its current state and the task at hand.</p>
             <p><strong>Think</strong> means reasoning about what to do. The language model processes the input, considers available tools, evaluates possible actions, and decides on the next step. This is where prompt engineering, chain-of-thought reasoning, and planning strategies matter.</p>

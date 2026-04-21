@@ -5,10 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Introduction to System Design | Abdulla Sajad</title>
     <meta name="description" content="Thinking about systems at scale—from load balancers to consistency models.">
+    <link rel="canonical" href="https://neuralbroker.github.io/sajad/blogs/system-design-intro.html">
     <meta property="og:title" content="Introduction to System Design | Abdulla Sajad">
     <meta property="og:description" content="Thinking about systems at scale—from load balancers to consistency models.">
     <meta property="og:type" content="article">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:url" content="https://neuralbroker.github.io/sajad/blogs/system-design-intro.html">
+    <meta property="article:published_time" content="2025-08-01">
+    <meta property="article:author" content="Abdulla Sajad">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Introduction to System Design | Abdulla Sajad">
+    <meta name="twitter:description" content="Thinking about systems at scale—from load balancers to consistency models.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,6 +29,21 @@
         .sidebar .toc a { color: var(--text-muted); }
         .sidebar .toc a:hover { color: var(--accent); }
     </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Introduction to System Design",
+  "url": "https://neuralbroker.github.io/sajad/blogs/system-design-intro.html",
+  "datePublished": "2025-08-01",
+  "author": {
+    "@type": "Person",
+    "name": "Abdulla Sajad",
+    "url": "https://neuralbroker.github.io/sajad/"
+  },
+  "description": "Thinking about systems at scale—from load balancers to consistency models."
+}
+</script>
 </head>
 <body>
     <div class="reading-progress" id="readingProgress"></div>
@@ -42,7 +63,7 @@
                 <a href="../skills.html">skills</a>
             </nav>
             <div class="sidebar-social">
-                <a href="https://github.com/sajadkoder" target="_blank" aria-label="GitHub">
+                <a href="https://github.com/neuralbroker" target="_blank" aria-label="GitHub">
                     <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                 </a>
                 <a href="https://linkedin.com/in/abdullasajad" target="_blank" aria-label="LinkedIn">
@@ -54,7 +75,7 @@
             </div>
             <div class="sidebar-status">
                 <span>location: Kerala, IN</span>
-                <span>status: open to work</span>
+                <span>status: building</span>
             </div>
         </aside>
 
@@ -74,7 +95,7 @@
             <article class="post-content">
                 
 <h1>Introduction to System Design</h1>
-            <div class="meta"><span>System Design</span><span>Jan 2026</span></div>
+            <div class="meta"><span>System Design</span><span>Aug 2025</span><span>~30 min read</span></div>
 
             <p>Thinking about systems at scale, from load balancers to consistency models.</p>
 
@@ -99,6 +120,35 @@
             <p>Software applications regularly experience catastrophic crashes when massive network traffic spikes occur suddenly. A solitary server might perform flawlessly when handling a relatively small number of computational tasks. However, a severe hardware limitation becomes painfully apparent when millions of concurrent network requests flood the digital infrastructure simultaneously.</p>
             <p>System design is the methodical engineering process of defining the overall architecture and internal data flow of a software product. Proper architectural planning completely prevents catastrophic downtime and confidently ensures highly reliable platform functionality. By deeply understanding exactly how different software components interact, developers can successfully prevent structural system bottlenecks entirely.</p>
             <p>System Design is the process of creating software systems that scale, stay reliable under pressure, and evolve over time without breaking. It is one of the most important skills in software engineering for succeeding in interviews and for solving real-world engineering challenges. Whether you're designing a microservice for a startup or architecting a global platform for millions of users, the principles remain the same.</p>
+
+            <svg viewBox="0 0 800 140" xmlns="http://www.w3.org/2000/svg" style="max-width:100%;margin:1.5rem 0;border:1px solid var(--border);background:var(--bg);display:block;">
+                <rect x="20" y="40" width="90" height="60" rx="3" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                <text x="65" y="75" text-anchor="middle" fill="var(--accent)" font-family="IBM Plex Mono, monospace" font-size="12">CLIENT</text>
+                <line x1="110" y1="70" x2="150" y2="70" stroke="var(--accent)" stroke-width="2"/>
+                <polygon points="150,70 142,65 142,75" fill="var(--accent)"/>
+
+                <rect x="150" y="40" width="90" height="60" rx="3" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                <text x="195" y="75" text-anchor="middle" fill="var(--accent)" font-family="IBM Plex Mono, monospace" font-size="12">CDN</text>
+                <line x1="240" y1="70" x2="280" y2="70" stroke="var(--accent)" stroke-width="2"/>
+                <polygon points="280,70 272,65 272,75" fill="var(--accent)"/>
+
+                <rect x="280" y="40" width="130" height="60" rx="3" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                <text x="345" y="75" text-anchor="middle" fill="var(--accent)" font-family="IBM Plex Mono, monospace" font-size="12">LOAD BALANCER</text>
+                <line x1="410" y1="70" x2="450" y2="70" stroke="var(--accent)" stroke-width="2"/>
+                <polygon points="450,70 442,65 442,75" fill="var(--accent)"/>
+
+                <rect x="450" y="40" width="110" height="60" rx="3" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                <text x="505" y="75" text-anchor="middle" fill="var(--accent)" font-family="IBM Plex Mono, monospace" font-size="12">APP SERVER</text>
+                <line x1="560" y1="70" x2="590" y2="70" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4"/>
+                <line x1="560" y1="70" x2="560" y2="110" stroke="var(--accent)" stroke-width="2"/>
+                <line x1="560" y1="110" x2="590" y2="110" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4"/>
+
+                <rect x="590" y="40" width="80" height="60" rx="3" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4"/>
+                <text x="630" y="75" text-anchor="middle" fill="var(--accent)" font-family="IBM Plex Mono, monospace" font-size="12">CACHE</text>
+
+                <rect x="590" y="90" width="80" height="40" rx="3" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                <text x="630" y="115" text-anchor="middle" fill="var(--accent)" font-family="IBM Plex Mono, monospace" font-size="12">DATABASE</text>
+            </svg>
 
             <h2 id="fundamentals">Core Fundamentals</h2>
             <p>Before diving into components and patterns, you need a mental model of what makes large-scale systems work. System Design isn't about copying diagrams you've seen online, it's about understanding the underlying principles that drive every architectural decision.</p>
