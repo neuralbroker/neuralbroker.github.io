@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://neuralbroker.github.io/sajad/sitemap.xml

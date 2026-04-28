@@ -1,105 +1,76 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#ffffff" />
-        <title>Abdulla Sajad</title>
-        <meta name="description" content="Abdulla Sajad — Engineer building at the intersection of software and AI." />
-        <link rel="canonical" href="https://neuralbroker.github.io/sajad/" />
-        <meta property="og:title" content="Abdulla Sajad" />
-        <meta property="og:description" content="Abdulla Sajad — Engineer building at the intersection of software and AI." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://neuralbroker.github.io/sajad/" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Abdulla Sajad" />
-        <meta name="twitter:description" content="Abdulla Sajad — Engineer building at the intersection of software and AI." />
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="styles.css" />
-    </head>
-    <body>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">[DARK]</button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdulla Sajad</title>
+    <meta name="description" content="Abdulla Sajad - Software Engineer and AI Engineer">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👨‍💻</text></svg>">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            line-height: 1.6;
+            color: #111;
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        p { margin-bottom: 1rem; }
+        a { color: #111; }
+        nav { margin: 1.5rem 0; padding-bottom: 1rem; border-bottom: 1px solid #eee; }
+        nav a { margin-right: 1rem; color: #666; }
+        nav a:hover { color: #111; }
+        .project { margin-bottom: 1.5rem; }
+        .project h2 { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.25rem; }
+        .project h2 a { text-decoration: none; }
+        .project h2 a:hover { text-decoration: underline; }
+        .project .tag { font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+        .project p { color: #444; margin-top: 0.25rem; }
+        footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #eee; font-size: 0.85rem; color: #888; }
+    </style>
+</head>
+<body>
+    <h1>Abdulla Sajad</h1>
+    <p style="color: #666; margin-bottom: 1.5rem;">Software Engineer and AI Engineer &mdash; Kerala, India</p>
 
-        <div class="container">
-            <header>
-                <div class="site-title"><a href="index.html">Abdulla Sajad</a></div>
-                <div class="site-subtitle">Software Engineer and AI Engineer &mdash; Kerala, India</div>
-                <nav>
-                    <a href="index.html" class="active">Home</a>
-                    <a href="projects.html">Projects</a>
-                    <a href="skills.html">Skills</a>
-                </nav>
-            </header>
+    <nav>
+        <a href="/">Home</a>
+        <a href="https://github.com/neuralbroker">GitHub</a>
+    </nav>
 
-            <main>
-                <section class="about animate">
-                    <h2>About</h2>
-                    <p>Engineer building at the intersection of software and AI. I write about what I'm learning and ship what I believe in. Based in Kerala.</p>
-                </section>
+    <p style="margin-bottom: 2rem;">Engineer building at the intersection of software and AI. I ship what I believe in.</p>
 
-                <section class="animate stagger-1">
-                    <h2>Projects</h2>
+    <h2 style="font-size: 0.85rem; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;">Projects</h2>
 
-                    <div class="panel">
-                        <div class="panel-header">
-                            <h3><a href="https://github.com/neuralbroker/esencelab">Esencelab</a></h3>
-                            <span class="status">in progress</span>
-                        </div>
-                        <p>AI-powered campus recruitment platform with resume parsing, job matching, and role-based dashboards.</p>
-                        <div class="tags">
-                            <span>Next.js</span><span>TypeScript</span><span>FastAPI</span><span>Supabase</span><span>Gemini AI</span>
-                        </div>
-                    </div>
+    <div class="project">
+        <h2><a href="https://github.com/neuralbroker/esencelab">Esencelab</a> <span class="tag">AI Recruitment</span></h2>
+        <p>AI-powered campus recruitment platform with resume parsing and job matching.</p>
+    </div>
 
-                    <div class="panel">
-                        <div class="panel-header">
-                            <h3><a href="https://github.com/neuralbroker/blitzkode">BlitzKode</a></h3>
-                            <span class="status">in progress</span>
-                        </div>
-                        <p>AI-powered coding assistant built with fine-tuned Qwen2.5-1.5B model, llama.cpp backend, and PEFT LoRA training pipeline.</p>
-                        <div class="tags">
-                            <span>Python</span><span>llama.cpp</span><span>FastAPI</span><span>HuggingFace</span><span>PEFT</span>
-                        </div>
-                    </div>
+    <div class="project">
+        <h2><a href="https://github.com/neuralbroker/blitzkode">BlitzKode</a> <span class="tag">AI Coding</span></h2>
+        <p>Fine-tuned coding assistant with llama.cpp backend.</p>
+    </div>
 
-                    <div class="panel">
-                        <div class="panel-header">
-                            <h3><a href="https://github.com/neuralbroker/zeviewer">Zeviewer</a></h3>
-                            <span class="status">in progress</span>
-                        </div>
-                        <p>Community-driven platform for reviewing 1000+ AI models. Next.js 14, Supabase auth, database, and static export deployment.</p>
-                        <div class="tags">
-                            <span>Next.js</span><span>TypeScript</span><span>Supabase</span><span>TailwindCSS</span>
-                        </div>
-                    </div>
+    <div class="project">
+        <h2><a href="https://github.com/neuralbroker/zeviewer">Zeviewer</a> <span class="tag">AI Models</span></h2>
+        <p>Community platform for reviewing AI models.</p>
+    </div>
 
-                    <a href="projects.html" class="back-link">View all projects &rarr;</a>
-                </section>
+    <div class="project">
+        <h2><a href="https://github.com/neuralbroker/speakswap">SpeakSwap</a> <span class="tag">Voice</span></h2>
+        <p>Real-time voice translation web app. <a href="https://speakswap.vercel.app" style="color: #666; font-size: 0.9rem;">speakswap.vercel.app &rarr;</a></p>
+    </div>
 
-                <div class="status-bar animate stagger-2">
-                    <span>9 projects</span>
-                    <span>Since 2022</span>
-                </div>
-            </main>
-        </div>
-
-        <script>
-            const toggle = document.getElementById("themeToggle");
-            const saved = localStorage.getItem("theme") || "light";
-            if (saved === "dark") {
-                document.documentElement.setAttribute("data-theme", "dark");
-                toggle.textContent = "[LIGHT]";
-            }
-            toggle.addEventListener("click", () => {
-                const current = document.documentElement.getAttribute("data-theme");
-                const next = current === "dark" ? "light" : "dark";
-                document.documentElement.setAttribute("data-theme", next);
-                localStorage.setItem("theme", next);
-                toggle.textContent = next === "dark" ? "[LIGHT]" : "[DARK]";
-            });
-        </script>
-    </body>
+    <footer>
+        <p>Based in Kerala, India. Building since 2022.</p>
+    </footer>
+</body>
 </html>
