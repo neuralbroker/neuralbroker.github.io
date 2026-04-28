@@ -11,68 +11,8 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://neuralbroker.github.io/sajad/blog.html</loc>
-    <priority>0.9</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
     <loc>https://neuralbroker.github.io/sajad/skills.html</loc>
     <priority>0.7</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://neuralbroker.github.io/sajad/blogs/agentic-engineering.html</loc>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://neuralbroker.github.io/sajad/blogs/ai-agents-guide.html</loc>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://neuralbroker.github.io/sajad/blogs/ai-coding-tools-2026.html</loc>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://neuralbroker.github.io/sajad/blogs/ai-companies-scale-2026.html</loc>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://neuralbroker.github.io/sajad/blogs/dsa-real-world.html</loc>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://neuralbroker.github.io/sajad/blogs/learning-ai-engineering.html</loc>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://neuralbroker.github.io/sajad/blogs/llm-landscape-2026.html</loc>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://neuralbroker.github.io/sajad/blogs/neurosymbolic-ai-military.html</loc>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://neuralbroker.github.io/sajad/blogs/opencode-guide-2026.html</loc>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://neuralbroker.github.io/sajad/blogs/openclaw-guide-2026.html</loc>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://neuralbroker.github.io/sajad/blogs/system-design-intro.html</loc>
-    <priority>0.6</priority>
     <changefreq>monthly</changefreq>
   </url>
 </urlset>
