@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlitzKode - Fine-tuned Coding Assistant</title>
+    <meta name="description" content="BlitzKode: AI-powered coding assistant built with fine-tuned Qwen2.5-1.5B model">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 15px;
+            line-height: 1.7;
+            color: #111;
+            background: #fff;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+        a { color: #111; text-decoration: none; border-bottom: 1px solid #ddd; }
+        a:hover { border-bottom-color: #111; }
+        
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem;
+        }
+        .subtitle {
+            font-size: 1rem;
+            color: #555;
+            font-style: italic;
+        }
+        
+        nav {
+            margin: 1.25rem 0;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+        }
+        nav a {
+            margin-right: 0.75rem;
+            color: #555;
+            border: none;
+            padding: 0.25rem 0.5rem;
+        }
+        nav a:hover { color: #111; background: #f5f5f5; }
+        nav .key {
+            background: #f5f5f5;
+            padding: 0.1rem 0.35rem;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            margin-right: 0.25rem;
+        }
+        
+        .meta {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            color: #777;
+            margin: 1rem 0 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        h2 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #555;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        p { margin-bottom: 1rem; color: #333; }
+        ul, ol { margin-left: 1.25rem; margin-bottom: 1rem; }
+        li { margin-bottom: 0.5rem; }
+        
+        .code-block {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            line-height: 1.5;
+        }
+        .code-block .comment { color: #6a9955; }
+        .code-block .keyword { color: #569cd6; }
+        .code-block .string { color: #ce9178; }
+        .code-block .function { color: #dcdcaa; }
+        
+        .highlight {
+            background: #fff8e0;
+            padding: 0.15rem 0.4rem;
+            border-radius: 2px;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #fafafa;
+            border-radius: 4px;
+        }
+        .stat { text-align: center; }
+        .stat-value {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+        .stat-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            color: #777;
+            text-transform: uppercase;
+        }
+        
+        .diagram {
+            background: #f5f5f5;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        footer {
+            margin-top: 2.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+            font-size: 0.8rem;
+            color: #777;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        footer a { border: none; }
+        
+        @media (max-width: 540px) {
+            body { padding: 1.5rem 1rem; }
+            h1 { font-size: 1.5rem; }
+            .stats { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BlitzKode</h1>
+        <p class="subtitle">Fine-tuned Coding Assistant with Qwen2.5-1.5B</p>
+    </header>
+    
+    <nav>
+        <a href="index.html"><span class="key">h</span>home</a>
+        <a href="blitzkode.html"><span class="key">b</span>blog</a>
+        <a href="https://github.com/neuralbroker" target="_blank"><span class="key">w</span>work</a>
+        <a href="index.html#projects"><span class="key">p</span>projects</a>
+    </nav>
+    
+    <div class="meta">
+        Submitted: March 2026 | Author: Abdulla Sajad | Category: AI Engineering
+    </div>
+    
+    <p>BlitzKode is an AI-powered coding assistant built with a fine-tuned <span class="highlight">Qwen2.5-1.5B</span> model. It uses <span class="highlight">llama.cpp</span> for inference and <span class="highlight">PEFT LoRA</span> for efficient fine-tuning. This document covers the architecture, training pipeline, and inference setup.</p>
+    
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-value">1.5B</div>
+            <div class="stat-label">Parameters</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">4K</div>
+            <div class="stat-label">Context</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">512</div>
+            <div class="stat-label">Max Tokens</div>
+        </div>
+    </div>
+    
+    <h2>Architecture</h2>
+    
+    <p>BlitzKode uses a modular architecture with three main components:</p>
+    
+    <ul>
+        <li><strong>Base Model:</strong> Qwen2.5-1.5B-Instruct</li>
+        <li><strong>LoRA Adapters:</strong> Fine-tuned on code datasets</li>
+        <li><strong>Inference Engine:</strong> llama.cpp for efficient CPU inference</li>
+    </ul>
+    
+    <div class="diagram">
+        <svg width="400" height="180" viewBox="0 0 400 180">
+            <rect x="20" y="60" width="100" height="60" rx="4" fill="#e8e8e8" stroke="#111" stroke-width="1"/>
+            <text x="70" y="95" text-anchor="middle" font-family="IBM Plex Mono" font-size="11">User Query</text>
+            
+            <rect x="150" y="20" width="100" height="50" rx="4" fill="#e8e8e8" stroke="#111" stroke-width="1"/>
+            <text x="200" y="45" text-anchor="middle" font-family="IBM Plex Mono" font-size="10">Qwen2.5-1.5B</text>
+            
+            <rect x="150" y="110" width="100" height="50" rx="4" fill="#e8e8e8" stroke="#111" stroke-width="1"/>
+            <text x="200" y="140" text-anchor="middle" font-family="IBM Plex Mono" font-size="10">LoRA Adapters</text>
+            
+            <rect x="280" y="60" width="100" height="60" rx="4" fill="#e8e8e8" stroke="#111" stroke-width="1"/>
+            <text x="330" y="95" text-anchor="middle" font-family="IBM Plex Mono" font-size="11">Output</text>
+            
+            <line x1="120" y1="90" x2="145" y2="45" stroke="#111" stroke-width="1"/>
+            <line x1="120" y1="90" x2="145" y2="135" stroke="#111" stroke-width="1"/>
+            <line x1="250" y1="45" x2="275" y2="90" stroke="#111" stroke-width="1"/>
+            <line x1="250" y1="135" x2="275" y2="90" stroke="#111" stroke-width="1"/>
+        </svg>
+    </div>
+    
+    <h2>Technical Specifications</h2>
+    
+    <ul>
+        <li><strong>Model:</strong> Qwen2.5-1.5B-Instruct</li>
+        <li><strong>Parameters:</strong> 1.5 Billion</li>
+        <li><strong>Context Length:</strong> 4096 tokens</li>
+        <li><strong>Max New Tokens:</strong> 512 tokens</li>
+        <li><strong>Quantization:</strong> Q4_K_M (4-bit)</li>
+        <li><strong>LoRA Rank:</strong> 16</li>
+        <li><strong>LoRA Alpha:</strong> 32</li>
+    </ul>
+    
+    <h2>Training Pipeline</h2>
+    
+    <p>The fine-tuning uses PEFT (Parameter Efficient Fine-Tuning) with LoRA adapters. Here's the training script:</p>
+    
+    <div class="code-block"><span class="comment"># Training BlitzKode with PEFT</span>
+<span class="keyword">from</span> transformers <span class="keyword">import</span> AutoModelForCausalLM, AutoTokenizer, TrainingArguments, Trainer
+<span class="keyword">from</span> peft <span class="keyword">import</span> LoraConfig, get_peft_model
+
+<span class="comment"># Load base model</span>
+model = AutoModelForCausalLM.from_pretrained(<span class="string">"Qwen/Qwen2.5-1.5B-Instruct"</span>)
+tokenizer = AutoTokenizer.from_pretrained(<span class="string">"Qwen/Qwen2.5-1.5B-Instruct"</span>)
+
+<span class="comment"># Configure LoRA</span>
+lora_config = LoraConfig(
+    r=<span class="keyword">16</span>,
+    lora_alpha=<span class="keyword">32</span>,
+    target_modules=[<span class="string">"q_proj"</span>, <span class="string">"k_proj"</span>, <span class="string">"v_proj"</span>],
+    lora_dropout=<span class="keyword">0.05</span>,
+    task_type=<span class="string">"CAUSAL_LM"</span>
+)
+
+model = get_peft_model(model, lora_config)
+
+<span class="comment"># Training arguments</span>
+training_args = TrainingArguments(
+    output_dir=<span class="string">"./blitzkode model"</span>,
+    num_train_epochs=<span class="keyword">3</span>,
+    per_device_train_batch_size=<span class="keyword">4</span>,
+    learning_rate=<span class="keyword">2e-4</span>,
+    fp16=<span class="keyword">True</span>,
+    save_strategy=<span class="string">"epoch"</span>,
+    save_steps=<span class="keyword">100</span>,
+)
+
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=train_dataset,
+    tokenizer=tokenizer,
+)
+
+<span class="function">trainer.train()</span></div>
+    
+    <h2>Inference Setup</h2>
+    
+    <p>Run BlitzKode with llama.cpp for efficient CPU inference:</p>
+    
+    <div class="code-block"><span class="comment"># Run BlitzKode with llama.cpp</span>
+<span class="keyword">import</span> llamacpp
+
+<span class="function">def</span> generate(query, max_tokens=<span class="keyword">512</span>, temp=<span class="keyword">0.7</span>):
+    params = llamacpp.Params()
+    params.n_ctx = <span class="keyword">4096</span>
+    params.n_tokens = max_tokens
+    params.temp = temp
+    
+    model = llamacpp.Model(<span class="string">"./blitzkode-q4_k_m.gguf"</span>, params)
+    
+    <span class="comment"># Build prompt</span>
+    prompt = f<span class="string">"<|im_start|>system\nYou are BlitzKode, an AI coding assistant.<|im_end|>\n<|im_start|>user\n{query}<|im_end|>\n<|im_start|>assistant\n"</span>
+    
+    <span class="function">return</span> model(prompt, max_tokens=max_tokens)</div>
+    
+    <h2>Dataset</h2>
+    
+    <p>Fine-tuned on code数据集 from:</p>
+    
+    <ul>
+        <li>Python code samples (50%)</li>
+        <li>JavaScript/TypeScript (20%)</li>
+        <li>Shell scripts (15%)</li>
+        <li>SQL queries (10%)</li>
+        <li>Documentation (5%)</li>
+    </ul>
+    
+    <h2>Performance</h2>
+    
+    <ul>
+        <li><strong>Inference Speed:</strong> ~30 tokens/sec on M1 MacBook</li>
+        <li><strong>Memory Usage:</strong> ~2GB RAM</li>
+        <li><strong>First Token Latency:</strong> ~200ms</li>
+    </ul>
+    
+    <h2>Conclusion</h2>
+    
+    <p>BlitzKode demonstrates that a 1.5B parameter model can provide useful coding assistance when fine-tuned properly. The combination of Qwen2.5 base with PEFT LoRA enables efficient fine-tuning on consumer hardware while maintaining reasonable inference speed.</p>
+    
+    <p>The project is open source and available on <a href="https://github.com/neuralbroker/blitzkode" target="_blank">GitHub</a>.</p>
+    
+    <footer>
+        <a href="index.html">← Back to Home</a>
+        <a href="https://github.com/neuralbroker">GitHub</a>
+        <a href="https://linkedin.com/in/abdullasajad">LinkedIn</a>
+    </footer>
+</body>
+</html>
