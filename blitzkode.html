@@ -253,7 +253,7 @@ lora_config = LoraConfig(
 model = get_peft_model(model, lora_config)
 
 training_args = TrainingArguments(
-    output_dir=<span class="string">"./blitzkode model"</span>,
+    output_dir=<span class="string">"./blitzkode-model"</span>,
     num_train_epochs=<span class="keyword">3</span>,
     per_device_train_batch_size=<span class="keyword">4</span>,
     learning_rate=<span class="keyword">2e-4</span>,
