@@ -163,16 +163,15 @@
     
     <nav>
         <a href="index.html"><span class="key">h</span>home</a>
-        <a href="blitzkode.html"><span class="key">b</span>blog</a>
+        <a href="blog.html"><span class="key">b</span>blogs</a>
         <a href="https://github.com/neuralbroker" target="_blank"><span class="key">w</span>work</a>
-        <a href="index.html#projects"><span class="key">p</span>projects</a>
     </nav>
     
     <div class="meta">
-        Submitted: March 2026 | Author: Abdulla Sajad | Category: AI Engineering
+        March 2026 | AI Engineering | Read time: 5 min
     </div>
     
-    <p>BlitzKode is an AI-powered coding assistant built with a fine-tuned <span class="highlight">Qwen2.5-1.5B</span> model. It uses <span class="highlight">llama.cpp</span> for inference and <span class="highlight">PEFT LoRA</span> for efficient fine-tuning. This document covers the architecture, training pipeline, and inference setup.</p>
+    <p>BlitzKode is an AI-powered coding assistant built with a fine-tuned <span class="highlight">Qwen2.5-1.5B</span> model. It uses <span class="highlight">llama.cpp</span> for inference and <span class="highlight">PEFT LoRA</span> for efficient fine-tuning.</p>
     
     <div class="stats">
         <div class="stat">
@@ -191,7 +190,7 @@
     
     <h2>Architecture</h2>
     
-    <p>BlitzKode uses a modular architecture with three main components:</p>
+    <p>BlitzKode uses a modular architecture:</p>
     
     <ul>
         <li><strong>Base Model:</strong> Qwen2.5-1.5B-Instruct</li>
@@ -234,17 +233,15 @@
     
     <h2>Training Pipeline</h2>
     
-    <p>The fine-tuning uses PEFT (Parameter Efficient Fine-Tuning) with LoRA adapters. Here's the training script:</p>
+    <p>Fine-tuning uses PEFT with LoRA adapters:</p>
     
     <div class="code-block"><span class="comment"># Training BlitzKode with PEFT</span>
 <span class="keyword">from</span> transformers <span class="keyword">import</span> AutoModelForCausalLM, AutoTokenizer, TrainingArguments, Trainer
 <span class="keyword">from</span> peft <span class="keyword">import</span> LoraConfig, get_peft_model
 
-<span class="comment"># Load base model</span>
 model = AutoModelForCausalLM.from_pretrained(<span class="string">"Qwen/Qwen2.5-1.5B-Instruct"</span>)
 tokenizer = AutoTokenizer.from_pretrained(<span class="string">"Qwen/Qwen2.5-1.5B-Instruct"</span>)
 
-<span class="comment"># Configure LoRA</span>
 lora_config = LoraConfig(
     r=<span class="keyword">16</span>,
     lora_alpha=<span class="keyword">32</span>,
@@ -255,15 +252,12 @@ lora_config = LoraConfig(
 
 model = get_peft_model(model, lora_config)
 
-<span class="comment"># Training arguments</span>
 training_args = TrainingArguments(
     output_dir=<span class="string">"./blitzkode model"</span>,
     num_train_epochs=<span class="keyword">3</span>,
     per_device_train_batch_size=<span class="keyword">4</span>,
     learning_rate=<span class="keyword">2e-4</span>,
     fp16=<span class="keyword">True</span>,
-    save_strategy=<span class="string">"epoch"</span>,
-    save_steps=<span class="keyword">100</span>,
 )
 
 trainer = Trainer(
@@ -275,29 +269,24 @@ trainer = Trainer(
 
 <span class="function">trainer.train()</span></div>
     
-    <h2>Inference Setup</h2>
+    <h2>Inference</h2>
     
-    <p>Run BlitzKode with llama.cpp for efficient CPU inference:</p>
+    <p>Run with llama.cpp for efficient CPU inference:</p>
     
-    <div class="code-block"><span class="comment"># Run BlitzKode with llama.cpp</span>
+    <div class="code-block"><span class="comment"># Run BlitzKode</span>
 <span class="keyword">import</span> llamacpp
 
-<span class="function">def</span> generate(query, max_tokens=<span class="keyword">512</span>, temp=<span class="keyword">0.7</span>):
+<span class="function">def</span> generate(query, max_tokens=<span class="keyword">512</span>):
     params = llamacpp.Params()
     params.n_ctx = <span class="keyword">4096</span>
     params.n_tokens = max_tokens
-    params.temp = temp
     
     model = llamacpp.Model(<span class="string">"./blitzkode-q4_k_m.gguf"</span>, params)
-    
-    <span class="comment"># Build prompt</span>
-    prompt = f<span class="string">"<|im_start|>system\nYou are BlitzKode, an AI coding assistant.<|im_end|>\n<|im_start|>user\n{query}<|im_end|>\n<|im_start|>assistant\n"</span>
+    prompt = f<span class="string">"<|im_start|>user\n{query}<|im_end|>\n<|im_start|>assistant\n"</span>
     
     <span class="function">return</span> model(prompt, max_tokens=max_tokens)</div>
     
     <h2>Dataset</h2>
-    
-    <p>Fine-tuned on code数据集 from:</p>
     
     <ul>
         <li>Python code samples (50%)</li>
@@ -310,21 +299,17 @@ trainer = Trainer(
     <h2>Performance</h2>
     
     <ul>
-        <li><strong>Inference Speed:</strong> ~30 tokens/sec on M1 MacBook</li>
-        <li><strong>Memory Usage:</strong> ~2GB RAM</li>
-        <li><strong>First Token Latency:</strong> ~200ms</li>
+        <li><strong>Inference:</strong> ~30 tokens/sec on M1 MacBook</li>
+        <li><strong>Memory:</strong> ~2GB RAM</li>
+        <li><strong>First Token:</strong> ~200ms</li>
     </ul>
     
-    <h2>Conclusion</h2>
-    
-    <p>BlitzKode demonstrates that a 1.5B parameter model can provide useful coding assistance when fine-tuned properly. The combination of Qwen2.5 base with PEFT LoRA enables efficient fine-tuning on consumer hardware while maintaining reasonable inference speed.</p>
-    
-    <p>The project is open source and available on <a href="https://github.com/neuralbroker/blitzkode" target="_blank">GitHub</a>.</p>
+    <p style="margin-top: 1.5rem;">Open source on <a href="https://github.com/neuralbroker/blitzkode" target="_blank">GitHub</a>.</p>
     
     <footer>
         <a href="index.html">← Back to Home</a>
-        <a href="https://github.com/neuralbroker">GitHub</a>
-        <a href="https://linkedin.com/in/abdullasajad">LinkedIn</a>
+        <a href="blog.html">← All Posts</a>
+        <span style="margin-left: auto;">Open to work → <a href="mailto:abdullasajad01@gmail.com">Connect</a></span>
     </footer>
 </body>
 </html>
