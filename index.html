@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Abdulla Sajad</title>
     <meta name="description" content="Abdulla Sajad - AI Engineer">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
@@ -126,8 +126,38 @@
         footer a { border: none; }
         
         @media (max-width: 540px) {
-            body { padding: 1.5rem 1rem; }
+            body { 
+                padding: 1.5rem 1rem; 
+                font-size: 14px;
+            }
             h1 { font-size: 1.5rem; }
+            h2 { font-size: 0.65rem; }
+            nav { 
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            nav a {
+                margin-right: 0.5rem;
+                margin-bottom: 0.25rem;
+                padding: 0.2rem 0.4rem;
+                font-size: 0.7rem;
+            }
+            .abstract { font-size: 0.95rem; }
+            .project-title { font-size: 0.95rem; }
+            .project-desc { font-size: 0.85rem; }
+            .project-tags { font-size: 0.6rem; }
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+            footer {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            footer span {
+                margin-left: 0 !important;
+            }
         }
     </style>
 </head>
