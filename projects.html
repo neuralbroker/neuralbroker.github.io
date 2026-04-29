@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Projects - Abdulla Sajad</title>
+    <meta name="description" content="All Projects by Abdulla Sajad">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 15px;
+            line-height: 1.7;
+            color: #111;
+            background: #fff;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+        a { color: #111; text-decoration: none; border-bottom: 1px solid #ddd; }
+        a:hover { border-bottom-color: #111; }
+        
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem;
+        }
+        .subtitle {
+            font-size: 1rem;
+            color: #555;
+            font-style: italic;
+        }
+        
+        nav {
+            margin: 1.25rem 0;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+        }
+        nav a {
+            margin-right: 0.75rem;
+            color: #555;
+            border: none;
+            padding: 0.25rem 0.5rem;
+        }
+        nav a:hover { color: #111; background: #f5f5f5; }
+        nav a.active { background: #f5f5f5; }
+        nav .key {
+            background: #f5f5f5;
+            padding: 0.1rem 0.35rem;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            margin-right: 0.25rem;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            color: #555;
+        }
+        
+        .project {
+            margin-bottom: 1.5rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        .project:last-child { border-bottom: none; }
+        
+        .project-title {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.15rem;
+        }
+        .project-title a { border: none; }
+        
+        .project-desc {
+            font-size: 0.9rem;
+            color: #444;
+        }
+        
+        .project-tags {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            color: #777;
+            margin-top: 0.35rem;
+        }
+        .project-tags span { margin-right: 0.5rem; }
+        
+        .external {
+            margin-left: 0.35rem;
+            font-size: 0.85rem;
+        }
+        
+        footer {
+            margin-top: 2.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+            font-size: 0.8rem;
+            color: #777;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        footer a { border: none; }
+        
+        @media (max-width: 540px) {
+            body { padding: 1.5rem 1rem; font-size: 14px; }
+            h1 { font-size: 1.5rem; }
+            nav { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+            nav a { margin-right: 0.5rem; margin-bottom: 0.25rem; padding: 0.2rem 0.4rem; font-size: 0.7rem; }
+            .project-title { font-size: 0.95rem; }
+            .project-desc { font-size: 0.85rem; }
+            footer { flex-direction: column; gap: 0.5rem; }
+            footer span { margin-left: 0 !important; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Abdulla Sajad</h1>
+        <p class="subtitle">AI Engineer</p>
+    </header>
+    
+    <nav>
+        <a href="index.html"><span class="key">h</span>home</a>
+        <a href="projects.html" class="active"><span class="key">p</span>projects</a>
+        <a href="blog.html"><span class="key">b</span>blogs</a>
+    </nav>
+    
+    <a href="index.html" class="back-link">← Back to Home</a>
+    
+    <div class="project">
+        <div class="project-title"><a href="https://github.com/neuralbroker/esencelab">Esencelab</a></div>
+        <p class="project-desc">AI-powered campus recruitment platform with resume parsing and job matching.</p>
+        <div class="project-tags"><span>Next.js</span> <span>FastAPI</span> <span>Gemini AI</span> <span>Supabase</span></div>
+    </div>
+    
+    <div class="project">
+        <div class="project-title"><a href="https://github.com/neuralbroker/blitzkode">BlitzKode</a></div>
+        <p class="project-desc">Fine-tuned coding assistant with Qwen2.5-1.5B + llama.cpp.</p>
+        <div class="project-tags"><span>Python</span> <span>llama.cpp</span> <span>HuggingFace</span> <span>PEFT</span></div>
+    </div>
+    
+    <div class="project">
+        <div class="project-title"><a href="https://github.com/neuralbroker/zeviewer">Zeviewer</a></div>
+        <p class="project-desc">Community-driven platform for reviewing 1000+ AI models.</p>
+        <div class="project-tags"><span>Next.js</span> <span>Supabase</span> <span>TypeScript</span></div>
+    </div>
+    
+    <div class="project">
+        <div class="project-title"><a href="https://github.com/neuralbroker/speakswap">SpeakSwap</a> <a href="https://speakswap.vercel.app" class="external" target="_blank">[site]</a></div>
+        <p class="project-desc">Real-time voice translation web app with speech-to-text and multi-language translation.</p>
+        <div class="project-tags"><span>Next.js</span> <span>Web Speech API</span></div>
+    </div>
+    
+    <div class="project">
+        <div class="project-title"><a href="https://github.com/neuralbroker/sentinel-ml">SentinelML</a></div>
+        <p class="project-desc">Production-ready real-time fraud detection system with FastAPI, scikit-learn, Redis, MLflow, Docker.</p>
+        <div class="project-tags"><span>Python</span> <span>FastAPI</span> <span>ML</span> <span>Docker</span></div>
+    </div>
+    
+    <div class="project">
+        <div class="project-title"><a href="https://github.com/neuralbroker/drone-fleet-telemetry-api">Drone Fleet Telemetry</a></div>
+        <p class="project-desc">Real-time drone fleet monitoring system with WebSockets, Redis pub/sub, anomaly detection.</p>
+        <div class="project-tags"><span>Python</span> <span>FastAPI</span> <span>WebSockets</span> <span>Redis</span></div>
+    </div>
+    
+    <div class="project">
+        <div class="project-title"><a href="https://github.com/neuralbroker/ai-resume-screener">AI Resume Screener</a></div>
+        <p class="project-desc">FastAPI REST API using Groq LLM to screen resumes against job descriptions.</p>
+        <div class="project-tags"><span>Python</span> <span>FastAPI</span> <span>Groq</span> <span>JWT</span></div>
+    </div>
+    
+    <div class="project">
+        <div class="project-title"><a href="https://github.com/neuralbroker/smart-task-ai">Smart Task AI</a></div>
+        <p class="project-desc">AI-powered Kanban task manager with drag-drop and AI categorization.</p>
+        <div class="project-tags"><span>Java</span> <span>Spring Boot</span> <span>React</span></div>
+    </div>
+    
+    <div class="project">
+        <div class="project-title"><a href="https://github.com/neuralbroker/lexora-ai">Lexora AI</a></div>
+        <p class="project-desc">AI-powered application exploring language model capabilities.</p>
+        <div class="project-tags"><span>Python</span> <span>AI/ML</span></div>
+    </div>
+    
+    <footer>
+        <a href="https://github.com/neuralbroker">GitHub</a>
+        <a href="https://linkedin.com/in/abdullasajad">LinkedIn</a>
+        <a href="mailto:abdullasajad01@gmail.com">Email</a>
+    </footer>
+</body>
+</html>
