@@ -78,26 +78,12 @@
             animation:fadeInUp 0.5s ease-out;
         }
 
-        .profile-row {
-            display:flex;
-            align-items:center;
-            gap:1rem;
-            margin-bottom:0.5rem;
-        }
-
-        .profile-pic {
-            width:56px;
-            height:56px;
-            border-radius:50%;
-            object-fit:cover;
-            border:2px solid var(--border);
-        }
-
         h1 {
-            font-size:1.6rem;
+            font-size:2rem;
             font-weight:600;
             letter-spacing:-0.03em;
             line-height:1.2;
+            margin-bottom:0.15rem;
         }
 
         .subtitle {
@@ -274,14 +260,13 @@
 
         @media (max-width:540px) {
             body { padding:1.5rem 1rem 3rem; font-size:15px; }
-            h1 { font-size:1.4rem; }
+            h1 { font-size:1.6rem; }
             .bio { font-size:0.95rem; }
             nav { flex-wrap:wrap; gap:0.25rem; }
             nav a { padding:0.3rem 0.6rem; font-size:0.7rem; }
             .project-card { padding:0.75rem 0.75rem 0.75rem 0; }
             .project-card:hover { padding-left:0.75rem; padding-right:0; }
             footer { flex-direction:column; gap:0.75rem; align-items:flex-start; }
-            .profile-pic { width:44px; height:44px; }
         }
 
         @media (prefers-color-scheme: dark) {
@@ -292,13 +277,8 @@
 </head>
 <body>
     <header>
-        <div class="profile-row">
-            <img src="profile.jpg" alt="Abdulla Sajad" class="profile-pic" width="56" height="56">
-            <div>
-                <h1>Abdulla Sajad</h1>
-                <p class="subtitle">AI Engineer</p>
-            </div>
-        </div>
+        <h1>Abdulla Sajad</h1>
+        <p class="subtitle">Building AI that ships → AI Engineer</p>
     </header>
 
     <nav>
@@ -307,10 +287,10 @@
         <a href="blog.html"><span class="key">b</span>blogs</a>
     </nav>
 
-    <p class="bio">CS major doing AI engineering. Ship what works, ship what matters. Into agentic engineering, using AI to code and build useful things. Sometimes I research. If I'm not coding, I watch movies, play football, or try to learn something new.</p>
+    <p class="bio">CS major. AI engineering. Ship what works, ship what matters. Into agentic engineering, using AI to code and build useful things. Sometimes I research. If I'm not coding, I watch movies, play football, or try to learn something new.</p>
 
     <section class="projects">
-        <div class="section-label">Featured Projects</div>
+        <div class="section-label">What I've Built</div>
 
         <div class="project-card">
             <div class="project-name"><a href="https://github.com/neuralbroker/esencelab">Esencelab</a></div>
