@@ -5,114 +5,219 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Blog - Abdulla Sajad</title>
     <meta name="description" content="Blog - Abdulla Sajad">
+    <link rel="canonical" href="https://neuralbroker.github.io/sajad/blog.html">
+    <meta property="og:title" content="Blog - Abdulla Sajad">
+    <meta property="og:description" content="Blog - Abdulla Sajad">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity:0; transform:translateY(20px); }
+            to { opacity:1; transform:translateY(0); }
         }
-
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity:0; }
+            to { opacity:1; }
         }
 
-        html { scroll-behavior: smooth; }
+        :root {
+            --bg:#fafaf8;
+            --text:#111111;
+            --text-secondary:#555555;
+            --text-muted:#888888;
+            --border:#e5e5e0;
+            --accent:#111111;
+            --hover-bg:#f5f5f2;
+            --radius-sm:4px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg:#0e0e0c;
+                --text:#e8e6e3;
+                --text-secondary:#a0a0a0;
+                --text-muted:#666666;
+                --border:#2a2a28;
+                --accent:#e8e6e3;
+                --hover-bg:#1a1a18;
+            }
+        }
+
+        html { scroll-behavior:smooth; -webkit-font-smoothing:antialiased; }
+
         body {
-            font-family: 'Newsreader', Georgia, serif;
-            font-size: 15px;
-            line-height: 1.7;
-            color: #111;
-            background: #fff;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2.5rem 1.5rem;
-            animation: fadeIn 0.8s ease-out;
+            font-family:'Newsreader', Georgia, serif;
+            font-size:16px;
+            line-height:1.8;
+            color:var(--text);
+            background:var(--bg);
+            max-width:720px;
+            margin:0 auto;
+            padding:3rem 1.5rem 4rem;
+            animation:fadeIn 0.6s ease-out;
         }
-        header { animation: fadeInUp 0.6s ease-out; }
-        nav { animation: fadeInUp 0.7s ease-out; }
-        h2 { animation: fadeInUp 0.8s ease-out; }
 
-        .blog-item {
-            opacity: 0;
-            animation: fadeInUp 0.6s ease-out forwards;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            padding: 0.75rem;
-            margin: 0 -0.75rem 0.5rem;
-            border-radius: 4px;
-        }
-        .blog-item:hover {
-            opacity: 1;
-            background: #fafafa;
-            transform: translateX(4px);
-        }
-        .blog-item:nth-child(1) { animation-delay: 0.1s; }
-
-        footer { animation: fadeInUp 1s ease-out; }
-        a { color: #111; text-decoration: none; border-bottom: 1px solid #ddd; }
-        a:hover { border-bottom-color: #111; }
+        header { margin-bottom:0.75rem; animation:fadeInUp 0.5s ease-out; }
 
         h1 {
-            font-size: 1.75rem;
-            font-weight: 500;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.25rem;
+            font-size:1.6rem;
+            font-weight:600;
+            letter-spacing:-0.03em;
+            margin-bottom:0.15rem;
         }
+
         .subtitle {
-            font-size: 1rem;
-            color: #555;
-            font-style: italic;
+            font-size:0.95rem;
+            color:var(--text-secondary);
+            font-style:italic;
         }
 
         nav {
-            margin: 1.25rem 0;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #eee;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.75rem;
+            margin:1.25rem 0 1.75rem;
+            padding:0.75rem 0;
+            border-top:1px solid var(--border);
+            border-bottom:1px solid var(--border);
+            font-family:'IBM Plex Mono', monospace;
+            font-size:0.75rem;
+            display:flex;
+            gap:0.25rem;
+            animation:fadeInUp 0.6s ease-out;
         }
-        nav a {
-            margin-right: 0.75rem;
-            color: #555;
-            border: none;
-            padding: 0.25rem 0.5rem;
-        }
-        nav a:hover { color: #111; background: #f5f5f5; }
-        nav a.active { background: #f5f5f5; }
-        nav .key {
-            background: #f5f5f5;
-            padding: 0.1rem 0.35rem;
-            border-radius: 3px;
-            font-size: 0.7rem;
-            margin-right: 0.25rem;
-        }
-        nav { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
-        .blog-item {
-            margin-bottom: 1.25rem;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #f5f5f5;
+        nav a {
+            color:var(--text-muted);
+            border:none;
+            padding:0.4rem 0.75rem;
+            border-radius:var(--radius-sm);
+            transition:all 0.2s ease;
+        }
+
+        nav a:hover { color:var(--text); background:var(--hover-bg); }
+        nav a.active { color:var(--text); background:var(--hover-bg); }
+
+        nav .key {
+            background:var(--hover-bg);
+            padding:0.1rem 0.4rem;
+            border-radius:3px;
+            font-size:0.7rem;
+            margin-right:0.25rem;
+            border:1px solid var(--border);
+        }
+
+        .back-link {
+            display:inline-block;
+            margin-bottom:2rem;
+            font-size:0.85rem;
+            color:var(--text-muted);
+            border:none;
+            transition:color 0.2s;
+            animation:fadeInUp 0.7s ease-out;
+        }
+
+        .back-link:hover { color:var(--text); }
+
+        .section-label {
+            font-family:'IBM Plex Mono', monospace;
+            font-size:0.65rem;
+            font-weight:500;
+            text-transform:uppercase;
+            letter-spacing:0.1em;
+            color:var(--text-muted);
+            margin-bottom:1.25rem;
+        }
+
+        .post-card {
+            display:block;
+            padding:1rem 1rem 1rem 0;
+            border-bottom:1px solid var(--border);
+            transition:all 0.25s ease;
+            border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+            border-left:3px solid transparent;
+            margin-bottom:0.5rem;
+            opacity:0;
+            animation:fadeInUp 0.5s ease-out forwards;
+            animation-delay:0.1s;
+        }
+
+        .post-card:hover {
+            background:var(--hover-bg);
+            border-left-color:var(--accent);
+            padding-left:1rem;
+            padding-right:0;
+        }
+
+        .post-name {
+            font-size:1rem;
+            font-weight:600;
+            margin-bottom:0.1rem;
+        }
+
+        .post-name a { color:var(--text); border:none; }
+        .post-name a:hover { text-decoration:underline; text-underline-offset:3px; }
+
+        .post-meta {
+            font-family:'IBM Plex Mono', monospace;
+            font-size:0.63rem;
+            color:var(--text-muted);
+            margin-bottom:0.25rem;
+        }
+
+        .post-desc {
+            font-size:0.9rem;
+            color:var(--text-secondary);
+            line-height:1.6;
+        }
+
+        .post-tags {
+            font-family:'IBM Plex Mono', monospace;
+            font-size:0.63rem;
+            color:var(--text-muted);
+            margin-top:0.4rem;
+            display:flex;
+            gap:0.5rem;
+            flex-wrap:wrap;
+        }
+
+        .post-tags span {
+            background:var(--hover-bg);
+            padding:0.15rem 0.45rem;
+            border-radius:3px;
+            border:1px solid var(--border);
         }
 
         footer {
-            margin-top: 2.5rem;
-            padding-top: 1rem;
-            border-top: 1px solid #eee;
-            font-size: 0.8rem;
-            color: #777;
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+            margin-top:3rem;
+            padding-top:1.25rem;
+            border-top:1px solid var(--border);
+            font-size:0.8rem;
+            color:var(--text-muted);
+            display:flex;
+            gap:1.25rem;
+            flex-wrap:wrap;
+            align-items:center;
+            animation:fadeInUp 1s ease-out;
         }
-        footer a { border: none; }
 
-        @media (max-width: 540px) {
-            body { padding: 1.5rem 1rem; font-size: 14px; }
-            h1 { font-size: 1.5rem; }
-            nav a { margin-right: 0.5rem; margin-bottom: 0.25rem; padding: 0.2rem 0.4rem; font-size: 0.7rem; }
-            footer { flex-direction: column; gap: 0.5rem; }
-            footer span { margin-left: 0 !important; }
+        footer a { color:var(--text-secondary); border:none; }
+        footer a:hover { color:var(--text); }
+
+        @media (max-width:540px) {
+            body { padding:1.5rem 1rem 3rem; font-size:15px; }
+            h1 { font-size:1.4rem; }
+            nav { flex-wrap:wrap; gap:0.25rem; }
+            nav a { padding:0.3rem 0.6rem; font-size:0.7rem; }
+            .post-card { padding:0.75rem 0.75rem 0.75rem 0; }
+            .post-card:hover { padding-left:0.75rem; padding-right:0; }
+            footer { flex-direction:column; gap:0.75rem; align-items:flex-start; }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .post-tags span { background:var(--hover-bg); }
+            nav .key { background:var(--hover-bg); }
         }
     </style>
 </head>
@@ -128,19 +233,21 @@
         <a href="blog.html" class="active"><span class="key">b</span>blogs</a>
     </nav>
 
-    <h2 style="font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: #555; margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #eee;">All Posts</h2>
+    <a href="index.html" class="back-link">&larr; Back to Home</a>
 
-    <div style="margin-bottom: 1.25rem; padding: 0.75rem 0; border-bottom: 1px solid #f5f5f5;">
-        <div style="font-size: 1rem; font-weight: 500; margin-bottom: 0.15rem;"><a href="blitzkode.html">BlitzKode: Fine-tuned Coding Assistant</a></div>
-        <div style="font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: #888; margin-bottom: 0.25rem;">March 2026 — AI Engineering</div>
-        <p style="font-size: 0.9rem; color: #444;">AI-powered coding assistant built with fine-tuned Qwen2.5-1.5B model, llama.cpp backend, and PEFT LoRA training.</p>
+    <div class="section-label">All Posts</div>
+
+    <div class="post-card">
+        <div class="post-name"><a href="blitzkode.html">BlitzKode: Fine-tuned Coding Assistant</a></div>
+        <div class="post-meta">March 2026 &middot; AI Engineering &middot; 5 min read</div>
+        <p class="post-desc">AI-powered coding assistant built with fine-tuned Qwen2.5-1.5B model, llama.cpp backend, and PEFT LoRA training.</p>
+        <div class="post-tags"><span>AI</span><span>Coding</span><span>Fine-tuning</span></div>
     </div>
 
     <footer>
-        <a href="https://github.com/neuralbroker">GitHub</a>
-        <a href="https://linkedin.com/in/abdullasajad">LinkedIn</a>
+        <a href="https://github.com/neuralbroker" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/abdullasajad" target="_blank">LinkedIn</a>
         <a href="mailto:abdullasajad01@gmail.com">Email</a>
-        <span style="margin-left: auto;">Open to work → <a href="mailto:abdullasajad01@gmail.com">Connect</a></span>
     </footer>
 </body>
 </html>
