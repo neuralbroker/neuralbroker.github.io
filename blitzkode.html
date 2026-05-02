@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,17 +11,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        
+
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Newsreader', Georgia, serif;
@@ -40,19 +40,19 @@
         p { animation: fadeInUp 0.9s ease-out; }
         .stats { animation: fadeInUp 1s ease-out; }
         h2 { animation: fadeInUp 1.1s ease-out; }
-        
+
         .code-block {
             opacity: 0;
             animation: fadeInUp 0.8s ease-out forwards;
         }
-        
+
         .diagram {
             opacity: 0;
             animation: fadeIn 1s ease-out forwards;
         }
         a { color: #111; text-decoration: none; border-bottom: 1px solid #ddd; }
         a:hover { border-bottom-color: #111; }
-        
+
         h1 {
             font-size: 1.75rem;
             font-weight: 500;
@@ -64,7 +64,7 @@
             color: #555;
             font-style: italic;
         }
-        
+
         nav {
             margin: 1.25rem 0;
             padding: 0.75rem 0;
@@ -86,7 +86,7 @@
             font-size: 0.7rem;
             margin-right: 0.25rem;
         }
-        
+
         .meta {
             font-family: 'IBM Plex Mono', monospace;
             font-size: 0.7rem;
@@ -95,7 +95,7 @@
             padding-bottom: 1rem;
             border-bottom: 1px solid #eee;
         }
-        
+
         h2 {
             font-family: 'IBM Plex Mono', monospace;
             font-size: 0.75rem;
@@ -107,11 +107,11 @@
             padding-bottom: 0.5rem;
             border-bottom: 1px solid #eee;
         }
-        
+
         p { margin-bottom: 1rem; color: #333; }
         ul, ol { margin-left: 1.25rem; margin-bottom: 1rem; }
         li { margin-bottom: 0.5rem; }
-        
+
         .code-block {
             font-family: 'IBM Plex Mono', monospace;
             font-size: 0.85rem;
@@ -127,13 +127,13 @@
         .code-block .keyword { color: #569cd6; }
         .code-block .string { color: #ce9178; }
         .code-block .function { color: #dcdcaa; }
-        
+
         .highlight {
             background: #fff8e0;
             padding: 0.15rem 0.4rem;
             border-radius: 2px;
         }
-        
+
         .stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -155,7 +155,7 @@
             color: #777;
             text-transform: uppercase;
         }
-        
+
         .diagram {
             background: #f5f5f5;
             padding: 2rem;
@@ -163,7 +163,7 @@
             margin: 1.5rem 0;
             text-align: center;
         }
-        
+
         footer {
             margin-top: 2.5rem;
             padding-top: 1rem;
@@ -175,7 +175,7 @@
             flex-wrap: wrap;
         }
         footer a { border: none; }
-        
+
         @media (max-width: 540px) {
             body { padding: 1.5rem 1rem; font-size: 14px; }
             h1 { font-size: 1.5rem; }
@@ -194,19 +194,19 @@
         <h1>BlitzKode</h1>
         <p class="subtitle">Fine-tuned Coding Assistant</p>
     </header>
-    
+
     <nav>
         <a href="index.html"><span class="key">h</span>home</a>
         <a href="projects.html"><span class="key">p</span>projects</a>
         <a href="blog.html"><span class="key">b</span>blogs</a>
     </nav>
-    
+
     <div class="meta">
         March 2026 | AI Engineering | Read time: 5 min
     </div>
-    
+
     <p>BlitzKode is an AI-powered coding assistant built with a fine-tuned <span class="highlight">Qwen2.5-1.5B</span> model. It uses <span class="highlight">llama.cpp</span> for inference and <span class="highlight">PEFT LoRA</span> for efficient fine-tuning.</p>
-    
+
     <div class="stats">
         <div class="stat">
             <div class="stat-value">1.5B</div>
@@ -221,40 +221,40 @@
             <div class="stat-label">Max Tokens</div>
         </div>
     </div>
-    
+
     <h2>Architecture</h2>
-    
+
     <p>BlitzKode uses a modular architecture:</p>
-    
+
     <ul>
         <li><strong>Base Model:</strong> Qwen2.5-1.5B-Instruct</li>
         <li><strong>LoRA Adapters:</strong> Fine-tuned on code datasets</li>
         <li><strong>Inference Engine:</strong> llama.cpp for efficient CPU inference</li>
     </ul>
-    
+
     <div class="diagram">
         <svg width="400" height="180" viewBox="0 0 400 180">
             <rect x="20" y="60" width="100" height="60" rx="4" fill="#e8e8e8" stroke="#111" stroke-width="1"/>
             <text x="70" y="95" text-anchor="middle" font-family="IBM Plex Mono" font-size="11">User Query</text>
-            
+
             <rect x="150" y="20" width="100" height="50" rx="4" fill="#e8e8e8" stroke="#111" stroke-width="1"/>
             <text x="200" y="45" text-anchor="middle" font-family="IBM Plex Mono" font-size="10">Qwen2.5-1.5B</text>
-            
+
             <rect x="150" y="110" width="100" height="50" rx="4" fill="#e8e8e8" stroke="#111" stroke-width="1"/>
             <text x="200" y="140" text-anchor="middle" font-family="IBM Plex Mono" font-size="10">LoRA Adapters</text>
-            
+
             <rect x="280" y="60" width="100" height="60" rx="4" fill="#e8e8e8" stroke="#111" stroke-width="1"/>
             <text x="330" y="95" text-anchor="middle" font-family="IBM Plex Mono" font-size="11">Output</text>
-            
+
             <line x1="120" y1="90" x2="145" y2="45" stroke="#111" stroke-width="1"/>
             <line x1="120" y1="90" x2="145" y2="135" stroke="#111" stroke-width="1"/>
             <line x1="250" y1="45" x2="275" y2="90" stroke="#111" stroke-width="1"/>
             <line x1="250" y1="135" x2="275" y2="90" stroke="#111" stroke-width="1"/>
         </svg>
     </div>
-    
+
     <h2>Technical Specifications</h2>
-    
+
     <ul>
         <li><strong>Model:</strong> Qwen2.5-1.5B-Instruct</li>
         <li><strong>Parameters:</strong> 1.5 Billion</li>
@@ -264,11 +264,11 @@
         <li><strong>LoRA Rank:</strong> 16</li>
         <li><strong>LoRA Alpha:</strong> 32</li>
     </ul>
-    
+
     <h2>Training Pipeline</h2>
-    
+
     <p>Fine-tuning uses PEFT with LoRA adapters:</p>
-    
+
     <div class="code-block"><span class="comment"># Training BlitzKode with PEFT</span>
 <span class="keyword">from</span> transformers <span class="keyword">import</span> AutoModelForCausalLM, AutoTokenizer, TrainingArguments, Trainer
 <span class="keyword">from</span> peft <span class="keyword">import</span> LoraConfig, get_peft_model
@@ -302,11 +302,11 @@ trainer = Trainer(
 )
 
 <span class="function">trainer.train()</span></div>
-    
+
     <h2>Inference</h2>
-    
+
     <p>Run with llama.cpp for efficient CPU inference:</p>
-    
+
     <div class="code-block"><span class="comment"># Run BlitzKode</span>
 <span class="keyword">import</span> llamacpp
 
@@ -314,14 +314,14 @@ trainer = Trainer(
     params = llamacpp.Params()
     params.n_ctx = <span class="keyword">4096</span>
     params.n_tokens = max_tokens
-    
+
     model = llamacpp.Model(<span class="string">"./blitzkode-q4_k_m.gguf"</span>, params)
-    prompt = f<span class="string">"<|im_start|>user\n{query}<|im_end|>\n<|im_start|>assistant\n"</span>
-    
+    prompt = f<span class="string">"&lt;|im_start|&gt;user\n{query}&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant\n"</span>
+
     <span class="function">return</span> model(prompt, max_tokens=max_tokens)</div>
-    
+
     <h2>Dataset</h2>
-    
+
     <ul>
         <li>Python code samples (50%)</li>
         <li>JavaScript/TypeScript (20%)</li>
@@ -329,17 +329,17 @@ trainer = Trainer(
         <li>SQL queries (10%)</li>
         <li>Documentation (5%)</li>
     </ul>
-    
+
     <h2>Performance</h2>
-    
+
     <ul>
         <li><strong>Inference:</strong> ~30 tokens/sec on M1 MacBook</li>
         <li><strong>Memory:</strong> ~2GB RAM</li>
         <li><strong>First Token:</strong> ~200ms</li>
     </ul>
-    
+
     <p style="margin-top: 1.5rem;">Open source on <a href="https://github.com/neuralbroker/blitzkode" target="_blank">GitHub</a>.</p>
-    
+
     <footer>
         <a href="index.html">← Back to Home</a>
         <a href="blog.html">← All Posts</a>
