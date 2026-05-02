@@ -5,240 +5,339 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Abdulla Sajad</title>
     <meta name="description" content="Abdulla Sajad - AI Engineer">
+    <meta name="author" content="Abdulla Sajad">
+    <link rel="canonical" href="https://neuralbroker.github.io/sajad/">
+    <meta property="og:title" content="Abdulla Sajad">
+    <meta property="og:description" content="Abdulla Sajad - AI Engineer">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://neuralbroker.github.io/sajad/">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity:0; transform:translateY(24px); }
+            to { opacity:1; transform:translateY(0); }
         }
-
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity:0; }
+            to { opacity:1; }
+        }
+        @keyframes shimmer {
+            0% { background-position:-200% 0; }
+            100% { background-position:200% 0; }
         }
 
-        html { scroll-behavior: smooth; }
+        :root {
+            --bg:#fafaf8;
+            --surface:#ffffff;
+            --text:#111111;
+            --text-secondary:#555555;
+            --text-muted:#888888;
+            --border:#e5e5e0;
+            --border-hover:#d0d0c8;
+            --accent:#111111;
+            --hover-bg:#f5f5f2;
+            --radius:8px;
+            --radius-sm:4px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg:#0e0e0c;
+                --surface:#161614;
+                --text:#e8e6e3;
+                --text-secondary:#a0a0a0;
+                --text-muted:#666666;
+                --border:#2a2a28;
+                --border-hover:#3a3a38;
+                --accent:#e8e6e3;
+                --hover-bg:#1a1a18;
+            }
+        }
+
+        html { scroll-behavior:smooth; -webkit-font-smoothing:antialiased; }
+
         body {
-            font-family: 'Newsreader', Georgia, serif;
-            font-size: 15px;
-            line-height: 1.7;
-            color: #111;
-            background: #fff;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2.5rem 1.5rem;
-            animation: fadeIn 0.8s ease-out;
+            font-family:'Newsreader', Georgia, serif;
+            font-size:16px;
+            line-height:1.8;
+            color:var(--text);
+            background:var(--bg);
+            max-width:720px;
+            margin:0 auto;
+            padding:3rem 1.5rem 4rem;
+            animation:fadeIn 0.6s ease-out;
         }
-        header { animation: fadeInUp 0.6s ease-out; }
-        nav { animation: fadeInUp 0.7s ease-out; }
-        .abstract { animation: fadeInUp 0.8s ease-out; }
-        h2 { animation: fadeInUp 0.9s ease-out; }
 
-        .project {
-            opacity: 0;
-            animation: fadeInUp 0.6s ease-out forwards;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            padding: 0.75rem;
-            margin: 0 -0.75rem 1.25rem;
-            border-radius: 4px;
+        header {
+            margin-bottom:0.75rem;
+            animation:fadeInUp 0.5s ease-out;
         }
-        .project:hover {
-            opacity: 1;
-            background: #fafafa;
-            transform: translateX(4px);
-        }
-        .project:nth-child(1) { animation-delay: 0.1s; }
-        .project:nth-child(2) { animation-delay: 0.2s; }
-        .project:nth-child(3) { animation-delay: 0.3s; }
 
-        footer { animation: fadeInUp 1s ease-out; }
-        a { color: #111; text-decoration: none; border-bottom: 1px solid #ddd; }
-        a:hover { border-bottom-color: #111; }
+        .profile-row {
+            display:flex;
+            align-items:center;
+            gap:1rem;
+            margin-bottom:0.5rem;
+        }
+
+        .profile-pic {
+            width:56px;
+            height:56px;
+            border-radius:50%;
+            object-fit:cover;
+            border:2px solid var(--border);
+        }
 
         h1 {
-            font-size: 1.75rem;
-            font-weight: 500;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.25rem;
+            font-size:1.6rem;
+            font-weight:600;
+            letter-spacing:-0.03em;
+            line-height:1.2;
         }
+
         .subtitle {
-            font-size: 1rem;
-            color: #555;
-            font-style: italic;
+            font-size:0.95rem;
+            color:var(--text-secondary);
+            font-style:italic;
         }
 
         nav {
-            margin: 1.25rem 0;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #eee;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.75rem;
+            margin:1.25rem 0 1.75rem;
+            padding:0.75rem 0;
+            border-top:1px solid var(--border);
+            border-bottom:1px solid var(--border);
+            font-family:'IBM Plex Mono', monospace;
+            font-size:0.75rem;
+            display:flex;
+            gap:0.25rem;
+            animation:fadeInUp 0.6s ease-out;
         }
+
         nav a {
-            margin-right: 0.75rem;
-            color: #555;
-            border: none;
-            padding: 0.25rem 0.5rem;
+            color:var(--text-muted);
+            border:none;
+            padding:0.4rem 0.75rem;
+            border-radius:var(--radius-sm);
+            transition:all 0.2s ease;
         }
-        nav a:hover { color: #111; background: #f5f5f5; }
+
+        nav a:hover {
+            color:var(--text);
+            background:var(--hover-bg);
+        }
+
         nav .key {
-            background: #f5f5f5;
-            padding: 0.1rem 0.35rem;
-            border-radius: 3px;
-            font-size: 0.7rem;
-            margin-right: 0.25rem;
+            background:var(--hover-bg);
+            padding:0.1rem 0.4rem;
+            border-radius:3px;
+            font-size:0.7rem;
+            margin-right:0.25rem;
+            border:1px solid var(--border);
         }
 
-        .abstract {
-            font-size: 1.05rem;
-            color: #333;
-            margin: 1.5rem 0 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #eee;
+        .bio {
+            font-size:1.05rem;
+            color:var(--text-secondary);
+            line-height:1.75;
+            margin-bottom:2.5rem;
+            padding-bottom:1.5rem;
+            border-bottom:1px solid var(--border);
+            animation:fadeInUp 0.7s ease-out;
         }
 
-        h2 {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.7rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: #555;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #eee;
+        .section-label {
+            font-family:'IBM Plex Mono', monospace;
+            font-size:0.65rem;
+            font-weight:500;
+            text-transform:uppercase;
+            letter-spacing:0.1em;
+            color:var(--text-muted);
+            margin-bottom:1.25rem;
         }
 
-        .projects { margin-bottom: 2rem; }
-
-        .project {
-            margin-bottom: 1.25rem;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #f5f5f5;
+        .projects {
+            animation:fadeInUp 0.8s ease-out;
         }
-        .project:last-child { border-bottom: none; }
 
-        .project-title {
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 0.15rem;
+        .project-card {
+            display:block;
+            padding:1rem 1rem 1rem 0;
+            border-bottom:1px solid var(--border);
+            transition:all 0.25s ease;
+            border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+            border-left:3px solid transparent;
+            margin-bottom:0.5rem;
         }
-        .project-title a { border: none; }
+
+        .project-card:hover {
+            background:var(--hover-bg);
+            border-left-color:var(--accent);
+            padding-left:1rem;
+            padding-right:0;
+        }
+
+        .project-name {
+            font-size:1rem;
+            font-weight:600;
+            margin-bottom:0.1rem;
+        }
+
+        .project-name a {
+            color:var(--text);
+            border:none;
+        }
+
+        .project-name a:hover {
+            text-decoration:underline;
+            text-underline-offset:3px;
+        }
 
         .project-desc {
-            font-size: 0.9rem;
-            color: #444;
+            font-size:0.9rem;
+            color:var(--text-secondary);
+            line-height:1.6;
         }
 
         .project-tags {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.65rem;
-            color: #777;
-            margin-top: 0.35rem;
+            font-family:'IBM Plex Mono', monospace;
+            font-size:0.63rem;
+            color:var(--text-muted);
+            margin-top:0.4rem;
+            display:flex;
+            gap:0.5rem;
+            flex-wrap:wrap;
         }
-        .project-tags span { margin-right: 0.5rem; }
 
-        .external {
-            margin-left: 0.35rem;
-            font-size: 0.85rem;
+        .project-tags span {
+            background:var(--hover-bg);
+            padding:0.15rem 0.45rem;
+            border-radius:3px;
+            border:1px solid var(--border);
         }
+
+        .external-link {
+            margin-left:0.25rem;
+            font-size:0.85rem;
+            color:var(--text-muted);
+            border:none;
+        }
+
+        .external-link:hover { color:var(--text); }
+
+        .view-all {
+            display:inline-block;
+            margin-top:1rem;
+            font-size:0.9rem;
+            color:var(--text-muted);
+            border:none;
+            transition:color 0.2s;
+        }
+
+        .view-all:hover { color:var(--text); }
 
         footer {
-            margin-top: 2.5rem;
-            padding-top: 1rem;
-            border-top: 1px solid #eee;
-            font-size: 0.8rem;
-            color: #777;
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
+            margin-top:3rem;
+            padding-top:1.25rem;
+            border-top:1px solid var(--border);
+            font-size:0.8rem;
+            color:var(--text-muted);
+            display:flex;
+            gap:1.25rem;
+            flex-wrap:wrap;
+            align-items:center;
+            animation:fadeInUp 1s ease-out;
         }
-        footer a { border: none; }
 
-        @media (max-width: 540px) {
-            body {
-                padding: 1.5rem 1rem;
-                font-size: 14px;
-            }
-            h1 { font-size: 1.5rem; }
-            h2 { font-size: 0.65rem; }
-            nav {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-            nav a {
-                margin-right: 0.5rem;
-                margin-bottom: 0.25rem;
-                padding: 0.2rem 0.4rem;
-                font-size: 0.7rem;
-            }
-            .abstract { font-size: 0.95rem; }
-            .project-title { font-size: 0.95rem; }
-            .project-desc { font-size: 0.85rem; }
-            .project-tags { font-size: 0.6rem; }
-            .stats {
-                grid-template-columns: 1fr;
-                gap: 0.75rem;
-            }
-            footer {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            footer span {
-                margin-left: 0 !important;
-            }
+        footer a {
+            color:var(--text-secondary);
+            border:none;
+        }
+
+        footer a:hover { color:var(--text); }
+
+        .status-dot {
+            display:inline-block;
+            width:6px;
+            height:6px;
+            background:#22c55e;
+            border-radius:50%;
+            margin-right:0.35rem;
+            animation:shimmer 2s ease-in-out infinite;
+            background:linear-gradient(90deg, #22c55e 0%, #86efac 50%, #22c55e 100%);
+            background-size:200% 100%;
+        }
+
+        @media (max-width:540px) {
+            body { padding:1.5rem 1rem 3rem; font-size:15px; }
+            h1 { font-size:1.4rem; }
+            .bio { font-size:0.95rem; }
+            nav { flex-wrap:wrap; gap:0.25rem; }
+            nav a { padding:0.3rem 0.6rem; font-size:0.7rem; }
+            .project-card { padding:0.75rem 0.75rem 0.75rem 0; }
+            .project-card:hover { padding-left:0.75rem; padding-right:0; }
+            footer { flex-direction:column; gap:0.75rem; align-items:flex-start; }
+            .profile-pic { width:44px; height:44px; }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .project-tags span { background:var(--surface); }
+            nav .key { background:var(--surface); }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Abdulla Sajad</h1>
-        <p class="subtitle">AI Engineer</p>
+        <div class="profile-row">
+            <img src="profile.jpg" alt="Abdulla Sajad" class="profile-pic" width="56" height="56">
+            <div>
+                <h1>Abdulla Sajad</h1>
+                <p class="subtitle">AI Engineer</p>
+            </div>
+        </div>
     </header>
 
     <nav>
-        <a href="index.html"><span class="key">h</span>home</a>
+        <a href="index.html" style="color:var(--text);"><span class="key">h</span>home</a>
         <a href="projects.html"><span class="key">p</span>projects</a>
         <a href="blog.html"><span class="key">b</span>blogs</a>
     </nav>
 
-    <p class="abstract">CS major doing AI engineering. Ship what works, ship what matters. Into agentic engineering, using AI to code and build useful things. Sometimes I research. If I'm not coding, I watch movies, play football, or try to learn something new.</p>
+    <p class="bio">CS major doing AI engineering. Ship what works, ship what matters. Into agentic engineering, using AI to code and build useful things. Sometimes I research. If I'm not coding, I watch movies, play football, or try to learn something new.</p>
 
-    <section class="projects" id="projects">
-        <h2>Projects</h2>
+    <section class="projects">
+        <div class="section-label">Featured Projects</div>
 
-        <div class="project">
-            <div class="project-title"><a href="https://github.com/neuralbroker/esencelab">Esencelab</a></div>
-            <p class="project-desc">AI-powered campus recruitment platform with resume parsing and job matching.</p>
-            <div class="project-tags"><span>Next.js</span> <span>FastAPI</span> <span>Gemini AI</span></div>
+        <div class="project-card">
+            <div class="project-name"><a href="https://github.com/neuralbroker/esencelab">Esencelab</a></div>
+            <p class="project-desc">AI-powered campus recruitment platform with resume parsing, job matching, and role-based dashboards.</p>
+            <div class="project-tags"><span>Next.js</span><span>FastAPI</span><span>Gemini AI</span><span>Supabase</span></div>
         </div>
 
-        <div class="project">
-            <div class="project-title"><a href="https://github.com/neuralbroker/blitzkode">BlitzKode</a></div>
-            <p class="project-desc">Fine-tuned coding assistant with Qwen2.5-1.5B + llama.cpp.</p>
-            <div class="project-tags"><span>Python</span> <span>llama.cpp</span> <span>PEFT</span></div>
+        <div class="project-card">
+            <div class="project-name"><a href="https://github.com/neuralbroker/blitzkode">BlitzKode</a></div>
+            <p class="project-desc">Fine-tuned coding assistant with Qwen2.5-1.5B + llama.cpp and PEFT LoRA training pipeline.</p>
+            <div class="project-tags"><span>Python</span><span>llama.cpp</span><span>HuggingFace</span><span>PEFT</span></div>
         </div>
 
-        <div class="project">
-            <div class="project-title"><a href="https://github.com/neuralbroker/speakswap">SpeakSwap</a> <a href="https://speakswap.vercel.app" class="external" target="_blank">[site]</a></div>
-            <p class="project-desc">Real-time voice translation web app.</p>
-            <div class="project-tags"><span>Next.js</span> <span>Web Speech API</span></div>
+        <div class="project-card">
+            <div class="project-name"><a href="https://github.com/neuralbroker/speakswap">SpeakSwap</a> <a href="https://speakswap.vercel.app" class="external-link" target="_blank">&nearr;</a></div>
+            <p class="project-desc">Real-time voice translation web app with speech-to-text and multi-language translation.</p>
+            <div class="project-tags"><span>Next.js</span><span>Web Speech API</span><span>TypeScript</span></div>
         </div>
 
-        <a href="projects.html" style="font-size: 0.9rem; color: #555;">View all projects →</a>
+        <a href="projects.html" class="view-all">View all projects &rarr;</a>
     </section>
 
     <footer>
-        <a href="https://github.com/neuralbroker">GitHub</a>
-        <a href="https://linkedin.com/in/abdullasajad">LinkedIn</a>
+        <a href="https://github.com/neuralbroker" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/abdullasajad" target="_blank">LinkedIn</a>
         <a href="mailto:abdullasajad01@gmail.com">Email</a>
-        <span style="margin-left: auto;">Open to work → <a href="mailto:abdullasajad01@gmail.com">Connect</a></span>
+        <span style="margin-left:auto;"><span class="status-dot"></span>Open to work</span>
     </footer>
 </body>
 </html>
