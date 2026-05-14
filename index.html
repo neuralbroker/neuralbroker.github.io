@@ -1,323 +1,776 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>Abdulla Sajad</title>
-    <meta name="description" content="Abdulla Sajad - AI Engineer">
-    <meta name="author" content="Abdulla Sajad">
-    <link rel="canonical" href="https://neuralbroker.github.io/sajad/">
-    <meta property="og:title" content="Abdulla Sajad">
-    <meta property="og:description" content="Abdulla Sajad - AI Engineer">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://neuralbroker.github.io/sajad/">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>AS</text></svg>">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Abdulla Sajad</title>
+  <meta name="description" content="Abdulla Sajad - AI Engineer building agentic systems and useful software.">
+  <meta name="author" content="Abdulla Sajad">
+  <link rel="canonical" href="https://neuralbroker.github.io/sajad/">
 
-        @keyframes fadeInUp {
-            from { opacity:0; transform:translateY(24px); }
-            to { opacity:1; transform:translateY(0); }
-        }
-        @keyframes fadeIn {
-            from { opacity:0; }
-            to { opacity:1; }
-        }
-        @keyframes shimmer {
-            0% { background-position:-200% 0; }
-            100% { background-position:200% 0; }
-        }
+  <meta property="og:title" content="Abdulla Sajad">
+  <meta property="og:description" content="AI engineer building agentic systems, coding tools, and products that ship.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://neuralbroker.github.io/sajad/">
 
-        :root {
-            --bg:#fafaf8;
-            --surface:#ffffff;
-            --text:#111111;
-            --text-secondary:#555555;
-            --text-muted:#888888;
-            --border:#e5e5e0;
-            --border-hover:#d0d0c8;
-            --accent:#111111;
-            --hover-bg:#f5f5f2;
-            --radius:8px;
-            --radius-sm:4px;
-        }
+  <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b0f19'/><text x='50' y='62' text-anchor='middle' font-size='46' fill='%23a5f3fc' font-family='system-ui, -apple-system, BlinkMacSystemFont, sans-serif'>AS</text></svg>">
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg:#0e0e0c;
-                --surface:#161614;
-                --text:#e8e6e3;
-                --text-secondary:#a0a0a0;
-                --text-muted:#666666;
-                --border:#2a2a28;
-                --border-hover:#3a3a38;
-                --accent:#e8e6e3;
-                --hover-bg:#1a1a18;
-            }
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
 
-        html { scroll-behavior:smooth; -webkit-font-smoothing:antialiased; }
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family:'Newsreader', Georgia, serif;
-            font-size:16px;
-            line-height:1.8;
-            color:var(--text);
-            background:var(--bg);
-            max-width:720px;
-            margin:0 auto;
-            padding:3rem 1.5rem 4rem;
-            animation:fadeIn 0.6s ease-out;
-        }
+    :root {
+      --bg: #020617;            /* slate-950-ish */
+      --bg-elevated: #020617;
+      --bg-soft: #020617;
+      --surface: rgba(15, 23, 42, 0.9);
+      --surface-soft: rgba(15, 23, 42, 0.75);
+      --border-subtle: rgba(148, 163, 184, 0.18);
+      --border-strong: rgba(148, 163, 184, 0.4);
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.16);
+      --accent-soft-2: rgba(34, 197, 94, 0.08);
+      --accent-text: #a5f3fc;
+      --text: #e5e7eb;
+      --text-soft: #9ca3af;
+      --text-muted: #6b7280;
+      --danger: #f97373;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --shadow-soft: 0 18px 60px rgba(15, 23, 42, 0.95);
+      --shadow-subtle: 0 8px 30px rgba(15, 23, 42, 0.7);
+      --backdrop-blur: blur(16px);
+      --nav-height: 52px;
+      --glow: 0 0 35px rgba(34, 197, 94, 0.3);
+      --transition-fast: 160ms cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-med: 220ms cubic-bezier(0.16, 1, 0.3, 1);
+      --font-sans: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
 
-        header {
-            margin-bottom:0.75rem;
-            animation:fadeInUp 0.5s ease-out;
-        }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
 
-        h1 {
-            font-size:2rem;
-            font-weight:600;
-            letter-spacing:-0.03em;
-            line-height:1.2;
-            margin-bottom:0.15rem;
-        }
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+      background: radial-gradient(circle at top, #0b1120 0, #020617 45%, #000 100%);
+    }
 
-        .subtitle {
-            font-size:0.95rem;
-            color:var(--text-secondary);
-            font-style:italic;
-        }
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.7;
+      padding: 1.75rem 1.25rem 3rem;
+      display: flex;
+      justify-content: center;
+    }
 
-        nav {
-            margin:1.25rem 0 1.75rem;
-            padding:0.75rem 0;
-            border-top:1px solid var(--border);
-            border-bottom:1px solid var(--border);
-            font-family:'IBM Plex Mono', monospace;
-            font-size:0.75rem;
-            display:flex;
-            gap:0.25rem;
-            animation:fadeInUp 0.6s ease-out;
-        }
+    .shell {
+      width: 100%;
+      max-width: 960px;
+      position: relative;
+      isolation: isolate;
+    }
 
-        nav a {
-            color:var(--text-muted);
-            border:none;
-            padding:0.4rem 0.75rem;
-            border-radius:var(--radius-sm);
-            transition:all 0.2s ease;
-        }
+    /* Background glow + grid */
 
-        nav a:hover {
-            color:var(--text);
-            background:var(--hover-bg);
-        }
+    .bg-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(34, 197, 94, 0.05), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.06), transparent 60%);
+    }
 
-        nav .key {
-            background:var(--hover-bg);
-            padding:0.1rem 0.4rem;
-            border-radius:3px;
-            font-size:0.7rem;
-            margin-right:0.25rem;
-            border:1px solid var(--border);
-        }
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      opacity: 0.4;
+      background-image:
+        linear-gradient(rgba(15, 23, 42, 0.7) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.7) 1px, transparent 1px);
+      background-size: 26px 26px;
+      mask-image: radial-gradient(circle at top, black 0, transparent 70%);
+    }
 
-        .bio {
-            font-size:1.05rem;
-            color:var(--text-secondary);
-            line-height:1.75;
-            margin-bottom:2.5rem;
-            padding-bottom:1.5rem;
-            border-bottom:1px solid var(--border);
-            animation:fadeInUp 0.7s ease-out;
-        }
+    /* Layout */
 
-        .section-label {
-            font-family:'IBM Plex Mono', monospace;
-            font-size:0.65rem;
-            font-weight:500;
-            text-transform:uppercase;
-            letter-spacing:0.1em;
-            color:var(--text-muted);
-            margin-bottom:1.25rem;
-        }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      padding: 0.6rem 0;
+      backdrop-filter: blur(20px);
+      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.9), transparent);
+    }
 
-        .projects {
-            animation:fadeInUp 0.8s ease-out;
-        }
+    .identity {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
 
-        .project-card {
-            display:block;
-            padding:1rem 1rem 1rem 0;
-            border-bottom:1px solid var(--border);
-            transition:all 0.25s ease;
-            border-radius:0 var(--radius-sm) var(--radius-sm) 0;
-            border-left:3px solid transparent;
-            margin-bottom:0.5rem;
-        }
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: radial-gradient(circle at 20% 0%, #22c55e 0, #0f172a 38%, #000 100%);
+      box-shadow: var(--glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--accent-text);
+    }
 
-        .project-card:hover {
-            background:var(--hover-bg);
-            border-left-color:var(--accent);
-            padding-left:1rem;
-            padding-right:0;
-        }
+    .name-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.08rem;
+    }
 
-        .project-name {
-            font-size:1rem;
-            font-weight:600;
-            margin-bottom:0.1rem;
-        }
+    .name {
+      font-size: 1rem;
+      letter-spacing: -0.03em;
+      font-weight: 600;
+    }
 
-        .project-name a {
-            color:var(--text);
-            border:none;
-        }
+    .tagline {
+      font-size: 0.75rem;
+      color: var(--text-soft);
+    }
 
-        .project-name a:hover {
-            text-decoration:underline;
-            text-underline-offset:3px;
-        }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      background: rgba(15, 23, 42, 0.85);
+      border-radius: 999px;
+      padding: 0.18rem 0.35rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: var(--shadow-subtle);
+    }
 
-        .project-desc {
-            font-size:0.9rem;
-            color:var(--text-secondary);
-            line-height:1.6;
-        }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      position: relative;
+      overflow: hidden;
+      transition: background var(--transition-med), color var(--transition-med), border-color var(--transition-med);
+      border: 1px solid transparent;
+    }
 
-        .project-tags {
-            font-family:'IBM Plex Mono', monospace;
-            font-size:0.63rem;
-            color:var(--text-muted);
-            margin-top:0.4rem;
-            display:flex;
-            gap:0.5rem;
-            flex-wrap:wrap;
-        }
+    nav a span.key {
+      padding: 0.05rem 0.32rem;
+      border-radius: 4px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--text-soft);
+      font-size: 0.65em;
+      background: rgba(15, 23, 42, 0.9);
+    }
 
-        .project-tags span {
-            background:var(--hover-bg);
-            padding:0.15rem 0.45rem;
-            border-radius:3px;
-            border:1px solid var(--border);
-        }
+    nav a.active {
+      background: radial-gradient(circle at top, rgba(34, 197, 94, 0.22), rgba(15, 23, 42, 0.95));
+      color: var(--text);
+      border-color: var(--border-strong);
+    }
 
-        .external-link {
-            margin-left:0.25rem;
-            font-size:0.85rem;
-            color:var(--text-muted);
-            border:none;
-        }
+    nav a:hover:not(.active) {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(148, 163, 184, 0.35);
+      color: var(--text-soft);
+    }
 
-        .external-link:hover { color:var(--text); }
+    /* Main hero */
 
-        .view-all {
-            display:inline-block;
-            margin-top:1rem;
-            font-size:0.9rem;
-            color:var(--text-muted);
-            border:none;
-            transition:color 0.2s;
-        }
+    .main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 1.75rem;
+      margin-bottom: 2.4rem;
+      align-items: flex-start;
+    }
 
-        .view-all:hover { color:var(--text); }
+    .hero {
+      padding: 1.2rem 1.3rem 1.3rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(15, 23, 42, 0.98) 0, rgba(15, 23, 42, 0.96) 56%, rgba(15, 23, 42, 0.9) 100%);
+      backdrop-filter: var(--backdrop-blur);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
 
-        footer {
-            margin-top:3rem;
-            padding-top:1.25rem;
-            border-top:1px solid var(--border);
-            font-size:0.8rem;
-            color:var(--text-muted);
-            display:flex;
-            gap:1.25rem;
-            flex-wrap:wrap;
-            align-items:center;
-            animation:fadeInUp 1s ease-out;
-        }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      opacity: 0.6;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(34, 197, 94, 0.12), transparent 50%),
+        radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.08), transparent 55%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
 
-        footer a {
-            color:var(--text-secondary);
-            border:none;
-        }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+    }
 
-        footer a:hover { color:var(--text); }
+    .hero-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
 
-        .status-dot {
-            display:inline-block;
-            width:6px;
-            height:6px;
-            background:#22c55e;
-            border-radius:50%;
-            margin-right:0.35rem;
-            animation:shimmer 2s ease-in-out infinite;
-            background:linear-gradient(90deg, #22c55e 0%, #86efac 50%, #22c55e 100%);
-            background-size:200% 100%;
-        }
+    .hero-label-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.8);
+    }
 
-        @media (max-width:540px) {
-            body { padding:1.5rem 1rem 3rem; font-size:15px; }
-            h1 { font-size:1.6rem; }
-            .bio { font-size:0.95rem; }
-            nav { flex-wrap:wrap; gap:0.25rem; }
-            nav a { padding:0.3rem 0.6rem; font-size:0.7rem; }
-            .project-card { padding:0.75rem 0.75rem 0.75rem 0; }
-            .project-card:hover { padding-left:0.75rem; padding-right:0; }
-            footer { flex-direction:column; gap:0.75rem; align-items:flex-start; }
-        }
+    .hero-title {
+      font-size: 1.45rem;
+      letter-spacing: -0.04em;
+      font-weight: 500;
+      margin-bottom: 0.55rem;
+    }
 
-        @media (prefers-color-scheme: dark) {
-            .project-tags span { background:var(--surface); }
-            nav .key { background:var(--surface); }
-        }
-    </style>
+    .hero-title span.highlight {
+      color: var(--accent-text);
+    }
+
+    .hero-body {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      max-width: 40rem;
+    }
+
+    .hero-body strong {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .hero-footer {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-top: 0.9rem;
+      font-size: 0.8rem;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.28rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(34, 197, 94, 0.55);
+      background: rgba(15, 23, 42, 0.98);
+      box-shadow: 0 0 30px rgba(22, 163, 74, 0.35);
+      font-family: var(--font-mono);
+      color: var(--accent-text);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 14px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero-note {
+      color: var(--text-muted);
+    }
+
+    /* Side card */
+
+    .side-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.23);
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.94), rgba(15, 23, 42, 0.9));
+      padding: 0.95rem 1.05rem;
+      box-shadow: var(--shadow-subtle);
+      backdrop-filter: var(--backdrop-blur);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .side-heading {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+    }
+
+    .side-text {
+      font-size: 0.84rem;
+      color: var(--text-soft);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.25rem;
+    }
+
+    .chip {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.22rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--text-soft);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    /* Projects */
+
+    .section {
+      margin-top: 0.5rem;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(148, 163, 184, 0.5), transparent);
+      max-width: 240px;
+    }
+
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .project-card {
+      position: relative;
+      border-radius: var(--radius-md);
+      padding: 0.9rem 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.23);
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95) 40%, rgba(15, 23, 42, 0.98) 100%);
+      backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      overflow: hidden;
+      cursor: default;
+      transition:
+        border-color var(--transition-med),
+        box-shadow var(--transition-med),
+        transform var(--transition-fast),
+        background var(--transition-med);
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.12), transparent 60%);
+      opacity: 0;
+      transition: opacity var(--transition-med);
+      pointer-events: none;
+    }
+
+    .project-card:hover {
+      border-color: rgba(148, 163, 184, 0.5);
+      box-shadow: var(--shadow-soft);
+      transform: translateY(-2px);
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98) 50%, rgba(15, 23, 42, 1) 100%);
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      justify-content: space-between;
+    }
+
+    .project-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    .project-title a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .project-title a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .project-link-external {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      font-family: var(--font-mono);
+    }
+
+    .project-link-external:hover {
+      border-color: rgba(148, 163, 184, 0.6);
+      color: var(--text-soft);
+    }
+
+    .project-desc {
+      font-size: 0.83rem;
+      color: var(--text-soft);
+      max-width: 40rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.3rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    .project-tags span {
+      padding: 0.14rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    .view-all {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.7rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      padding: 0.3rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: rgba(15, 23, 42, 0.9);
+      transition: all var(--transition-med);
+    }
+
+    .view-all:hover {
+      color: var(--text-soft);
+      border-color: rgba(148, 163, 184, 0.65);
+      box-shadow: 0 0 0 1px rgba(30, 64, 175, 0.6);
+    }
+
+    /* Footer */
+
+    footer {
+      margin-top: 2.4rem;
+      padding-top: 1.1rem;
+      border-top: 1px solid rgba(30, 41, 59, 0.9);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.9rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    footer a {
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--accent-text);
+    }
+
+    .footer-spacer {
+      flex: 1;
+    }
+
+    .footer-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(34, 197, 94, 0.6);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--accent-text);
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1.2rem 1rem 2.4rem;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.65rem;
+      }
+
+      nav {
+        align-self: stretch;
+        justify-content: space-between;
+      }
+
+      .main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding: 1rem 1.05rem 1.05rem;
+      }
+
+      .hero-title {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        justify-content: flex-start;
+        gap: 0.35rem;
+        overflow-x: auto;
+      }
+
+      .project-card {
+        padding: 0.8rem 0.85rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Abdulla Sajad</h1>
-        <p class="subtitle">AI/SWE</p>
-    </header>
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
 
+<div class="shell">
+  <header>
+    <div class="identity">
+      <div class="avatar">AS</div>
+      <div class="name-block">
+        <div class="name">Abdulla Sajad</div>
+        <div class="tagline">AI engineer · software that ships</div>
+      </div>
+    </div>
     <nav>
-        <a href="index.html" style="color:var(--text);"><span class="key">h</span>home</a>
-        <a href="projects.html"><span class="key">p</span>projects</a>
-        <a href="blog.html"><span class="key">b</span>blogs</a>
+      <a href="index.html" class="active">
+        <span class="key">h</span>
+        home
+      </a>
+      <a href="projects.html">
+        <span class="key">p</span>
+        projects
+      </a>
+      <a href="blog.html">
+        <span class="key">b</span>
+        blog
+      </a>
     </nav>
+  </header>
 
-    <p class="bio">CS major. AI engineering. Ship what works, ship what matters. Into agentic engineering, using AI to code and build useful things. Sometimes I research. If I'm not coding, I watch movies, play football, or try to learn something new.</p>
-
-    <section class="projects">
-        <div class="section-label">What I've Built</div>
-
-        <div class="project-card">
-            <div class="project-name"><a href="https://github.com/neuralbroker/esencelab">Esencelab</a></div>
-            <p class="project-desc">AI-powered campus recruitment platform with resume parsing, job matching, and role-based dashboards.</p>
-            <div class="project-tags"><span>Next.js</span><span>FastAPI</span><span>Gemini AI</span><span>Supabase</span></div>
+  <main class="main">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-label">
+          <span class="hero-label-dot"></span>
+          building agentic systems & useful tools
         </div>
-
-        <div class="project-card">
-            <div class="project-name"><a href="https://github.com/neuralbroker/blitzkode">BlitzKode</a></div>
-            <p class="project-desc">Fine-tuned coding assistant with Qwen2.5-1.5B + llama.cpp and PEFT LoRA training pipeline.</p>
-            <div class="project-tags"><span>Python</span><span>llama.cpp</span><span>HuggingFace</span><span>PEFT</span></div>
+        <h1 class="hero-title">
+          I’m Abdulla, an <span class="highlight">AI‑native software engineer</span> who ships products, not just models.
+        </h1>
+        <p class="hero-body">
+          I like turning large language models and agents into things people can actually use: screening resumes,
+          translating speech, managing prompts, or helping engineers move faster.
+          Strong in <strong>backend + full‑stack</strong>, with a biased interest towards AI tooling and agentic engineering.
+        </p>
+        <div class="hero-footer">
+          <span class="status-pill">
+            <span class="status-dot"></span>
+            open to work
+          </span>
+          <span class="hero-note">
+            CS major · India · focused on AI, systems, and shipping.
+          </span>
         </div>
-
-        <div class="project-card">
-            <div class="project-name"><a href="https://github.com/neuralbroker/speakswap">SpeakSwap</a> <a href="https://speakswap.vercel.app" class="external-link" target="_blank">&nearr;</a></div>
-            <p class="project-desc">Real-time voice translation web app with speech-to-text and multi-language translation.</p>
-            <div class="project-tags"><span>Next.js</span><span>Web Speech API</span><span>TypeScript</span></div>
-        </div>
-
-        <a href="projects.html" class="view-all">View all projects &rarr;</a>
+      </div>
     </section>
 
-    <footer>
-        <a href="https://github.com/neuralbroker" target="_blank">GitHub</a>
-        <a href="https://linkedin.com/in/abdullasajad" target="_blank">LinkedIn</a>
-        <a href="mailto:abdullasajad01@gmail.com">Email</a>
-        <span style="margin-left:auto;"><span class="status-dot"></span>Open to work</span>
-    </footer>
+    <aside class="side-card">
+      <div>
+        <div class="side-heading">Focus</div>
+        <p class="side-text">
+          AI‑driven products, coding agents, and backend systems that are fast, simple, and deployable.
+        </p>
+      </div>
+      <div>
+        <div class="side-heading">Stacks I use</div>
+        <div class="chips">
+          <span class="chip">FastAPI · Python</span>
+          <span class="chip">Next.js · TypeScript</span>
+          <span class="chip">Postgres / SQLite</span>
+          <span class="chip">LLMs · Groq · Gemini</span>
+          <span class="chip">Electron · tooling</span>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <section class="section">
+    <div class="section-label">Selected work</div>
+    <div class="projects">
+
+      <article class="project-card">
+        <div class="project-header">
+          <h2 class="project-title">
+            <a href="https://github.com/neuralbroker/esencelab" target="_blank" rel="noreferrer">
+              Esencelab
+            </a>
+          </h2>
+        </div>
+        <p class="project-desc">
+          AI‑powered campus recruitment platform that parses resumes, matches students to roles, and exposes
+          role‑based dashboards for students, recruiters, and admins.
+        </p>
+        <div class="project-tags">
+          <span>Next.js</span>
+          <span>FastAPI</span>
+          <span>Gemini AI</span>
+          <span>Supabase</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-header">
+          <h2 class="project-title">
+            <a href="https://github.com/neuralbroker/blitzkode" target="_blank" rel="noreferrer">
+              BlitzKode
+            </a>
+          </h2>
+        </div>
+        <p class="project-desc">
+          Fine‑tuned coding assistant using Qwen2.5‑1.5B with a llama.cpp + PEFT LoRA pipeline,
+          optimized for fast, local, agent‑style coding workflows.
+        </p>
+        <div class="project-tags">
+          <span>Python</span>
+          <span>llama.cpp</span>
+          <span>Hugging Face</span>
+          <span>PEFT</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-header">
+          <h2 class="project-title">
+            <a href="https://github.com/neuralbroker/speakswap" target="_blank" rel="noreferrer">
+              SpeakSwap
+            </a>
+          </h2>
+          <a href="https://speakswap.vercel.app" class="project-link-external" target="_blank" rel="noreferrer">
+            live ↗
+          </a>
+        </div>
+        <p class="project-desc">
+          Real‑time voice translation web app with speech‑to‑text, multi‑language translation, and
+          spoken playback, running fully in the browser with a simple proxy.
+        </p>
+        <div class="project-tags">
+          <span>Next.js</span>
+          <span>TypeScript</span>
+          <span>Web Speech API</span>
+        </div>
+      </article>
+
+    </div>
+
+    <a href="projects.html" class="view-all">
+      view all projects
+      <span>→</span>
+    </a>
+  </section>
+
+  <footer>
+    <a href="https://github.com/neuralbroker" target="_blank" rel="noreferrer">GitHub</a>
+    <a href="https://linkedin.com/in/abdullasajad" target="_blank" rel="noreferrer">LinkedIn</a>
+    <a href="mailto:abdullasajad01@gmail.com">Email</a>
+    <div class="footer-spacer"></div>
+    <div class="footer-status">
+      <span class="status-dot"></span>
+      open to backend / AI roles
+    </div>
+  </footer>
+</div>
 </body>
 </html>
