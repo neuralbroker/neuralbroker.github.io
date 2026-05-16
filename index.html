@@ -18,8 +18,18 @@
   --accent: #3a3a3a;
   --card-bg: #f7f7f5;
 }
+[data-theme="dark"] {
+  --bg: #161616;
+  --text: #e5e5e5;
+  --muted: #9ca3af;
+  --border: #2d2d2d;
+  --link: #7ba3d6;
+  --link-hover: #9dc0f0;
+  --accent: #c5c5c5;
+  --card-bg: #1e1e1e;
+}
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #161616;
     --text: #e5e5e5;
     --muted: #9ca3af;
@@ -88,6 +98,18 @@ nav a {
   transition: color 0.15s;
 }
 nav a:hover {
+  color: var(--text);
+}
+.theme-toggle {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0.2rem 0.6rem;
+  user-select: none;
+  transition: color 0.15s;
+}
+.theme-toggle:hover {
   color: var(--text);
 }
 /* Sections */
@@ -415,6 +437,7 @@ footer p {
 <a href="#stack">Stack</a>
 <a href="#notes">Notes</a>
 <a href="#contact">Contact</a>
+<span class="theme-toggle mono" id="themeToggle" role="button" tabindex="0">Light / Dark</span>
 </div>
 </nav>
 
@@ -652,6 +675,23 @@ footer p {
 <p>&copy; 2026 Abdulla Sajad</p>
 </div>
 </footer>
+
+<script>
+(function() {
+  var html = document.documentElement;
+  var toggle = document.getElementById('themeToggle');
+  var stored = localStorage.getItem('theme');
+  if (stored === 'dark' || stored === 'light') {
+    html.setAttribute('data-theme', stored);
+  }
+  toggle.addEventListener('click', function() {
+    var current = html.getAttribute('data-theme');
+    var next = (current === 'dark') ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+})();
+</script>
 
 </body>
 </html>
