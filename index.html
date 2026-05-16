@@ -26,7 +26,6 @@
   --link: #4a6fa5;
   --link-hover: #2c5282;
   --accent: #3a3a3a;
-  --card-bg: #f7f7f5;
 }
 [data-theme="dark"] {
   --bg: #161616;
@@ -36,7 +35,6 @@
   --link: #7ba3d6;
   --link-hover: #9dc0f0;
   --accent: #c5c5c5;
-  --card-bg: #1e1e1e;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -47,7 +45,6 @@
     --link: #7ba3d6;
     --link-hover: #9dc0f0;
     --accent: #c5c5c5;
-    --card-bg: #1e1e1e;
   }
 }
 *, *::before, *::after {
@@ -124,23 +121,21 @@ nav a:hover {
 }
 /* Sections */
 section {
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 .section-title {
   font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--muted);
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border);
+  margin-bottom: 1rem;
 }
 /* Hero */
 #hero {
   padding-top: 1rem;
-  margin-bottom: 3.5rem;
+  margin-bottom: 3rem;
 }
 #hero h1 {
   font-family: 'Newsreader', Georgia, 'Times New Roman', Times, serif;
@@ -161,14 +156,7 @@ section {
   font-size: 1.1rem;
   line-height: 1.6;
   color: var(--text);
-  margin-bottom: 0.75rem;
-  max-width: 580px;
-}
-#hero .statement-secondary {
-  font-size: 1rem;
-  color: var(--muted);
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   max-width: 580px;
 }
 .hero-links {
@@ -189,35 +177,6 @@ section {
   margin-bottom: 1rem;
   max-width: 600px;
 }
-.quick-facts {
-  margin-top: 1.5rem;
-  padding: 1.25rem;
-  background: var(--card-bg);
-  border-radius: 0;
-  border: 1px solid var(--border);
-}
-.quick-facts .mono {
-  font-size: 0.78rem;
-  color: var(--muted);
-  margin-bottom: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.quick-facts ul {
-  list-style: none;
-}
-.quick-facts li {
-  font-size: 0.95rem;
-  padding: 0.35rem 0;
-  border-bottom: 1px solid var(--border);
-}
-.quick-facts li:last-child {
-  border-bottom: none;
-}
-.quick-facts li strong {
-  font-weight: 500;
-  color: var(--text);
-}
 .sub-section-title {
   font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
   font-size: 0.78rem;
@@ -225,19 +184,16 @@ section {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--muted);
-  margin: 2rem 0 0.75rem;
+  margin: 1.5rem 0 0.75rem;
 }
 /* Projects */
 .project {
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--border);
-}
-.project:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
   border-bottom: none;
 }
 .project-header {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 .project-name {
   font-family: 'Newsreader', Georgia, 'Times New Roman', Times, serif;
@@ -261,23 +217,6 @@ section {
   color: var(--text);
   margin-bottom: 0.6rem;
 }
-.project-details {
-  list-style: none;
-  margin-bottom: 0.6rem;
-}
-.project-details li {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--muted);
-  padding-left: 1rem;
-  position: relative;
-}
-.project-details li::before {
-  content: "\2014";
-  position: absolute;
-  left: 0;
-  color: var(--border);
-}
 .project-links {
   font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
   font-size: 0.82rem;
@@ -288,12 +227,12 @@ section {
 .project-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 .project-grid .project {
   margin-bottom: 0;
-  padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--border);
+  padding-bottom: 0;
+  border-bottom: none;
 }
 /* Research */
 #research p {
@@ -331,10 +270,8 @@ section {
   margin-bottom: 0.15rem;
 }
 .stack-label .stack-desc {
-  display: block;
   font-weight: 400;
   color: var(--muted);
-  margin-top: 0.1rem;
 }
 .stack-items {
   font-size: 0.95rem;
@@ -479,7 +416,6 @@ footer p {
 <h1>Sajad</h1>
 <div class="title-line">Software Engineer</div>
 <p class="statement">I build backend systems, developer tools, and AI-powered applications.</p>
-<p class="statement-secondary">My work focuses on practical software, modern LLM workflows, and research-oriented interests in reinforcement learning and coding agents.</p>
 <div class="hero-links">
 <a href="https://github.com/neuralbroker" target="_blank" rel="noopener">GitHub</a>
 <a href="https://www.linkedin.com/in/abdullasajad" target="_blank" rel="noopener">LinkedIn</a>
@@ -492,9 +428,8 @@ footer p {
 <section id="about">
 <div class="container">
 <div class="section-title">About</div>
-<p>I am a software engineer focused on backend systems, full-stack applications, and AI-powered software. Most of my work combines practical engineering with modern LLM workflows, including retrieval, local inference, model adaptation, and developer-facing AI tools.</p>
-<p>I care about software that is simple, useful, and technically honest. That usually means clear APIs, readable code, thoughtful system design, and products that solve real problems without unnecessary complexity.</p>
-<p>Alongside product and engineering work, I also spend time exploring research-oriented topics such as reinforcement learning, coding agents, retrieval systems, and practical agent workflows. My interest is mainly in applied research that improves tools, interfaces, and software systems.</p>
+<p>I build backend systems, full-stack applications, and AI-powered software. My work combines practical engineering with modern LLM workflows — retrieval, local inference, model adaptation, and developer-facing AI tools.</p>
+<p>I care about software that is simple, useful, and technically honest. That means clear APIs, readable code, thoughtful system design, and products that solve real problems without unnecessary complexity.</p>
 <div class="sub-section-title">Key Expertise</div>
 <ul class="expertise-list">
 <li>Backend API development with FastAPI, Node.js, and RESTful design</li>
@@ -503,22 +438,11 @@ footer p {
 <li>Database design and management with PostgreSQL, SQLite, and Redis</li>
 <li>Containerization and deployment with Docker, Linux, and cloud platforms</li>
 <li>Model adaptation and fine-tuning using PEFT/LoRA and Hugging Face</li>
-<li>System design focused on maintainability, clear APIs, and practical architecture</li>
-<li>Cross-functional collaboration and technical communication</li>
 </ul>
-<div class="quick-facts">
-<div class="mono">Quick facts</div>
-<ul>
-<li><strong>Based in</strong>  India</li>
-<li><strong>Degree</strong>  B.Tech in Computer Science and Engineering</li>
-<li><strong>Focus</strong>  Backend, full-stack, and AI systems</li>
-<li><strong>Interests</strong>  RL, coding agents, practical LLM tooling</li>
-</ul>
-</div>
 <div class="sub-section-title">Experience</div>
 <div class="experience-item">
 <h4>Freelance Software Engineer <span class="mono" style="font-weight:400;font-size:0.82rem;color:var(--muted)">— 2023 – Present</span></h4>
-<div class="exp-detail">Worked independently on software projects across backend systems, full-stack applications, AI-powered workflows, and product-focused tools, with involvement in architecture, APIs, databases, integration, deployment, and usability.</div>
+<div class="exp-detail">Independent software projects across backend systems, full-stack applications, and AI-powered workflows. Involved in architecture, APIs, databases, and deployment.</div>
 </div>
 </div>
 </section>
@@ -526,7 +450,6 @@ footer p {
 <section id="work">
 <div class="container">
 <div class="section-title">Selected Work</div>
-<p style="font-size:1rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem;max-width:580px">Projects across AI, backend systems, and developer tools — built for practical use.</p>
 
 <div class="project-grid">
 
@@ -535,7 +458,7 @@ footer p {
 <span class="project-name">BlitzKode</span>
 <span class="project-type mono">Local AI coding assistant · 01/2026</span>
 </div>
-<p class="project-summary">Fine-tuned AI coding assistant built on Qwen2.5-1.5B, packaged as GGUF for local inference. Published 3 models on Hugging Face including LoRA adapters — 354 downloads on the primary model.</p>
+<p class="project-summary">Fine-tuned coding assistant on Qwen2.5-1.5B, packaged as GGUF for local inference. 3 models on Hugging Face — 354 downloads on the primary model.</p>
 <div class="project-links">
 <a href="https://huggingface.co/neuralbroker/blitzkode" target="_blank" rel="noopener">Hugging Face</a>
 </div>
@@ -546,7 +469,7 @@ footer p {
 <span class="project-name">EsenceLab</span>
 <span class="project-type mono">AI recruitment platform · 2024 – Present</span>
 </div>
-<p class="project-summary">Full-stack platform for resume analysis, candidate scoring, and recruiter workflows. Built with Next.js, FastAPI, Supabase, and Gemini AI.</p>
+<p class="project-summary">Full-stack resume analysis, candidate scoring, and recruiter workflows with Next.js, FastAPI, Supabase, and Gemini AI.</p>
 <div class="project-links">
 <a href="https://esencelab.vercel.app" target="_blank" rel="noopener">Live Demo</a>
 <a href="https://github.com/neuralbroker/esencelab" target="_blank" rel="noopener">GitHub</a>
@@ -558,7 +481,7 @@ footer p {
 <span class="project-name">SpeakSwap</span>
 <span class="project-type mono">Browser-based translation app · 09/2025</span>
 </div>
-<p class="project-summary">Translation app supporting text and speech input/output across multiple languages. Features voice recognition, spoken playback, auto-detect, dark mode, keyboard shortcuts, and offline indicator — all running in the browser via Next.js.</p>
+<p class="project-summary">Translate text and speech between languages in the browser. Voice input, spoken playback, auto-detect, dark mode — no API keys required.</p>
 <div class="project-links">
 <a href="https://speakswap.vercel.app" target="_blank" rel="noopener">Live Demo</a>
 <a href="https://github.com/neuralbroker/speakswap" target="_blank" rel="noopener">GitHub</a>
@@ -570,7 +493,7 @@ footer p {
 <span class="project-name">Zeviewer</span>
 <span class="project-type mono">Viewer application · 02/2026</span>
 </div>
-<p class="project-summary">An interactive viewer application with a live Vercel deployment. Built with TypeScript.</p>
+<p class="project-summary">Interactive viewer application with live Vercel deployment. Built with TypeScript.</p>
 <div class="project-links">
 <a href="https://zeviewer.vercel.app" target="_blank" rel="noopener">Live Demo</a>
 <a href="https://github.com/neuralbroker/zeviewer" target="_blank" rel="noopener">GitHub</a>
@@ -582,7 +505,7 @@ footer p {
 <span class="project-name">Lexora AI</span>
 <span class="project-type mono">Document RAG system · 02/2026</span>
 </div>
-<p class="project-summary">Retrieval-augmented generation application for semantic search and LLM-based responses over document collections.</p>
+<p class="project-summary">RAG application for semantic search and LLM-based responses over document collections.</p>
 <div class="project-links">
 <a href="https://github.com/neuralbroker/lexora-ai" target="_blank" rel="noopener">GitHub</a>
 </div>
@@ -593,7 +516,7 @@ footer p {
 <span class="project-name">AI Resume Screener</span>
 <span class="project-type mono">Resume parsing AI · 02/2026</span>
 </div>
-<p class="project-summary">AI-powered resume screening tool for parsing, scoring, and matching candidates to roles. Built with Python.</p>
+<p class="project-summary">Parse, score, and match candidates to roles using AI. Built with Python.</p>
 <div class="project-links">
 <a href="https://github.com/neuralbroker/ai-resume-screener" target="_blank" rel="noopener">GitHub</a>
 </div>
@@ -604,7 +527,7 @@ footer p {
 <span class="project-name">Pop-Prompt</span>
 <span class="project-type mono">Windows prompt saver · 05/2026</span>
 </div>
-<p class="project-summary">A clean, lightweight prompt saver utility for Windows. Built with JavaScript.</p>
+<p class="project-summary">Lightweight prompt saver for Windows with tags, search, and copy-to-clipboard.</p>
 <div class="project-links">
 <a href="https://github.com/neuralbroker/pop-prompt" target="_blank" rel="noopener">GitHub</a>
 </div>
@@ -615,7 +538,7 @@ footer p {
 <span class="project-name">Sentinel ML</span>
 <span class="project-type mono">Fraud detection system · 02/2026</span>
 </div>
-<p class="project-summary">Backend ML system simulating production fraud detection with serving, monitoring, and retraining logic.</p>
+<p class="project-summary">ML system simulating production fraud detection with serving and monitoring workflows.</p>
 <div class="project-links">
 <a href="https://github.com/neuralbroker/sentinel-ml" target="_blank" rel="noopener">GitHub</a>
 </div>
@@ -626,7 +549,7 @@ footer p {
 <span class="project-name">Anogram</span>
 <span class="project-type mono">Offline Android messaging · 02/2026</span>
 </div>
-<p class="project-summary">Android messaging app using Bluetooth Low Energy to send messages between nearby devices without internet, accounts, or servers. Built with Kotlin, Jetpack Compose, and Clean Architecture.</p>
+<p class="project-summary">BLE-based messaging app for Android. No internet, accounts, or servers. Kotlin, Jetpack Compose, Clean Architecture.</p>
 <div class="project-links">
 <a href="https://github.com/neuralbroker/Anogram" target="_blank" rel="noopener">GitHub</a>
 </div>
@@ -637,7 +560,7 @@ footer p {
 <span class="project-name">Smart Task AI</span>
 <span class="project-type mono">Task management · 02/2026</span>
 </div>
-<p class="project-summary">Collaborative task management system with AI-assisted organization and real-time state updates.</p>
+<p class="project-summary">Collaborative task management with AI-assisted organization and real-time state updates.</p>
 <div class="project-links">
 <a href="https://github.com/neuralbroker/smart-task-ai" target="_blank" rel="noopener">GitHub</a>
 </div>
@@ -650,8 +573,7 @@ footer p {
 <section id="research">
 <div class="container">
 <div class="section-title">Research Interests</div>
-<p>My research interests are mostly applied and systems-oriented. I am especially interested in reinforcement learning, coding agents, retrieval systems, local inference workflows, and the design of AI tools that are useful in real software environments.</p>
-<p>I am less interested in AI as presentation and more interested in AI as infrastructure, interface, and engineering practice. That includes how models are served, adapted, evaluated, routed, and integrated into workflows that people actually use.</p>
+<p>Applied and systems-oriented. I am interested in reinforcement learning, coding agents, retrieval systems, local inference, and AI tools that are useful in real software environments.</p>
 <ul class="topic-list">
 <li>Reinforcement learning</li>
 <li>Coding agents</li>
@@ -669,17 +591,17 @@ footer p {
 <div class="section-title">Technical Stack</div>
 
 <div class="stack-group">
-<div class="stack-label">Core Competencies <span class="stack-desc mono">Use without supervision</span></div>
+<div class="stack-label">Core Competencies <span class="stack-desc mono">— use without supervision</span></div>
 <div class="stack-items">Python, TypeScript, Java, Kotlin, React, Next.js, Tailwind CSS, FastAPI, Node.js, Express, REST APIs, PostgreSQL, SQLite, Docker, Linux, Git, Prompt Engineering, RAG Pipelines, OpenAI API, Gemini AI</div>
 </div>
 
 <div class="stack-group">
-<div class="stack-label">Working Knowledge <span class="stack-desc mono">Can work with guidance</span></div>
+<div class="stack-label">Working Knowledge <span class="stack-desc mono">— can work with guidance</span></div>
 <div class="stack-items">C, Spring Boot, GraphQL, WebSockets, Hugging Face, LangChain, LangGraph, FAISS, Ollama, llama.cpp, Redis, Supabase, GitHub Actions, AWS, Vercel, PEFT / LoRA</div>
 </div>
 
 <div class="stack-group">
-<div class="stack-label">Familiarity <span class="stack-desc mono">Studied, limited practical exposure</span></div>
+<div class="stack-label">Familiarity <span class="stack-desc mono">— studied, limited use</span></div>
 <div class="stack-items">Framer Motion, Groq, Reinforcement Learning, Agentic Systems, Model Routing</div>
 </div>
 
