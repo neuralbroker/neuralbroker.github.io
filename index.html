@@ -1,776 +1,657 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>Abdulla Sajad</title>
-  <meta name="description" content="Abdulla Sajad - AI Engineer building agentic systems and useful software.">
-  <meta name="author" content="Abdulla Sajad">
-  <link rel="canonical" href="https://neuralbroker.github.io/sajad/">
-
-  <meta property="og:title" content="Abdulla Sajad">
-  <meta property="og:description" content="AI engineer building agentic systems, coding tools, and products that ship.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://neuralbroker.github.io/sajad/">
-
-  <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b0f19'/><text x='50' y='62' text-anchor='middle' font-size='46' fill='%23a5f3fc' font-family='system-ui, -apple-system, BlinkMacSystemFont, sans-serif'>AS</text></svg>">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
-
-  <style>
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg: #020617;            /* slate-950-ish */
-      --bg-elevated: #020617;
-      --bg-soft: #020617;
-      --surface: rgba(15, 23, 42, 0.9);
-      --surface-soft: rgba(15, 23, 42, 0.75);
-      --border-subtle: rgba(148, 163, 184, 0.18);
-      --border-strong: rgba(148, 163, 184, 0.4);
-      --accent: #22c55e;
-      --accent-soft: rgba(34, 197, 94, 0.16);
-      --accent-soft-2: rgba(34, 197, 94, 0.08);
-      --accent-text: #a5f3fc;
-      --text: #e5e7eb;
-      --text-soft: #9ca3af;
-      --text-muted: #6b7280;
-      --danger: #f97373;
-      --radius-lg: 18px;
-      --radius-md: 12px;
-      --radius-sm: 8px;
-      --shadow-soft: 0 18px 60px rgba(15, 23, 42, 0.95);
-      --shadow-subtle: 0 8px 30px rgba(15, 23, 42, 0.7);
-      --backdrop-blur: blur(16px);
-      --nav-height: 52px;
-      --glow: 0 0 35px rgba(34, 197, 94, 0.3);
-      --transition-fast: 160ms cubic-bezier(0.16, 1, 0.3, 1);
-      --transition-med: 220ms cubic-bezier(0.16, 1, 0.3, 1);
-      --font-sans: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-
-    html {
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      scroll-behavior: smooth;
-      background: radial-gradient(circle at top, #0b1120 0, #020617 45%, #000 100%);
-    }
-
-    body {
-      min-height: 100vh;
-      color: var(--text);
-      font-family: var(--font-sans);
-      font-size: 15px;
-      line-height: 1.7;
-      padding: 1.75rem 1.25rem 3rem;
-      display: flex;
-      justify-content: center;
-    }
-
-    .shell {
-      width: 100%;
-      max-width: 960px;
-      position: relative;
-      isolation: isolate;
-    }
-
-    /* Background glow + grid */
-
-    .bg-glow {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -2;
-      background:
-        radial-gradient(circle at 0% 0%, rgba(34, 197, 94, 0.05), transparent 55%),
-        radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.06), transparent 60%);
-    }
-
-    .bg-grid {
-      position: fixed;
-      inset: 0;
-      z-index: -3;
-      opacity: 0.4;
-      background-image:
-        linear-gradient(rgba(15, 23, 42, 0.7) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(15, 23, 42, 0.7) 1px, transparent 1px);
-      background-size: 26px 26px;
-      mask-image: radial-gradient(circle at top, black 0, transparent 70%);
-    }
-
-    /* Layout */
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.5rem;
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      padding: 0.6rem 0;
-      backdrop-filter: blur(20px);
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.9), transparent);
-    }
-
-    .identity {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-    }
-
-    .avatar {
-      width: 34px;
-      height: 34px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      background: radial-gradient(circle at 20% 0%, #22c55e 0, #0f172a 38%, #000 100%);
-      box-shadow: var(--glow);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      color: var(--accent-text);
-    }
-
-    .name-block {
-      display: flex;
-      flex-direction: column;
-      gap: 0.08rem;
-    }
-
-    .name {
-      font-size: 1rem;
-      letter-spacing: -0.03em;
-      font-weight: 600;
-    }
-
-    .tagline {
-      font-size: 0.75rem;
-      color: var(--text-soft);
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      background: rgba(15, 23, 42, 0.85);
-      border-radius: 999px;
-      padding: 0.18rem 0.35rem;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      box-shadow: var(--shadow-subtle);
-    }
-
-    nav a {
-      color: var(--text-muted);
-      text-decoration: none;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      position: relative;
-      overflow: hidden;
-      transition: background var(--transition-med), color var(--transition-med), border-color var(--transition-med);
-      border: 1px solid transparent;
-    }
-
-    nav a span.key {
-      padding: 0.05rem 0.32rem;
-      border-radius: 4px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      color: var(--text-soft);
-      font-size: 0.65em;
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    nav a.active {
-      background: radial-gradient(circle at top, rgba(34, 197, 94, 0.22), rgba(15, 23, 42, 0.95));
-      color: var(--text);
-      border-color: var(--border-strong);
-    }
-
-    nav a:hover:not(.active) {
-      background: rgba(15, 23, 42, 0.9);
-      border-color: rgba(148, 163, 184, 0.35);
-      color: var(--text-soft);
-    }
-
-    /* Main hero */
-
-    .main {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 1.75rem;
-      margin-bottom: 2.4rem;
-      align-items: flex-start;
-    }
-
-    .hero {
-      padding: 1.2rem 1.3rem 1.3rem;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
-      background:
-        radial-gradient(circle at 0% 0%, rgba(15, 23, 42, 0.98) 0, rgba(15, 23, 42, 0.96) 56%, rgba(15, 23, 42, 0.9) 100%);
-      backdrop-filter: var(--backdrop-blur);
-      box-shadow: var(--shadow-soft);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      opacity: 0.6;
-      background:
-        radial-gradient(circle at 0% 0%, rgba(34, 197, 94, 0.12), transparent 50%),
-        radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.08), transparent 55%);
-      mix-blend-mode: screen;
-      pointer-events: none;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-label {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .hero-label-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 14px rgba(34, 197, 94, 0.8);
-    }
-
-    .hero-title {
-      font-size: 1.45rem;
-      letter-spacing: -0.04em;
-      font-weight: 500;
-      margin-bottom: 0.55rem;
-    }
-
-    .hero-title span.highlight {
-      color: var(--accent-text);
-    }
-
-    .hero-body {
-      font-size: 0.92rem;
-      color: var(--text-soft);
-      max-width: 40rem;
-    }
-
-    .hero-body strong {
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    .hero-footer {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      margin-top: 0.9rem;
-      font-size: 0.8rem;
-    }
-
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.28rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(34, 197, 94, 0.55);
-      background: rgba(15, 23, 42, 0.98);
-      box-shadow: 0 0 30px rgba(22, 163, 74, 0.35);
-      font-family: var(--font-mono);
-      color: var(--accent-text);
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 14px rgba(34, 197, 94, 0.9);
-    }
-
-    .hero-note {
-      color: var(--text-muted);
-    }
-
-    /* Side card */
-
-    .side-card {
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(148, 163, 184, 0.23);
-      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.94), rgba(15, 23, 42, 0.9));
-      padding: 0.95rem 1.05rem;
-      box-shadow: var(--shadow-subtle);
-      backdrop-filter: var(--backdrop-blur);
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .side-heading {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--text-muted);
-    }
-
-    .side-text {
-      font-size: 0.84rem;
-      color: var(--text-soft);
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem;
-      margin-top: 0.25rem;
-    }
-
-    .chip {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      padding: 0.22rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--text-soft);
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    /* Projects */
-
-    .section {
-      margin-top: 0.5rem;
-    }
-
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--text-muted);
-      margin-bottom: 0.75rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .section-label::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(to right, rgba(148, 163, 184, 0.5), transparent);
-      max-width: 240px;
-    }
-
-    .projects {
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-    }
-
-    .project-card {
-      position: relative;
-      border-radius: var(--radius-md);
-      padding: 0.9rem 1rem;
-      border: 1px solid rgba(148, 163, 184, 0.23);
-      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95) 40%, rgba(15, 23, 42, 0.98) 100%);
-      backdrop-filter: blur(14px);
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      overflow: hidden;
-      cursor: default;
-      transition:
-        border-color var(--transition-med),
-        box-shadow var(--transition-med),
-        transform var(--transition-fast),
-        background var(--transition-med);
-    }
-
-    .project-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.12), transparent 60%);
-      opacity: 0;
-      transition: opacity var(--transition-med);
-      pointer-events: none;
-    }
-
-    .project-card:hover {
-      border-color: rgba(148, 163, 184, 0.5);
-      box-shadow: var(--shadow-soft);
-      transform: translateY(-2px);
-      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98) 50%, rgba(15, 23, 42, 1) 100%);
-    }
-
-    .project-card:hover::before {
-      opacity: 1;
-    }
-
-    .project-header {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      justify-content: space-between;
-    }
-
-    .project-title {
-      font-size: 0.95rem;
-      font-weight: 500;
-      letter-spacing: -0.02em;
-    }
-
-    .project-title a {
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    .project-title a:hover {
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .project-link-external {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      padding: 0.15rem 0.45rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      font-family: var(--font-mono);
-    }
-
-    .project-link-external:hover {
-      border-color: rgba(148, 163, 184, 0.6);
-      color: var(--text-soft);
-    }
-
-    .project-desc {
-      font-size: 0.83rem;
-      color: var(--text-soft);
-      max-width: 40rem;
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem;
-      margin-top: 0.3rem;
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      color: var(--text-muted);
-    }
-
-    .project-tags span {
-      padding: 0.14rem 0.5rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: rgba(15, 23, 42, 0.98);
-    }
-
-    .view-all {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      margin-top: 0.7rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      font-family: var(--font-mono);
-      padding: 0.3rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      background: rgba(15, 23, 42, 0.9);
-      transition: all var(--transition-med);
-    }
-
-    .view-all:hover {
-      color: var(--text-soft);
-      border-color: rgba(148, 163, 184, 0.65);
-      box-shadow: 0 0 0 1px rgba(30, 64, 175, 0.6);
-    }
-
-    /* Footer */
-
-    footer {
-      margin-top: 2.4rem;
-      padding-top: 1.1rem;
-      border-top: 1px solid rgba(30, 41, 59, 0.9);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.9rem;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-    }
-
-    footer a {
-      color: var(--text-soft);
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      color: var(--accent-text);
-    }
-
-    .footer-spacer {
-      flex: 1;
-    }
-
-    .footer-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.25rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid rgba(34, 197, 94, 0.6);
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--accent-text);
-    }
-
-    @media (max-width: 768px) {
-      body {
-        padding: 1.2rem 1rem 2.4rem;
-      }
-
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.65rem;
-      }
-
-      nav {
-        align-self: stretch;
-        justify-content: space-between;
-      }
-
-      .main {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero {
-        padding: 1rem 1.05rem 1.05rem;
-      }
-
-      .hero-title {
-        font-size: 1.3rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      nav {
-        justify-content: flex-start;
-        gap: 0.35rem;
-        overflow-x: auto;
-      }
-
-      .project-card {
-        padding: 0.8rem 0.85rem;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdulla Sajad — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fcfcf9;
+  --text: #1c1c1c;
+  --muted: #787878;
+  --border: #e5e5e4;
+  --link: #4a6fa5;
+  --link-hover: #2c5282;
+  --accent: #3a3a3a;
+  --card-bg: #f7f7f5;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161616;
+    --text: #e5e5e5;
+    --muted: #9ca3af;
+    --border: #2d2d2d;
+    --link: #7ba3d6;
+    --link-hover: #9dc0f0;
+    --accent: #c5c5c5;
+    --card-bg: #1e1e1e;
+  }
+}
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+}
+body {
+  font-family: 'Newsreader', Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  padding: 0 1.5rem;
+}
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--link-hover);
+}
+::selection {
+  background: var(--text);
+  color: var(--bg);
+}
+.mono {
+  font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
+  font-size: 0.8125rem;
+  letter-spacing: -0.01em;
+}
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+}
+/* Nav */
+nav {
+  padding: 2rem 0 1rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 3rem;
+}
+nav .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.4rem;
+}
+nav a {
+  font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--muted);
+  padding: 0.2rem 0.6rem;
+  transition: color 0.15s;
+}
+nav a:hover {
+  color: var(--text);
+}
+/* Sections */
+section {
+  margin-bottom: 4rem;
+}
+.section-title {
+  font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+/* Hero */
+#hero {
+  padding-top: 1rem;
+  margin-bottom: 3.5rem;
+}
+#hero h1 {
+  font-family: 'Newsreader', Georgia, 'Times New Roman', Times, serif;
+  font-size: 2.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+  color: var(--text);
+}
+#hero .title-line {
+  font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+#hero .statement {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  max-width: 580px;
+}
+#hero .statement-secondary {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  max-width: 580px;
+}
+#hero .short-intro {
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  max-width: 580px;
+}
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
+  font-size: 0.82rem;
+}
+.hero-links a {
+  color: var(--muted);
+}
+.hero-links a:hover {
+  color: var(--link);
+}
+/* About */
+#about p {
+  margin-bottom: 1rem;
+  max-width: 600px;
+}
+.quick-facts {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: var(--card-bg);
+  border-radius: 0;
+  border: 1px solid var(--border);
+}
+.quick-facts .mono {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.quick-facts ul {
+  list-style: none;
+}
+.quick-facts li {
+  font-size: 0.95rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.quick-facts li:last-child {
+  border-bottom: none;
+}
+.quick-facts li strong {
+  font-weight: 500;
+  color: var(--text);
+}
+.sub-section-title {
+  font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin: 2rem 0 0.75rem;
+}
+/* Projects */
+.project {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.project:last-child {
+  border-bottom: none;
+}
+.project-header {
+  margin-bottom: 0.5rem;
+}
+.project-name {
+  font-family: 'Newsreader', Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--text);
+}
+.project-type {
+  font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
+  font-size: 0.72rem;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 0.1rem 0.5rem;
+  margin-left: 0.5rem;
+  white-space: nowrap;
+}
+.project-summary {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  margin-bottom: 0.6rem;
+}
+.project-details {
+  list-style: none;
+  margin-bottom: 0.6rem;
+}
+.project-details li {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--muted);
+  padding-left: 1rem;
+  position: relative;
+}
+.project-details li::before {
+  content: "\2014";
+  position: absolute;
+  left: 0;
+  color: var(--border);
+}
+.project-links {
+  font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
+  font-size: 0.82rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
+/* Research */
+#research p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  max-width: 600px;
+}
+.topic-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.6rem;
+  margin-top: 1rem;
+}
+.topic-list li {
+  font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
+  font-size: 0.78rem;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.7rem;
+}
+/* Stack */
+.stack-group {
+  margin-bottom: 1.5rem;
+}
+.stack-group:last-child {
+  margin-bottom: 0;
+}
+.stack-label {
+  font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 0.3rem;
+}
+.stack-items {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.education-item {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.education-item h4 {
+  font-family: 'Newsreader', Georgia, 'Times New Roman', Times, serif;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.1rem;
+}
+.education-item .edu-detail {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.experience-item {
+  margin-top: 1.5rem;
+}
+.experience-item h4 {
+  font-family: 'Newsreader', Georgia, 'Times New Roman', Times, serif;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.1rem;
+}
+.experience-item .exp-detail {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+/* Notes */
+.note-item {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.note-item:last-child {
+  border-bottom: none;
+}
+.note-title {
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--link);
+  cursor: default;
+}
+.note-title:hover {
+  color: var(--link-hover);
+}
+.note-meta {
+  font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+#notes .notes-intro {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  max-width: 550px;
+}
+/* Contact */
+#contact p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  max-width: 500px;
+}
+.contact-links {
+  font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.contact-links a {
+  color: var(--muted);
+}
+.contact-links a:hover {
+  color: var(--link);
+}
+/* Footer */
+footer {
+  padding: 2rem 0 3rem;
+  border-top: 1px solid var(--border);
+}
+footer p {
+  font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+/* Mobile */
+@media (max-width: 540px) {
+  body { padding: 0 1.25rem; }
+  #hero h1 { font-size: 2rem; }
+  nav .container { gap: 0.15rem 0.3rem; }
+  nav a { font-size: 0.75rem; padding: 0.15rem 0.4rem; }
+  .hero-links { gap: 0.2rem 0.8rem; font-size: 0.75rem; }
+}
+@media (max-width: 400px) {
+  .project-type { display: inline-block; margin-left: 0; margin-top: 0.3rem; }
+}
+</style>
 </head>
 <body>
-<div class="bg-grid"></div>
-<div class="bg-glow"></div>
 
-<div class="shell">
-  <header>
-    <div class="identity">
-      <div class="avatar">AS</div>
-      <div class="name-block">
-        <div class="name">Abdulla Sajad</div>
-        <div class="tagline">AI engineer · software that ships</div>
-      </div>
-    </div>
-    <nav>
-      <a href="index.html" class="active">
-        <span class="key">h</span>
-        home
-      </a>
-      <a href="projects.html">
-        <span class="key">p</span>
-        projects
-      </a>
-      <a href="blog.html">
-        <span class="key">b</span>
-        blog
-      </a>
-    </nav>
-  </header>
-
-  <main class="main">
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-label">
-          <span class="hero-label-dot"></span>
-          building agentic systems & useful tools
-        </div>
-        <h1 class="hero-title">
-          I’m Abdulla, an <span class="highlight">AI‑native software engineer</span> who ships products, not just models.
-        </h1>
-        <p class="hero-body">
-          I like turning large language models and agents into things people can actually use: screening resumes,
-          translating speech, managing prompts, or helping engineers move faster.
-          Strong in <strong>backend + full‑stack</strong>, with a biased interest towards AI tooling and agentic engineering.
-        </p>
-        <div class="hero-footer">
-          <span class="status-pill">
-            <span class="status-dot"></span>
-            open to work
-          </span>
-          <span class="hero-note">
-            CS major · India · focused on AI, systems, and shipping.
-          </span>
-        </div>
-      </div>
-    </section>
-
-    <aside class="side-card">
-      <div>
-        <div class="side-heading">Focus</div>
-        <p class="side-text">
-          AI‑driven products, coding agents, and backend systems that are fast, simple, and deployable.
-        </p>
-      </div>
-      <div>
-        <div class="side-heading">Stacks I use</div>
-        <div class="chips">
-          <span class="chip">FastAPI · Python</span>
-          <span class="chip">Next.js · TypeScript</span>
-          <span class="chip">Postgres / SQLite</span>
-          <span class="chip">LLMs · Groq · Gemini</span>
-          <span class="chip">Electron · tooling</span>
-        </div>
-      </div>
-    </aside>
-  </main>
-
-  <section class="section">
-    <div class="section-label">Selected work</div>
-    <div class="projects">
-
-      <article class="project-card">
-        <div class="project-header">
-          <h2 class="project-title">
-            <a href="https://github.com/neuralbroker/esencelab" target="_blank" rel="noreferrer">
-              Esencelab
-            </a>
-          </h2>
-        </div>
-        <p class="project-desc">
-          AI‑powered campus recruitment platform that parses resumes, matches students to roles, and exposes
-          role‑based dashboards for students, recruiters, and admins.
-        </p>
-        <div class="project-tags">
-          <span>Next.js</span>
-          <span>FastAPI</span>
-          <span>Gemini AI</span>
-          <span>Supabase</span>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <div class="project-header">
-          <h2 class="project-title">
-            <a href="https://github.com/neuralbroker/blitzkode" target="_blank" rel="noreferrer">
-              BlitzKode
-            </a>
-          </h2>
-        </div>
-        <p class="project-desc">
-          Fine‑tuned coding assistant using Qwen2.5‑1.5B with a llama.cpp + PEFT LoRA pipeline,
-          optimized for fast, local, agent‑style coding workflows.
-        </p>
-        <div class="project-tags">
-          <span>Python</span>
-          <span>llama.cpp</span>
-          <span>Hugging Face</span>
-          <span>PEFT</span>
-        </div>
-      </article>
-
-      <article class="project-card">
-        <div class="project-header">
-          <h2 class="project-title">
-            <a href="https://github.com/neuralbroker/speakswap" target="_blank" rel="noreferrer">
-              SpeakSwap
-            </a>
-          </h2>
-          <a href="https://speakswap.vercel.app" class="project-link-external" target="_blank" rel="noreferrer">
-            live ↗
-          </a>
-        </div>
-        <p class="project-desc">
-          Real‑time voice translation web app with speech‑to‑text, multi‑language translation, and
-          spoken playback, running fully in the browser with a simple proxy.
-        </p>
-        <div class="project-tags">
-          <span>Next.js</span>
-          <span>TypeScript</span>
-          <span>Web Speech API</span>
-        </div>
-      </article>
-
-    </div>
-
-    <a href="projects.html" class="view-all">
-      view all projects
-      <span>→</span>
-    </a>
-  </section>
-
-  <footer>
-    <a href="https://github.com/neuralbroker" target="_blank" rel="noreferrer">GitHub</a>
-    <a href="https://linkedin.com/in/abdullasajad" target="_blank" rel="noreferrer">LinkedIn</a>
-    <a href="mailto:abdullasajad01@gmail.com">Email</a>
-    <div class="footer-spacer"></div>
-    <div class="footer-status">
-      <span class="status-dot"></span>
-      open to backend / AI roles
-    </div>
-  </footer>
+<nav>
+<div class="container">
+<a href="#about">About</a>
+<a href="#work">Work</a>
+<a href="#research">Research</a>
+<a href="#stack">Stack</a>
+<a href="#notes">Notes</a>
+<a href="#contact">Contact</a>
 </div>
+</nav>
+
+<section id="hero">
+<div class="container">
+<h1>Sajad</h1>
+<div class="title-line">Software Engineer</div>
+<p class="statement">I build backend systems, developer tools, and AI-powered applications.</p>
+<p class="statement-secondary">My work focuses on practical software, modern LLM workflows, and research-oriented interests in reinforcement learning and coding agents.</p>
+<p class="short-intro">Software engineer focused on AI, backend systems, and product-style software that is clear, maintainable, and built for real use.</p>
+<div class="hero-links">
+<a href="https://github.com/neuralbroker" target="_blank" rel="noopener">GitHub</a>
+<a href="https://www.linkedin.com/in/abdullasajad" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://huggingface.co/sajadkoder" target="_blank" rel="noopener">Hugging Face</a>
+<a href="mailto:abdullasajad01@gmail.com">Email</a>
+</div>
+</div>
+</section>
+
+<section id="about">
+<div class="container">
+<div class="section-title">About</div>
+<p>I am a software engineer focused on backend systems, full-stack applications, and AI-powered software. Most of my work combines practical engineering with modern LLM workflows, including retrieval, local inference, model adaptation, and developer-facing AI tools.</p>
+<p>I care about software that is simple, useful, and technically honest. That usually means clear APIs, readable code, thoughtful system design, and products that solve real problems without unnecessary complexity.</p>
+<p>Alongside product and engineering work, I also spend time exploring research-oriented topics such as reinforcement learning, coding agents, retrieval systems, and practical agent workflows. My interest is mainly in applied research that improves tools, interfaces, and software systems.</p>
+<p class="mono" style="margin-top:1.25rem;font-size:0.82rem;color:var(--muted)">Abdulla Sajad is a software engineer focused on backend systems, applied AI, and developer tools. His work spans full-stack applications, modern LLM workflows, and research-oriented exploration in reinforcement learning and coding agents, with an emphasis on clarity, usability, and real-world software.</p>
+<div class="quick-facts">
+<div class="mono">Quick facts</div>
+<ul>
+<li><strong>Based in</strong>  India</li>
+<li><strong>Degree</strong>  B.Tech in Computer Science and Engineering</li>
+<li><strong>Focus</strong>  Backend, full-stack, and AI systems</li>
+<li><strong>Interests</strong>  RL, coding agents, practical LLM tooling</li>
+</ul>
+</div>
+<div class="sub-section-title">Experience</div>
+<div class="experience-item">
+<h4>Freelance Software Engineer</h4>
+<div class="exp-detail">Worked independently on software projects across backend systems, full-stack applications, AI-powered workflows, and product-focused tools, with involvement in architecture, APIs, databases, integration, deployment, and usability.</div>
+</div>
+</div>
+</section>
+
+<section id="work">
+<div class="container">
+<div class="section-title">Selected Work</div>
+<p style="font-size:1rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem;max-width:580px">A selection of projects that best represent the kind of systems I like to build: backend-heavy, practical, AI-aware, and designed for real use.</p>
+
+<div class="project">
+<div class="project-header">
+<span class="project-name">BlitzKode</span>
+<span class="project-type mono">Local AI coding assistant</span>
+</div>
+<p class="project-summary">BlitzKode is a locally fine-tuned AI coding assistant built using the Qwen2.5-1.5B base model and packaged in GGUF format for fast local inference. It was built around practical coding workflows rather than general chatbot behavior.</p>
+<ul class="project-details">
+<li>Fine-tuned for coding assistance and technical support tasks.</li>
+<li>Packaged for local-first use and fast inference.</li>
+<li>Reflects interest in developer tooling, model adaptation, and usable AI systems.</li>
+</ul>
+<div class="project-links">
+<a href="https://huggingface.co/sajadkoder/blitzkode" target="_blank" rel="noopener">Hugging Face</a>
+</div>
+</div>
+
+<div class="project">
+<div class="project-header">
+<span class="project-name">NeuralBroker</span>
+<span class="project-type mono">LLM routing infrastructure</span>
+</div>
+<p class="project-summary">An OpenAI-compatible routing daemon that sends LLM requests to local runtimes first and falls back to cloud providers only when VRAM pressure requires it.</p>
+<ul class="project-details">
+<li>Routes requests between local and cloud inference backends based on resource state.</li>
+<li>Framed around practical local-AI and systems-infrastructure concerns.</li>
+<li>Strong signal for systems thinking, inference orchestration, and developer tooling.</li>
+</ul>
+<div class="project-links">
+<a href="https://github.com/khan-sha/neuralbroker" target="_blank" rel="noopener">GitHub</a>
+</div>
+</div>
+
+<div class="project">
+<div class="project-header">
+<span class="project-name">EsenceLab</span>
+<span class="project-type mono">AI recruitment platform</span>
+</div>
+<p class="project-summary">A full-stack platform designed around resume analysis, candidate scoring, skill-gap discovery, and recruiter/student workflows. It reflects product-style engineering across frontend, backend, and AI services.</p>
+<ul class="project-details">
+<li>Built using Next.js, Express, FastAPI, Supabase, and Gemini AI.</li>
+<li>Includes resume parsing, role-fit scoring, guidance, and dashboard workflows.</li>
+<li>Represents practical system building rather than isolated ML experimentation.</li>
+</ul>
+<div class="project-links">
+<a href="https://github.com/neuralbroker" target="_blank" rel="noopener">GitHub</a>
+</div>
+</div>
+
+<div class="project">
+<div class="project-header">
+<span class="project-name">SentinelML</span>
+<span class="project-type mono">ML systems / fraud detection</span>
+</div>
+<p class="project-summary">A backend-heavy machine learning system designed to simulate a production fraud detection workflow with serving, monitoring, and retraining logic.</p>
+<div class="project-links">
+<a href="https://github.com/neuralbroker" target="_blank" rel="noopener">GitHub</a>
+</div>
+</div>
+
+<div class="project">
+<div class="project-header">
+<span class="project-name">Smart Task AI</span>
+<span class="project-type mono">Collaborative productivity system</span>
+</div>
+<p class="project-summary">A collaborative task management system with AI-assisted organization and real-time state updates, built more like a product than a demo.</p>
+<div class="project-links">
+<a href="https://github.com/neuralbroker" target="_blank" rel="noopener">GitHub</a>
+</div>
+</div>
+
+<div class="project">
+<div class="project-header">
+<span class="project-name">Lexora AI</span>
+<span class="project-type mono">Document RAG system</span>
+</div>
+<p class="project-summary">A retrieval-based AI application for semantic search and LLM-based responses over document collections, focused on usable retrieval and response workflows.</p>
+<div class="project-links">
+<a href="https://github.com/neuralbroker" target="_blank" rel="noopener">GitHub</a>
+</div>
+</div>
+
+</div>
+</section>
+
+<section id="research">
+<div class="container">
+<div class="section-title">Research Interests</div>
+<p>My research interests are mostly applied and systems-oriented. I am especially interested in reinforcement learning, coding agents, retrieval systems, local inference workflows, and the design of AI tools that are useful in real software environments.</p>
+<p>I am less interested in AI as presentation and more interested in AI as infrastructure, interface, and engineering practice. That includes how models are served, adapted, evaluated, routed, and integrated into workflows that people actually use.</p>
+<ul class="topic-list">
+<li>Reinforcement learning</li>
+<li>Coding agents</li>
+<li>Agentic systems</li>
+<li>Retrieval-augmented generation</li>
+<li>Local inference and model routing</li>
+<li>AI developer tools</li>
+<li>Practical evaluation and usability</li>
+</ul>
+</div>
+</section>
+
+<section id="stack">
+<div class="container">
+<div class="section-title">Technical Stack</div>
+
+<div class="stack-group">
+<div class="stack-label">Languages</div>
+<div class="stack-items">Python, TypeScript, Java, Kotlin, SQL, C</div>
+</div>
+
+<div class="stack-group">
+<div class="stack-label">Frontend</div>
+<div class="stack-items">React, Next.js, Tailwind CSS, Framer Motion</div>
+</div>
+
+<div class="stack-group">
+<div class="stack-label">Backend</div>
+<div class="stack-items">FastAPI, Node.js, Express, Spring Boot, REST APIs, GraphQL, WebSockets</div>
+</div>
+
+<div class="stack-group">
+<div class="stack-label">AI / ML</div>
+<div class="stack-items">Hugging Face, PEFT / LoRA, LangChain, LangGraph, FAISS, Ollama, Gemini AI, OpenAI API, Groq, llama.cpp, prompt engineering, RAG pipelines</div>
+</div>
+
+<div class="stack-group">
+<div class="stack-label">Data / Infra</div>
+<div class="stack-items">PostgreSQL, Redis, Supabase, SQLite, Docker, GitHub Actions, AWS, Linux, Vercel</div>
+</div>
+
+<div class="education-item">
+<h4>Sree Narayana Guru College of Engineering and Technology</h4>
+<div class="edu-detail">B.Tech in Computer Science and Engineering — Kerala, India — 2022–Present</div>
+</div>
+
+</div>
+</section>
+
+<section id="notes">
+<div class="container">
+<div class="section-title">Notes</div>
+<p class="notes-intro">Occasional writing on software engineering, AI systems, and ideas learned while building.</p>
+
+<div class="note-item">
+<div class="note-title">Building local-first AI tools</div>
+<div class="note-meta">—</div>
+</div>
+
+<div class="note-item">
+<div class="note-title">RAG systems are mostly systems engineering</div>
+<div class="note-meta">—</div>
+</div>
+
+<div class="note-item">
+<div class="note-title">What makes coding agents useful</div>
+<div class="note-meta">—</div>
+</div>
+
+<div class="note-item">
+<div class="note-title">Simple APIs for complex systems</div>
+<div class="note-meta">—</div>
+</div>
+
+<div class="note-item">
+<div class="note-title">Designing software around real use</div>
+<div class="note-meta">—</div>
+</div>
+
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+<div class="section-title">Contact</div>
+<p>The easiest way to reach me is through email or LinkedIn.</p>
+<div class="contact-links">
+<a href="mailto:abdullasajad01@gmail.com">abdullasajad01@gmail.com</a>
+<a href="https://github.com/neuralbroker" target="_blank" rel="noopener">github.com/neuralbroker</a>
+<a href="https://www.linkedin.com/in/abdullasajad" target="_blank" rel="noopener">linkedin.com/in/abdullasajad</a>
+<a href="https://huggingface.co/sajadkoder" target="_blank" rel="noopener">huggingface.co/sajadkoder</a>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="container">
+<p>&copy; 2026 Abdulla Sajad</p>
+</div>
+</footer>
+
 </body>
 </html>
