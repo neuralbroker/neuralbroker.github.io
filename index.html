@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Abdulla Sajad — Software Engineer</title>
+<meta name="description" content="Software engineer focused on backend systems, developer tools, and AI-powered applications. Building practical software with modern LLM workflows.">
+<link rel="canonical" href="https://neuralbroker.github.io/">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;S&lt;/text&gt;&lt;/svg&gt;">
+<meta property="og:title" content="Abdulla Sajad — Software Engineer">
+<meta property="og:description" content="Software engineer focused on backend systems, developer tools, and AI-powered applications.">
+<meta property="og:url" content="https://neuralbroker.github.io/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Abdulla Sajad — Software Engineer">
+<meta name="twitter:description" content="Software engineer focused on backend systems, developer tools, and AI-powered applications.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
@@ -161,13 +171,6 @@ section {
   margin-bottom: 1.5rem;
   max-width: 580px;
 }
-#hero .short-intro {
-  font-size: 1rem;
-  color: var(--text);
-  line-height: 1.6;
-  margin-bottom: 1.25rem;
-  max-width: 580px;
-}
 .hero-links {
   display: flex;
   flex-wrap: wrap;
@@ -315,7 +318,13 @@ section {
   font-size: 0.78rem;
   font-weight: 500;
   color: var(--accent);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.15rem;
+}
+.stack-label .stack-desc {
+  display: block;
+  font-weight: 400;
+  color: var(--muted);
+  margin-top: 0.1rem;
 }
 .stack-items {
   font-size: 0.95rem;
@@ -364,42 +373,12 @@ section {
   color: var(--text);
 }
 .expertise-list li::before {
-  content: "\2014";
+  content: "\00B7";
   position: absolute;
   left: 0;
-  color: var(--border);
-}
-/* Notes */
-.note-item {
-  margin-bottom: 1.25rem;
-  padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--border);
-}
-.note-item:last-child {
-  border-bottom: none;
-}
-.note-title {
-  font-size: 1.05rem;
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--link);
-  cursor: default;
-}
-.note-title:hover {
-  color: var(--link-hover);
-}
-.note-meta {
-  font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
-  font-size: 0.75rem;
   color: var(--muted);
-  margin-top: 0.15rem;
-}
-#notes .notes-intro {
-  font-size: 1rem;
-  color: var(--muted);
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  max-width: 550px;
+  font-size: 1.4rem;
+  line-height: 1;
 }
 /* Contact */
 #contact p {
@@ -438,9 +417,7 @@ footer p {
   nav .container { gap: 0.15rem 0.3rem; }
   nav a { font-size: 0.75rem; padding: 0.15rem 0.4rem; }
   .hero-links { gap: 0.2rem 0.8rem; font-size: 0.75rem; }
-}
-@media (max-width: 400px) {
-  .project-type { display: inline-block; margin-left: 0; margin-top: 0.3rem; }
+  .project-type { white-space: normal; display: block; margin-left: 0; margin-top: 0.3rem; }
 }
 </style>
 </head>
@@ -452,9 +429,8 @@ footer p {
 <a href="#work">Work</a>
 <a href="#research">Research</a>
 <a href="#stack">Stack</a>
-<a href="#notes">Notes</a>
 <a href="#contact">Contact</a>
-<span class="theme-toggle mono" id="themeToggle" role="button" tabindex="0">Light / Dark</span>
+<span class="theme-toggle mono" id="themeToggle" role="button" tabindex="0" aria-label="Toggle dark and light theme">◐</span>
 </div>
 </nav>
 
@@ -464,7 +440,6 @@ footer p {
 <div class="title-line">Software Engineer</div>
 <p class="statement">I build backend systems, developer tools, and AI-powered applications.</p>
 <p class="statement-secondary">My work focuses on practical software, modern LLM workflows, and research-oriented interests in reinforcement learning and coding agents.</p>
-<p class="short-intro">Software engineer focused on AI, backend systems, and product-style software that is clear, maintainable, and built for real use.</p>
 <div class="hero-links">
 <a href="https://github.com/neuralbroker" target="_blank" rel="noopener">GitHub</a>
 <a href="https://www.linkedin.com/in/abdullasajad" target="_blank" rel="noopener">LinkedIn</a>
@@ -480,7 +455,6 @@ footer p {
 <p>I am a software engineer focused on backend systems, full-stack applications, and AI-powered software. Most of my work combines practical engineering with modern LLM workflows, including retrieval, local inference, model adaptation, and developer-facing AI tools.</p>
 <p>I care about software that is simple, useful, and technically honest. That usually means clear APIs, readable code, thoughtful system design, and products that solve real problems without unnecessary complexity.</p>
 <p>Alongside product and engineering work, I also spend time exploring research-oriented topics such as reinforcement learning, coding agents, retrieval systems, and practical agent workflows. My interest is mainly in applied research that improves tools, interfaces, and software systems.</p>
-<p class="mono" style="margin-top:1.25rem;font-size:0.82rem;color:var(--muted)">Abdulla Sajad is a software engineer focused on backend systems, applied AI, and developer tools. His work spans full-stack applications, modern LLM workflows, and research-oriented exploration in reinforcement learning and coding agents, with an emphasis on clarity, usability, and real-world software.</p>
 <div class="sub-section-title">Key Expertise</div>
 <ul class="expertise-list">
 <li>Backend API development with FastAPI, Node.js, and RESTful design</li>
@@ -506,10 +480,6 @@ footer p {
 <h4>Freelance Software Engineer <span class="mono" style="font-weight:400;font-size:0.82rem;color:var(--muted)">— 2023 – Present</span></h4>
 <div class="exp-detail">Worked independently on software projects across backend systems, full-stack applications, AI-powered workflows, and product-focused tools, with involvement in architecture, APIs, databases, integration, deployment, and usability.</div>
 </div>
-<div class="experience-item">
-<h4>EsenceLab <span class="mono" style="font-weight:400;font-size:0.82rem;color:var(--muted)">— 2024 – Present</span></h4>
-<div class="exp-detail">Full-stack AI-powered recruitment platform with resume parsing, candidate scoring, and dashboard workflows. Built with Next.js, FastAPI, Supabase, and Gemini AI. Role involved system architecture, API design, and AI service integration.</div>
-</div>
 </div>
 </section>
 
@@ -521,7 +491,7 @@ footer p {
 <div class="project">
 <div class="project-header">
 <span class="project-name">BlitzKode</span>
-<span class="project-type mono">01/2026</span>
+<span class="project-type mono">Local AI coding assistant · 01/2026</span>
 </div>
 <p class="project-summary">A locally fine-tuned AI coding assistant built using the Qwen2.5-1.5B base model and packaged in GGUF format for fast local inference. Built around practical coding workflows rather than general chatbot behavior.</p>
 <ul class="project-details">
@@ -537,7 +507,7 @@ footer p {
 <div class="project">
 <div class="project-header">
 <span class="project-name">NeuralBroker</span>
-<span class="project-type mono">2025</span>
+<span class="project-type mono">LLM routing infrastructure · 2025</span>
 </div>
 <p class="project-summary">An OpenAI-compatible routing daemon that sends LLM requests to local runtimes first and falls back to cloud providers only when VRAM pressure requires it.</p>
 <ul class="project-details">
@@ -553,7 +523,7 @@ footer p {
 <div class="project">
 <div class="project-header">
 <span class="project-name">EsenceLab</span>
-<span class="project-type mono">2024 – Present</span>
+<span class="project-type mono">AI recruitment platform · 2024 – Present</span>
 </div>
 <p class="project-summary">A full-stack platform for resume analysis, candidate scoring, skill-gap discovery, and recruiter workflows. Built using Next.js, Express, FastAPI, Supabase, and Gemini AI.</p>
 <ul class="project-details">
@@ -568,7 +538,7 @@ footer p {
 <div class="project">
 <div class="project-header">
 <span class="project-name">SentinelML</span>
-<span class="project-type mono">2025</span>
+<span class="project-type mono">ML systems / fraud detection · 2025</span>
 </div>
 <p class="project-summary">A backend-heavy ML system simulating a production fraud detection workflow with serving, monitoring, and retraining logic.</p>
 <div class="project-links">
@@ -579,7 +549,7 @@ footer p {
 <div class="project">
 <div class="project-header">
 <span class="project-name">Smart Task AI</span>
-<span class="project-type mono">2025</span>
+<span class="project-type mono">Collaborative productivity system · 2025</span>
 </div>
 <p class="project-summary">A collaborative task management system with AI-assisted organization and real-time state updates.</p>
 <div class="project-links">
@@ -590,7 +560,7 @@ footer p {
 <div class="project">
 <div class="project-header">
 <span class="project-name">Lexora AI</span>
-<span class="project-type mono">2025</span>
+<span class="project-type mono">Document RAG system · 2025</span>
 </div>
 <p class="project-summary">A retrieval-based RAG application for semantic search and LLM-based responses over document collections.</p>
 <div class="project-links">
@@ -623,17 +593,17 @@ footer p {
 <div class="section-title">Technical Stack</div>
 
 <div class="stack-group">
-<div class="stack-label">Core Competencies <span class="mono" style="font-weight:400;color:var(--muted)">— use without supervision</span></div>
+<div class="stack-label">Core Competencies <span class="stack-desc mono">Use without supervision</span></div>
 <div class="stack-items">Python, TypeScript, Java, React, Next.js, Tailwind CSS, FastAPI, Node.js, Express, REST APIs, PostgreSQL, SQLite, Docker, Linux, Git, Prompt Engineering, RAG Pipelines, OpenAI API, Gemini AI</div>
 </div>
 
 <div class="stack-group">
-<div class="stack-label">Working Knowledge <span class="mono" style="font-weight:400;color:var(--muted)">— use with guidance</span></div>
+<div class="stack-label">Working Knowledge <span class="stack-desc mono">Can work with guidance</span></div>
 <div class="stack-items">Kotlin, C, Spring Boot, GraphQL, WebSockets, Hugging Face, LangChain, LangGraph, FAISS, Ollama, llama.cpp, Redis, Supabase, GitHub Actions, AWS, Vercel, PEFT / LoRA</div>
 </div>
 
 <div class="stack-group">
-<div class="stack-label">Familiarity <span class="mono" style="font-weight:400;color:var(--muted)">— studied, limited practical exposure</span></div>
+<div class="stack-label">Familiarity <span class="stack-desc mono">Studied, limited practical exposure</span></div>
 <div class="stack-items">Framer Motion, Groq, Reinforcement Learning, Agentic Systems, Model Routing</div>
 </div>
 
@@ -645,48 +615,15 @@ footer p {
 </div>
 </section>
 
-<section id="notes">
-<div class="container">
-<div class="section-title">Notes</div>
-<p class="notes-intro">Occasional writing on software engineering, AI systems, and ideas learned while building.</p>
-
-<div class="note-item">
-<div class="note-title">Building local-first AI tools</div>
-<div class="note-meta">—</div>
-</div>
-
-<div class="note-item">
-<div class="note-title">RAG systems are mostly systems engineering</div>
-<div class="note-meta">—</div>
-</div>
-
-<div class="note-item">
-<div class="note-title">What makes coding agents useful</div>
-<div class="note-meta">—</div>
-</div>
-
-<div class="note-item">
-<div class="note-title">Simple APIs for complex systems</div>
-<div class="note-meta">—</div>
-</div>
-
-<div class="note-item">
-<div class="note-title">Designing software around real use</div>
-<div class="note-meta">—</div>
-</div>
-
-</div>
-</section>
-
 <section id="contact">
 <div class="container">
 <div class="section-title">Contact</div>
 <p>The easiest way to reach me is through email or LinkedIn.</p>
 <div class="contact-links">
-<a href="mailto:abdullasajad01@gmail.com">abdullasajad01@gmail.com</a>
-<a href="https://github.com/neuralbroker" target="_blank" rel="noopener">github.com/neuralbroker</a>
-<a href="https://www.linkedin.com/in/abdullasajad" target="_blank" rel="noopener">linkedin.com/in/abdullasajad</a>
-<a href="https://huggingface.co/sajadkoder" target="_blank" rel="noopener">huggingface.co/sajadkoder</a>
+<a href="mailto:abdullasajad01@gmail.com">Email</a>
+<a href="https://github.com/neuralbroker" target="_blank" rel="noopener">GitHub</a>
+<a href="https://www.linkedin.com/in/abdullasajad" target="_blank" rel="noopener">LinkedIn</a>
+<a href="https://huggingface.co/sajadkoder" target="_blank" rel="noopener">Hugging Face</a>
 </div>
 </div>
 </section>
@@ -705,11 +642,18 @@ footer p {
   if (stored === 'dark' || stored === 'light') {
     html.setAttribute('data-theme', stored);
   }
-  toggle.addEventListener('click', function() {
+  function toggleTheme() {
     var current = html.getAttribute('data-theme');
     var next = (current === 'dark') ? 'light' : 'dark';
     html.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
+  }
+  toggle.addEventListener('click', toggleTheme);
+  toggle.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleTheme();
+    }
   });
 })();
 </script>
