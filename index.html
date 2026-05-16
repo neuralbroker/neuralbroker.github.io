@@ -352,6 +352,23 @@ section {
   color: var(--muted);
   line-height: 1.6;
 }
+.expertise-list {
+  list-style: none;
+  margin: 1rem 0 1.5rem;
+}
+.expertise-list li {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  padding: 0.3rem 0 0.3rem 1rem;
+  position: relative;
+  color: var(--text);
+}
+.expertise-list li::before {
+  content: "\2014";
+  position: absolute;
+  left: 0;
+  color: var(--border);
+}
 /* Notes */
 .note-item {
   margin-bottom: 1.25rem;
@@ -464,6 +481,17 @@ footer p {
 <p>I care about software that is simple, useful, and technically honest. That usually means clear APIs, readable code, thoughtful system design, and products that solve real problems without unnecessary complexity.</p>
 <p>Alongside product and engineering work, I also spend time exploring research-oriented topics such as reinforcement learning, coding agents, retrieval systems, and practical agent workflows. My interest is mainly in applied research that improves tools, interfaces, and software systems.</p>
 <p class="mono" style="margin-top:1.25rem;font-size:0.82rem;color:var(--muted)">Abdulla Sajad is a software engineer focused on backend systems, applied AI, and developer tools. His work spans full-stack applications, modern LLM workflows, and research-oriented exploration in reinforcement learning and coding agents, with an emphasis on clarity, usability, and real-world software.</p>
+<div class="sub-section-title">Key Expertise</div>
+<ul class="expertise-list">
+<li>Backend API development with FastAPI, Node.js, and RESTful design</li>
+<li>Full-stack applications using React, Next.js, and TypeScript</li>
+<li>LLM workflows including RAG pipelines, prompt engineering, and model routing</li>
+<li>Database design and management with PostgreSQL, SQLite, and Redis</li>
+<li>Containerization and deployment with Docker, Linux, and cloud platforms</li>
+<li>Model adaptation and fine-tuning using PEFT/LoRA and Hugging Face</li>
+<li>System design focused on maintainability, clear APIs, and practical architecture</li>
+<li>Cross-functional collaboration and technical communication</li>
+</ul>
 <div class="quick-facts">
 <div class="mono">Quick facts</div>
 <ul>
@@ -475,8 +503,12 @@ footer p {
 </div>
 <div class="sub-section-title">Experience</div>
 <div class="experience-item">
-<h4>Freelance Software Engineer</h4>
+<h4>Freelance Software Engineer <span class="mono" style="font-weight:400;font-size:0.82rem;color:var(--muted)">— 2023 – Present</span></h4>
 <div class="exp-detail">Worked independently on software projects across backend systems, full-stack applications, AI-powered workflows, and product-focused tools, with involvement in architecture, APIs, databases, integration, deployment, and usability.</div>
+</div>
+<div class="experience-item">
+<h4>EsenceLab <span class="mono" style="font-weight:400;font-size:0.82rem;color:var(--muted)">— 2024 – Present</span></h4>
+<div class="exp-detail">Full-stack AI-powered recruitment platform with resume parsing, candidate scoring, and dashboard workflows. Built with Next.js, FastAPI, Supabase, and Gemini AI. Role involved system architecture, API design, and AI service integration.</div>
 </div>
 </div>
 </section>
@@ -489,9 +521,9 @@ footer p {
 <div class="project">
 <div class="project-header">
 <span class="project-name">BlitzKode</span>
-<span class="project-type mono">Local AI coding assistant</span>
+<span class="project-type mono">01/2026</span>
 </div>
-<p class="project-summary">BlitzKode is a locally fine-tuned AI coding assistant built using the Qwen2.5-1.5B base model and packaged in GGUF format for fast local inference. It was built around practical coding workflows rather than general chatbot behavior.</p>
+<p class="project-summary">A locally fine-tuned AI coding assistant built using the Qwen2.5-1.5B base model and packaged in GGUF format for fast local inference. Built around practical coding workflows rather than general chatbot behavior.</p>
 <ul class="project-details">
 <li>Fine-tuned for coding assistance and technical support tasks.</li>
 <li>Packaged for local-first use and fast inference.</li>
@@ -505,7 +537,7 @@ footer p {
 <div class="project">
 <div class="project-header">
 <span class="project-name">NeuralBroker</span>
-<span class="project-type mono">LLM routing infrastructure</span>
+<span class="project-type mono">2025</span>
 </div>
 <p class="project-summary">An OpenAI-compatible routing daemon that sends LLM requests to local runtimes first and falls back to cloud providers only when VRAM pressure requires it.</p>
 <ul class="project-details">
@@ -521,11 +553,10 @@ footer p {
 <div class="project">
 <div class="project-header">
 <span class="project-name">EsenceLab</span>
-<span class="project-type mono">AI recruitment platform</span>
+<span class="project-type mono">2024 – Present</span>
 </div>
-<p class="project-summary">A full-stack platform designed around resume analysis, candidate scoring, skill-gap discovery, and recruiter/student workflows. It reflects product-style engineering across frontend, backend, and AI services.</p>
+<p class="project-summary">A full-stack platform for resume analysis, candidate scoring, skill-gap discovery, and recruiter workflows. Built using Next.js, Express, FastAPI, Supabase, and Gemini AI.</p>
 <ul class="project-details">
-<li>Built using Next.js, Express, FastAPI, Supabase, and Gemini AI.</li>
 <li>Includes resume parsing, role-fit scoring, guidance, and dashboard workflows.</li>
 <li>Represents practical system building rather than isolated ML experimentation.</li>
 </ul>
@@ -537,9 +568,9 @@ footer p {
 <div class="project">
 <div class="project-header">
 <span class="project-name">SentinelML</span>
-<span class="project-type mono">ML systems / fraud detection</span>
+<span class="project-type mono">2025</span>
 </div>
-<p class="project-summary">A backend-heavy machine learning system designed to simulate a production fraud detection workflow with serving, monitoring, and retraining logic.</p>
+<p class="project-summary">A backend-heavy ML system simulating a production fraud detection workflow with serving, monitoring, and retraining logic.</p>
 <div class="project-links">
 <a href="https://github.com/neuralbroker" target="_blank" rel="noopener">GitHub</a>
 </div>
@@ -548,9 +579,9 @@ footer p {
 <div class="project">
 <div class="project-header">
 <span class="project-name">Smart Task AI</span>
-<span class="project-type mono">Collaborative productivity system</span>
+<span class="project-type mono">2025</span>
 </div>
-<p class="project-summary">A collaborative task management system with AI-assisted organization and real-time state updates, built more like a product than a demo.</p>
+<p class="project-summary">A collaborative task management system with AI-assisted organization and real-time state updates.</p>
 <div class="project-links">
 <a href="https://github.com/neuralbroker" target="_blank" rel="noopener">GitHub</a>
 </div>
@@ -559,9 +590,9 @@ footer p {
 <div class="project">
 <div class="project-header">
 <span class="project-name">Lexora AI</span>
-<span class="project-type mono">Document RAG system</span>
+<span class="project-type mono">2025</span>
 </div>
-<p class="project-summary">A retrieval-based AI application for semantic search and LLM-based responses over document collections, focused on usable retrieval and response workflows.</p>
+<p class="project-summary">A retrieval-based RAG application for semantic search and LLM-based responses over document collections.</p>
 <div class="project-links">
 <a href="https://github.com/neuralbroker" target="_blank" rel="noopener">GitHub</a>
 </div>
@@ -592,33 +623,23 @@ footer p {
 <div class="section-title">Technical Stack</div>
 
 <div class="stack-group">
-<div class="stack-label">Languages</div>
-<div class="stack-items">Python, TypeScript, Java, Kotlin, SQL, C</div>
+<div class="stack-label">Core Competencies <span class="mono" style="font-weight:400;color:var(--muted)">— use without supervision</span></div>
+<div class="stack-items">Python, TypeScript, Java, React, Next.js, Tailwind CSS, FastAPI, Node.js, Express, REST APIs, PostgreSQL, SQLite, Docker, Linux, Git, Prompt Engineering, RAG Pipelines, OpenAI API, Gemini AI</div>
 </div>
 
 <div class="stack-group">
-<div class="stack-label">Frontend</div>
-<div class="stack-items">React, Next.js, Tailwind CSS, Framer Motion</div>
+<div class="stack-label">Working Knowledge <span class="mono" style="font-weight:400;color:var(--muted)">— use with guidance</span></div>
+<div class="stack-items">Kotlin, C, Spring Boot, GraphQL, WebSockets, Hugging Face, LangChain, LangGraph, FAISS, Ollama, llama.cpp, Redis, Supabase, GitHub Actions, AWS, Vercel, PEFT / LoRA</div>
 </div>
 
 <div class="stack-group">
-<div class="stack-label">Backend</div>
-<div class="stack-items">FastAPI, Node.js, Express, Spring Boot, REST APIs, GraphQL, WebSockets</div>
-</div>
-
-<div class="stack-group">
-<div class="stack-label">AI / ML</div>
-<div class="stack-items">Hugging Face, PEFT / LoRA, LangChain, LangGraph, FAISS, Ollama, Gemini AI, OpenAI API, Groq, llama.cpp, prompt engineering, RAG pipelines</div>
-</div>
-
-<div class="stack-group">
-<div class="stack-label">Data / Infra</div>
-<div class="stack-items">PostgreSQL, Redis, Supabase, SQLite, Docker, GitHub Actions, AWS, Linux, Vercel</div>
+<div class="stack-label">Familiarity <span class="mono" style="font-weight:400;color:var(--muted)">— studied, limited practical exposure</span></div>
+<div class="stack-items">Framer Motion, Groq, Reinforcement Learning, Agentic Systems, Model Routing</div>
 </div>
 
 <div class="education-item">
 <h4>Sree Narayana Guru College of Engineering and Technology</h4>
-<div class="edu-detail">B.Tech in Computer Science and Engineering — Kerala, India — 2022–Present</div>
+<div class="edu-detail">B.Tech in Computer Science and Engineering — Kerala, India — 09/2022 – Present</div>
 </div>
 
 </div>
