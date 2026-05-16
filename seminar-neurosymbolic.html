@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seminar: Neurosymbolic AI in Military Systems — Abdulla Sajad</title>
+<meta name="description" content="Seminar presentation on integrating neural networks with symbolic reasoning for military applications — covering decision support, explainability, and multi-modal sensor fusion.">
+<link rel="canonical" href="https://neuralbroker.github.io/seminar-neurosymbolic">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;S&lt;/text&gt;&lt;/svg&gt;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fcfcf9;
+  --text: #1c1c1c;
+  --muted: #787878;
+  --border: #e5e5e4;
+  --link: #4a6fa5;
+  --link-hover: #2c5282;
+}
+[data-theme="dark"] {
+  --bg: #161616;
+  --text: #e5e5e5;
+  --muted: #9ca3af;
+  --border: #2d2d2d;
+  --link: #7ba3d6;
+  --link-hover: #9dc0f0;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161616; --text: #e5e5e5; --muted: #9ca3af;
+    --border: #2d2d2d; --link: #7ba3d6; --link-hover: #9dc0f0;
+  }
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Newsreader', Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.0625rem; line-height: 1.7; color: var(--text);
+  background: var(--bg); -webkit-font-smoothing: antialiased; padding: 0 1.5rem;
+}
+a { color: var(--link); text-decoration: none; }
+a:hover { color: var(--link-hover); }
+::selection { background: var(--text); color: var(--bg); }
+.mono { font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace; }
+.container { max-width: 680px; margin: 0 auto; }
+nav { padding: 2rem 0 1rem; border-bottom: 1px solid var(--border); margin-bottom: 3rem; }
+nav .container { display: flex; flex-wrap: wrap; gap: 0.2rem 0.4rem; }
+nav a {
+  font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
+  font-size: 0.8rem; color: var(--muted); padding: 0.2rem 0.6rem; transition: color 0.15s;
+}
+nav a:hover { color: var(--text); }
+.theme-toggle {
+  margin-left: auto; font-size: 0.75rem; color: var(--muted);
+  cursor: pointer; padding: 0.2rem 0.6rem; user-select: none; transition: color 0.15s;
+}
+.theme-toggle:hover { color: var(--text); }
+.post-meta {
+  font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
+  font-size: 0.78rem; color: var(--muted); margin-bottom: 2rem;
+}
+h1 { font-size: 2rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 0.5rem; }
+h2 { font-size: 1.3rem; font-weight: 500; margin: 2rem 0 0.75rem; line-height: 1.3; }
+p { margin-bottom: 1rem; max-width: 600px; }
+p, li { color: var(--text); }
+ul, ol { margin: 0 0 1rem 1.5rem; }
+li { margin-bottom: 0.4rem; line-height: 1.6; }
+.back-link {
+  display: inline-block; font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace;
+  font-size: 0.8rem; color: var(--muted); margin-bottom: 2rem;
+}
+.back-link:hover { color: var(--link); }
+footer { padding: 2rem 0 3rem; border-top: 1px solid var(--border); margin-top: 3rem; }
+footer p { font-family: 'DM Mono', 'SF Mono', 'Cascadia Code', monospace; font-size: 0.72rem; color: var(--muted); }
+@media (max-width: 540px) { body { padding: 0 1.25rem; } h1 { font-size: 1.6rem; } }
+</style>
+</head>
+<body>
+<nav>
+<div class="container">
+<a href="index.html">Home</a>
+<a href="index.html#about">About</a>
+<a href="index.html#work">Work</a>
+<a href="index.html#blogs">Blogs</a>
+<span class="theme-toggle mono" id="themeToggle" role="button" tabindex="0" aria-label="Toggle dark and light theme">◐</span>
+</div>
+</nav>
+<article class="container">
+<a href="index.html#blogs" class="back-link">&larr; Back to Blogs</a>
+<h1>Neurosymbolic AI in Military Systems</h1>
+<div class="post-meta">Seminar Presentation · 2025</div>
+
+<p>I presented a seminar on <strong>Neurosymbolic AI (NeSy)</strong> and its applications in military systems — covering how combining neural networks with symbolic reasoning can address critical challenges in defense, intelligence, and autonomous operations.</p>
+
+<h2>What is Neurosymbolic AI?</h2>
+<p>Neurosymbolic AI is the "third wave" of AI, merging two traditionally separate approaches:</p>
+<ul>
+<li><strong>Neural networks</strong> — excel at pattern recognition, learning from data, and handling noisy inputs (what Kahneman calls <em>System 1</em> thinking)</li>
+<li><strong>Symbolic reasoning</strong> — uses explicit rules, logic, and knowledge representation for structured, explainable decision-making (<em>System 2</em> thinking)</li>
+</ul>
+<p>By combining both, NeSy systems can <strong>learn from data</strong> while also <strong>reasoning with rules</strong> — making them more robust, interpretable, and capable than either approach alone.</p>
+
+<h2>Why the military?</h2>
+<p>Military AI must be <strong>reliable, explainable, and compliant</strong> with rules of engagement. A pure neural network can detect a tank in a satellite image, but it cannot explain <em>why</em> it made that call or whether its decision aligns with operational doctrine. NeSy addresses this by encoding domain knowledge (rules of engagement, terrain constraints, chain-of-command logic) as symbolic constraints that guide and audit neural predictions.</p>
+
+<h2>Key applications covered</h2>
+<ul>
+<li><strong>Decision support under uncertainty</strong> — NeSy systems fuse noisy sensor data (radar, infrared, SIGINT) with symbolic doctrine to recommend courses of action with explicit reasoning chains</li>
+<li><strong>Explainability and audit</strong> — Every prediction can be traced back to the rules and data that produced it, enabling after-action review and legal accountability</li>
+<li><strong>Multi-modal sensor fusion</strong> — Neural networks handle raw sensor streams; symbolic layers align detections across modalities using domain ontologies</li>
+<li><strong>Autonomous systems</strong> — Rules of engagement encoded as symbolic constraints ensure autonomous platforms operate within ethical and legal boundaries</li>
+<li><strong>Logistics optimization</strong> — Neural forecasting combined with symbolic constraint solving for supply chain and troop movement planning</li>
+</ul>
+
+<h2>Ethical and strategic considerations</h2>
+<p>Deploying NeSy in military contexts raises important questions: accountability when autonomous systems make errors, the risk of adversarial attacks on neural components, and the challenge of encoding nuanced human ethics into symbolic rules. The seminar emphasized that NeSy's inherent explainability is a <em>feature</em> — it makes these systems more auditable than black-box deep learning, which is critical for responsible military deployment.</p>
+
+<h2>Broader relevance</h2>
+<p>While the seminar focused on defense, the same techniques apply to civilian domains: healthcare diagnostics with explainable predictions, financial fraud detection with auditable rule traces, and autonomous vehicles that can reason about traffic laws. The unifying theme is that safety-critical AI needs both <strong>learning and logic</strong>.</p>
+
+<p><em>Main reference: arXiv:2408.09224 — "Neuro-Symbolic AI for Military Applications" (Hagos & Rawat, IEEE TAI 2024)</em></p>
+</article>
+<footer>
+<div class="container">
+<p>&copy; 2026 Abdulla Sajad</p>
+</div>
+</footer>
+<script>
+(function() {
+  var html = document.documentElement;
+  var toggle = document.getElementById('themeToggle');
+  var stored = localStorage.getItem('theme');
+  if (stored === 'dark' || stored === 'light') html.setAttribute('data-theme', stored);
+  function toggleTheme() {
+    var current = html.getAttribute('data-theme');
+    var next = (current === 'dark') ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  }
+  toggle.addEventListener('click', toggleTheme);
+  toggle.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleTheme(); }
+  });
+})();
+</script>
+</body>
+</html>
