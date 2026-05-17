@@ -38,9 +38,9 @@
 <h1>SpeakSwap: Translation with Speech I/O in the Browser</h1>
 <div class="post-meta">Published: September 2025 · <a href="https://speakswap.vercel.app" target="_blank" rel="noopener">Live Demo</a> · <a href="https://github.com/neuralbroker/speakswap" target="_blank" rel="noopener">GitHub</a></div>
 
-<p>SpeakSwap is a translation app that works entirely in your browser. You can <strong>type or speak</strong> in one language, get a translation, and hear the result spoken back — all without API keys or accounts.</p>
+<p>SpeakSwap began as a college mini-project. I wanted to build a translation tool that felt simple to use: type or speak, get the translation, and hear it spoken back.</p>
 
-<p>It started as a college mini-project and grew into a polished tool with voice input, auto-detect, dark mode, and offline awareness.</p>
+<p>The final version runs in the browser, supports voice input, handles fallback translation services, and keeps the interface lightweight.</p>
 
 <h2>How it works</h2>
 <p>The app has two sides: a client (Next.js + React) and a thin server proxy. The client handles the UI, speech recognition, and speech synthesis using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API" target="_blank" rel="noopener">Web Speech API</a>. Translation requests go through a server-side proxy that falls back across three free services (MyMemory, LibreTranslate, Lingva) with rate limiting and response caching.</p>
@@ -51,7 +51,7 @@
 <li><strong>SpeechRecognition</strong> — converts your voice to text. You select the source language, click the mic, and speak. The browser sends audio to its speech engine and returns transcribed text.</li>
 <li><strong>SpeechSynthesis</strong> — reads the translated text aloud. The app maps each language to an appropriate voice using a locale-to-voice lookup table.</li>
 </ul>
-<p>Auto-detection works for typed text (via the translation APIs), but not for voice input — the Web Speech API needs an explicit language code before it starts listening.</p>
+<p>One limitation I ran into: auto-detection works for typed text, but not for voice input. The Web Speech API needs a language code before it starts listening, so the user still has to choose the speaking language.</p>
 
 <h2>Architecture highlights</h2>
 <ul>
@@ -64,9 +64,9 @@
 </ul>
 
 <h2>What I learned</h2>
-<p>Building SpeakSwap taught me about the Web Speech API's quirks (Chrome vs Safari behavior), the importance of graceful degradation when external APIs fail, and how to structure a Next.js app with both client and server logic. It's a simple app on the surface, but a lot of edge-case handling went into making it feel smooth.</p>
+<p>SpeakSwap looked simple at first, but the details took work: browser differences in speech recognition, API failures, rate limits, caching, and keeping the UI responsive. It was a good reminder that small apps still need careful edge-case handling.</p>
 
-<p><a href="https://speakswap.vercel.app" target="_blank" rel="noopener">Try it live</a> — no install needed.</p>
+<p><a href="https://speakswap.vercel.app" target="_blank" rel="noopener">Try it live</a>.</p>
 </article>
 <footer>
 <div class="container">

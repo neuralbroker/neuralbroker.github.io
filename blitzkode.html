@@ -41,7 +41,7 @@
 <h1>BlitzKode: A Local AI Coding Assistant</h1>
 <div class="post-meta">Published: January 2026 · 3 models on Hugging Face · 354 downloads</div>
 
-<p>BlitzKode is a fine-tuned language model that helps you write code <strong>entirely on your own machine</strong>. No internet, no API keys, no monthly subscription. You download the model, run it with <a href="https://llama.cpp" target="_blank" rel="noopener">llama.cpp</a>, and it works offline.</p>
+<p>BlitzKode started as a simple question: how useful can a small coding model be if it runs fully on my own machine? No API keys, no cloud calls, no subscription — just a local model running through <a href="https://llama.cpp" target="_blank" rel="noopener">llama.cpp</a>.</p>
 
 <h2>Why build yet another coding assistant?</h2>
 <p>Most coding assistants today (GitHub Copilot, ChatGPT, Claude) send your code to a cloud server. That's fine for many people, but it means:</p>
@@ -51,11 +51,11 @@
 <li>You pay per token or per month</li>
 <li>Latency depends on network speed</li>
 </ul>
-<p>BlitzKode flips that. It's a small model (1.5 billion parameters) that runs directly on your CPU or GPU. It's not as powerful as GPT-4, but it's <em>fast, private, and free</em> after download.</p>
+<p>BlitzKode is my attempt at the other side of that trade-off. It’s a small 1.5B model, so it will not replace a frontier model, but it is fast, private, and easy to run after download.</p>
 
 <h2>How it works</h2>
-<p>I started with <strong><a href="https://huggingface.co/Qwen/Qwen2.5-1.5B" target="_blank" rel="noopener">Qwen2.5-1.5B</a></strong>, a capable small language model from Alibaba Cloud. Then I fine-tuned it on a dataset of code instructions — teaching it to generate, explain, and debug code in a helpful tone.</p>
-<p>After fine-tuning, I converted the model to <strong>GGUF format</strong> — a compact file format that runs efficiently with llama.cpp. The result is a ~1 GB file you can run on a laptop.</p>
+<p>I started with <strong><a href="https://huggingface.co/Qwen/Qwen2.5-1.5B" target="_blank" rel="noopener">Qwen2.5-1.5B</a></strong>, then fine-tuned it on code-instruction data so it could handle common coding tasks like generation, explanation, and debugging.</p>
+<p>After fine-tuning, I converted it to <strong>GGUF format</strong> so it could run efficiently with llama.cpp. The final model is small enough to keep on a laptop and quick enough to test without much setup.</p>
 
 <h2>Models available</h2>
 <ul>
@@ -79,9 +79,9 @@ make
   -n 512</code></pre>
 
 <h2>What I learned</h2>
-<p>Fine-tuning a small model taught me a lot about the full LLM pipeline: dataset preparation, PEFT/LoRA tuning, quantization, and GGUF conversion. It also showed me that even a 1.5B model can be genuinely useful for straightforward coding tasks — especially when you need something that just works offline.</p>
+<p>This project taught me the full path from dataset preparation to LoRA fine-tuning, quantization, and GGUF conversion. It also gave me a better feel for where small models are useful: not as magic assistants, but as fast local tools for focused coding tasks.</p>
 
-<p>Give it a try. You might be surprised what a tiny model can do.</p>
+<p>I still see it as an experiment, but a useful one.</p>
 
 </article>
 

@@ -38,12 +38,12 @@
 <h1>Anogram: Offline P2P Messaging over Bluetooth LE</h1>
 <div class="post-meta">Published: February 2026 · <a href="https://github.com/neuralbroker/Anogram" target="_blank" rel="noopener">GitHub</a></div>
 
-<p>Anogram is an Android messaging app that works <strong>without internet, accounts, or servers</strong>. Two people in the same room can open the app, discover each other, and start chatting — all over Bluetooth Low Energy.</p>
+<p>Anogram is an Android messaging app I built around a simple idea: two nearby phones should be able to chat even when there is no internet, account, or server involved.</p>
 
-<p>It's built with Kotlin, Jetpack Compose, and Clean Architecture. Here's how the core idea works.</p>
+<p>The app uses Bluetooth Low Energy for device discovery and message exchange, with Kotlin, Jetpack Compose, Room, and a Clean Architecture-style structure underneath.</p>
 
 <h2>The problem</h2>
-<p>Most messaging apps (WhatsApp, Telegram, Signal) need internet. That's fine 99% of the time, but there are situations where no connectivity exists — remote areas, disaster zones, secure facilities, or just saving data. Bluetooth LE lets devices talk directly, but the traditional BLE model (one central, one peripheral) makes multi-device messaging awkward.</p>
+<p>Most messaging apps need internet, which is fine until you are in a place where connectivity is unavailable or unreliable. BLE lets nearby devices talk directly, but Android’s BLE model has enough edge cases that making it feel like a messaging app is not straightforward.</p>
 
 <h2>Core logic: BLE mesh</h2>
 <p>Anogram implements a <strong>mesh-like topology over BLE GATT</strong>. Each device acts as both a server (advertising a GATT service with a "message" characteristic) and a client (scanning for nearby peers and connecting to read their messages).</p>
@@ -74,7 +74,7 @@
 <p>BLE is the sweet spot for text-based local messaging.</p>
 
 <h2>What I learned</h2>
-<p>Building Anogram meant learning the nuances of Android's BLE stack: service/characteristic UUID management, MTU negotiation for larger messages, connection intervals, and handling the many edge cases of device discovery (devices going out of range, advertisements being missed, etc.). It's a practical example of how Clean Architecture makes sense even in a hardware-near Android project — the domain models stay clean while the BLE details live in the data layer.</p>
+<p>Anogram taught me how much detail hides inside Android BLE: service UUIDs, characteristics, MTU limits, connection timing, missed advertisements, and devices disappearing mid-session. It also made Clean Architecture feel useful in a very practical way — the app logic can stay readable while the BLE-specific work stays isolated.</p>
 
 <p><a href="https://github.com/neuralbroker/Anogram" target="_blank" rel="noopener">View the source on GitHub</a>.</p>
 </article>
