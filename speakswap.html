@@ -1,78 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SpeakSwap — Browser-based translation with speech I/O — Abdulla Sajad</title>
-<meta name="description" content="SpeakSwap is a web translation app with speech input, spoken playback, translation fallback services, caching, and browser-native speech APIs.">
+<title>SpeakSwap — Abdulla Sajad</title>
+<meta name="description" content="SpeakSwap is a browser translation app with speech input, spoken playback, and fallback translation APIs.">
 <link rel="canonical" href="https://neuralbroker.github.io/speakswap">
-<meta property="og:title" content="SpeakSwap — Browser-based translation with speech I/O — Abdulla Sajad">
-<meta property="og:description" content="SpeakSwap is a web translation app with speech input, spoken playback, translation fallback services, caching, and browser-native speech APIs.">
+<meta property="og:title" content="SpeakSwap — Abdulla Sajad">
+<meta property="og:description" content="A browser translation app with speech input, spoken playback, and fallback translation APIs.">
 <meta property="og:url" content="https://neuralbroker.github.io/speakswap">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Abdulla Sajad">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SpeakSwap — Browser-based translation with speech I/O — Abdulla Sajad">
-<meta name="twitter:description" content="SpeakSwap is a web translation app with speech input, spoken playback, translation fallback services, caching, and browser-native speech APIs.">
+<meta name="twitter:title" content="SpeakSwap — Abdulla Sajad">
+<meta name="twitter:description" content="A browser translation app with speech input, spoken playback, and fallback translation APIs.">
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;S&lt;/text&gt;&lt;/svg&gt;">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"SpeakSwap — Browser-based translation with speech I/O","description":"SpeakSwap is a web translation app with speech input, spoken playback, translation fallback services, caching, and browser-native speech APIs.","url":"https://neuralbroker.github.io/speakswap","datePublished":"2025-09-01","author":{"@type":"Person","name":"Abdulla Sajad","url":"https://neuralbroker.github.io/","sameAs":["https://github.com/neuralbroker","https://www.linkedin.com/in/abdullasajad","https://huggingface.co/neuralbroker"]},"publisher":{"@type":"Person","name":"Abdulla Sajad"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"SpeakSwap","description":"SpeakSwap is a browser translation app with speech input, spoken playback, and fallback translation APIs.","url":"https://neuralbroker.github.io/speakswap","datePublished":"2025-09-01","author":{"@type":"Person","name":"Abdulla Sajad","url":"https://neuralbroker.github.io/"}}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<nav>
-<div class="container">
-<a href="index.html">Home</a>
-<a href="index.html#about">About</a>
-<a href="index.html#work">Work</a>
-<a href="index.html#blogs">Blogs</a>
-<span class="theme-toggle mono" id="themeToggle" role="button" tabindex="0" aria-label="Toggle dark and light theme" aria-pressed="false">◐</span>
-</div>
-</nav>
+<nav><div class="container"><a href="index.html">Home</a><a href="index.html#work">Work</a><a href="index.html#notes">Notes</a><span class="theme-toggle mono" id="themeToggle" role="button" tabindex="0" aria-label="Toggle dark and light theme" aria-pressed="false">◐</span></div></nav>
 <article id="main" class="container">
-<a href="index.html#blogs" class="back-link">&larr; Back to Blogs</a>
-<h1>SpeakSwap: Translation with Speech I/O in the Browser</h1>
-<div class="post-meta">Published: September 2025 · <a href="https://speakswap.vercel.app" target="_blank" rel="noopener">Live Demo</a> · <a href="https://github.com/neuralbroker/speakswap" target="_blank" rel="noopener">GitHub</a></div>
-
+<a href="index.html#notes" class="back-link">&larr; Back to notes</a>
+<h1>SpeakSwap</h1>
+<div class="post-meta">Browser app · speech input/output · translation fallbacks</div>
 <p>SpeakSwap began as a college mini-project. I wanted to build a translation tool that felt simple to use: type or speak, get the translation, and hear it spoken back.</p>
-
-<p>The final version runs in the browser, supports voice input, handles fallback translation services, and keeps the interface lightweight.</p>
-
 <h2>How it works</h2>
-<p>The app has two sides: a client (Next.js + React) and a thin server proxy. The client handles the UI, speech recognition, and speech synthesis using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API" target="_blank" rel="noopener">Web Speech API</a>. Translation requests go through a server-side proxy that falls back across three free services (MyMemory, LibreTranslate, Lingva) with rate limiting and response caching.</p>
-
-<h2>Speech pipeline</h2>
-<p>The speech feature uses two browser APIs:</p>
-<ul>
-<li><strong>SpeechRecognition</strong> — converts your voice to text. You select the source language, click the mic, and speak. The browser sends audio to its speech engine and returns transcribed text.</li>
-<li><strong>SpeechSynthesis</strong> — reads the translated text aloud. The app maps each language to an appropriate voice using a locale-to-voice lookup table.</li>
-</ul>
-<p>One limitation I ran into: auto-detection works for typed text, but not for voice input. The Web Speech API needs a language code before it starts listening, so the user still has to choose the speaking language.</p>
-
-<h2>Architecture highlights</h2>
-<ul>
-<li><strong>Three translation backends</strong> with automatic fallback — if one service fails, the next is tried</li>
-<li><strong>Rate limiting</strong> on all API routes to stay within free-tier constraints</li>
-<li><strong>localStorage</strong> for translation history and common phrases (12 languages)</li>
-<li><strong>Custom hooks</strong>: <code>useLocalStorage</code>, <code>useDebounce</code>, <code>useKeyboardShortcut</code></li>
-<li><strong>Dark mode</strong> with system preference detection via <code>prefers-color-scheme</code></li>
-<li><strong>Keyboard shortcuts</strong>: Escape clears input, Ctrl+Enter translates</li>
-</ul>
-
+<p>The client handles the interface, speech recognition, and speech synthesis using browser APIs. Translation requests go through a server-side layer with fallback services, rate limiting, and caching so the app can fail more gracefully when one service is unavailable.</p>
+<h2>What made it interesting</h2>
+<p>The difficult parts were not the happy path. Browser speech APIs behave differently across environments, translation services can fail or rate-limit, and voice input needs an explicit language before listening. Those constraints made the project a good exercise in practical edge-case handling.</p>
 <h2>What I learned</h2>
-<p>SpeakSwap looked simple at first, but the details took work: browser differences in speech recognition, API failures, rate limits, caching, and keeping the UI responsive. It was a good reminder that small apps still need careful edge-case handling.</p>
-
-<p><a href="https://speakswap.vercel.app" target="_blank" rel="noopener">Try it live</a>.</p>
+<ul>
+<li>Small user-facing apps still need careful fallback design.</li>
+<li>Speech interfaces require more browser-specific testing than normal text inputs.</li>
+<li>Keeping the UI simple matters when the backend services are uncertain.</li>
+</ul>
+<p class="inline-links"><a href="https://speakswap.vercel.app" target="_blank" rel="noopener">Live Demo</a><a href="https://github.com/neuralbroker/speakswap" target="_blank" rel="noopener">GitHub</a></p>
 </article>
-<footer>
-<div class="container">
-<p>&copy; 2026 Abdulla Sajad</p>
-</div>
-</footer>
+<footer><div class="container"><p>&copy; 2026 Abdulla Sajad</p></div></footer>
 <script src="theme.js" defer></script>
 </body>
 </html>

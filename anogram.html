@@ -1,88 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anogram — Offline P2P messaging over BLE — Abdulla Sajad</title>
-<meta name="description" content="Anogram is an Android messaging app using Bluetooth Low Energy for direct offline device-to-device messaging without accounts or servers.">
+<title>Anogram — Abdulla Sajad</title>
+<meta name="description" content="Anogram is an Android BLE messaging app for offline device-to-device communication without internet, accounts, or servers.">
 <link rel="canonical" href="https://neuralbroker.github.io/anogram">
-<meta property="og:title" content="Anogram — Offline P2P messaging over BLE — Abdulla Sajad">
-<meta property="og:description" content="Anogram is an Android messaging app using Bluetooth Low Energy for direct offline device-to-device messaging without accounts or servers.">
+<meta property="og:title" content="Anogram — Abdulla Sajad">
+<meta property="og:description" content="Android BLE messaging for offline device-to-device communication.">
 <meta property="og:url" content="https://neuralbroker.github.io/anogram">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Abdulla Sajad">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Anogram — Offline P2P messaging over BLE — Abdulla Sajad">
-<meta name="twitter:description" content="Anogram is an Android messaging app using Bluetooth Low Energy for direct offline device-to-device messaging without accounts or servers.">
+<meta name="twitter:title" content="Anogram — Abdulla Sajad">
+<meta name="twitter:description" content="Android BLE messaging for offline device-to-device communication.">
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;S&lt;/text&gt;&lt;/svg&gt;">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Anogram — Offline P2P messaging over BLE","description":"Anogram is an Android messaging app using Bluetooth Low Energy for direct offline device-to-device messaging without accounts or servers.","url":"https://neuralbroker.github.io/anogram","datePublished":"2026-02-01","author":{"@type":"Person","name":"Abdulla Sajad","url":"https://neuralbroker.github.io/","sameAs":["https://github.com/neuralbroker","https://www.linkedin.com/in/abdullasajad","https://huggingface.co/neuralbroker"]},"publisher":{"@type":"Person","name":"Abdulla Sajad"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Anogram","description":"Anogram is an Android BLE messaging app for offline device-to-device communication without internet, accounts, or servers.","url":"https://neuralbroker.github.io/anogram","datePublished":"2026-02-01","author":{"@type":"Person","name":"Abdulla Sajad","url":"https://neuralbroker.github.io/"}}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<nav>
-<div class="container">
-<a href="index.html">Home</a>
-<a href="index.html#about">About</a>
-<a href="index.html#work">Work</a>
-<a href="index.html#blogs">Blogs</a>
-<span class="theme-toggle mono" id="themeToggle" role="button" tabindex="0" aria-label="Toggle dark and light theme" aria-pressed="false">◐</span>
-</div>
-</nav>
+<nav><div class="container"><a href="index.html">Home</a><a href="index.html#work">Work</a><a href="index.html#notes">Notes</a><span class="theme-toggle mono" id="themeToggle" role="button" tabindex="0" aria-label="Toggle dark and light theme" aria-pressed="false">◐</span></div></nav>
 <article id="main" class="container">
-<a href="index.html#blogs" class="back-link">&larr; Back to Blogs</a>
-<h1>Anogram: Offline P2P Messaging over Bluetooth LE</h1>
-<div class="post-meta">Published: February 2026 · <a href="https://github.com/neuralbroker/Anogram" target="_blank" rel="noopener">GitHub</a></div>
-
-<p>Anogram is an Android messaging app I built around a simple idea: two nearby phones should be able to chat even when there is no internet, account, or server involved.</p>
-
-<p>The app uses Bluetooth Low Energy for device discovery and message exchange, with Kotlin, Jetpack Compose, Room, and a Clean Architecture-style structure underneath.</p>
-
-<h2>The problem</h2>
-<p>Most messaging apps need internet, which is fine until you are in a place where connectivity is unavailable or unreliable. BLE lets nearby devices talk directly, but Android’s BLE model has enough edge cases that making it feel like a messaging app is not straightforward.</p>
-
-<h2>Core logic: BLE mesh</h2>
-<p>Anogram implements a <strong>mesh-like topology over BLE GATT</strong>. Each device acts as both a server (advertising a GATT service with a "message" characteristic) and a client (scanning for nearby peers and connecting to read their messages).</p>
-
-<p>The flow works like this:</p>
-<ol>
-<li><strong>Discovery</strong> — Each device advertises a custom BLE service. Nearby devices scan and find each other.</li>
-<li><strong>Connection</strong> — A device connects as a GATT client to a discovered peer's GATT server.</li>
-<li><strong>Message exchange</strong> — Messages are written to the peer's "message" characteristic. The peer's server notifies its client of new data.</li>
-<li><strong>Local storage</strong> — All messages are persisted in a Room database on each device.</li>
-</ol>
-
-<h2>Architecture</h2>
-<p>Anogram follows <strong>Clean Architecture + MVVM</strong> with three layers:</p>
-<ul>
-<li><strong>Domain</strong> — Pure Kotlin models (Chat, Message) and repository interfaces. No Android dependencies.</li>
-<li><strong>Data</strong> — BLE implementation using Android's BluetoothLeScanner and BluetoothGatt APIs, plus Room DAOs for persistence.</li>
-<li><strong>Presentation</strong> — Jetpack Compose screens with Material 3, ViewModels using Kotlin Coroutines and Flow.</li>
-</ul>
-<p>Dependency injection is handled by Hilt, making the BLE and database modules swappable for testing.</p>
-
-<h2>Why BLE instead of Wi-Fi Direct or NFC?</h2>
-<ul>
-<li><strong>BLE</strong> — Low power, works on virtually all modern Android devices, no pairing UI needed for basic data exchange</li>
-<li><strong>Wi-Fi Direct</strong> — Faster for large data but more complex setup and higher battery drain</li>
-<li><strong>NFC</strong> — Too short range (4 cm) for convenient messaging</li>
-</ul>
-<p>BLE is the sweet spot for text-based local messaging.</p>
-
+<a href="index.html#notes" class="back-link">&larr; Back to notes</a>
+<h1>Anogram</h1>
+<div class="post-meta">Android · Bluetooth LE · offline messaging</div>
+<p>Anogram is an Android messaging app built around a simple idea: two nearby phones should be able to chat even when there is no internet, account, or server involved.</p>
+<h2>How it works</h2>
+<p>The app uses Bluetooth Low Energy for discovery and message exchange. Each device can advertise a service, scan for nearby peers, connect, exchange messages, and store chat data locally.</p>
+<h2>Why it was useful to build</h2>
+<p>Anogram is not one of my main AI/ML projects, but it taught me a different kind of engineering: dealing with Android APIs, hardware behavior, connection timing, missed advertisements, and state that changes outside the app’s control.</p>
 <h2>What I learned</h2>
-<p>Anogram taught me how much detail hides inside Android BLE: service UUIDs, characteristics, MTU limits, connection timing, missed advertisements, and devices disappearing mid-session. It also made Clean Architecture feel useful in a very practical way — the app logic can stay readable while the BLE-specific work stays isolated.</p>
-
-<p><a href="https://github.com/neuralbroker/Anogram" target="_blank" rel="noopener">View the source on GitHub</a>.</p>
+<ul>
+<li>BLE looks simple on paper, but real devices make it messy.</li>
+<li>Clean architecture helps keep app logic readable when the data layer is hardware-specific.</li>
+<li>Offline-first systems force you to think carefully about state and failure modes.</li>
+</ul>
+<p class="inline-links"><a href="https://github.com/neuralbroker/Anogram" target="_blank" rel="noopener">GitHub</a></p>
 </article>
-<footer>
-<div class="container">
-<p>&copy; 2026 Abdulla Sajad</p>
-</div>
-</footer>
+<footer><div class="container"><p>&copy; 2026 Abdulla Sajad</p></div></footer>
 <script src="theme.js" defer></script>
 </body>
 </html>

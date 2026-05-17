@@ -1,97 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BlitzKode — A local AI coding assistant — Abdulla Sajad</title>
-<meta name="description" content="BlitzKode is a fine-tuned local AI coding assistant built on Qwen2.5-1.5B and packaged as GGUF for private local inference.">
+<title>BlitzKode — Abdulla Sajad</title>
+<meta name="description" content="BlitzKode is a small coding assistant fine-tuned from Qwen2.5-1.5B and packaged as GGUF for efficient inference with llama.cpp.">
 <link rel="canonical" href="https://neuralbroker.github.io/blitzkode">
-<meta property="og:title" content="BlitzKode — A local AI coding assistant — Abdulla Sajad">
-<meta property="og:description" content="BlitzKode is a fine-tuned local AI coding assistant built on Qwen2.5-1.5B and packaged as GGUF for private local inference.">
+<meta property="og:title" content="BlitzKode — Abdulla Sajad">
+<meta property="og:description" content="A small coding assistant fine-tuned from Qwen2.5-1.5B and packaged as GGUF.">
 <meta property="og:url" content="https://neuralbroker.github.io/blitzkode">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Abdulla Sajad">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BlitzKode — A local AI coding assistant — Abdulla Sajad">
-<meta name="twitter:description" content="BlitzKode is a fine-tuned local AI coding assistant built on Qwen2.5-1.5B and packaged as GGUF for private local inference.">
+<meta name="twitter:title" content="BlitzKode — Abdulla Sajad">
+<meta name="twitter:description" content="A small coding assistant fine-tuned from Qwen2.5-1.5B and packaged as GGUF.">
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;S&lt;/text&gt;&lt;/svg&gt;">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"BlitzKode — A local AI coding assistant","description":"BlitzKode is a fine-tuned local AI coding assistant built on Qwen2.5-1.5B and packaged as GGUF for private local inference.","url":"https://neuralbroker.github.io/blitzkode","datePublished":"2026-01-01","author":{"@type":"Person","name":"Abdulla Sajad","url":"https://neuralbroker.github.io/","sameAs":["https://github.com/neuralbroker","https://www.linkedin.com/in/abdullasajad","https://huggingface.co/neuralbroker"]},"publisher":{"@type":"Person","name":"Abdulla Sajad"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"BlitzKode","description":"BlitzKode is a small coding assistant fine-tuned from Qwen2.5-1.5B and packaged as GGUF for efficient inference with llama.cpp.","url":"https://neuralbroker.github.io/blitzkode","datePublished":"2026-01-01","author":{"@type":"Person","name":"Abdulla Sajad","url":"https://neuralbroker.github.io/"}}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-
-<nav>
-<div class="container">
-<a href="index.html">Home</a>
-<a href="index.html#about">About</a>
-<a href="index.html#work">Work</a>
-<a href="index.html#blogs">Blogs</a>
-<span class="theme-toggle mono" id="themeToggle" role="button" tabindex="0" aria-label="Toggle dark and light theme" aria-pressed="false">◐</span>
-</div>
-</nav>
-
+<nav><div class="container"><a href="index.html">Home</a><a href="index.html#work">Work</a><a href="index.html#notes">Notes</a><span class="theme-toggle mono" id="themeToggle" role="button" tabindex="0" aria-label="Toggle dark and light theme" aria-pressed="false">◐</span></div></nav>
 <article id="main" class="container">
-<a href="index.html#blogs" class="back-link">&larr; Back to Blogs</a>
-
-<h1>BlitzKode: A Local AI Coding Assistant</h1>
-<div class="post-meta">Published: January 2026 · 3 models on Hugging Face · 354 downloads</div>
-
-<p>BlitzKode started as a simple question: how useful can a small coding model be if it runs fully on my own machine? No API keys, no cloud calls, no subscription — just a local model running through <a href="https://llama.cpp" target="_blank" rel="noopener">llama.cpp</a>.</p>
-
-<h2>Why build yet another coding assistant?</h2>
-<p>Most coding assistants today (GitHub Copilot, ChatGPT, Claude) send your code to a cloud server. That's fine for many people, but it means:</p>
-<ul>
-<li>You need an internet connection</li>
-<li>Your code leaves your machine</li>
-<li>You pay per token or per month</li>
-<li>Latency depends on network speed</li>
-</ul>
-<p>BlitzKode is my attempt at the other side of that trade-off. It’s a small 1.5B model, so it will not replace a frontier model, but it is fast, private, and easy to run after download.</p>
-
-<h2>How it works</h2>
-<p>I started with <strong><a href="https://huggingface.co/Qwen/Qwen2.5-1.5B" target="_blank" rel="noopener">Qwen2.5-1.5B</a></strong>, then fine-tuned it on code-instruction data so it could handle common coding tasks like generation, explanation, and debugging.</p>
-<p>After fine-tuning, I converted it to <strong>GGUF format</strong> so it could run efficiently with llama.cpp. The final model is small enough to keep on a laptop and quick enough to test without much setup.</p>
-
-<h2>Models available</h2>
-<ul>
-<li><a href="https://huggingface.co/neuralbroker/blitzkode" target="_blank" rel="noopener"><strong>BlitzKode (primary)</strong></a> — The main model. Qwen2.5-1.5B fine-tuned for general coding tasks. 354 downloads.</li>
-<li><a href="https://huggingface.co/neuralbroker/blitzkode-v2" target="_blank" rel="noopener"><strong>BlitzKode v2</strong></a> — Improved version with better instruction following.</li>
-<li><a href="https://huggingface.co/neuralbroker/blitzkode-coder" target="_blank" rel="noopener"><strong>BlitzKode Coder</strong></a> — Variant focused specifically on code generation.</li>
-</ul>
-
-<h2>Quick start</h2>
-<pre><code># 1. Download llama.cpp
-git clone https://github.com/ggml-org/llama.cpp
-cd llama.cpp
-make
-
-# 2. Download the model from Hugging Face
-# (or use the ./models directory)
-
-# 3. Run it
-./main -m models/blitzkode-q4_k_m.gguf \
-  -p "Write a Python function to merge two sorted lists" \
-  -n 512</code></pre>
-
+<a href="index.html#notes" class="back-link">&larr; Back to notes</a>
+<h1>BlitzKode</h1>
+<div class="post-meta">Coding model · Qwen2.5-1.5B · GGUF · llama.cpp</div>
+<p>BlitzKode started as a way to understand the full path behind a coding assistant: data, fine-tuning, conversion, inference, and release. I wanted to see how useful a small model could be for focused coding tasks, without treating it like a magic replacement for larger models.</p>
+<h2>What I built</h2>
+<p>I fine-tuned <a href="https://huggingface.co/Qwen/Qwen2.5-1.5B" target="_blank" rel="noopener">Qwen2.5-1.5B</a> on code-instruction data, then converted the result to <strong>GGUF</strong> so it could run with llama.cpp. The goal was not to beat frontier models; it was to learn how small coding models behave when the whole pipeline is under my control.</p>
+<h2>Why it matters to me</h2>
+<p>This project connects directly to my interest in AI developer tools and coding agents. A coding assistant is only useful when it fits into a workflow, responds quickly enough, and can be evaluated against real tasks. BlitzKode helped me think about those trade-offs more clearly.</p>
 <h2>What I learned</h2>
-<p>This project taught me the full path from dataset preparation to LoRA fine-tuning, quantization, and GGUF conversion. It also gave me a better feel for where small models are useful: not as magic assistants, but as fast local tools for focused coding tasks.</p>
-
-<p>I still see it as an experiment, but a useful one.</p>
-
+<ul>
+<li>Fine-tuning is only one step; data quality and evaluation matter just as much.</li>
+<li>Small models can be useful for narrow tasks, but they need honest expectations.</li>
+<li>Packaging and inference details change how usable a model feels.</li>
+</ul>
+<p class="inline-links"><a href="https://huggingface.co/neuralbroker/blitzkode" target="_blank" rel="noopener">Hugging Face</a><a href="https://github.com/neuralbroker/blitzkode" target="_blank" rel="noopener">GitHub</a></p>
 </article>
-
-<footer>
-<div class="container">
-<p>&copy; 2026 Abdulla Sajad</p>
-</div>
-</footer>
-
+<footer><div class="container"><p>&copy; 2026 Abdulla Sajad</p></div></footer>
 <script src="theme.js" defer></script>
-
 </body>
 </html>

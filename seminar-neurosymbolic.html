@@ -1,78 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seminar: Neurosymbolic AI in Military Systems — Abdulla Sajad</title>
-<meta name="description" content="Seminar write-up on neurosymbolic AI for explainable decision support, multi-modal sensor fusion, and safety-critical military systems.">
+<title>Neurosymbolic AI Seminar — Abdulla Sajad</title>
+<meta name="description" content="A seminar note on neurosymbolic AI, explainability, and why safety-critical AI needs more than black-box prediction.">
 <link rel="canonical" href="https://neuralbroker.github.io/seminar-neurosymbolic">
-<meta property="og:title" content="Seminar: Neurosymbolic AI in Military Systems — Abdulla Sajad">
-<meta property="og:description" content="Seminar write-up on neurosymbolic AI for explainable decision support, multi-modal sensor fusion, and safety-critical military systems.">
+<meta property="og:title" content="Neurosymbolic AI Seminar — Abdulla Sajad">
+<meta property="og:description" content="A seminar note on neurosymbolic AI, explainability, and safety-critical AI systems.">
 <meta property="og:url" content="https://neuralbroker.github.io/seminar-neurosymbolic">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Abdulla Sajad">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Seminar: Neurosymbolic AI in Military Systems — Abdulla Sajad">
-<meta name="twitter:description" content="Seminar write-up on neurosymbolic AI for explainable decision support, multi-modal sensor fusion, and safety-critical military systems.">
+<meta name="twitter:title" content="Neurosymbolic AI Seminar — Abdulla Sajad">
+<meta name="twitter:description" content="A seminar note on neurosymbolic AI, explainability, and safety-critical AI systems.">
 <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;S&lt;/text&gt;&lt;/svg&gt;">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Seminar: Neurosymbolic AI in Military Systems","description":"Seminar write-up on neurosymbolic AI for explainable decision support, multi-modal sensor fusion, and safety-critical military systems.","url":"https://neuralbroker.github.io/seminar-neurosymbolic","datePublished":"2025-01-01","author":{"@type":"Person","name":"Abdulla Sajad","url":"https://neuralbroker.github.io/","sameAs":["https://github.com/neuralbroker","https://www.linkedin.com/in/abdullasajad","https://huggingface.co/neuralbroker"]},"publisher":{"@type":"Person","name":"Abdulla Sajad"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Neurosymbolic AI Seminar","description":"A seminar note on neurosymbolic AI, explainability, and why safety-critical AI needs more than black-box prediction.","url":"https://neuralbroker.github.io/seminar-neurosymbolic","datePublished":"2025-01-01","author":{"@type":"Person","name":"Abdulla Sajad","url":"https://neuralbroker.github.io/"}}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<nav>
-<div class="container">
-<a href="index.html">Home</a>
-<a href="index.html#about">About</a>
-<a href="index.html#work">Work</a>
-<a href="index.html#blogs">Blogs</a>
-<span class="theme-toggle mono" id="themeToggle" role="button" tabindex="0" aria-label="Toggle dark and light theme" aria-pressed="false">◐</span>
-</div>
-</nav>
+<nav><div class="container"><a href="index.html">Home</a><a href="index.html#research">Research</a><a href="index.html#notes">Notes</a><span class="theme-toggle mono" id="themeToggle" role="button" tabindex="0" aria-label="Toggle dark and light theme" aria-pressed="false">◐</span></div></nav>
 <article id="main" class="container">
-<a href="index.html#blogs" class="back-link">&larr; Back to Blogs</a>
+<a href="index.html#notes" class="back-link">&larr; Back to notes</a>
 <h1>Neurosymbolic AI in Military Systems</h1>
-<div class="post-meta">Seminar Presentation · 2025</div>
-
-<p>This was a seminar I presented on <strong>Neurosymbolic AI (NeSy)</strong>, especially where it could matter in defense and safety-critical systems. I focused on the basic question: can we combine learning from data with explicit reasoning and rules?</p>
-
-<h2>What is Neurosymbolic AI?</h2>
-<p>Neurosymbolic AI is the "third wave" of AI, merging two traditionally separate approaches:</p>
-<ul>
-<li><strong>Neural networks</strong> — excel at pattern recognition, learning from data, and handling noisy inputs (what Kahneman calls <em>System 1</em> thinking)</li>
-<li><strong>Symbolic reasoning</strong> — uses explicit rules, logic, and knowledge representation for structured, explainable decision-making (<em>System 2</em> thinking)</li>
-</ul>
-<p>The appeal of NeSy is that it tries to use both: neural models for perception and pattern recognition, symbolic systems for rules, constraints, and explanations.</p>
-
-<h2>Why the military?</h2>
-<p>Military systems are a useful case study because mistakes are expensive and explanations matter. A neural network might detect something in an image, but that does not automatically explain why the result should be trusted or how it fits operational rules. NeSy is interesting because symbolic constraints can sit around neural predictions and make the decision process easier to inspect.</p>
-
-<h2>Key applications covered</h2>
-<ul>
-<li><strong>Decision support under uncertainty</strong> — NeSy systems fuse noisy sensor data (radar, infrared, SIGINT) with symbolic doctrine to recommend courses of action with explicit reasoning chains</li>
-<li><strong>Explainability and audit</strong> — Every prediction can be traced back to the rules and data that produced it, enabling after-action review and legal accountability</li>
-<li><strong>Multi-modal sensor fusion</strong> — Neural networks handle raw sensor streams; symbolic layers align detections across modalities using domain ontologies</li>
-<li><strong>Autonomous systems</strong> — Rules of engagement encoded as symbolic constraints ensure autonomous platforms operate within ethical and legal boundaries</li>
-<li><strong>Logistics optimization</strong> — Neural forecasting combined with symbolic constraint solving for supply chain and troop movement planning</li>
-</ul>
-
-<h2>Ethical and strategic considerations</h2>
-<p>The topic also raises difficult questions. Who is accountable when an autonomous system is wrong? How do you handle adversarial inputs? Can human judgment or ethics really be captured as rules? I treated explainability as the main reason NeSy is worth studying here, not as a complete solution to those problems.</p>
-
-<h2>Broader relevance</h2>
-<p>Even though the seminar focused on defense, the same pattern shows up in civilian systems too: healthcare, fraud detection, autonomous vehicles, and other areas where a model needs to be both useful and explainable. The broader lesson for me was that safety-critical AI cannot rely only on black-box prediction.</p>
-
-<p><em>Main reference: arXiv:2408.09224 — "Neuro-Symbolic AI for Military Applications" (Hagos & Rawat, IEEE TAI 2024)</em></p>
+<div class="post-meta">Seminar · explainable AI · safety-critical systems</div>
+<p>This was a seminar I presented on neurosymbolic AI, especially where it could matter in defense and safety-critical systems. The main question was simple: can we combine learning from data with explicit reasoning and rules?</p>
+<h2>The core idea</h2>
+<p>Neural models are strong at pattern recognition. Symbolic systems are useful for rules, constraints, and explanations. Neurosymbolic AI tries to combine both, so a system can learn from data while still being easier to inspect and reason about.</p>
+<h2>Why safety-critical systems care</h2>
+<p>In domains like defense, healthcare, finance, or autonomous systems, a prediction is not enough. People need to understand why the system produced it, what rules it followed, and where it might fail.</p>
+<h2>What I took away</h2>
+<p>I do not see neurosymbolic AI as a complete solution to trust or safety. But it is a useful direction because it treats explainability and constraints as part of the system design, not as an afterthought.</p>
+<p><em>Main reference: arXiv:2408.09224 — “Neuro-Symbolic AI for Military Applications”.</em></p>
 </article>
-<footer>
-<div class="container">
-<p>&copy; 2026 Abdulla Sajad</p>
-</div>
-</footer>
+<footer><div class="container"><p>&copy; 2026 Abdulla Sajad</p></div></footer>
 <script src="theme.js" defer></script>
 </body>
 </html>
