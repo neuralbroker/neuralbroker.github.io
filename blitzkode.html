@@ -1,149 +1,76 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>BlitzKode — Abdulla Sajad</title>
-        <meta
-            name="description"
-            content="BlitzKode is a coding assistant fine-tuned from Qwen2.5-Coder-3B using SFT, GRPO, DPO, and LoRA, then quantized to GGUF for CPU-only inference with llama.cpp."
-        />
-        <link rel="canonical" href="https://neuralbroker.github.io/blitzkode" />
-        <meta property="og:title" content="BlitzKode — Abdulla Sajad" />
-        <meta
-            property="og:description"
-            content="A coding assistant fine-tuned from Qwen2.5-Coder-3B and packaged as GGUF for CPU-only inference."
-        />
-        <meta
-            property="og:url"
-            content="https://neuralbroker.github.io/blitzkode"
-        />
-        <meta property="og:type" content="article" />
-        <meta property="og:site_name" content="Abdulla Sajad" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="BlitzKode — Abdulla Sajad" />
-        <meta
-            name="twitter:description"
-            content="A coding assistant fine-tuned from Qwen2.5-Coder-3B and packaged as GGUF for CPU-only inference."
-        />
-        <link
-            rel="icon"
-            href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;S&lt;/text&gt;&lt;/svg&gt;"
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="styles.css" />
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "BlogPosting",
-                "headline": "BlitzKode",
-                "description": "BlitzKode is a coding assistant fine-tuned from Qwen2.5-Coder-3B using SFT, GRPO, DPO, and LoRA, then quantized to GGUF for CPU-only inference with llama.cpp.",
-                "url": "https://neuralbroker.github.io/blitzkode",
-                "datePublished": "2026-01-01",
-                "author": {
-                    "@type": "Person",
-                    "name": "Abdulla Sajad",
-                    "url": "https://neuralbroker.github.io/"
-                }
-            }
-        </script>
-    </head>
-    <body>
-        <a class="skip-link" href="#main">Skip to content</a>
-        <nav>
-            <div class="container">
-                <a href="index.html">Home</a><a href="index.html#work">Work</a
-                ><a href="index.html#notes">Notes</a
-                ><span
-                    class="theme-toggle mono"
-                    id="themeToggle"
-                    role="button"
-                    tabindex="0"
-                    aria-label="Toggle dark and light theme"
-                    aria-pressed="false"
-                    >◐</span
-                >
-            </div>
-        </nav>
-        <article id="main" class="container">
-            <a href="index.html#notes" class="back-link"
-                >&larr; Back to notes</a
-            >
-            <h1>BlitzKode</h1>
-            <div class="post-meta">
-                Coding model · Qwen2.5-Coder-3B · SFT · GRPO · DPO · LoRA · GGUF
-                · llama.cpp
-            </div>
-            <p>
-                BlitzKode started as a way to understand the full path behind a
-                coding assistant: data, supervised fine-tuning, RL-style
-                alignment, preference optimization, conversion, inference, and
-                release. I wanted to see how useful a compact coding model could
-                be for focused coding tasks, without treating it like a magic
-                replacement for larger models.
-            </p>
-            <h2>What I built</h2>
-            <p>
-                I fine-tuned
-                <a
-                    href="https://huggingface.co/Qwen/Qwen2.5-Coder-3B"
-                    target="_blank"
-                    rel="noopener"
-                    >Qwen2.5-Coder-3B</a
-                >
-                using SFT, GRPO, DPO, and LoRA with PyTorch and Hugging Face,
-                then converted the result to <strong>GGUF</strong> for CPU-only
-                inference with llama.cpp. LoRA, gradient checkpointing, and
-                bfloat16 mixed precision cut training VRAM from roughly 24GB to
-                8GB.
-            </p>
-            <h2>Why it matters to me</h2>
-            <p>
-                This project connects directly to my interest in AI developer
-                tools and coding agents. A coding assistant is only useful when
-                it fits into a workflow, responds quickly enough, and can be
-                evaluated against real tasks. BlitzKode is published as
-                <strong>neuralbroker/blitzkode</strong> on Hugging Face with
-                510+ downloads and reproducible training configs.
-            </p>
-            <h2>What I learned</h2>
-            <ul>
-                <li>
-                    Fine-tuning is only one step; data quality, alignment, and
-                    evaluation matter just as much.
-                </li>
-                <li>
-                    Memory-efficient training choices like LoRA, gradient
-                    checkpointing, and mixed precision can make larger
-                    experiments practical on limited hardware.
-                </li>
-                <li>
-                    Packaging and inference details, especially GGUF and
-                    CPU-only deployment, change how usable a model feels.
-                </li>
-            </ul>
-            <p class="inline-links">
-                <a
-                    href="https://huggingface.co/neuralbroker/blitzkode"
-                    target="_blank"
-                    rel="noopener"
-                    >Hugging Face</a
-                ><a
-                    href="https://github.com/neuralbroker/blitzkode"
-                    target="_blank"
-                    rel="noopener"
-                    >GitHub</a
-                >
-            </p>
-        </article>
-        <footer>
-            <div class="container"><p>&copy; 2026 Abdulla Sajad</p></div>
-        </footer>
-        <script src="theme.js" defer></script>
-    </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlitzKode — Abdulla Sajad</title>
+<meta name="description" content="Engineering write-up for BlitzKode, a local coding assistant built with Qwen2.5, LoRA fine-tuning, GGUF export, FastAPI, and llama.cpp inference.">
+<link rel="canonical" href="https://neuralbroker.github.io/blitzkode">
+<meta property="og:title" content="BlitzKode — Abdulla Sajad">
+<meta property="og:description" content="A local coding assistant built with fine-tuning, GGUF export, FastAPI, and llama.cpp inference.">
+<meta property="og:url" content="https://neuralbroker.github.io/blitzkode">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Abdulla Sajad">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BlitzKode — Abdulla Sajad">
+<meta name="twitter:description" content="A local coding assistant built with fine-tuning, GGUF export, FastAPI, and llama.cpp inference.">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;S&lt;/text&gt;&lt;/svg&gt;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"BlitzKode","description":"Engineering write-up for BlitzKode, a local coding assistant built with Qwen2.5, LoRA fine-tuning, GGUF export, FastAPI, and llama.cpp inference.","url":"https://neuralbroker.github.io/blitzkode","datePublished":"2026-01-01","author":{"@type":"Person","name":"Abdulla Sajad","url":"https://neuralbroker.github.io/"}}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav><div class="container"><a href="index.html">Home</a><a href="index.html#work">Work</a><a href="index.html#notes">Notes</a><span class="theme-toggle mono" id="themeToggle" role="button" tabindex="0" aria-label="Toggle dark and light theme" aria-pressed="false">◐</span></div></nav>
+<article id="main" class="container">
+<a href="index.html#work" class="back-link">&larr; Back to work</a>
+<h1>BlitzKode</h1>
+<div class="post-meta">Coding assistant · Qwen2.5-Coder · SFT/GRPO/DPO · LoRA · GGUF · FastAPI · llama.cpp</div>
+<p>BlitzKode is my local-first coding assistant project. The goal was to understand the full engineering path behind a useful coding model: prepare data, fine-tune a Qwen2.5-Coder checkpoint, reduce training memory with LoRA, export the result to GGUF, and serve it through a small FastAPI runtime backed by llama.cpp.</p>
+
+<div class="stat-grid">
+<div class="stat-card"><strong>510+ downloads</strong><span>Published on Hugging Face as <code>neuralbroker/blitzkode</code>.</span></div>
+<div class="stat-card"><strong>~24GB → 8GB VRAM</strong><span>Training memory reduced with LoRA, gradient checkpointing, and bfloat16 mixed precision.</span></div>
+<div class="stat-card"><strong>CPU-ready GGUF</strong><span>Quantized for local inference without relying on an external model API.</span></div>
+</div>
+
+<h2>System diagram</h2>
+<div class="flow-diagram" aria-label="BlitzKode architecture diagram">
+<div class="flow-node">1. Dataset<span>Curated coding prompts, preference pairs, and evaluation cases.</span></div>
+<div class="flow-node">2. Training<span>SFT, GRPO-style experiments, DPO, LoRA, PyTorch, Hugging Face.</span></div>
+<div class="flow-node">3. Export<span>Merge adapter, convert to GGUF, tune quantization for local runtime.</span></div>
+<div class="flow-node">4. API runtime<span>FastAPI endpoints for generation, streaming, search, and health.</span></div>
+<div class="flow-node">5. Inference<span>llama.cpp loads the GGUF model and streams tokens back to clients.</span></div>
+</div>
+
+<h2>What I built</h2>
+<p>The public repository is intentionally API-first. The central file is <code>server.py</code>, which builds the FastAPI app, validates requests, lazily loads the local GGUF model, formats prompts, serializes model access with an async lock, and exposes JSON and Server-Sent Events generation endpoints.</p>
+<p>The repo also includes training and operator scripts for dataset building, LoRA SFT, DPO, smoke inference, GGUF export, Hugging Face publishing, and local evaluation. This made the project more than a single notebook: it became a reproducible model-development and serving workflow.</p>
+
+<div class="detail-list">
+<div><strong>Inference path</strong><p><code>/generate</code> handles normal JSON generation. <code>/generate/stream</code> runs llama.cpp in a worker thread and bridges tokens into SSE messages for responsive clients.</p></div>
+<div><strong>Research mode</strong><p><code>/search/web</code> and <code>/generate/research</code> add DuckDuckGo-backed search snippets as untrusted context. The prompt explicitly tells the model not to invent APIs, citations, files, or execution results.</p></div>
+<div><strong>Runtime controls</strong><p>Environment variables tune context length, CPU threads, batch size, micro-batch size, GPU layer offload, mmap loading, prompt cache behavior, bearer auth, CORS, rate limiting, and request-size limits.</p></div>
+<div><strong>Guardrails</strong><p>The server includes a grounding guard for direct unknown API/signature questions. This exists because small local models can still hallucinate plausible function signatures without source context.</p></div>
+</div>
+
+<h2>Training and evaluation</h2>
+<p>The resume version summarizes the larger Qwen2.5-Coder training direction. The repository also keeps earlier Qwen2.5-family artifacts and evaluation notes, which helped me iterate on the pipeline before publishing. The core training idea stayed the same: use supervised fine-tuning for baseline coding behavior, preference optimization to reduce weak answers, and GGUF export to make the result usable locally.</p>
+<p>The included evaluation harness checks practical coding prompts such as factorial, binary search, SQL aggregation, and uncertainty around fictional APIs. One logged GGUF smoke run passed 3 out of 4 cases: it handled Python and SQL generation, but still hallucinated an imaginary API signature. That failure shaped the server-side guardrail and the plan for stronger DPO examples.</p>
+
+<h2>Engineering takeaways</h2>
+<ul>
+<li>Fine-tuning is only one part of the product. Dataset quality, evaluation, packaging, and runtime behavior matter just as much.</li>
+<li>Local inference changes the UX: quantization, model loading, token streaming, CPU threads, and context length directly affect whether the assistant feels usable.</li>
+<li>Small models need honest guardrails. If a model is likely to invent an API, the system should detect that pattern instead of pretending the model is reliable.</li>
+<li>A model project is easier to maintain when training, export, evaluation, serving, and deployment are all represented in the repo.</li>
+</ul>
+
+<p class="inline-links"><a href="https://huggingface.co/neuralbroker/blitzkode" target="_blank" rel="noopener">Hugging Face</a><a href="https://github.com/neuralbroker/blitzkode" target="_blank" rel="noopener">GitHub</a></p>
+</article>
+<footer><div class="container"><p>&copy; 2026 Abdulla Sajad</p></div></footer>
+<script src="theme.js" defer></script>
+</body>
 </html>

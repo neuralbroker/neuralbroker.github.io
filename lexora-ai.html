@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lexora AI — Abdulla Sajad</title>
+<meta name="description" content="Engineering write-up for Lexora AI, a FastAPI document RAG platform with JWT auth, document ingestion, LangChain/OpenAI, FAISS vector search, Redis caching, streaming responses, and source attribution.">
+<link rel="canonical" href="https://neuralbroker.github.io/lexora-ai">
+<meta property="og:title" content="Lexora AI — Abdulla Sajad">
+<meta property="og:description" content="Document RAG platform with FastAPI, FAISS, LangChain, OpenAI, streaming responses, and source attribution.">
+<meta property="og:url" content="https://neuralbroker.github.io/lexora-ai">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Abdulla Sajad">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lexora AI — Abdulla Sajad">
+<meta name="twitter:description" content="Document RAG platform with FastAPI, FAISS, LangChain, OpenAI, streaming responses, and source attribution.">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;S&lt;/text&gt;&lt;/svg&gt;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Lexora AI","description":"Engineering write-up for Lexora AI, a FastAPI document RAG platform with JWT auth, document ingestion, LangChain/OpenAI, FAISS vector search, Redis caching, streaming responses, and source attribution.","url":"https://neuralbroker.github.io/lexora-ai","datePublished":"2026-01-01","author":{"@type":"Person","name":"Abdulla Sajad","url":"https://neuralbroker.github.io/"}}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav><div class="container"><a href="index.html">Home</a><a href="index.html#work">Work</a><a href="index.html#notes">Notes</a><span class="theme-toggle mono" id="themeToggle" role="button" tabindex="0" aria-label="Toggle dark and light theme" aria-pressed="false">◐</span></div></nav>
+<article id="main" class="container">
+<a href="index.html#work" class="back-link">&larr; Back to work</a>
+<h1>Lexora AI</h1>
+<div class="post-meta">Document RAG · FastAPI · LangChain · FAISS · OpenAI API · Redis · Celery · PostgreSQL</div>
+<p>Lexora AI is a document question-answering platform. Users upload private documents, the backend extracts and chunks text, embeddings are stored in per-user FAISS indexes, and questions are answered with retrieval-augmented generation plus source metadata.</p>
+
+<div class="stat-grid">
+<div class="stat-card"><strong>100k-token corpora</strong><span>Resume-highlighted target scale for uploaded document collections.</span></div>
+<div class="stat-card"><strong>Sub-2s responses</strong><span>Chunked retrieval, cached context, and streaming improve perceived latency.</span></div>
+<div class="stat-card"><strong>Per-user isolation</strong><span>Each user gets an isolated FAISS index and user-scoped retrieval cache keys.</span></div>
+</div>
+
+<h2>System diagram</h2>
+<div class="flow-diagram" aria-label="Lexora AI architecture diagram">
+<div class="flow-node">1. Upload<span>PDF, TXT, Markdown, or DOCX files are validated and stored.</span></div>
+<div class="flow-node">2. Parse + chunk<span>Document parsers extract text and chunk it for embedding.</span></div>
+<div class="flow-node">3. Embed + index<span>OpenAI embeddings are persisted in a per-user FAISS vector store.</span></div>
+<div class="flow-node">4. Retrieve + cache<span>Queries search the user index, apply document filters, and cache context in Redis.</span></div>
+<div class="flow-node">5. Answer<span>LLM response streams back with source metadata and conversation history.</span></div>
+</div>
+
+<h2>What I built</h2>
+<p>The repository is organized as a production-style FastAPI backend. Route modules handle authentication, documents, and chat. Service modules handle documents, embeddings, vectors, retrieval, caching, LLM calls, and chat orchestration. PostgreSQL stores users, documents, conversations, and messages; Redis supports token revocation and retrieval caching; Celery is available for background document processing.</p>
+<p>The RAG path is intentionally user-scoped. FAISS indexes live under a user-specific path, and retrieval cache keys include user ID, query hash, and document filter. This avoids a common mistake in document AI systems: accidentally mixing one user’s private context into another user’s answer.</p>
+
+<div class="detail-list">
+<div><strong>Authentication</strong><p>JWT access and refresh tokens include token IDs. Logout and refresh rotation blacklist used tokens in Redis until expiry.</p></div>
+<div><strong>Document ingestion</strong><p>The document service validates uploads, extracts text, chunks content, creates embeddings, writes vectors to FAISS, and stores metadata for source attribution.</p></div>
+<div><strong>Retrieval</strong><p>The retrieval service embeds the query, searches the user vector store, applies document filters inside the search path, deduplicates results by document, and builds compact context for the LLM.</p></div>
+<div><strong>Streaming chat</strong><p>The chat service supports normal and SSE streaming responses, persists user and assistant messages, passes real chat history to the LLM, and returns source metadata.</p></div>
+<div><strong>Operations</strong><p>The app exposes health, readiness, and Prometheus metrics endpoints and includes a Docker Compose stack for PostgreSQL, Redis, the API, Celery worker, and Nginx.</p></div>
+</div>
+
+<h2>Engineering takeaways</h2>
+<ul>
+<li>RAG quality depends heavily on boring systems details: chunking, metadata, filters, user isolation, and cache keys.</li>
+<li>Source attribution should be part of the data model, not a UI afterthought.</li>
+<li>Streaming is useful because retrieval and generation can feel slow even when the backend is working correctly.</li>
+<li>Private document AI needs careful auth, token revocation, CORS configuration, and environment-secret discipline before public deployment.</li>
+</ul>
+
+<p class="inline-links"><a href="https://github.com/neuralbroker/lexora-ai" target="_blank" rel="noopener">GitHub</a></p>
+</article>
+<footer><div class="container"><p>&copy; 2026 Abdulla Sajad</p></div></footer>
+<script src="theme.js" defer></script>
+</body>
+</html>

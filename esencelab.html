@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EsenceLab — Abdulla Sajad</title>
+<meta name="description" content="Engineering write-up for EsenceLab, an AI recruitment platform for resume parsing, skill-gap analysis, candidate ranking, and role-based recruiter workflows.">
+<link rel="canonical" href="https://neuralbroker.github.io/esencelab">
+<meta property="og:title" content="EsenceLab — Abdulla Sajad">
+<meta property="og:description" content="AI recruitment platform with resume parsing, skill-gap analysis, candidate ranking, and role-based dashboards.">
+<meta property="og:url" content="https://neuralbroker.github.io/esencelab">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Abdulla Sajad">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EsenceLab — Abdulla Sajad">
+<meta name="twitter:description" content="AI recruitment platform with resume parsing, skill-gap analysis, candidate ranking, and role-based dashboards.">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;S&lt;/text&gt;&lt;/svg&gt;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"EsenceLab","description":"Engineering write-up for EsenceLab, an AI recruitment platform for resume parsing, skill-gap analysis, candidate ranking, and role-based recruiter workflows.","url":"https://neuralbroker.github.io/esencelab","datePublished":"2026-01-01","author":{"@type":"Person","name":"Abdulla Sajad","url":"https://neuralbroker.github.io/"}}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav><div class="container"><a href="index.html">Home</a><a href="index.html#work">Work</a><a href="index.html#notes">Notes</a><span class="theme-toggle mono" id="themeToggle" role="button" tabindex="0" aria-label="Toggle dark and light theme" aria-pressed="false">◐</span></div></nav>
+<article id="main" class="container">
+<a href="index.html#work" class="back-link">&larr; Back to work</a>
+<h1>EsenceLab</h1>
+<div class="post-meta">Recruitment platform · Next.js · TypeScript · Express API · FastAPI AI service · Supabase/Postgres · Gemini/Groq-style AI workflows</div>
+<p>EsenceLab is a campus recruitment platform that turns resume screening into a structured workflow. Students upload resumes and get career guidance, recruiters rank candidates by fit, and admins manage users, recruiter requests, resumes, monitoring, and moderation from one control surface.</p>
+
+<div class="stat-grid">
+<div class="stat-card"><strong>4-engineer team</strong><span>Led frontend, backend, and AI components through planning, reviews, deployment, and demos.</span></div>
+<div class="stat-card"><strong>~60% less shortlisting</strong><span>Resume parsing, skill-gap analysis, and ranking reduced manual screening across 200+ resumes.</span></div>
+<div class="stat-card"><strong>2nd Prize</strong><span>Won 2nd Prize at Innovision among 30+ competing teams.</span></div>
+</div>
+
+<h2>System diagram</h2>
+<div class="flow-diagram" aria-label="EsenceLab architecture diagram">
+<div class="flow-node">1. Next.js UI<span>Student, recruiter, and admin dashboards with role-specific flows.</span></div>
+<div class="flow-node">2. Express API<span>Auth, RBAC, jobs, applications, recruiter approvals, and monitoring.</span></div>
+<div class="flow-node">3. FastAPI AI service<span>Resume parsing, skill extraction, match scoring, and AI career guidance.</span></div>
+<div class="flow-node">4. Supabase/Postgres<span>Source of truth for users, resumes, jobs, applications, courses, and logs.</span></div>
+<div class="flow-node">5. Deployment<span>Vercel frontend, Render services, CI/CD checks, and production safety config.</span></div>
+</div>
+
+<h2>What I built</h2>
+<p>The repository is split into three services: a Next.js frontend, a TypeScript Express backend, and a FastAPI AI service. The backend owns authentication, role authorization, protected routes, recruiter request approval, job/application flows, audit logs, monitoring metrics, and persistence orchestration. The AI service handles PDF parsing, skill extraction, TF-IDF-style matching, and AI-assisted student guidance.</p>
+<p>The most important engineering choice was separating product roles clearly. Student flows focus on resume strength, skill gaps, roadmaps, learning plans, jobs, applications, and interview practice. Recruiter flows focus on job posting and candidate ranking. Admin flows focus on moderation, user management, recruiter approval, monitoring, and auditability.</p>
+
+<div class="detail-list">
+<div><strong>Resume intelligence</strong><p>The AI service extracts text from PDFs, normalizes skills, splits resume sections, parses education and experience entries, and returns structured data the backend can use for scoring and matching.</p></div>
+<div><strong>Candidate ranking</strong><p>Recruiters can compare candidates against job requirements using match scores and explanations instead of manually reading every resume from scratch.</p></div>
+<div><strong>Career engine</strong><p>The backend contains a career engine for resume strength scoring, role-based roadmaps, learning plans, weekly planners, and mock interview packs.</p></div>
+<div><strong>Security and operations</strong><p>The codebase includes JWT auth, password hashing, Helmet, rate limiting, request IDs, normalized error responses, Supabase-backed persistence, RBAC tests, audit logs, and deployment docs.</p></div>
+</div>
+
+<h2>Leadership and delivery</h2>
+<p>I led a 4-engineer team across architecture, sprint planning, implementation, PR reviews, and deployment. The project shipped as a working product rather than a static demo: there are protected user flows, role-specific dashboards, persistent data, production environment templates, Dockerfiles, CI configuration, and runtime verification docs.</p>
+<p>Before launch, we also audited the project for hardcoded credentials and unsafe configuration patterns. The README and environment templates make secrets explicit without publishing real credentials.</p>
+
+<h2>Engineering takeaways</h2>
+<ul>
+<li>AI product work is mostly integration work: the model output must fit the database, backend permissions, and UI decisions.</li>
+<li>Role-based software becomes much easier to reason about when student, recruiter, and admin flows are separated early.</li>
+<li>Security basics matter in college projects too: JWTs, RLS-aware persistence, rate limits, request IDs, and secret hygiene prevent avoidable mistakes.</li>
+<li>A demo becomes more credible when it has tests, deployment docs, operational notes, and failure-path handling.</li>
+</ul>
+
+<p class="inline-links"><a href="https://esencelab.vercel.app" target="_blank" rel="noopener">Live Demo</a><a href="https://github.com/neuralbroker/esencelab" target="_blank" rel="noopener">GitHub</a></p>
+</article>
+<footer><div class="container"><p>&copy; 2026 Abdulla Sajad</p></div></footer>
+<script src="theme.js" defer></script>
+</body>
+</html>

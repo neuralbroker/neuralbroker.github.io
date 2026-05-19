@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SentinelML — Abdulla Sajad</title>
+<meta name="description" content="Engineering write-up for SentinelML, a fraud detection ML service with feature engineering, model training, FastAPI inference, Redis caching, PostgreSQL audit logging, MLflow tracking, and monitoring.">
+<link rel="canonical" href="https://neuralbroker.github.io/sentinelml">
+<meta property="og:title" content="SentinelML — Abdulla Sajad">
+<meta property="og:description" content="Fraud detection ML service with training, FastAPI inference, caching, audit logging, MLflow, and monitoring.">
+<meta property="og:url" content="https://neuralbroker.github.io/sentinelml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Abdulla Sajad">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SentinelML — Abdulla Sajad">
+<meta name="twitter:description" content="Fraud detection ML service with training, FastAPI inference, caching, audit logging, MLflow, and monitoring.">
+<link rel="icon" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;S&lt;/text&gt;&lt;/svg&gt;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"SentinelML","description":"Engineering write-up for SentinelML, a fraud detection ML service with feature engineering, model training, FastAPI inference, Redis caching, PostgreSQL audit logging, MLflow tracking, and monitoring.","url":"https://neuralbroker.github.io/sentinelml","datePublished":"2026-01-01","author":{"@type":"Person","name":"Abdulla Sajad","url":"https://neuralbroker.github.io/"}}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav><div class="container"><a href="index.html">Home</a><a href="index.html#work">Work</a><a href="index.html#notes">Notes</a><span class="theme-toggle mono" id="themeToggle" role="button" tabindex="0" aria-label="Toggle dark and light theme" aria-pressed="false">◐</span></div></nav>
+<article id="main" class="container">
+<a href="index.html#work" class="back-link">&larr; Back to work</a>
+<h1>SentinelML</h1>
+<div class="post-meta">Fraud detection · FastAPI · scikit-learn · PyTorch experiments · Redis · PostgreSQL · MLflow · Docker</div>
+<p>SentinelML is a fraud detection service built around the full machine-learning system loop: generate or ingest transactions, engineer fraud signals, train and evaluate models, serve predictions through an API, cache repeated requests, log predictions, and monitor model behavior after deployment.</p>
+
+<div class="stat-grid">
+<div class="stat-card"><strong>0.94 ROC-AUC</strong><span>Resume-highlighted fraud experiment on held-out transaction data.</span></div>
+<div class="stat-card"><strong>20+ features</strong><span>Amount, merchant, device, location, time, and user-behavior features.</span></div>
+<div class="stat-card"><strong>&lt;60s rollback path</strong><span>Versioned artifacts and service metadata make model rollback operationally clear.</span></div>
+</div>
+
+<h2>System diagram</h2>
+<div class="flow-diagram" aria-label="SentinelML architecture diagram">
+<div class="flow-node">1. Transactions<span>Synthetic or real transaction records with user, merchant, time, device, and location context.</span></div>
+<div class="flow-node">2. Features<span>Feature engineering pipeline builds numerical fraud indicators and saves reusable transformers.</span></div>
+<div class="flow-node">3. Training<span>Model wrapper trains, evaluates ROC-AUC/precision/recall/F1, and logs runs to MLflow.</span></div>
+<div class="flow-node">4. Serving<span>FastAPI exposes single and batch prediction endpoints with schema validation.</span></div>
+<div class="flow-node">5. Ops<span>Redis cache, PostgreSQL audit logs, drift utilities, dashboard, Docker Compose.</span></div>
+</div>
+
+<h2>What I built</h2>
+<p>The codebase is structured like a deployable ML service, not just a notebook. <code>sentinel_ml/api/main.py</code> defines request/response schemas, the prediction service, health checks, batch prediction, model metadata, dashboard routes, Redis caching, and optional database logging. The training code wraps model creation, metrics, cross-validation, artifact saving, and MLflow integration.</p>
+<p>The public repository currently focuses on a robust scikit-learn service path with Random Forest, Gradient Boosting, and Logistic Regression support. My resume summarizes the strongest fraud-detection experiment: engineered features, imbalanced-data handling, and an ensemble-style run that reached 0.94 ROC-AUC on held-out data.</p>
+
+<div class="detail-list">
+<div><strong>Feature engineering</strong><p>The feature layer builds transaction-level signals from amount, merchant category, transaction type, country, device type, time, and user behavior. The feature engineer can be saved and loaded with Joblib for consistent training and inference.</p></div>
+<div><strong>Prediction service</strong><p>The API accepts single transactions and batches, computes a fraud score, applies a configurable threshold, returns confidence labels, and includes model version plus inference latency in the response.</p></div>
+<div><strong>Caching and auditability</strong><p>Redis caches deterministic prediction requests by payload and model version. PostgreSQL logging is optional, so local predictions continue even when the database is unavailable.</p></div>
+<div><strong>Monitoring</strong><p>The repository includes drift/performance utilities, health endpoints, dashboard assets, Prometheus config, Grafana service wiring, and a load-test script for checking API behavior under traffic.</p></div>
+</div>
+
+<h2>Engineering takeaways</h2>
+<ul>
+<li>Model accuracy is only useful if the serving path is stable, observable, and reproducible.</li>
+<li>Caching should include the model version, otherwise old predictions can leak into new model behavior.</li>
+<li>Optional infrastructure makes local development much easier: Redis and PostgreSQL improve the system, but predictions should still work without them.</li>
+<li>Fraud models need more than a score. A useful service also returns confidence, version, latency, and audit metadata.</li>
+</ul>
+
+<p class="inline-links"><a href="https://github.com/neuralbroker/sentinel-ml" target="_blank" rel="noopener">GitHub</a></p>
+</article>
+<footer><div class="container"><p>&copy; 2026 Abdulla Sajad</p></div></footer>
+<script src="theme.js" defer></script>
+</body>
+</html>
