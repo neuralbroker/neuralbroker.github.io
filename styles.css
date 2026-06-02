@@ -53,7 +53,7 @@ body {
     background: var(--bg);
     color: var(--text);
     font-family: "Newsreader", Georgia, "Times New Roman", Times, serif;
-    font-size: 1.0625rem;
+    font-size: 1.125rem;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     padding: 0 1.5rem;
@@ -156,6 +156,10 @@ main {
 
 section {
     margin-bottom: 4rem;
+}
+
+section[id] {
+    scroll-margin-top: 5rem;
 }
 
 .section-title {
