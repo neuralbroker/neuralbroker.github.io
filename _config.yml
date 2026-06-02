@@ -1,0 +1,11 @@
+title: Abdulla Sajad
+description: Software Engineer
+author: Abdulla Sajad
+url: "https://neuralbroker.github.io"
+baseurl: ""
+markdown: kramdown
+permalink: /:title/
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock

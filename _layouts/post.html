@@ -1,0 +1,10 @@
+---
+layout: default
+---
+<article class="container">
+    <a href="/" class="back-link">Back to home</a>
+    <h1>{{ page.title }}</h1>
+    <p class="meta">{{ page.date | date: "%B %Y" }}{% if page.tags %} · {{ page.tags | join: ", " }}{% endif %}</p>
+    {{ content }}
+    <a class="back-link" href="#" style="margin-top: 3rem;">Back to top</a>
+</article>

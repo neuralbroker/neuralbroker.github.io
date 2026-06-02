@@ -1,577 +1,198 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Abdulla Sajad — Software Engineer</title>
-        <meta
-            name="description"
-            content="Software engineer. I build web apps, AI systems, and backend services."
-        />
-        <link rel="canonical" href="https://neuralbroker.github.io/" />
-        <meta property="og:title" content="Abdulla Sajad — Software Engineer" />
-        <meta
-            property="og:description"
-            content="Software engineer. I build web apps, AI systems, and backend services."
-        />
-        <meta property="og:url" content="https://neuralbroker.github.io/" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Abdulla Sajad" />
-        <meta name="twitter:card" content="summary" />
-        <meta
-            name="twitter:title"
-            content="Abdulla Sajad — Software Engineer"
-        />
-        <meta
-            name="twitter:description"
-            content="Software engineer. I build web apps, AI systems, and backend services."
-        />
-        <link
-            rel="icon"
-            href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;S&lt;/text&gt;&lt;/svg&gt;"
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="styles.css" />
-        <style>
-            .hero-links {
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-                flex-wrap: wrap;
-            }
-            .hero-links a {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                width: 2rem;
-                height: 2rem;
-                color: inherit;
-                opacity: 0.6;
-                transition: opacity 0.15s ease;
-                text-decoration: none;
-            }
-            .hero-links a:hover {
-                opacity: 1;
-            }
-            .hero-links a svg {
-                width: 1.25rem;
-                height: 1.25rem;
-                fill: currentColor;
-            }
-            .hero-links a.resume-link {
-                width: auto;
-                font-family: var(--font-mono);
-                font-size: 0.75rem;
-                letter-spacing: 0.04em;
-            }
-            .hero-stack {
-                font-family: var(--font-mono);
-                font-size: 0.78rem;
-                letter-spacing: 0.04em;
-                opacity: 0.7;
-                margin-top: 0.5rem;
-            }
-            .skills-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-                gap: 1.5rem;
-            }
-            .skill-group h3 {
-                font-family: var(--font-mono);
-                font-size: 0.78rem;
-                letter-spacing: 0.08em;
-                text-transform: uppercase;
-                opacity: 0.6;
-                margin-bottom: 0.5rem;
-            }
-            .skill-group p {
-                line-height: 1.6;
-            }
-        </style>
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "Person",
-                "name": "Abdulla Sajad",
-                "alternateName": "Sajad",
-                "url": "https://neuralbroker.github.io/",
-                "jobTitle": "Software Engineer",
-                "telephone": "+91 9207761088",
-                "email": "abdullasajad01@gmail.com",
-                "description": "Software engineer. I build web apps, AI systems, and backend services.",
-                "sameAs": [
-                    "https://github.com/neuralbroker",
-                    "https://www.linkedin.com/in/abdullasajad",
-                    "https://huggingface.co/neuralbroker"
-                ],
-                "knowsAbout": [
-                    "Software engineering",
-                    "Backend engineering",
-                    "Artificial intelligence",
-                    "LLM fine-tuning",
-                    "Retrieval-augmented generation",
-                    "Production AI systems"
-                ]
-            }
-        </script>
-    </head>
-    <body>
-        <a class="skip-link" href="#main">Skip to content</a>
-        <nav>
-            <div class="container">
-                <a href="#about">About</a>
-                <a href="#interests">Interests</a>
-                <a href="#work">Projects</a>
-                <a href="#stack">Skills</a>
-                <a href="#notes">Writeups</a>
-                <span
-                    class="theme-toggle mono"
-                    id="themeToggle"
-                    role="button"
-                    tabindex="0"
-                    aria-label="Toggle dark and light theme"
-                    aria-pressed="false"
-                    >◐</span
-                >
+---
+layout: default
+title: Abdulla Sajad — Software Engineer
+description: "I build web apps, AI systems, and backend services. I use AI to move faster without cutting corners."
+---
+
+<section id="hero">
+    <div class="container">
+        <p class="eyebrow">Hey there, I'm</p>
+        <h1>Abdulla Sajad</h1>
+        <div class="title-line">Software Engineer</div>
+        <p class="statement">
+            I build web apps, AI systems, and backend services.
+            I use AI to move faster without cutting corners.
+        </p>
+        <p class="hero-stack">
+            Python · FastAPI · TypeScript · Docker · PostgreSQL · PyTorch
+        </p>
+        <div class="hero-links">
+            <a href="https://github.com/neuralbroker" target="_blank" rel="noopener" aria-label="GitHub">
+                <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg>
+            </a>
+            <a href="https://linkedin.com/in/abdullasajad" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.614 0 1.06-.44 1.06-.99s-.446-.99-1.08-.99c-.614 0-1.06.44-1.06.99 0 .55.446.99 1.08.99zm1.2 8.212V6.169h2.41v1.01h.034c.336-.636 1.156-1.308 2.376-1.308 2.538 0 3.008 1.672 3.008 3.847v4.676h-2.41v-4.14c0-1.008-.036-2.295-1.4-2.295s-1.612 1.094-1.612 2.19v4.245z"/></svg>
+            </a>
+            <a href="https://huggingface.co/neuralbroker" target="_blank" rel="noopener" aria-label="Hugging Face">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.66 18.67c.33-.03.62-.07.88-.12.27-.05.6-.13.98-.24.39-.11.86-.27 1.4-.48.16-.06.44-.18.82-.35.38-.17.72-.33 1-.48.29-.15.65-.34 1.08-.58.43-.24.79-.46 1.08-.66.36-.22.77-.49 1.23-.81.37-.25.68-.47.94-.65.25-.18.57-.42.94-.72.2-.16.37-.31.5-.44.13-.13.3-.3.5-.5.2-.2.35-.38.45-.55.1-.16.24-.39.42-.68.18-.29.29-.51.34-.66.05-.15.12-.35.2-.6.08-.25.13-.45.16-.6.03-.15.07-.37.13-.66.05-.29.07-.51.07-.65a8.56 8.56 0 00-.05-.7c-.03-.22-.1-.5-.18-.84-.1-.34-.16-.56-.2-.66-.1-.2-.02-.56.22-1.06s.35-.85.38-.96c.04-.11.1-.3.2-.57s.17-.5.2-.65c.04-.15.12-.43.26-.84.14-.41.22-.66.24-.76.11-.4.18-.83.22-1.28.03-.35 0-.72-.1-1.1-.08-.38-.2-.68-.35-.9-.17-.22-.32-.37-.46-.45a1.64 1.64 0 00-.58-.18c-.2-.02-.38-.04-.54-.04-.17 0-.46.02-.86.04-.4.02-.66.05-.76.08-.1.03-.31.12-.62.26-.31.14-.48.22-.5.24l-.25.15c-.38.2-.72.42-1 .64-.2.15-.5.4-.9.76-.4.36-.66.58-.78.66-.12.08-.33.25-.63.5-.3.25-.52.44-.66.56a3.4 3.4 0 01-.76.54c-.14.08-.38.2-.7.36-.33.16-.54.27-.64.32a3.7 3.7 0 01-.8.23l-.24.04c-.28.02-.56.02-.84 0-.28-.02-.5-.04-.66-.07a4.9 4.9 0 01-.8-.2c-.15-.06-.42-.18-.82-.38-.4-.2-.64-.34-.72-.42a2.5 2.5 0 01-.34-.4c-.14-.2-.17-.42-.1-.66.08-.24.2-.41.36-.52.16-.1.38-.23.66-.38.28-.15.44-.25.5-.3.06-.05.22-.17.48-.36.26-.19.43-.33.5-.42.08-.1.25-.3.5-.6.26-.3.41-.5.46-.6a3.5 3.5 0 00.22-.4c.08-.16.1-.28.06-.36a10.4 10.4 0 01-.28-.9c-.08-.3-.16-.6-.24-.9-.08-.28-.18-.6-.3-.92-.12-.33-.2-.57-.24-.72a4.3 4.3 0 01-.15-.64c-.08-.4-.1-.78-.06-1.12.04-.34.1-.65.18-.94.08-.3.14-.5.18-.62.03-.12.1-.3.2-.56.1-.26.16-.45.2-.56.03-.1.1-.3.2-.6.1-.3.17-.55.2-.76s0-.36-.1-.48c-.08-.12-.18-.2-.3-.24-.12-.04-.28-.06-.48-.06-.3 0-.58.04-.84.12-.26.08-.5.22-.72.42-.22.2-.35.34-.4.42-.06.08-.15.24-.28.48-.12.24-.2.42-.24.54-.04.12-.13.33-.26.62-.13.29-.22.48-.28.58-.06.1-.16.27-.3.5-.14.23-.24.38-.3.44-.08.08-.25.23-.5.45-.25.22-.42.33-.5.35l.12-.55c.08-.36.14-.63.2-.82s.12-.4.22-.6c.1-.2.2-.4.3-.6.1-.2.17-.32.22-.36.04-.04.1-.1.18-.18.08-.08.1-.17.06-.27a.94.94 0 00-.26-.36c-.12-.1-.22-.15-.3-.15-.16 0-.34.07-.55.2-.2.13-.38.28-.52.45-.04.05-.1.17-.18.36-.08.19-.14.38-.18.58a4.5 4.5 0 00-.08.52c0 .1.02.3.08.58.06.28.1.5.12.66.02.16.06.44.12.84.06.4.1.7.12.9.02.2.06.54.12 1.02.06.48.1.82.12 1.02l.05.44c.12.54.24 1.02.36 1.44.12.42.3.92.54 1.5.16.38.3.68.42.9l-.02.24c-.06.34-.14.6-.24.78-.1.18-.26.38-.48.6-.22.22-.4.4-.54.54l-.48.48c-.18.18-.32.4-.42.66-.1.26-.14.5-.12.72 0 .22.06.46.18.72.12.26.22.46.3.6.08.14.24.34.48.6.24.26.4.44.5.54.1.1.28.28.54.54.22.22.38.4.48.54s.22.34.36.54c.14.2.24.38.3.54.06.16.16.38.3.66.14.28.24.5.3.66.06.16.16.4.3.72.14.32.24.56.3.72.06.16.14.38.24.66.1.28.18.52.24.72.06.2.14.5.24.9.1.4.16.68.18.84.02.16.08.46.18.9.1.44.16.74.18.9.02.16.06.43.12.82.06.38.1.62.12.72.02.1.06.32.12.66.06.34.1.56.12.66.02.1.08.34.18.72.1.38.16.62.18.72.02.1.08.32.18.66.1.34.16.55.18.63a5.5 5.5 0 00.2.6c.06.16.16.36.3.6.14.24.24.4.3.48.06.08.2.24.42.48.22.24.4.42.5.54.28.28.52.5.72.66.2.16.42.3.66.42.24.12.48.2.72.24l.42.06c.14.02.32.02.54 0z"/></svg>
+            </a>
+            <a href="https://neuralbroker.github.io/resume.pdf" class="resume-link" target="_blank" rel="noopener">Résumé</a>
+        </div>
+    </div>
+</section>
+
+<section id="about">
+    <div class="container">
+        <h2 class="section-title">About</h2>
+        <p>
+            I'm a software engineer from Kerala, India. I study Computer Science at SNGCET (class of 2026), and I've been building things — real things — since my first year of college.
+        </p>
+        <p>
+            I'm equally comfortable leading a 4-person engineering team on a hackathon project, fine-tuning a 7B parameter model, or debugging a docker-compose file at 2 AM. I use AI to move faster, but I still believe the best code comes from understanding what you're building and why.
+        </p>
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="meta">2024 – Present</span>
+                <strong>Project Lead — EsenceLab</strong>
+                <span>Led a team of 4 on a real-time sentiment analysis platform. Won 2nd Prize at Innovision.</span>
             </div>
-        </nav>
+            <div class="timeline-item">
+                <span class="meta">2023 – Present</span>
+                <strong>Independent Developer</strong>
+                <span>Built BlitzKode (fine-tuned Qwen2.5-Coder), Lexora AI (RAG-based Q&A), SentinelML (fraud detection).</span>
+            </div>
+            <div class="timeline-item">
+                <span class="meta">2022 – 2026</span>
+                <strong>B.Tech Computer Science — SNGCET, Kerala</strong>
+                <span>Coursework in ML, NLP, Data Structures, Algorithms. Self-studied production engineering in my spare time.</span>
+            </div>
+        </div>
+    </div>
+</section>
 
-        <main id="main">
-            <section id="hero">
-                <div class="container">
-                    <h1>Abdulla Sajad</h1>
-                    <div class="title-line">Software Engineer</div>
-                    <p class="statement">
-                        I build web apps, AI systems, and backend services.
-                    </p>
-                    <p class="hero-stack">
-                        Python • FastAPI • TypeScript • Docker • PostgreSQL • PyTorch
-                    </p>
-                    <div class="hero-links">
-                        <!-- GitHub -->
-                        <a
-                            href="https://github.com/neuralbroker"
-                            target="_blank"
-                            rel="noopener"
-                            aria-label="GitHub"
-                        >
-                            <svg
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
-                                />
-                            </svg>
-                        </a>
+<section id="interests">
+    <div class="container">
+        <h2 class="section-title">Off the clock</h2>
+        <div class="interest-grid">
+            <div class="interest-card">
+                <span class="interest-icon">&#9917;</span>
+                <h3>Football</h3>
+                <p>Play center-mid. Arsenal fan. I watch Premier League obsessively and analyze matches like a tactician who failed his coaching badges.</p>
+            </div>
+            <div class="interest-card">
+                <span class="interest-icon">&#128302;</span>
+                <h3>Reading</h3>
+                <p>Big fan of <em>Sapiens</em> and <em>The Selfish Gene</em>. Currently working through <em>Gödel, Escher, Bach</em> — it's a slow burn, but rewarding.</p>
+            </div>
+            <div class="interest-card">
+                <span class="interest-icon">&#127916;</span>
+                <h3>Cinema</h3>
+                <p>Nolan fanboy who analyzes scenes frame-by-frame. If we watch a movie together, I'm pausing it every 5 minutes to point out the cinematography.</p>
+            </div>
+            <div class="interest-card">
+                <span class="interest-icon">&#128300;</span>
+                <h3>Research</h3>
+                <p>I read AI papers for fun. Transformers, RLHF, neurosymbolic systems — if there's a new arXiv preprint that challenges something I thought I knew, I'm reading it that night.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-                        <!-- LinkedIn -->
-                        <a
-                            href="https://www.linkedin.com/in/abdullasajad"
-                            target="_blank"
-                            rel="noopener"
-                            aria-label="LinkedIn"
-                        >
-                            <svg
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-                                />
-                            </svg>
-                        </a>
+<section id="work">
+    <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
 
-                        <!-- Hugging Face -->
-                        <a
-                            href="https://huggingface.co/neuralbroker"
-                            target="_blank"
-                            rel="noopener"
-                            aria-label="Hugging Face"
-                        >
-                            <svg
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M11.9981 0C5.372 0 0 5.373 0 12.002 0 18.628 5.372 24 11.9981 24 18.626 24 24 18.628 24 12.002 24 5.373 18.626 0 11.9981 0zm-.0696 1.88c1.177 0 2.123.959 2.123 2.14 0 1.18-.946 2.14-2.123 2.14-1.176 0-2.124-.96-2.124-2.14 0-1.181.948-2.14 2.124-2.14zm4.9 1.395c1.098 0 1.985.894 1.985 1.998s-.887 1.998-1.985 1.998c-1.097 0-1.985-.894-1.985-1.998s.888-1.998 1.985-1.998zM7.1 3.276c1.097 0 1.984.894 1.984 1.997 0 1.104-.887 1.998-1.984 1.998-1.098 0-1.985-.894-1.985-1.998 0-1.103.887-1.997 1.985-1.997zm4.862 3.802c-3.395 0-6.47 1.71-7.925 4.456-.21.402-.057.898.342 1.11.4.211.893.057 1.103-.344.845-1.61 2.327-2.84 4.076-3.42-.185.42-.288.883-.288 1.37 0 1.946 1.572 3.523 3.512 3.523 1.939 0 3.511-1.577 3.511-3.524 0-.487-.103-.95-.288-1.37 1.749.58 3.231 1.81 4.076 3.42.21.401.703.555 1.103.344.399-.212.551-.708.341-1.11-1.454-2.746-4.528-4.455-7.563-4.455zm-4.73 8.228a.876.876 0 0 0-.857.714c-.33 1.878.606 3.422 2.278 4.235 1.046.505 2.253.657 3.492.433 1.24-.224 2.388-.793 3.175-1.661.604-.66.949-1.458.892-2.271a.871.871 0 0 0-.936-.815.875.875 0 0 0-.808.942c.025.34-.118.706-.43 1.051-.523.572-1.36.986-2.268 1.148-.906.163-1.797.046-2.489-.292-.874-.421-1.352-1.11-1.162-2.183a.875.875 0 0 0-.887-1.301z"
-                                />
-                            </svg>
-                        </a>
+        <div class="project">
+            <p class="project-kicker">BlitzKode</p>
+            <h3><a href="/blitzkode/">Fine-tuned Qwen2.5-Coder (3B) on 2,000 instruction examples</a></h3>
+            <p>A coding assistant that writes clean Python. Got 500+ downloads on Hugging Face in the first month. Built in a week, open-sourced because sharing is the point. Scored 65% on HumanEval.</p>
+            <p class="project-links">
+                <a href="/blitzkode/">Write-up</a>
+                <a href="https://huggingface.co/neuralbroker/blitzkode">Model</a>
+                <a href="https://github.com/neuralbroker/blitzkode">GitHub</a>
+            </p>
+        </div>
 
-                        <!-- Email -->
-                        <a
-                            href="mailto:abdullasajad01@gmail.com"
-                            aria-label="Email"
-                        >
-                            <svg
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.908 1.528-1.147C21.69 2.28 24 3.434 24 5.457z"
-                                />
-                            </svg>
-                        </a>
+        <div class="project">
+            <p class="project-kicker">EsenceLab</p>
+            <h3><a href="/esencelab/">Real-time sentiment analysis platform — led a team of 4</a></h3>
+            <p>Built with FastAPI + WebSockets + VADER at a college hackathon. Won 2nd Prize at Innovision. Learned that the best debugging tool is a teammate who's been staring at the same bug for 20 minutes.</p>
+            <p class="project-links">
+                <a href="/esencelab/">Write-up</a>
+                <a href="https://github.com/neuralbroker/esencelab">GitHub</a>
+            </p>
+        </div>
 
-                        <!-- Resume -->
-                        <a
-                            href="resume.pdf"
-                            target="_blank"
-                            rel="noopener"
-                            aria-label="Resume"
-                        >
-                            <svg
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6zm2-5h8v1.5H8V15zm0-3h8v1.5H8V12zm0-3h4v1.5H8V9z"
-                                />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </section>
+        <div class="project">
+            <p class="project-kicker">Lexora AI</p>
+            <h3><a href="/lexora-ai/">RAG-based document Q&A with LangChain + FastAPI</a></h3>
+            <p>Upload a PDF, ask a question in plain English, get an answer with citations. I built it because I was tired of manually searching through 200-page research papers.</p>
+            <p class="project-links">
+                <a href="/lexora-ai/">Write-up</a>
+                <a href="https://github.com/neuralbroker/lexora-ai">GitHub</a>
+            </p>
+        </div>
 
-            <section id="about">
-                <div class="container">
-                    <div class="section-title">About</div>
-                    <div class="about-copy">
-                        <p>
-                            I'm a software engineer. I fine-tune models, build
-                            RAG systems, and ship full-stack apps.
-                        </p>
-                        <p>
-                            I work in Python, FastAPI, and Next.js. I take ML
-                            projects from training all the way to deployed
-                            services.
-                        </p>
-                    </div>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="meta">
-                                Sep 2022 — Jul 2026 · Education
-                            </div>
-                            <h3>B.Tech, Computer Science and Engineering</h3>
-                            <p>
-                                Sree Narayana Guru College of Engineering and
-                                Technology, Kerala.
-                            </p>
-                            <p>
-                                Relevant Coursework:
-                                Data Structures &amp; Algorithms,
-                                Operating Systems,
-                                DBMS,
-                                Computer Networks,
-                                OOP
-                            </p>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="meta">
-                                Aug 2024 — May 2026 · Project Lead · SNGCET
-                            </div>
-                            <h3>Project Lead</h3>
-                            <p>
-                                Led a cross-functional 4-engineer team on
-                                EsenceLab, handling sprint
-                                planning, architecture, PR reviews, and GitHub
-                                Actions CI/CD. Shipped to
-                                production on schedule with zero regressions.
-                            </p>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="meta">
-                                Jun 2023 — 2025 · Freelance · Remote
-                            </div>
-                            <h3>Freelance Full Stack Developer</h3>
-                            <p>
-                                Delivered two production web applications
-                                independently for paying clients, designing data
-                                models, building REST APIs, and managing
-                                deployments end-to-end.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <div class="project">
+            <p class="project-kicker">SentinelML</p>
+            <h3><a href="/sentinelml/">Fraud detection with 0.94 ROC-AUC</a></h3>
+            <p>Random forest + engineered features. The most satisfying moment wasn't hitting the metric — it was discovering that one feature (transaction velocity) improved AUC by 6 points.</p>
+            <p class="project-links">
+                <a href="/sentinelml/">Write-up</a>
+                <a href="https://github.com/neuralbroker/sentinelml">GitHub</a>
+            </p>
+        </div>
 
-            <section id="interests">
-                <div class="container">
-                    <div class="section-title">Off the clock</div>
-                    <p class="hero-note">
-                        I'm a software engineer. I use AI to write better code and
-                        ship faster. Outside of work I watch football, dig into
-                        research now and then, queue up a tech documentary, or put
-                        on a movie.
-                    </p>
-                    <div class="tags" style="margin-top: 1rem;">
-                        <span class="tag">⚽ Football</span>
-                        <span class="tag">🔬 Research</span>
-                        <span class="tag">📽️ Tech docs</span>
-                        <span class="tag">🎬 Movies</span>
-                    </div>
-                </div>
-            </section>
+        <div class="project">
+            <p class="project-kicker">Neurosymbolic Reasoning</p>
+            <h3><a href="/neurosymbolic-reasoning/">Seminar paper on combining symbolic AI with deep learning</a></h3>
+            <p>Explored how neural networks can learn symbolic representations and why hybrid systems outperform pure neural approaches on reasoning tasks. Way more philosophical than I expected.</p>
+            <p class="project-links">
+                <a href="/neurosymbolic-reasoning/">Write-up</a>
+            </p>
+        </div>
+    </div>
+</section>
 
-            <section id="work">
-                <div class="container">
-                    <div class="section-title">Featured Projects</div>
-                    <div class="featured-list">
-                        <article class="project">
-                            <div class="project-kicker">AI developer tools</div>
-                            <h3>BlitzKode</h3>
-                            <p class="project-summary">
-                                Engineered a 4-stage fine-tuning pipeline
-                                (SFT → Reward-SFT → DPO → LoRA)
-                                on Qwen2.5-1.5B using PEFT and TRL.
-                                Reduced VRAM requirements from 24GB to 8GB,
-                                exported to GGUF for CPU-only inference,
-                                and deployed via FastAPI with SSE streaming.
-                                Reached 510+ downloads on Hugging Face.
-                            </p>
-                            <div class="project-links">
-                                <a href="blitzkode.html">Write-up</a
-                                ><a
-                                    href="https://huggingface.co/neuralbroker/blitzkode"
-                                    target="_blank"
-                                    rel="noopener"
-                                    >Hugging Face</a
-                                ><a
-                                    href="https://github.com/neuralbroker/blitzkode"
-                                    target="_blank"
-                                    rel="noopener"
-                                    >GitHub</a
-                                >
-                            </div>
-                            <div class="tags">
-                                <span class="tag">Qwen2.5-1.5B</span
-                                ><span class="tag">SFT</span
-                                ><span class="tag">Reward-SFT</span
-                                ><span class="tag">DPO</span
-                                ><span class="tag">LoRA</span
-                                ><span class="tag">PEFT</span
-                                ><span class="tag">TRL</span
-                                ><span class="tag">GGUF</span
-                                ><span class="tag">llama.cpp</span>
-                            </div>
-                        </article>
+<section id="stack">
+    <div class="container">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-group">
+                <h3>Languages</h3>
+                <p>Python, TypeScript, JavaScript, SQL, C++, HTML/CSS, Bash</p>
+            </div>
+            <div class="skill-group">
+                <h3>Backend</h3>
+                <p>FastAPI, Node.js, Express, REST APIs, WebSockets, LangChain</p>
+            </div>
+            <div class="skill-group">
+                <h3>AI / ML</h3>
+                <p>PyTorch, Hugging Face, Fine-tuning, RAG, Transformers, scikit-learn, pandas, numpy</p>
+            </div>
+            <div class="skill-group">
+                <h3>DevOps & Infra</h3>
+                <p>Docker, PostgreSQL, Redis, Git, GitHub Actions, Linux, Cloudflare</p>
+            </div>
+            <div class="skill-group">
+                <h3>Tools</h3>
+                <p>VS Code, Neovim, Jupyter, Postman, Figma, Linear, Notion</p>
+            </div>
+            <div class="skill-group">
+                <h3>Soft</h3>
+                <p>Team leadership, Technical writing, Code review, Rapid prototyping</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-                        <article class="project">
-                            <div class="project-kicker">Applied AI product</div>
-                            <h3>EsenceLab</h3>
-                            <p class="project-summary">
-                                An AI campus recruitment platform with
-                                Gemini-powered resume parsing, skill-gap
-                                analysis, and candidate ranking. I led a
-                                4-engineer team across frontend, backend, and AI
-                                components; the system cut manual shortlisting
-                                by ~60% across 200+ resumes and won 2nd Prize at
-                                Innovision among 30+ teams. I also worked on the
-                                TypeScript API and FastAPI AI service with JWT,
-                                Supabase-backed auth/data flows, GitHub Actions
-                                CI/CD, and a pre-launch security audit.
-                            </p>
-                            <div class="project-links">
-                                <a href="esencelab.html">Write-up</a
-                                ><a
-                                    href="https://esencelab.vercel.app"
-                                    target="_blank"
-                                    rel="noopener"
-                                    >Live Demo</a
-                                ><a
-                                    href="https://github.com/neuralbroker/esencelab"
-                                    target="_blank"
-                                    rel="noopener"
-                                    >GitHub</a
-                                >
-                            </div>
-                            <div class="tags">
-                                <span class="tag">Next.js</span
-                                ><span class="tag">TypeScript</span
-                                ><span class="tag">Express</span
-                                ><span class="tag">FastAPI</span
-                                ><span class="tag">PostgreSQL</span
-                                ><span class="tag">Supabase</span
-                                ><span class="tag">Gemini AI</span
-                                ><span class="tag">Docker</span
-                                ><span class="tag">GitHub Actions</span>
-                            </div>
-                        </article>
-
-                        <article class="project">
-                            <div class="project-kicker">Retrieval systems</div>
-                            <h3>Lexora AI</h3>
-                            <p class="project-summary">
-                                A RAG pipeline over private document collections
-                                using LangChain and FAISS. It uses chunked
-                                retrieval and streaming responses to answer over
-                                corpora up to 100k tokens with sub-2s latency
-                                while grounding answers in source documents.
-                            </p>
-                            <div class="project-links">
-                                <a href="lexora-ai.html">Write-up</a
-                                ><a
-                                    href="https://github.com/neuralbroker/lexora-ai"
-                                    target="_blank"
-                                    rel="noopener"
-                                    >GitHub</a
-                                >
-                            </div>
-                            <div class="tags">
-                                <span class="tag">Python</span
-                                ><span class="tag">FastAPI</span
-                                ><span class="tag">LangChain</span
-                                ><span class="tag">FAISS</span
-                                ><span class="tag">OpenAI API</span
-                                ><span class="tag">RAG</span>
-                            </div>
-                        </article>
-
-                        <article class="project">
-                            <div class="project-kicker">
-                                Machine learning systems
-                            </div>
-                            <h3>SentinelML</h3>
-                            <p class="project-summary">
-                                Deployed a fraud detection API with
-                                feature engineering, SMOTE oversampling,
-                                and a RandomForest classifier achieving
-                                ROC-AUC 0.94.
-                                Includes Redis prediction caching,
-                                PostgreSQL persistence,
-                                MLflow experiment tracking,
-                                and Docker Compose deployment.
-                            </p>
-                            <div class="project-links">
-                                <a href="sentinelml.html">Write-up</a
-                                ><a
-                                    href="https://github.com/neuralbroker/sentinel-ml"
-                                    target="_blank"
-                                    rel="noopener"
-                                    >GitHub</a
-                                >
-                            </div>
-                            <div class="tags">
-                                <span class="tag">Python</span
-                                ><span class="tag">FastAPI</span
-                                ><span class="tag">scikit-learn</span
-                                ><span class="tag">RandomForest</span
-                                ><span class="tag">Redis</span
-                                ><span class="tag">PostgreSQL</span
-                                ><span class="tag">MLflow</span
-                                ><span class="tag">Docker</span>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <section id="stack">
-                <div class="container">
-                    <div class="section-title">Technical Skills</div>
-                    <div class="skills-grid">
-                        <div class="skill-group">
-                            <h3>Languages</h3>
-                            <p>
-                                Python, SQL, TypeScript, JavaScript, Bash
-                            </p>
-                        </div>
-                        <div class="skill-group">
-                            <h3>AI / ML</h3>
-                            <p>
-                                PyTorch, Hugging Face Transformers, PEFT, TRL,
-                                LangChain, FAISS, scikit-learn, XGBoost,
-                                OpenAI API, Gemini AI
-                            </p>
-                        </div>
-                        <div class="skill-group">
-                            <h3>Backend</h3>
-                            <p>
-                                FastAPI, Express.js, Next.js, REST APIs,
-                                PostgreSQL, Redis, SQLAlchemy, Celery, JWT
-                            </p>
-                        </div>
-                        <div class="skill-group">
-                            <h3>Frontend</h3>
-                            <p>
-                                Next.js, React, TypeScript, Tailwind CSS,
-                                HTML/CSS
-                            </p>
-                        </div>
-                        <div class="skill-group">
-                            <h3>DevOps / MLOps</h3>
-                            <p>
-                                Docker, Docker Compose, GitHub Actions, MLflow,
-                                AWS EC2, Linux, Git
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="notes">
-                <div class="container">
-                    <div class="section-title">Technical Writeups</div>
-                    <div class="note-list">
-                        <div class="note-item">
-                            <div class="note-title">
-                                <a href="blitzkode.html"
-                                    >BlitzKode — fine-tuning a coding model</a
-                                >
-                            </div>
-                            <div class="note-meta">
-                                SFT · Reward-SFT · DPO · LoRA · GGUF · local inference
-                            </div>
-                        </div>
-                        <div class="note-item">
-                            <div class="note-title">
-                                <a href="esencelab.html"
-                                    >EsenceLab — building an AI recruitment
-                                    platform</a
-                                >
-                            </div>
-                            <div class="note-meta">
-                                Resume parsing · candidate ranking · role-based
-                                dashboards
-                            </div>
-                        </div>
-                        <div class="note-item">
-                            <div class="note-title">
-                                <a href="sentinelml.html"
-                                    >SentinelML — fraud detection as an ML
-                                    service</a
-                                >
-                            </div>
-                            <div class="note-meta">
-                                Feature engineering · FastAPI · Redis · MLflow
-                            </div>
-                        </div>
-                        <div class="note-item">
-                            <div class="note-title">
-                                <a href="lexora-ai.html"
-                                    >Lexora AI — document RAG with source
-                                    grounding</a
-                                >
-                            </div>
-                            <div class="note-meta">
-                                LangChain · FAISS · streaming responses · source
-                                attribution
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <div class="container"><p>&copy; 2026 Abdulla Sajad</p></div>
-        </footer>
-        <script src="theme.js" defer></script>
-    </body>
-</html>
+<section id="notes">
+    <div class="container">
+        <h2 class="section-title">Technical Writeups</h2>
+        {% if site.posts.size == 0 %}
+        <p class="muted">Nothing here yet.</p>
+        {% else %}
+        <ul class="writeup-list">
+            {% for post in site.posts %}
+            <li>
+                <a href="{{ post.url }}">{{ post.title }}</a>
+                <span class="meta">{{ post.date | date: "%b %Y" }}</span>
+                {% if post.description %}
+                <p class="writeup-desc">{{ post.description }}</p>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</section>
