@@ -14,7 +14,7 @@ I led a team of 4 to build it. We won 2nd Prize at Innovision.
 
 <div class="diagram">
 <div class="diagram-title">Three-Service Architecture</div>
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Frontend["Frontend — Next.js 15"]
         A[React 18 + Tailwind] --> B[AuthContext JWT]
@@ -41,7 +41,7 @@ graph TD
     D -->|Forward| H
     D -->|SQL| M
     K -->|Groq API| L
-```
+</div>
 </div>
 
 ## How it works

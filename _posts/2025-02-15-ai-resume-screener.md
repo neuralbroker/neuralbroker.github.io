@@ -14,7 +14,7 @@ So I built AI Resume Screener: a FastAPI REST API that uses Groq's free tier wit
 
 <div class="diagram">
 <div class="diagram-title">System Architecture</div>
-```mermaid
+<div class="mermaid">
 graph TD
     A[Client / Swagger UI] -->|JWT| B[FastAPI]
     B -->|Auth| C[bcrypt + JWT]
@@ -24,7 +24,7 @@ graph TD
     F -->|Persist| G[SQLite]
     B -->|RBAC| H[User / Admin Roles]
     B -->|History| I[Pagination + Stats]
-```
+</div>
 </div>
 
 ## How it works

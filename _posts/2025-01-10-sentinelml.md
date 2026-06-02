@@ -14,7 +14,7 @@ SentinelML isn't a notebook. It's a full MLOps system: synthetic data generation
 
 <div class="diagram">
 <div class="diagram-title">MLOps Pipeline</div>
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Data["Data Layer"]
         A[SyntheticDataGenerator] -->|50K transactions| B[DataPreprocessor]
@@ -44,7 +44,7 @@ graph TD
     end
 
     H --> K
-```
+</div>
 </div>
 
 ## How it works

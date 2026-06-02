@@ -14,7 +14,7 @@ The result is BlitzKode: a local, API-first coding assistant that runs entirely 
 
 <div class="diagram">
 <div class="diagram-title">System Architecture</div>
-```mermaid
+<div class="mermaid">
 graph TD
     subgraph Training["Training Pipeline (offline)"]
         A[build_full_dataset.py] -->|199 examples| B[train_sft.py]
@@ -38,7 +38,7 @@ graph TD
     G --> N["POST /generate"]
     G --> O["POST /generate/stream (SSE)"]
     G --> P["POST /generate/research"]
-```
+</div>
 </div>
 
 ## How it works
