@@ -569,6 +569,124 @@ article .meta {
     margin-bottom: 2rem;
 }
 
+/* Architecture diagrams */
+.diagram {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+}
+
+.diagram-title {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--muted);
+    margin-bottom: 1rem;
+}
+
+.diagram .mermaid {
+    display: flex;
+    justify-content: center;
+}
+
+.diagram .mermaid svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Code callout boxes */
+.code-callout {
+    background: var(--soft);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+}
+
+.code-callout .code-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+}
+
+.code-callout pre {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.78rem;
+}
+
+/* Impact sections */
+.impact {
+    background: var(--surface);
+    border-left: 3px solid var(--link);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+}
+
+.impact-title {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--link);
+    margin-bottom: 0.5rem;
+}
+
+.impact p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+}
+
+.impact p:last-child {
+    margin-bottom: 0;
+}
+
+/* Metric badges */
+.metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+}
+
+.metric {
+    background: var(--soft);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    text-align: center;
+}
+
+.metric-value {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--link);
+    display: block;
+}
+
+.metric-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
 footer {
     padding: 2rem 0 3rem;
     border-top: 1px solid var(--border);

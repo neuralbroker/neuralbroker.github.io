@@ -24,5 +24,33 @@
     {% include header.html %}
     <main id="main">{{ content }}</main>
     {% include footer.html %}
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'default',
+            fontFamily: '"JetBrains Mono Nerd Font", "JetBrains Mono", monospace',
+            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' },
+            themeVariables: {
+                fontSize: '13px'
+            }
+        });
+        // Re-run mermaid on theme change
+        document.querySelector('.theme-toggle')?.addEventListener('click', function() {
+            setTimeout(function() {
+                mermaid.initialize({
+                    startOnLoad: false,
+                    theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'default',
+                    fontFamily: '"JetBrains Mono Nerd Font", "JetBrains Mono", monospace',
+                    flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
+                });
+                document.querySelectorAll('.mermaid').forEach(function(el) {
+                    el.removeAttribute('data-processed');
+                });
+                mermaid.run();
+            }, 100);
+        });
+        mermaid.run();
+    </script>
 </body>
 </html>
