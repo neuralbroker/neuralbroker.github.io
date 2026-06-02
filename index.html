@@ -3,16 +3,16 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Abdulla Sajad — Core SWE / AI Engineer</title>
+        <title>Abdulla Sajad — Software Engineer</title>
         <meta
             name="description"
-            content="Core SWE / AI engineer building production AI systems."
+            content="Software engineer building production-grade web applications, AI-powered systems, and backend services."
         />
         <link rel="canonical" href="https://neuralbroker.github.io/" />
-        <meta property="og:title" content="Abdulla Sajad — Core SWE / AI Engineer" />
+        <meta property="og:title" content="Abdulla Sajad — Software Engineer" />
         <meta
             property="og:description"
-            content="AI software engineer building practical tools and systems."
+            content="Software engineer building production-grade web applications, AI-powered systems, and backend services."
         />
         <meta property="og:url" content="https://neuralbroker.github.io/" />
         <meta property="og:type" content="website" />
@@ -24,7 +24,7 @@
         />
         <meta
             name="twitter:description"
-            content="AI software engineer building practical tools and systems."
+            content="Software engineer building production-grade web applications, AI-powered systems, and backend services."
         />
         <link
             rel="icon"
@@ -63,12 +63,34 @@
                 height: 1.25rem;
                 fill: currentColor;
             }
-            /* Resume link keeps text style since it's a file, not a social */
             .hero-links a.resume-link {
                 width: auto;
                 font-family: "DM Mono", monospace;
                 font-size: 0.75rem;
                 letter-spacing: 0.04em;
+            }
+            .hero-stack {
+                font-family: "DM Mono", monospace;
+                font-size: 0.78rem;
+                letter-spacing: 0.04em;
+                opacity: 0.7;
+                margin-top: 0.5rem;
+            }
+            .skills-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 1.5rem;
+            }
+            .skill-group h3 {
+                font-family: "DM Mono", monospace;
+                font-size: 0.78rem;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                opacity: 0.6;
+                margin-bottom: 0.5rem;
+            }
+            .skill-group p {
+                line-height: 1.6;
             }
         </style>
         <script type="application/ld+json">
@@ -78,21 +100,21 @@
                 "name": "Abdulla Sajad",
                 "alternateName": "Sajad",
                 "url": "https://neuralbroker.github.io/",
-                "jobTitle": "AI Software Engineer",
+                "jobTitle": "Software Engineer",
                 "telephone": "+91 9207761088",
                 "email": "abdullasajad01@gmail.com",
-                "description": "AI software engineer building practical tools and systems.",
+                "description": "Software engineer building production-grade web applications, AI-powered systems, and backend services.",
                 "sameAs": [
                     "https://github.com/neuralbroker",
                     "https://www.linkedin.com/in/abdullasajad",
                     "https://huggingface.co/neuralbroker"
                 ],
                 "knowsAbout": [
+                    "Software engineering",
+                    "Backend engineering",
                     "Artificial intelligence",
-                    "Machine learning",
-                    "Coding agents",
+                    "LLM fine-tuning",
                     "Retrieval-augmented generation",
-                    "AI developer tools",
                     "Production AI systems"
                 ]
             }
@@ -103,11 +125,9 @@
         <nav>
             <div class="container">
                 <a href="#about">About</a>
-                <a href="#work">Work</a>
-                <a href="#achievements">Achievements</a>
-                <a href="#research">Research</a>
-                <a href="#stack">Stack</a>
-                <a href="#notes">Notes</a>
+                <a href="#work">Projects</a>
+                <a href="#stack">Skills</a>
+                <a href="#notes">Writeups</a>
                 <span
                     class="theme-toggle mono"
                     id="themeToggle"
@@ -123,10 +143,14 @@
         <main id="main">
             <section id="hero">
                 <div class="container">
-                    <h1>Sajad</h1>
-                    <div class="title-line">Core SWE / AI Engineer</div>
+                    <h1>Abdulla Sajad</h1>
+                    <div class="title-line">Software Engineer</div>
                     <p class="statement">
-                        I build production AI systems end-to-end.
+                        Building production-grade web applications,
+                        AI-powered systems, and backend services.
+                    </p>
+                    <p class="hero-stack">
+                        Python • FastAPI • TypeScript • Docker • PostgreSQL • AI Systems
                     </p>
                     <div class="hero-links">
                         <!-- GitHub -->
@@ -220,20 +244,33 @@
                     <div class="section-title">About</div>
                     <div class="about-copy">
                         <p>
-                            Core SWE / AI Engineer. I build production AI
-                            systems end-to-end — from fine-tuned models to
-                            deployed APIs with proper infra.
+                            Software engineer with hands-on experience in
+                            LLM fine-tuning, RAG pipeline development,
+                            and full-stack AI application deployment using
+                            Python, FastAPI, and Next.js.
+                        </p>
+                        <p>
+                            Experienced with end-to-end ML pipelines from
+                            training to production deployment.
                         </p>
                     </div>
                     <div class="timeline">
                         <div class="timeline-item">
                             <div class="meta">
-                                Sep 2022 — May 2026 · Education
+                                Sep 2022 — Jul 2026 · Education
                             </div>
                             <h3>B.Tech, Computer Science and Engineering</h3>
                             <p>
                                 Sree Narayana Guru College of Engineering and
                                 Technology, Kerala.
+                            </p>
+                            <p>
+                                Relevant Coursework:
+                                Data Structures &amp; Algorithms,
+                                Operating Systems,
+                                DBMS,
+                                Computer Networks,
+                                OOP
                             </p>
                         </div>
                         <div class="timeline-item">
@@ -267,18 +304,19 @@
 
             <section id="work">
                 <div class="container">
-                    <div class="section-title">Featured Work</div>
+                    <div class="section-title">Featured Projects</div>
                     <div class="featured-list">
                         <article class="project">
                             <div class="project-kicker">AI developer tools</div>
                             <h3>BlitzKode</h3>
                             <p class="project-summary">
-                                A coding assistant fine-tuned from
-                                Qwen2.5-Coder-3B using SFT, GRPO, DPO, and LoRA,
-                                then quantized to GGUF for CPU-only inference
-                                with llama.cpp. The model is published on
-                                Hugging Face with 510+ downloads and
-                                reproducible training configs.
+                                Engineered a 4-stage fine-tuning pipeline
+                                (SFT → Reward-SFT → DPO → LoRA)
+                                on Qwen2.5-1.5B using PEFT and TRL.
+                                Reduced VRAM requirements from 24GB to 8GB,
+                                exported to GGUF for CPU-only inference,
+                                and deployed via FastAPI with SSE streaming.
+                                Reached 510+ downloads on Hugging Face.
                             </p>
                             <div class="project-links">
                                 <a href="blitzkode.html">Write-up</a
@@ -295,11 +333,13 @@
                                 >
                             </div>
                             <div class="tags">
-                                <span class="tag">Qwen2.5-Coder-3B</span
+                                <span class="tag">Qwen2.5-1.5B</span
                                 ><span class="tag">SFT</span
-                                ><span class="tag">GRPO</span
+                                ><span class="tag">Reward-SFT</span
                                 ><span class="tag">DPO</span
                                 ><span class="tag">LoRA</span
+                                ><span class="tag">PEFT</span
+                                ><span class="tag">TRL</span
                                 ><span class="tag">GGUF</span
                                 ><span class="tag">llama.cpp</span>
                             </div>
@@ -382,13 +422,14 @@
                             </div>
                             <h3>SentinelML</h3>
                             <p class="project-summary">
-                                A fraud detection ML system built on imbalanced
-                                transaction data with 20+ engineered features,
-                                SMOTE oversampling, and a stacked XGBoost +
-                                LightGBM ensemble reaching 0.94 ROC-AUC. Served
-                                through FastAPI with Redis caching, PostgreSQL
-                                storage, MLflow experiment tracking, and
-                                versioned model rollback in under 60 seconds.
+                                Deployed a fraud detection API with
+                                feature engineering, SMOTE oversampling,
+                                and a RandomForest classifier achieving
+                                ROC-AUC 0.94.
+                                Includes Redis prediction caching,
+                                PostgreSQL persistence,
+                                MLflow experiment tracking,
+                                and Docker Compose deployment.
                             </p>
                             <div class="project-links">
                                 <a href="sentinelml.html">Write-up</a
@@ -402,9 +443,8 @@
                             <div class="tags">
                                 <span class="tag">Python</span
                                 ><span class="tag">FastAPI</span
-                                ><span class="tag">PyTorch</span
-                                ><span class="tag">XGBoost</span
-                                ><span class="tag">LightGBM</span
+                                ><span class="tag">scikit-learn</span
+                                ><span class="tag">RandomForest</span
                                 ><span class="tag">Redis</span
                                 ><span class="tag">PostgreSQL</span
                                 ><span class="tag">MLflow</span
@@ -415,128 +455,43 @@
                 </div>
             </section>
 
-            <section id="other-work">
-                <div class="container">
-                    <div class="section-title">Other Work</div>
-                    <div class="compact-list">
-                        <div class="compact-item">
-                            <h3>AI Resume Screener</h3>
-                            <p>
-                                Resume parsing and candidate-role matching with
-                                AI — FastAPI, Groq LLM, JWT auth.
-                                <a
-                                    href="https://github.com/neuralbroker/ai-resume-screener"
-                                    target="_blank"
-                                    rel="noopener"
-                                    >GitHub</a
-                                >
-                            </p>
-                        </div>
-                        <div class="compact-item">
-                            <h3>Neurosymbolic AI Seminar</h3>
-                            <p>
-                                A seminar note on explainability and
-                                safety-critical AI systems.
-                                <a href="seminar-neurosymbolic.html">Read</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="achievements">
-                <div class="container">
-                    <div class="section-title">Achievements</div>
-                    <div class="compact-list">
-                        <div class="compact-item">
-                            <h3>2nd Prize — Innovision Project Competition</h3>
-                            <p>
-                                EsenceLab won 2nd Prize at SNGCET among 30+
-                                competing teams.
-                            </p>
-                        </div>
-                        <div class="compact-item">
-                            <h3>510+ downloads</h3>
-                            <p>
-                                BlitzKode reached 510+ downloads on Hugging
-                                Face.
-                            </p>
-                        </div>
-                        <div class="compact-item">
-                            <h3>
-                                Seminar — Neurosymbolic AI in Military Systems
-                            </h3>
-                            <p>
-                                Presented on explainability and safety in
-                                mission-critical AI systems.
-                                <a href="seminar-neurosymbolic.html">Read</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="research">
-                <div class="container">
-                    <div class="section-title">Research Interests</div>
-                    <p class="lede">
-                        My interests are around AI systems that can be tested,
-                        used, and improved in real workflows — especially coding
-                        agents, retrieval systems, reinforcement learning, and
-                        practical evaluation.
-                    </p>
-                    <div class="focus-grid">
-                        <div class="focus-card">
-                            <h3>Coding agents</h3>
-                            <p>
-                                How agents read code, use tools, evaluate
-                                changes, and become useful inside developer
-                                workflows.
-                            </p>
-                        </div>
-                        <div class="focus-card">
-                            <h3>Retrieval systems</h3>
-                            <p>
-                                RAG, document search, grounding, and the
-                                engineering needed to make LLM answers more
-                                reliable.
-                            </p>
-                        </div>
-                        <div class="focus-card">
-                            <h3>Practical ML</h3>
-                            <p>
-                                Model workflows, evaluation, serving, and
-                                understanding where ML helps beyond a demo.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <section id="stack">
                 <div class="container">
-                    <div class="section-title">Stack</div>
-                    <div class="stack-grid">
-                        <div class="stack-group">
-                            <h3>AI / LLM</h3>
+                    <div class="section-title">Technical Skills</div>
+                    <div class="skills-grid">
+                        <div class="skill-group">
+                            <h3>Languages</h3>
                             <p>
-                                PyTorch, fine-tuning, SFT, GRPO, DPO, LoRA,
-                                LangChain, LangGraph, RAG, FAISS, Hugging Face,
-                                GGUF/llama.cpp, OpenAI API, Gemini AI.
+                                Python, SQL, TypeScript, JavaScript, Bash
                             </p>
                         </div>
-                        <div class="stack-group">
-                            <h3>Languages & Backend</h3>
+                        <div class="skill-group">
+                            <h3>AI / ML</h3>
                             <p>
-                                Python, SQL, FastAPI, REST APIs, Celery,
-                                PostgreSQL, Redis, SQLAlchemy.
+                                PyTorch, Hugging Face Transformers, PEFT, TRL,
+                                LangChain, FAISS, scikit-learn, XGBoost,
+                                OpenAI API, Gemini AI
                             </p>
                         </div>
-                        <div class="stack-group">
-                            <h3>Infra</h3>
+                        <div class="skill-group">
+                            <h3>Backend</h3>
                             <p>
-                                Docker, GitHub Actions, MLflow, AWS EC2, Git,
-                                Linux.
+                                FastAPI, Express.js, Next.js, REST APIs,
+                                PostgreSQL, Redis, SQLAlchemy, Celery, JWT
+                            </p>
+                        </div>
+                        <div class="skill-group">
+                            <h3>Frontend</h3>
+                            <p>
+                                Next.js, React, TypeScript, Tailwind CSS,
+                                HTML/CSS
+                            </p>
+                        </div>
+                        <div class="skill-group">
+                            <h3>DevOps / MLOps</h3>
+                            <p>
+                                Docker, Docker Compose, GitHub Actions, MLflow,
+                                AWS EC2, Linux, Git
                             </p>
                         </div>
                     </div>
@@ -545,7 +500,7 @@
 
             <section id="notes">
                 <div class="container">
-                    <div class="section-title">Notes</div>
+                    <div class="section-title">Technical Writeups</div>
                     <div class="note-list">
                         <div class="note-item">
                             <div class="note-title">
@@ -554,7 +509,7 @@
                                 >
                             </div>
                             <div class="note-meta">
-                                SFT · GRPO · DPO · LoRA · GGUF · local inference
+                                SFT · Reward-SFT · DPO · LoRA · GGUF · local inference
                             </div>
                         </div>
                         <div class="note-item">
@@ -590,18 +545,6 @@
                             <div class="note-meta">
                                 LangChain · FAISS · streaming responses · source
                                 attribution
-                            </div>
-                        </div>
-
-                        <div class="note-item">
-                            <div class="note-title">
-                                <a href="seminar-neurosymbolic.html"
-                                    >Neurosymbolic AI in Military Systems</a
-                                >
-                            </div>
-                            <div class="note-meta">
-                                Seminar · explainable AI · safety-critical
-                                systems
                             </div>
                         </div>
                     </div>
