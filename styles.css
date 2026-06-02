@@ -57,6 +57,7 @@ body {
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     padding: 0 1.5rem;
+    text-wrap: pretty;
 }
 
 a {
@@ -177,6 +178,7 @@ section {
     letter-spacing: -0.055em;
     line-height: 0.95;
     margin-bottom: 0.7rem;
+    text-wrap: balance;
 }
 
 .title-line {
@@ -435,6 +437,7 @@ article h1 {
     letter-spacing: -0.04em;
     line-height: 1.02;
     margin-bottom: 0.75rem;
+    text-wrap: balance;
 }
 
 article h2 {
@@ -442,12 +445,14 @@ article h2 {
     font-weight: 500;
     letter-spacing: -0.015em;
     margin: 2.2rem 0 0.65rem;
+    text-wrap: balance;
 }
 
 article h3 {
     font-size: 1.05rem;
     font-weight: 500;
     margin: 1.35rem 0 0.4rem;
+    text-wrap: balance;
 }
 
 .stat-grid {
@@ -545,6 +550,7 @@ article h3 {
 article p,
 article li {
     color: var(--text);
+    line-height: 1.78;
 }
 
 article p,
