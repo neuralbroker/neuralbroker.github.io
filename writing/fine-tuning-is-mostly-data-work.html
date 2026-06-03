@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
-<title>Fine-tuning small models is mostly data work &middot; Abdulla Sajad</title>
+<title>Fine-tuning small models is mostly data work · Abdulla Sajad</title>
 <meta name="description" content="On BlitzKode and what I got wrong first.">
 <link rel="canonical" href="https://neuralbroker.github.io/writing/fine-tuning-is-mostly-data-work.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3EA%3C/text%3E%3C/svg%3E">
@@ -11,7 +11,7 @@
 </head>
 <body>
 <header>
-  <h1><a href="../" style="color:var(--heading);">Abdulla Sajad</a></h1>
+  <h1><a href="../">Abdulla Sajad</a></h1>
   <nav><a href="../">home</a> <a href="../#projects">projects</a> <a href="../#writing">writing</a> <a href="../#contact">contact</a> <a href="../resume.pdf">cv</a></nav>
 </header>
 
@@ -25,23 +25,23 @@
 
   <p>I built a code-completion model last year. Qwen2.5-Coder at 1.5B parameters, instruction-tuned on a small dataset of synthetic coding tasks, then quantized to GGUF so it could run on a laptop. The repo is <a href="https://github.com/neuralbroker/blitzkode">BlitzKode</a>, and I keep it around mostly as a reference for the kind of work I want to do.</p>
 
-  <p>I learned almost nothing from the training itself. The thing I learned, and the thing I keep relearning, is that fine-tuning is a data problem before it&rsquo;s a model problem.</p>
+  <p>I learned almost nothing from the training itself. The thing I learned, and the thing I keep relearning, is that fine-tuning is a data problem before it's a model problem.</p>
 
   <h2>The first version was bad</h2>
 
-  <p>I had a base model and a list of ideas. I wrote a script to pull Python functions from a few popular open-source repos, paired each with a prompt like &ldquo;write a function that does X,&rdquo; and ran a single supervised fine-tuning pass. The result was a model that was confidently wrong in a way no metric caught.</p>
+  <p>I had a base model and a list of ideas. I wrote a script to pull Python functions from a few popular open-source repos, paired each with a prompt like "write a function that does X," and ran a single supervised fine-tuning pass. The result was a model that was confidently wrong in a way no metric caught.</p>
 
-  <p>I had a held-out evaluation set. The model did well on it. It also did well on a tiny smoke-test I had written by hand. What I hadn&rsquo;t done was just <em>use it</em> for an hour. The first time I tried to get it to write anything outside the eval distribution, the outputs were mush. Token soup, made-up function names, syntax that parsed but meant nothing.</p>
+  <p>I had a held-out evaluation set. The model did well on it. It also did well on a tiny smoke-test I had written by hand. What I hadn't done was just <em>use it</em> for an hour. The first time I tried to get it to write anything outside the eval distribution, the outputs were mush. Token soup, made-up function names, syntax that parsed but meant nothing.</p>
 
-  <p>The eval was wrong. Not in any technical sense &mdash; the numbers were right, the splits were clean. The eval was wrong because it tested the wrong thing. It tested &ldquo;does the model produce something that looks like the reference.&rdquo; I needed to test &ldquo;does the model produce something I would have written.&rdquo;</p>
+  <p>The eval was wrong. Not in any technical sense — the numbers were right, the splits were clean. The eval was wrong because it tested the wrong thing. It tested "does the model produce something that looks like the reference." I needed to test "does the model produce something I would have written."</p>
 
   <h2>What changed</h2>
 
   <p>I rewrote the dataset. Three rules, in order of importance:</p>
 
   <ol>
-    <li><strong>Write the inputs and outputs yourself.</strong> Not all of them &mdash; I used GPT-4 to bootstrap, but I personally audited every example that ended up in the final mix. I deleted about 60% of what the bootstrap model produced.</li>
-    <li><strong>Make the outputs look like the inputs.</strong> The base model already had a strong prior. I wasn&rsquo;t trying to teach it Python. I was trying to teach it <em>my</em> Python. The dataset style matched the eval style, because they were the same person.</li>
+    <li><strong>Write the inputs and outputs yourself.</strong> Not all of them — I used GPT-4 to bootstrap, but I personally audited every example that ended up in the final mix. I deleted about 60% of what the bootstrap model produced.</li>
+    <li><strong>Make the outputs look like the inputs.</strong> The base model already had a strong prior. I wasn't trying to teach it Python. I was trying to teach it <em>my</em> Python. The dataset style matched the eval style, because they were the same person.</li>
     <li><strong>Throw in adversarial examples.</strong> Code that intentionally violates the style. Code with comments in it. Code with a bug I knew about. The model needs to learn what not to do, not just what to do.</li>
   </ol>
 
@@ -49,22 +49,25 @@
 
   <h2>The DPO stage was anticlimactic</h2>
 
-  <p>I did a DPO pass after the SFT. I&rsquo;d read enough papers to feel like I should. The numbers moved a little. In practice I couldn&rsquo;t tell the difference in real use, and the people I had try it couldn&rsquo;t either. The DPO pass is in the pipeline because it costs me nothing, not because I think it matters.</p>
+  <p>I did a DPO pass after the SFT. I'd read enough papers to feel like I should. The numbers moved a little. In practice I couldn't tell the difference in real use, and the people I had try it couldn't either. The DPO pass is in the pipeline because it costs me nothing, not because I think it matters.</p>
 
   <p>I think this is true more generally: the SFT data is the whole game. RLHF and DPO are last-mile polish on a thing that mostly needs to be the right thing in the first place.</p>
 
-  <h2>What I&rsquo;m taking forward</h2>
+  <h2>What I'm taking forward</h2>
 
-  <p>The lesson isn&rsquo;t really about fine-tuning. It&rsquo;s about evaluation. A model is only as good as your ability to tell whether it&rsquo;s good, and the only way to build that ability is to use the model a lot, in the conditions you care about, and notice when it fails. Everything else is theater.</p>
+  <p>The lesson isn't really about fine-tuning. It's about evaluation. A model is only as good as your ability to tell whether it's good, and the only way to build that ability is to use the model a lot, in the conditions you care about, and notice when it fails. Everything else is theater.</p>
 
-  <p>The other lesson is more humbling. The 1.5B model is, on any honest benchmark, worse than the 70B model I could call with an API key. The reason BlitzKode exists is because there&rsquo;s a class of problems where latency, cost, and offline use matter more than peak capability. If you don&rsquo;t have those constraints, you should just use a bigger model. Fine-tuning is for the cases where the bigger model isn&rsquo;t an option, or where the style of the output is the product.</p>
+  <p>The other lesson is more humbling. The 1.5B model is, on any honest benchmark, worse than the 70B model I could call with an API key. The reason BlitzKode exists is because there's a class of problems where latency, cost, and offline use matter more than peak capability. If you don't have those constraints, you should just use a bigger model. Fine-tuning is for the cases where the bigger model isn't an option, or where the style of the output is the product.</p>
 
-  <p class="back-link"><a href="../">&larr; back to home</a></p>
+  <p class="back-link"><a href="../">← back to home</a></p>
 </article>
 </main>
 
 <footer>
-  <p><small>&copy; 2026 Abdulla Sajad. Built by hand.</small></p>
+  <p><small>© <span id="year"></span> Abdulla Sajad.</small></p>
 </footer>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>

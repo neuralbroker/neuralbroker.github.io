@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
-<title>Your ML system will fail in production. Plan for it. &middot; Abdulla Sajad</title>
+<title>Your ML system will fail in production. Plan for it. · Abdulla Sajad</title>
 <meta name="description" content="A postmortem of SentinelML.">
 <link rel="canonical" href="https://neuralbroker.github.io/writing/your-ml-system-will-fail-in-production.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3EA%3C/text%3E%3C/svg%3E">
@@ -11,7 +11,7 @@
 </head>
 <body>
 <header>
-  <h1><a href="../" style="color:var(--heading);">Abdulla Sajad</a></h1>
+  <h1><a href="../">Abdulla Sajad</a></h1>
   <nav><a href="../">home</a> <a href="../#projects">projects</a> <a href="../#writing">writing</a> <a href="../#contact">contact</a> <a href="../resume.pdf">cv</a></nav>
 </header>
 
@@ -23,21 +23,21 @@
     <p><em>A postmortem of SentinelML.</em></p>
   </header>
 
-  <p>I spent most of 2024 building <a href="https://github.com/neuralbroker/sentinel-ml">SentinelML</a>, a credit-card fraud detection system. The model part was the easy part. The model was a RandomForest on 25 features. I trained it, it hit 0.94 ROC-AUC on a held-out set, I wrote a FastAPI wrapper, I shipped it. The hard part was everything after that, and &ldquo;everything after that&rdquo; is most of what makes an ML system work.</p>
+  <p>I spent most of 2024 building <a href="https://github.com/neuralbroker/sentinel-ml">SentinelML</a>, a credit-card fraud detection system. The model part was the easy part. The model was a RandomForest on 25 features. I trained it, it hit 0.94 ROC-AUC on a held-out set, I wrote a FastAPI wrapper, I shipped it. The hard part was everything after that, and "everything after that" is most of what makes an ML system work.</p>
 
-  <p>This is the postmortem I wish I&rsquo;d had before I started.</p>
+  <p>This is the postmortem I wish I'd had before I started.</p>
 
   <h2>The first thing that broke was the data, not the model</h2>
 
-  <p>Two weeks into production, the model&rsquo;s precision started to drift. False positives went from 4% to 9% over ten days. The model hadn&rsquo;t changed. The data had.</p>
+  <p>Two weeks into production, the model's precision started to drift. False positives went from 4% to 9% over ten days. The model hadn't changed. The data had.</p>
 
-  <p>What I learned: data drift is the default. Not a thing that might happen. A thing that is happening, all the time, invisibly. If you don&rsquo;t have a system to detect it, you will be the last person to know.</p>
+  <p>What I learned: data drift is the default. Not a thing that might happen. A thing that is happening, all the time, invisibly. If you don't have a system to detect it, you will be the last person to know.</p>
 
   <p>I added PSI (population stability index) on the top ten features and a KS test on the rest. Alert when PSI &gt; 0.2 on any single feature. The numbers turned out to be tractable to interpret and easy to wire up. I should have done this before deploying.</p>
 
   <h2>The second thing that broke was me</h2>
 
-  <p>I retrained the model manually when drift crossed the threshold. That worked for about a month, then I missed a week. There was no alert. The model was making bad calls. I didn&rsquo;t know because I wasn&rsquo;t looking.</p>
+  <p>I retrained the model manually when drift crossed the threshold. That worked for about a month, then I missed a week. There was no alert. The model was making bad calls. I didn't know because I wasn't looking.</p>
 
   <p>The fix was obvious in retrospect: schedule the retrain, not the person. I wrote a job that runs weekly, retrains on the last 60 days of data, and only ships the new model if it beats the old one on a fresh holdout. The whole thing is about 80 lines. I had avoided writing it because it felt like infrastructure work, and I wanted to be doing model work.</p>
 
@@ -45,11 +45,11 @@
 
   <h2>The third thing that broke was the right thing</h2>
 
-  <p>I had a feature called <code>txn_velocity_24h</code> &mdash; the count of transactions on the card in the last 24 hours. It was a hand-engineered feature, the kind of thing feature-selection papers tell you to distrust. It turned out to be the most important feature in the model by a wide margin. SHAP values, permutation importance, and partial dependence all agreed.</p>
+  <p>I had a feature called <code>txn_velocity_24h</code> — the count of transactions on the card in the last 24 hours. It was a hand-engineered feature, the kind of thing feature-selection papers tell you to distrust. It turned out to be the most important feature in the model by a wide margin. SHAP values, permutation importance, and partial dependence all agreed.</p>
 
-  <p>The lesson wasn&rsquo;t &ldquo;feature engineering beats deep learning&rdquo; &mdash; that would be the kind of take I&rsquo;d roll my eyes at. The lesson was that <em>domain knowledge shows up in the features</em>. The model can&rsquo;t see what you didn&rsquo;t put in. I knew what <code>txn_velocity_24h</code> meant because I&rsquo;d read the fraud-team reports. The model learned the relationship because the relationship was true.</p>
+  <p>The lesson wasn't "feature engineering beats deep learning" — that would be the kind of take I'd roll my eyes at. The lesson was that <em>domain knowledge shows up in the features</em>. The model can't see what you didn't put in. I knew what <code>txn_velocity_24h</code> meant because I'd read the fraud-team reports. The model learned the relationship because the relationship was true.</p>
 
-  <p>This is also why I&rsquo;m skeptical of the &ldquo;just throw the raw data at a transformer&rdquo; framing. For tabular data with strong human-understandable structure, a feature you can name is usually better than an embedding you can&rsquo;t.</p>
+  <p>This is also why I'm skeptical of the "just throw the raw data at a transformer" framing. For tabular data with strong human-understandable structure, a feature you can name is usually better than an embedding you can't.</p>
 
   <h2>What I would do differently</h2>
 
@@ -57,20 +57,23 @@
 
   <ol>
     <li><strong>Build the monitoring before the model.</strong> PSI on the inputs, calibration plots on the outputs, and a held-out stream of recent data the model never trains on. The point is not to detect every problem. The point is to detect problems faster than your users do.</li>
-    <li><strong>Treat retraining as a cron job, not a project.</strong> If you have to think about whether to retrain, you&rsquo;ve already lost. The decision should be automatic and the rollback should be automatic too.</li>
+    <li><strong>Treat retraining as a cron job, not a project.</strong> If you have to think about whether to retrain, you've already lost. The decision should be automatic and the rollback should be automatic too.</li>
     <li><strong>Spend more time on the data dictionary than the model card.</strong> Anyone who works with the system in six months will need to know what every feature means, where it came from, and what assumptions it encodes. A model card is for outsiders. A data dictionary is for the next person on call at 3 AM.</li>
   </ol>
 
   <h2>What this is not</h2>
 
-  <p>This is not a tutorial. The techniques here are standard and you can find better explanations elsewhere. What I&rsquo;m trying to do is give you a sense of where the time actually goes, because almost no public writeup does that. Most ML writeups are about the model. The model is the part you can describe in a paragraph. Everything else is the part you actually have to build.</p>
+  <p>This is not a tutorial. The techniques here are standard and you can find better explanations elsewhere. What I'm trying to do is give you a sense of where the time actually goes, because almost no public writeup does that. Most ML writeups are about the model. The model is the part you can describe in a paragraph. Everything else is the part you actually have to build.</p>
 
-  <p class="back-link"><a href="../">&larr; back to home</a></p>
+  <p class="back-link"><a href="../">← back to home</a></p>
 </article>
 </main>
 
 <footer>
-  <p><small>&copy; 2026 Abdulla Sajad. Built by hand.</small></p>
+  <p><small>© <span id="year"></span> Abdulla Sajad.</small></p>
 </footer>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
