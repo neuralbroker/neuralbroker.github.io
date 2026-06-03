@@ -12,43 +12,37 @@ layout: default
 <section class="section" id="projects">
   <h2 class="section-title"><span class="section-num">2.</span> Projects</h2>
   <div class="projects">
-    {% assign projects = site.projects | sort: 'year' | reverse %}
-    {% assign current_year = '' %}
-    {% assign ul_open = false %}
-    {% for project in projects %}
-      {% if project.year != current_year %}
-        {% if ul_open %}</ul>{% endif %}
-        {% assign current_year = project.year %}
-        {% assign ul_open = true %}
-        <p class="year-label">{{ current_year }}</p>
-        <ul class="project-list">
-      {% endif %}
+{%- assign projects = site.projects | sort: 'year' | reverse -%}
+{%- assign current_year = '' -%}
+{%- assign ul_open = false -%}
+{%- for project in projects -%}
+  {%- if project.year != current_year -%}
+    {%- if ul_open -%}</ul>{%- endif -%}
+    {%- assign current_year = project.year -%}
+    {%- assign ul_open = true -%}
+    <p class="year-label">{{ current_year }}</p>
+    <ul class="project-list">
+  {%- endif -%}
       <li class="project">
         <p class="project-title">{% if project.repo %}<a href="{{ project.repo }}">{{ project.title }}</a>{% else %}{{ project.title }}{% endif %}</p>
         <p class="project-desc">{{ project.description }}</p>
-        <p class="project-meta">
-          {% if project.repo %}<a href="{{ project.repo }}">code</a>{% endif %}
-          {% if project.demo %}<a href="{{ project.demo }}">demo</a>{% endif %}
-          {% if project.paper %}<a href="{{ project.paper }}">paper</a>{% endif %}
-          {% if project.model %}<a href="{{ project.model }}">model</a>{% endif %}
-          {% if project.notes %}<a href="{{ project.notes }}">notes</a>{% endif %}
-        </p>
+        <p class="project-meta">{% if project.repo %}<a href="{{ project.repo }}">code</a>{% endif %}{% if project.demo %} <a href="{{ project.demo }}">demo</a>{% endif %}{% if project.paper %} <a href="{{ project.paper }}">paper</a>{% endif %}{% if project.model %} <a href="{{ project.model }}">model</a>{% endif %}{% if project.notes %} <a href="{{ project.notes }}">notes</a>{% endif %}</p>
       </li>
-    {% endfor %}
-    {% if ul_open %}</ul>{% endif %}
+{%- endfor -%}
+{%- if ul_open -%}</ul>{%- endif -%}
   </div>
 </section>
 
 <section class="section" id="writing">
   <h2 class="section-title"><span class="section-num">3.</span> Writing</h2>
   <ul class="post-list">
-    {% for post in site.posts limit:5 %}
-      <li>
-        <p class="post-list-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time></p>
-        <p class="post-list-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></p>
-        {% if post.subtitle %}<p class="post-list-subtitle">{{ post.subtitle }}</p>{% endif %}
-      </li>
-    {% endfor %}
+{%- for post in site.posts limit:5 -%}
+    <li>
+      <p class="post-list-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time></p>
+      <p class="post-list-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></p>
+      {%- if post.subtitle -%}<p class="post-list-subtitle">{{ post.subtitle }}</p>{%- endif -%}
+    </li>
+{%- endfor -%}
   </ul>
 </section>
 
