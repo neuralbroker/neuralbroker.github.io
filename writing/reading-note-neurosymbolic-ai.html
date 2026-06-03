@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+<title>A reading note on neurosymbolic AI &middot; Abdulla Sajad</title>
+<meta name="description" content="What I think I understand, and where I don't.">
+<link rel="canonical" href="https://neuralbroker.github.io/writing/reading-note-neurosymbolic-ai.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header>
+  <h1><a href="../" style="color:var(--heading);">Abdulla Sajad</a></h1>
+  <nav><a href="../">home</a> <a href="../#projects">projects</a> <a href="../#writing">writing</a> <a href="../#contact">contact</a> <a href="../resume.pdf">cv</a></nav>
+</header>
+
+<main>
+<article>
+  <header>
+    <p><time datetime="2025-02-11">2025-02-11</time></p>
+    <h1>A reading note on neurosymbolic AI</h1>
+    <p><em>What I think I understand, and where I don&rsquo;t.</em></p>
+  </header>
+
+  <p>I read a survey on neurosymbolic AI last week. This is not a summary. This is a note to myself about what I think I understood, and what I&rsquo;m not sure I did. If you&rsquo;re looking for a clean overview, find a better source.</p>
+
+  <h2>The pitch, as I understand it</h2>
+
+  <p>Neural networks are good at fuzzy stuff. Perception, language, anything that looks like a high-dimensional pattern-matching problem. They are bad at things that require exact, compositional reasoning. Long chains of inference, formal constraints, the kind of stuff symbolic systems were good at in the 80s.</p>
+
+  <p>The neurosymbolic idea is to put the two together. A neural component handles the perception. A symbolic component handles the reasoning. The interface between them is the interesting part. Most of the disagreements in the literature are about how to draw that line.</p>
+
+  <h2>What I think I got</h2>
+
+  <p>There are basically three camps:</p>
+
+  <ul>
+    <li><strong>Symbolic-neural.</strong> A traditional symbolic system at the core, with neural networks plugged in as oracles. The neural net answers questions the symbolic system can&rsquo;t easily compute. The classic example is a theorem prover that uses a neural net to predict which axioms to try next.</li>
+    <li><strong>Neural-symbolic.</strong> A neural net at the core, with symbolic structure imposed on top. The architecture is neural but the loss function or the output constraints encode symbolic knowledge. The classic example is a network that outputs a parse tree.</li>
+    <li><strong>Hybrid.</strong> Both components are first-class. There&rsquo;s a controller that decides which one to use, and they communicate through some shared representation.</li>
+  </ul>
+
+  <p>I think the first camp is the most principled. The third is the most ambitious. The second is the easiest to publish, because you can take any existing neural model and add a constraint.</p>
+
+  <h2>What I&rsquo;m not sure about</h2>
+
+  <p>I don&rsquo;t know if any of this works in a way that justifies the engineering cost. The benchmark numbers in the surveys look good, but I notice that the benchmarks are usually hand-picked, and the symbolic components are usually small enough that you could just write the rules. I&rsquo;m not convinced the field has crossed the threshold where the hybrid system is doing something neither component could do alone.</p>
+
+  <p>There&rsquo;s also an alignment story here that I find suspicious. The pitch is that neurosymbolic systems are more interpretable, because you can read the symbolic trace. In practice the trace tells you what the system did, not why. The neural part still does the parts that are hard to interpret. You get a partial story and a feeling of safety that may not be earned.</p>
+
+  <p>I might be wrong about this. I&rsquo;m not a neurosymbolic researcher. I&rsquo;m someone who read a survey and is suspicious of things that look like silver bullets.</p>
+
+  <h2>What I&rsquo;ll take from it</h2>
+
+  <p>Two things.</p>
+
+  <p>First, the framing is useful even if the systems aren&rsquo;t. The question &ldquo;where does the perception end and the reasoning begin&rdquo; is one I&rsquo;m going to keep asking about every system I build. Most ML systems I see answer that question by accident, or not at all.</p>
+
+  <p>Second, I want to try building one. Not a research system. A small, stupid system where a neural net classifies a document and a symbolic system checks the classification against a set of rules I write. The point is to feel the interface. To find out where it breaks, what kinds of errors the symbolic part catches, what kinds it misses. To find out whether the engineering cost is worth it for the kind of work I do.</p>
+
+  <p>I&rsquo;ll write it up if I do.</p>
+
+  <h2>What I want to read next</h2>
+
+  <p>I want to read more of the older work, the 90s stuff that was doing this before it was cool. There&rsquo;s a thread from Garcez and Lamb that I haven&rsquo;t followed yet. I want to read some of the more skeptical takes, the kind that show up in JMLR and not at NeurIPS. And I want to find a good failure case &mdash; a real neurosymbolic system that was deployed and broke, and someone wrote honestly about why.</p>
+
+  <p>If you know of any of those, I&rsquo;d like to hear about it.</p>
+
+  <p class="back-link"><a href="../">&larr; back to home</a></p>
+</article>
+</main>
+
+<footer>
+  <p><small>&copy; 2026 Abdulla Sajad. Built by hand.</small></p>
+</footer>
+</body>
+</html>
