@@ -1,56 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title | default: "Abdulla Sajad" }}</title>
-    <meta name="description" content="{{ page.description | default: "Software engineer building things that work." }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/styles.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
-    <link rel="alternate" type="application/rss+xml" title="Abdulla Sajad" href="/feed.xml">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if page.title %}{{ page.title }} &middot; {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    <meta name="author" content="{{ site.author }}">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3EA%3C/text%3E%3C/svg%3E">
+    <link rel="preload" href="{{ '/assets/fonts/JetBrainsMonoNerdFont-Regular.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ '/assets/fonts/JetBrainsMonoNerdFont-Medium.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="{{ '/assets/styles.css' | relative_url }}">
+  </head>
+  <body>
+    <main class="page">
+      <header class="site-header">
+        <h1 class="site-title"><a href="{{ '/' | relative_url }}">Abdulla Sajad</a></h1>
+        <nav class="site-nav">
+          <a href="{{ '/' | relative_url }}#about">about</a>
+          <a href="{{ '/' | relative_url }}#projects">projects</a>
+          <a href="{{ '/' | relative_url }}#writing">writing</a>
+          <a href="{{ '/' | relative_url }}#notes">notes</a>
+          <a href="{{ '/resume.pdf' | relative_url }}">cv</a>
+          <button class="theme-toggle" type="button" aria-label="Toggle theme"></button>
+        </nav>
+      </header>
+      {{ content }}
+      <footer class="site-footer">
+        <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}</p>
+      </footer>
+    </main>
     <script>
-        (function () {
-            var t = localStorage.getItem("theme");
-            if (t === "dark" || (t !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-                document.documentElement.dataset.theme = "dark";
-            }
-        })();
+      (function() {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'dark') document.documentElement.classList.add('dark');
+        var btn = document.querySelector('.theme-toggle');
+        if (btn) {
+          btn.addEventListener('click', function() {
+            var d = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', d ? 'dark' : 'light');
+          });
+        }
+      })();
     </script>
-</head>
-<body>
-    {% include header.html %}
-    <main id="main">{{ content }}</main>
-    {% include footer.html %}
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-    <script>
-        mermaid.initialize({
-            startOnLoad: false,
-            theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'default',
-            fontFamily: '"JetBrains Mono Nerd Font", "JetBrains Mono", monospace',
-            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' },
-            themeVariables: {
-                fontSize: '13px'
-            }
-        });
-        // Re-run mermaid on theme change
-        document.querySelector('.theme-toggle')?.addEventListener('click', function() {
-            setTimeout(function() {
-                mermaid.initialize({
-                    startOnLoad: false,
-                    theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'default',
-                    fontFamily: '"JetBrains Mono Nerd Font", "JetBrains Mono", monospace',
-                    flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
-                });
-                document.querySelectorAll('.mermaid').forEach(function(el) {
-                    el.removeAttribute('data-processed');
-                });
-                mermaid.run();
-            }, 100);
-        });
-        mermaid.run();
-    </script>
-</body>
+  </body>
 </html>

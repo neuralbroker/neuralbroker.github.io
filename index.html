@@ -1,208 +1,64 @@
 ---
 layout: default
-title: Abdulla Sajad — Software Engineer
-description: "I build web apps, AI systems, and backend services. I use AI to move faster without cutting corners."
 ---
+<section class="section" id="about">
+  <h2 class="section-title"><span class="section-num">1.</span> About</h2>
+  <div class="prose">
+    <p>I&rsquo;m Abdulla. I write code, mostly Python and TypeScript, often with LLMs involved. I&rsquo;m in Kerala. I ship small tools, fine-tune small models, and read a lot of papers I don&rsquo;t fully understand.</p>
+    <p>That&rsquo;s most of it.</p>
+  </div>
+</section>
 
-<section id="hero">
-    <div class="container">
-        <p class="eyebrow">Hey there, I'm</p>
-        <h1>Abdulla Sajad</h1>
-        <div class="title-line">Software Engineer</div>
-        <p class="statement">
-            I build web apps, AI systems, and backend services.
-            I use AI to move faster without cutting corners.
+<section class="section" id="projects">
+  <h2 class="section-title"><span class="section-num">2.</span> Projects</h2>
+  <div class="projects">
+    {% assign projects = site.projects | sort: 'year' | reverse %}
+    {% assign current_year = '' %}
+    {% assign ul_open = false %}
+    {% for project in projects %}
+      {% if project.year != current_year %}
+        {% if ul_open %}</ul>{% endif %}
+        {% assign current_year = project.year %}
+        {% assign ul_open = true %}
+        <p class="year-label">{{ current_year }}</p>
+        <ul class="project-list">
+      {% endif %}
+      <li class="project">
+        <p class="project-title">{% if project.repo %}<a href="{{ project.repo }}">{{ project.title }}</a>{% else %}{{ project.title }}{% endif %}</p>
+        <p class="project-desc">{{ project.description }}</p>
+        <p class="project-meta">
+          {% if project.repo %}<a href="{{ project.repo }}">code</a>{% endif %}
+          {% if project.demo %}<a href="{{ project.demo }}">demo</a>{% endif %}
+          {% if project.paper %}<a href="{{ project.paper }}">paper</a>{% endif %}
+          {% if project.model %}<a href="{{ project.model }}">model</a>{% endif %}
+          {% if project.notes %}<a href="{{ project.notes }}">notes</a>{% endif %}
         </p>
-        <p class="hero-stack">
-            Python · FastAPI · TypeScript · Docker · PostgreSQL · PyTorch
-        </p>
-        <div class="hero-links">
-            <a href="https://github.com/neuralbroker" target="_blank" rel="noopener" aria-label="GitHub">
-                <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8"/></svg>
-            </a>
-            <a href="https://linkedin.com/in/abdullasajad" target="_blank" rel="noopener" aria-label="LinkedIn">
-                <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.614 0 1.06-.44 1.06-.99s-.446-.99-1.08-.99c-.614 0-1.06.44-1.06.99 0 .55.446.99 1.08.99zm1.2 8.212V6.169h2.41v1.01h.034c.336-.636 1.156-1.308 2.376-1.308 2.538 0 3.008 1.672 3.008 3.847v4.676h-2.41v-4.14c0-1.008-.036-2.295-1.4-2.295s-1.612 1.094-1.612 2.19v4.245z"/></svg>
-            </a>
-            <a href="https://huggingface.co/neuralbroker" target="_blank" rel="noopener" aria-label="Hugging Face">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.66 18.67c.33-.03.62-.07.88-.12.27-.05.6-.13.98-.24.39-.11.86-.27 1.4-.48.16-.06.44-.18.82-.35.38-.17.72-.33 1-.48.29-.15.65-.34 1.08-.58.43-.24.79-.46 1.08-.66.36-.22.77-.49 1.23-.81.37-.25.68-.47.94-.65.25-.18.57-.42.94-.72.2-.16.37-.31.5-.44.13-.13.3-.3.5-.5.2-.2.35-.38.45-.55.1-.16.24-.39.42-.68.18-.29.29-.51.34-.66.05-.15.12-.35.2-.6.08-.25.13-.45.16-.6.03-.15.07-.37.13-.66.05-.29.07-.51.07-.65a8.56 8.56 0 00-.05-.7c-.03-.22-.1-.5-.18-.84-.1-.34-.16-.56-.2-.66-.1-.2-.02-.56.22-1.06s.35-.85.38-.96c.04-.11.1-.3.2-.57s.17-.5.2-.65c.04-.15.12-.43.26-.84.14-.41.22-.66.24-.76.11-.4.18-.83.22-1.28.03-.35 0-.72-.1-1.1-.08-.38-.2-.68-.35-.9-.17-.22-.32-.37-.46-.45a1.64 1.64 0 00-.58-.18c-.2-.02-.38-.04-.54-.04-.17 0-.46.02-.86.04-.4.02-.66.05-.76.08-.1.03-.31.12-.62.26-.31.14-.48.22-.5.24l-.25.15c-.38.2-.72.42-1 .64-.2.15-.5.4-.9.76-.4.36-.66.58-.78.66-.12.08-.33.25-.63.5-.3.25-.52.44-.66.56a3.4 3.4 0 01-.76.54c-.14.08-.38.2-.7.36-.33.16-.54.27-.64.32a3.7 3.7 0 01-.8.23l-.24.04c-.28.02-.56.02-.84 0-.28-.02-.5-.04-.66-.07a4.9 4.9 0 01-.8-.2c-.15-.06-.42-.18-.82-.38-.4-.2-.64-.34-.72-.42a2.5 2.5 0 01-.34-.4c-.14-.2-.17-.42-.1-.66.08-.24.2-.41.36-.52.16-.1.38-.23.66-.38.28-.15.44-.25.5-.3.06-.05.22-.17.48-.36.26-.19.43-.33.5-.42.08-.1.25-.3.5-.6.26-.3.41-.5.46-.6a3.5 3.5 0 00.22-.4c.08-.16.1-.28.06-.36a10.4 10.4 0 01-.28-.9c-.08-.3-.16-.6-.24-.9-.08-.28-.18-.6-.3-.92-.12-.33-.2-.57-.24-.72a4.3 4.3 0 01-.15-.64c-.08-.4-.1-.78-.06-1.12.04-.34.1-.65.18-.94.08-.3.14-.5.18-.62.03-.12.1-.3.2-.56.1-.26.16-.45.2-.56.03-.1.1-.3.2-.6.1-.3.17-.55.2-.76s0-.36-.1-.48c-.08-.12-.18-.2-.3-.24-.12-.04-.28-.06-.48-.06-.3 0-.58.04-.84.12-.26.08-.5.22-.72.42-.22.2-.35.34-.4.42-.06.08-.15.24-.28.48-.12.24-.2.42-.24.54-.04.12-.13.33-.26.62-.13.29-.22.48-.28.58-.06.1-.16.27-.3.5-.14.23-.24.38-.3.44-.08.08-.25.23-.5.45-.25.22-.42.33-.5.35l.12-.55c.08-.36.14-.63.2-.82s.12-.4.22-.6c.1-.2.2-.4.3-.6.1-.2.17-.32.22-.36.04-.04.1-.1.18-.18.08-.08.1-.17.06-.27a.94.94 0 00-.26-.36c-.12-.1-.22-.15-.3-.15-.16 0-.34.07-.55.2-.2.13-.38.28-.52.45-.04.05-.1.17-.18.36-.08.19-.14.38-.18.58a4.5 4.5 0 00-.08.52c0 .1.02.3.08.58.06.28.1.5.12.66.02.16.06.44.12.84.06.4.1.7.12.9.02.2.06.54.12 1.02.06.48.1.82.12 1.02l.05.44c.12.54.24 1.02.36 1.44.12.42.3.92.54 1.5.16.38.3.68.42.9l-.02.24c-.06.34-.14.6-.24.78-.1.18-.26.38-.48.6-.22.22-.4.4-.54.54l-.48.48c-.18.18-.32.4-.42.66-.1.26-.14.5-.12.72 0 .22.06.46.18.72.12.26.22.46.3.6.08.14.24.34.48.6.24.26.4.44.5.54.1.1.28.28.54.54.22.22.38.4.48.54s.22.34.36.54c.14.2.24.38.3.54.06.16.16.38.3.66.14.28.24.5.3.66.06.16.16.4.3.72.14.32.24.56.3.72.06.16.14.38.24.66.1.28.18.52.24.72.06.2.14.5.24.9.1.4.16.68.18.84.02.16.08.46.18.9.1.44.16.74.18.9.02.16.06.43.12.82.06.38.1.62.12.72.02.1.06.32.12.66.06.34.1.56.12.66.02.1.08.34.18.72.1.38.16.62.18.72.02.1.08.32.18.66.1.34.16.55.18.63a5.5 5.5 0 00.2.6c.06.16.16.36.3.6.14.24.24.4.3.48.06.08.2.24.42.48.22.24.4.42.5.54.28.28.52.5.72.66.2.16.42.3.66.42.24.12.48.2.72.24l.42.06c.14.02.32.02.54 0z"/></svg>
-            </a>
-            <a href="https://neuralbroker.github.io/resume.pdf" class="resume-link" target="_blank" rel="noopener">Résumé</a>
-        </div>
-    </div>
+      </li>
+    {% endfor %}
+    {% if ul_open %}</ul>{% endif %}
+  </div>
 </section>
 
-<section id="about">
-    <div class="container">
-        <h2 class="section-title">About</h2>
-        <p>
-            I'm a software engineer from Kerala, India. I study Computer Science at SNGCET (class of 2026), and I've been building things — real things — since my first year of college.
-        </p>
-        <p>
-            I'm equally comfortable leading a 4-person engineering team on a hackathon project, fine-tuning a 7B parameter model, or debugging a docker-compose file at 2 AM. I use AI to move faster, but I still believe the best code comes from understanding what you're building and why.
-        </p>
-        <div class="timeline">
-            <div class="timeline-item">
-                <span class="meta">2024 – Present</span>
-                <strong>Project Lead — EsenceLab</strong>
-                <span>Led a team of 4 on a real-time sentiment analysis platform. Won 2nd Prize at Innovision.</span>
-            </div>
-            <div class="timeline-item">
-                <span class="meta">2023 – Present</span>
-                <strong>Independent Developer</strong>
-                <span>Built BlitzKode (fine-tuned Qwen2.5-Coder), Lexora AI (RAG-based Q&A), SentinelML (fraud detection).</span>
-            </div>
-            <div class="timeline-item">
-                <span class="meta">2022 – 2026</span>
-                <strong>B.Tech Computer Science — SNGCET, Kerala</strong>
-                <span>Coursework in ML, NLP, Data Structures, Algorithms. Self-studied production engineering in my spare time.</span>
-            </div>
-        </div>
-    </div>
+<section class="section" id="writing">
+  <h2 class="section-title"><span class="section-num">3.</span> Writing</h2>
+  <ul class="post-list">
+    {% for post in site.posts limit:5 %}
+      <li>
+        <p class="post-list-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time></p>
+        <p class="post-list-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></p>
+        {% if post.subtitle %}<p class="post-list-subtitle">{{ post.subtitle }}</p>{% endif %}
+      </li>
+    {% endfor %}
+  </ul>
 </section>
 
-<section id="interests">
-    <div class="container">
-        <h2 class="section-title">Off the clock</h2>
-        <div class="interest-grid">
-            <div class="interest-card">
-                <span class="interest-icon">&#9917;</span>
-                <h3>Football</h3>
-                <p>Play center-mid. Arsenal fan. I watch Premier League obsessively and analyze matches like a tactician who failed his coaching badges.</p>
-            </div>
-            <div class="interest-card">
-                <span class="interest-icon">&#128302;</span>
-                <h3>Reading</h3>
-                <p>Big fan of <em>Sapiens</em> and <em>The Selfish Gene</em>. Currently working through <em>Gödel, Escher, Bach</em> — it's a slow burn, but rewarding.</p>
-            </div>
-            <div class="interest-card">
-                <span class="interest-icon">&#127916;</span>
-                <h3>Cinema</h3>
-                <p>Nolan fanboy who analyzes scenes frame-by-frame. If we watch a movie together, I'm pausing it every 5 minutes to point out the cinematography.</p>
-            </div>
-            <div class="interest-card">
-                <span class="interest-icon">&#128300;</span>
-                <h3>Research</h3>
-                <p>I read AI papers for fun. Transformers, RLHF, neurosymbolic systems — if there's a new arXiv preprint that challenges something I thought I knew, I'm reading it that night.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="work">
-    <div class="container">
-        <h2 class="section-title">Featured Projects</h2>
-
-        <div class="project">
-            <p class="project-kicker">BlitzKode</p>
-            <h3><a href="/blitzkode/">Fine-tuned Qwen2.5-Coder (3B) on 2,000 instruction examples</a></h3>
-            <p>A coding assistant that writes clean Python. Got 500+ downloads on Hugging Face in the first month. Built in a week, open-sourced because sharing is the point. Scored 65% on HumanEval.</p>
-            <p class="project-links">
-                <a href="/blitzkode/">Write-up</a>
-                <a href="https://huggingface.co/neuralbroker/blitzkode">Model</a>
-                <a href="https://github.com/neuralbroker/blitzkode">GitHub</a>
-            </p>
-        </div>
-
-        <div class="project">
-            <p class="project-kicker">EsenceLab</p>
-            <h3><a href="/esencelab/">Real-time sentiment analysis platform — led a team of 4</a></h3>
-            <p>Built with FastAPI + WebSockets + VADER at a college hackathon. Won 2nd Prize at Innovision. Learned that the best debugging tool is a teammate who's been staring at the same bug for 20 minutes.</p>
-            <p class="project-links">
-                <a href="/esencelab/">Write-up</a>
-                <a href="https://github.com/neuralbroker/esencelab">GitHub</a>
-            </p>
-        </div>
-
-        <div class="project">
-            <p class="project-kicker">Lexora AI</p>
-            <h3><a href="/lexora-ai/">RAG-based document Q&A with LangChain + FastAPI</a></h3>
-            <p>Upload a PDF, ask a question in plain English, get an answer with citations. I built it because I was tired of manually searching through 200-page research papers.</p>
-            <p class="project-links">
-                <a href="/lexora-ai/">Write-up</a>
-                <a href="https://github.com/neuralbroker/lexora-ai">GitHub</a>
-            </p>
-        </div>
-
-        <div class="project">
-            <p class="project-kicker">SentinelML</p>
-            <h3><a href="/sentinelml/">Fraud detection with 0.94 ROC-AUC</a></h3>
-            <p>Random forest + engineered features. The most satisfying moment wasn't hitting the metric — it was discovering that one feature (transaction velocity) improved AUC by 6 points.</p>
-            <p class="project-links">
-                <a href="/sentinelml/">Write-up</a>
-                <a href="https://github.com/neuralbroker/sentinelml">GitHub</a>
-            </p>
-        </div>
-
-        <div class="project">
-            <p class="project-kicker">Neurosymbolic Reasoning</p>
-            <h3><a href="/neurosymbolic-reasoning/">Seminar paper on combining symbolic AI with deep learning</a></h3>
-            <p>Explored how neural networks can learn symbolic representations and why hybrid systems outperform pure neural approaches on reasoning tasks. Way more philosophical than I expected.</p>
-            <p class="project-links">
-                <a href="/neurosymbolic-reasoning/">Write-up</a>
-            </p>
-        </div>
-
-        <div class="project">
-            <p class="project-kicker">AI Resume Screener</p>
-            <h3><a href="/ai-resume-screener/">LLM-powered resume-job matching in 446 lines</a></h3>
-            <p>FastAPI + Groq LLM (Llama 3.1-8B) for resume screening. Returns match scores, classification levels, and feedback. Zero API cost, JWT auth, resource-level access control.</p>
-            <p class="project-links">
-                <a href="/ai-resume-screener/">Write-up</a>
-                <a href="https://github.com/neuralbroker/ai-resume-screener">GitHub</a>
-            </p>
-        </div>
-    </div>
-</section>
-
-<section id="stack">
-    <div class="container">
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-group">
-                <h3>Languages</h3>
-                <p>Python, TypeScript, JavaScript, SQL, C++, HTML/CSS, Bash</p>
-            </div>
-            <div class="skill-group">
-                <h3>Backend</h3>
-                <p>FastAPI, Node.js, Express, REST APIs, WebSockets, LangChain</p>
-            </div>
-            <div class="skill-group">
-                <h3>AI / ML</h3>
-                <p>PyTorch, Hugging Face, Fine-tuning, RAG, Transformers, scikit-learn, pandas, numpy</p>
-            </div>
-            <div class="skill-group">
-                <h3>DevOps & Infra</h3>
-                <p>Docker, PostgreSQL, Redis, Git, GitHub Actions, Linux, Cloudflare</p>
-            </div>
-            <div class="skill-group">
-                <h3>Tools</h3>
-                <p>VS Code, Neovim, Jupyter, Postman, Figma, Linear, Notion</p>
-            </div>
-            <div class="skill-group">
-                <h3>Soft</h3>
-                <p>Team leadership, Technical writing, Code review, Rapid prototyping</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="notes">
-    <div class="container">
-        <h2 class="section-title">Technical Writeups</h2>
-        {% if site.posts.size == 0 %}
-        <p class="muted">Nothing here yet.</p>
-        {% else %}
-        <ul class="writeup-list">
-            {% for post in site.posts %}
-            <li>
-                <a href="{{ post.url }}">{{ post.title }}</a>
-                <span class="meta">{{ post.date | date: "%b %Y" }}</span>
-                {% if post.description %}
-                <p class="writeup-desc">{{ post.description }}</p>
-                {% endif %}
-            </li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-    </div>
+<section class="section" id="notes">
+  <h2 class="section-title"><span class="section-num">4.</span> Notes</h2>
+  <dl class="contact">
+    <dt>github</dt><dd><a href="https://github.com/neuralbroker">github.com/neuralbroker</a></dd>
+    <dt>huggingface</dt><dd><a href="https://huggingface.co/neuralbroker">huggingface.co/neuralbroker</a></dd>
+    <dt>linkedin</dt><dd><a href="https://www.linkedin.com/in/abdullasajad">linkedin.com/in/abdullasajad</a></dd>
+    <dt>email</dt><dd><a href="mailto:abdullasajad01@gmail.com">abdullasajad01@gmail.com</a></dd>
+    <dt>cv</dt><dd><a href="{{ '/resume.pdf' | relative_url }}">resume.pdf</a></dd>
+  </dl>
 </section>

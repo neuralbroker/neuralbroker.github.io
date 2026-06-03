@@ -1,10 +1,13 @@
 title: Abdulla Sajad
-description: Software Engineer
+description: Software engineer. Kerala, India.
 author: Abdulla Sajad
 url: "https://neuralbroker.github.io"
 baseurl: ""
 markdown: kramdown
-permalink: /:title/
+permalink: /:year/:month/:day/:title/
+collections:
+  projects:
+    output: false
 exclude:
   - README.md
   - Gemfile

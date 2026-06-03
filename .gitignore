@@ -1,5 +1,9 @@
-﻿_repos/
-site/
+_site/
 .jekyll-cache/
 .sass-cache/
- Gemfile.lock
+Gemfile
+Gemfile.lock
+_repos/
+.DS_Store
+Thumbs.db
+*.log
