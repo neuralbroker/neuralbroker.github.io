@@ -1,88 +1,653 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
-<title>Abdulla Sajad</title>
-<meta name="description" content="Engineer in Kerala. Fine-tunes small models, ships small tools, reads small papers.">
-<link rel="canonical" href="https://neuralbroker.github.io/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3EA%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5" />
+  <title>Abdulla Sajad</title>
+  <meta name="description" content="Engineer in Kerala. Fine-tunes small models, ships small tools, reads small papers." />
+  <link rel="canonical" href="https://neuralbroker.github.io/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:      #ffffff;
+      --fg:      #111111;
+      --muted:   #737373;
+      --subtle:  #a3a3a3;
+      --border:  #e5e5e5;
+      --tag-bg:  #f7f7f7;
+      --green:   #16a34a;
+      --green-bg:#f0fdf4;
+      --green-bd:#bbf7d0;
+      --mono:    'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+      --max:     660px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { font-size: 14px; }
+
+    body {
+      font-family: var(--mono);
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.75;
+      padding: 52px 24px 96px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    a { color: inherit; }
+
+    /* ─── Nav ─── */
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 22px;
+      margin-bottom: 72px;
+    }
+
+    nav a {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.12s;
+    }
+
+    nav a:hover { color: var(--fg); }
+
+    /* ─── Intro ─── */
+    .intro {
+      margin-bottom: 68px;
+    }
+
+    .intro-name {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+
+    .intro p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 520px;
+    }
+
+    .intro p + p {
+      margin-top: 6px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 22px;
+      font-size: 11.5px;
+      color: var(--green);
+      background: var(--green-bg);
+      border: 1px solid var(--green-bd);
+      padding: 4px 13px;
+      border-radius: 3px;
+      letter-spacing: 0.01em;
+    }
+
+    .status-dot {
+      width: 5px;
+      height: 5px;
+      background: var(--green);
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: blink 2.4s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.35; }
+    }
+
+    /* ─── Shared section ─── */
+    section {
+      margin-bottom: 72px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--subtle);
+      margin-bottom: 22px;
+    }
+
+    /* ─── Stack ─── */
+    .stack-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .stack-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 12px;
+    }
+
+    .stack-key {
+      width: 76px;
+      flex-shrink: 0;
+      color: var(--subtle);
+      font-size: 11px;
+      padding-top: 2px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .tag {
+      font-size: 10.5px;
+      padding: 2px 8px;
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 2px;
+      letter-spacing: 0.01em;
+    }
+
+    /* ─── Projects ─── */
+    .project-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .project {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .project-name {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--fg);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: opacity 0.12s;
+    }
+
+    .project-name:hover { opacity: 0.65; }
+
+    .badges {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .badge {
+      font-size: 10px;
+      padding: 2px 8px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 2px;
+      letter-spacing: 0.01em;
+    }
+
+    .badge-green {
+      border-color: var(--green-bd);
+      background: var(--green-bg);
+      color: #15803d;
+    }
+
+    .project-desc {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+
+    .project-footer {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 14px;
+      flex-shrink: 0;
+      align-items: center;
+    }
+
+    .project-links a {
+      font-size: 11px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.12s;
+    }
+
+    .project-links a:hover { color: var(--fg); }
+
+    /* ─── Writing ─── */
+    .writing-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .writing-item {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .writing-item:hover .writing-title {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .writing-date {
+      font-size: 11px;
+      color: var(--subtle);
+      flex-shrink: 0;
+      letter-spacing: 0.02em;
+    }
+
+    .writing-title {
+      font-size: 13px;
+      color: var(--fg);
+    }
+
+    /* ─── Contact ─── */
+    .contact-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-key {
+      font-size: 11px;
+      color: var(--subtle);
+      width: 88px;
+      flex-shrink: 0;
+      letter-spacing: 0.02em;
+    }
+
+    .contact-val {
+      font-size: 12.5px;
+    }
+
+    .contact-val a {
+      color: var(--fg);
+      text-decoration: none;
+      transition: opacity 0.12s;
+    }
+
+    .contact-val a:hover { opacity: 0.55; }
+
+    /* ─── Footer ─── */
+    footer {
+      margin-top: 80px;
+      font-size: 11px;
+      color: var(--subtle);
+    }
+
+    /* ─── Mobile ─── */
+    @media (max-width: 520px) {
+      body { padding: 36px 18px 72px; }
+      nav  { margin-bottom: 52px; }
+      section { margin-bottom: 52px; }
+
+      .stack-row { flex-direction: column; gap: 6px; }
+      .stack-key { width: auto; font-size: 10px; }
+
+      .project-top { flex-direction: column; gap: 8px; }
+
+      .writing-item { flex-direction: column; gap: 3px; }
+
+      .contact-item { flex-direction: column; gap: 2px; }
+      .contact-key  { width: auto; }
+    }
+  </style>
 </head>
 <body>
-<header>
-  <h1><a href="./">Abdulla Sajad</a></h1>
-  <nav><a href="./">home</a> <a href="#projects">projects</a> <a href="#writing">writing</a> <a href="#contact">contact</a> <a href="./resume.pdf">cv</a></nav>
-</header>
+  <div class="wrap">
 
-<main>
-<section>
-  <p>I'm Abdulla. I write code, mostly Python and TypeScript, often with LLMs involved. I'm in Kerala. I ship small tools, fine-tune small models, and read a lot of papers I don't fully understand.</p>
-  <p>That's most of it.</p>
-</section>
+    <!-- Nav -->
+    <nav>
+      <a href="/">home</a>
+      <a href="#projects">projects</a>
+      <a href="#writing">writing</a>
+      <a href="#contact">contact</a>
+      <a href="/resume.pdf">cv</a>
+    </nav>
 
-<section id="projects">
-  <h2>Projects</h2>
-  <ul class="projects">
-    <li>
-      <span class="p-title"><a href="https://github.com/neuralbroker/blitzkode">BlitzKode</a></span>
-      <span class="p-desc">Fine-tuned Qwen2.5-Coder-1.5B on 2,000 code instructions. Four training stages: SFT, reward SFT, DPO, GGUF export.</span>
-      <span class="p-links"><a href="https://github.com/neuralbroker/blitzkode">code</a> <a href="https://huggingface.co/neuralbroker/blitzkode-qwen-1.5b">model</a> <a href="./writing/fine-tuning-is-mostly-data-work.html">notes</a></span>
-    </li>
-    <li>
-      <span class="p-title"><a href="https://github.com/neuralbroker/esencelab">EsenceLab</a></span>
-      <span class="p-desc">Real-time sentiment analysis over a WebSocket feed. FastAPI backend, a small transformer at the core, browser-side rendering.</span>
-      <span class="p-links"><a href="https://github.com/neuralbroker/esencelab">code</a></span>
-    </li>
-    <li>
-      <span class="p-title"><a href="https://github.com/neuralbroker/lexora-ai">Lexora AI</a></span>
-      <span class="p-desc">Document Q&amp;A with retrieval. Per-user FAISS indices, GPT-4 Turbo for generation, Redis for hot cache, Celery for the slow stuff.</span>
-      <span class="p-links"><a href="https://github.com/neuralbroker/lexora-ai">code</a></span>
-    </li>
-    <li>
-      <span class="p-title"><a href="https://github.com/neuralbroker/sentinel-ml">SentinelML</a></span>
-      <span class="p-desc">Credit-card fraud detection. RandomForest on 25 features, 0.94 ROC-AUC. Drift detection, auto-retrain.</span>
-      <span class="p-links"><a href="https://github.com/neuralbroker/sentinel-ml">code</a> <a href="./writing/your-ml-system-will-fail-in-production.html">notes</a></span>
-    </li>
-    <li>
-      <span class="p-title"><a href="https://github.com/neuralbroker/ai-resume-screener">AI Resume Screener</a></span>
-      <span class="p-desc">Resume-job matching with a small open model on Groq. JWT auth, role-based access, SQLite. 446 lines.</span>
-      <span class="p-links"><a href="https://github.com/neuralbroker/ai-resume-screener">code</a></span>
-    </li>
-    <li>
-      <span class="p-title">Neurosymbolic Reasoning</span>
-      <span class="p-desc">A short seminar paper on hybrid neuro-symbolic architectures. More philosophical than I expected.</span>
-      <span class="p-links"><a href="./writing/reading-note-neurosymbolic-ai.html">notes</a></span>
-    </li>
-  </ul>
-</section>
+    <!-- Intro -->
+    <section class="intro">
+      <span class="intro-name">Abdulla Sajad</span>
 
-<section id="writing">
-  <h2>Writing</h2>
-  <ul class="posts">
-    <li><time datetime="2025-02-11">2025-02-11</time> <a href="./writing/reading-note-neurosymbolic-ai.html">A reading note on neurosymbolic AI</a></li>
-    <li><time datetime="2024-12-03">2024-12-03</time> <a href="./writing/your-ml-system-will-fail-in-production.html">Your ML system will fail in production. Plan for it.</a></li>
-    <li><time datetime="2024-11-15">2024-11-15</time> <a href="./writing/fine-tuning-is-mostly-data-work.html">Fine-tuning small models is mostly data work</a></li>
-  </ul>
-</section>
+      <p>
+        I'm Abdulla. I write code, mostly Python and TypeScript, often with LLMs
+        involved. I'm in Kerala. I ship small tools, fine-tune small models, and
+        read a lot of papers I don't fully understand.
+      </p>
+      <p>That's most of it.</p>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <ul class="contact">
-    <li><span class="k">github</span> <a href="https://github.com/neuralbroker">github.com/neuralbroker</a></li>
-    <li><span class="k">huggingface</span> <a href="https://huggingface.co/neuralbroker">huggingface.co/neuralbroker</a></li>
-    <li><span class="k">linkedin</span> <a href="https://www.linkedin.com/in/abdullasajad">linkedin.com/in/abdullasajad</a></li>
-    <li><span class="k">email</span> <a href="mailto:abdullasajad01@gmail.com">abdullasajad01@gmail.com</a></li>
-    <li><span class="k">cv</span> <a href="./resume.pdf">resume.pdf</a></li>
-  </ul>
-</section>
-</main>
+      <span class="status">
+        <span class="status-dot"></span>
+        open to full-time roles &mdash; India (Bangalore) &middot; UAE &middot; Remote
+      </span>
+    </section>
 
-<footer>
-  <p><small>© <span id="year"></span> Abdulla Sajad.</small></p>
-</footer>
-<script>
-document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+    <!-- Stack -->
+    <section id="stack">
+      <p class="section-label">Stack</p>
+      <div class="stack-rows">
+        <div class="stack-row">
+          <span class="stack-key">languages</span>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Java</span>
+            <span class="tag">SQL</span>
+          </div>
+        </div>
+        <div class="stack-row">
+          <span class="stack-key">AI / ML</span>
+          <div class="tags">
+            <span class="tag">LLM fine-tuning</span>
+            <span class="tag">RAG</span>
+            <span class="tag">LangChain / LangGraph</span>
+            <span class="tag">HuggingFace</span>
+            <span class="tag">PEFT / TRL</span>
+            <span class="tag">llama.cpp</span>
+            <span class="tag">FAISS</span>
+            <span class="tag">MLflow</span>
+          </div>
+        </div>
+        <div class="stack-row">
+          <span class="stack-key">backend</span>
+          <div class="tags">
+            <span class="tag">FastAPI</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Express</span>
+            <span class="tag">Celery</span>
+            <span class="tag">REST APIs</span>
+          </div>
+        </div>
+        <div class="stack-row">
+          <span class="stack-key">frontend</span>
+          <div class="tags">
+            <span class="tag">Next.js 15</span>
+            <span class="tag">React</span>
+            <span class="tag">Tailwind CSS</span>
+          </div>
+        </div>
+        <div class="stack-row">
+          <span class="stack-key">infra</span>
+          <div class="tags">
+            <span class="tag">Docker</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">Redis</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Vercel</span>
+            <span class="tag">Linux</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <p class="section-label">Projects</p>
+
+      <div class="project-list">
+
+        <!-- EsenceLab -->
+        <div class="project">
+          <div class="project-top">
+            <a class="project-name" href="https://github.com/neuralbroker/esencelab">EsenceLab</a>
+            <div class="badges">
+              <span class="badge badge-green">2nd Prize &middot; Innovision</span>
+              <span class="badge">live</span>
+            </div>
+          </div>
+          <p class="project-desc">
+            Full-stack AI hiring and career intelligence platform. Three-module monorepo (student / recruiter / admin)
+            across Next.js, Express, and FastAPI services. Gemini-powered resume parsing cut manual shortlisting by 60%
+            across 200+ resumes. JWT + Supabase RLS auth, rate limiting, pre-launch security audit. GitHub Actions CI
+            with RBAC smoke tests and schema contract verification. Deployed to Vercel and Render. Zero incidents since
+            launch. Won 2nd Prize at Innovision out of 30+ teams.
+          </p>
+          <div class="project-footer">
+            <div class="tags">
+              <span class="tag">Next.js 15</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Express</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">Supabase</span>
+              <span class="tag">Docker</span>
+              <span class="tag">GitHub Actions</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/neuralbroker/esencelab">code</a>
+              <a href="https://esencelab.vercel.app">live &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- BlitzKode -->
+        <div class="project">
+          <div class="project-top">
+            <a class="project-name" href="https://github.com/neuralbroker/blitzkode">BlitzKode</a>
+            <div class="badges">
+              <span class="badge badge-green">510+ HF downloads</span>
+            </div>
+          </div>
+          <p class="project-desc">
+            Local AI coding assistant that runs entirely on commodity hardware without internet or a GPU. Fine-tuned
+            Qwen2.5-Coder-1.5B across four stages: SFT &rarr; reward-SFT &rarr; DPO &rarr; LoRA. Reduced VRAM from
+            24&thinsp;GB to 8&thinsp;GB via LoRA (r&nbsp;=&nbsp;32), gradient checkpointing, and bfloat16. Exported to
+            GGUF Q8_0 (1.53&thinsp;GB) for CPU-only inference via llama.cpp. FastAPI server with SSE streaming.
+          </p>
+          <div class="project-footer">
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">SFT / DPO / LoRA</span>
+              <span class="tag">GGUF</span>
+              <span class="tag">llama.cpp</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">Docker</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/neuralbroker/blitzkode">code</a>
+              <a href="https://huggingface.co/neuralbroker/blitzkode">model</a>
+              <a href="/writing/fine-tuning-is-mostly-data-work.html">notes</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SentinelML -->
+        <div class="project">
+          <div class="project-top">
+            <a class="project-name" href="https://github.com/neuralbroker/sentinel-ml">SentinelML</a>
+            <div class="badges">
+              <span class="badge">0.94 ROC-AUC</span>
+            </div>
+          </div>
+          <p class="project-desc">
+            Fraud detection API with feature engineering, SMOTE oversampling, and a RandomForest classifier on 25
+            features. Redis prediction cache, MLflow experiment tracking, Prometheus metrics. Full stack via
+            docker-compose. Includes drift detection and auto-retrain on distribution shift.
+          </p>
+          <div class="project-footer">
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">scikit-learn</span>
+              <span class="tag">Redis</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">MLflow</span>
+              <span class="tag">Docker</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/neuralbroker/sentinel-ml">code</a>
+              <a href="/writing/your-ml-system-will-fail-in-production.html">notes</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lexora AI -->
+        <div class="project">
+          <div class="project-top">
+            <a class="project-name" href="https://github.com/neuralbroker/lexora-ai">Lexora AI</a>
+            <div class="badges">
+              <span class="badge">sub-2s @ 100k tokens</span>
+            </div>
+          </div>
+          <p class="project-desc">
+            RAG document Q&amp;A platform with LangGraph agentic tool-calling. Chunked retrieval with streaming
+            responses achieves sub-2s latency on corpora up to 100k tokens. Per-user FAISS index isolation. JWT
+            refresh-token rotation with Redis-backed revocation. Celery for async indexing jobs.
+          </p>
+          <div class="project-footer">
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">LangChain</span>
+              <span class="tag">LangGraph</span>
+              <span class="tag">FAISS</span>
+              <span class="tag">OpenAI API</span>
+              <span class="tag">Celery</span>
+              <span class="tag">Redis</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/neuralbroker/lexora-ai">code</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Resume Screener -->
+        <div class="project">
+          <div class="project-top">
+            <a class="project-name" href="https://github.com/neuralbroker/ai-resume-screener">AI Resume Screener</a>
+          </div>
+          <p class="project-desc">
+            Resume-to-job matching with a small open model on Groq. JWT auth, role-based access control, SQLite
+            backend. 446 lines.
+          </p>
+          <div class="project-footer">
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">Groq</span>
+              <span class="tag">SQLite</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/neuralbroker/ai-resume-screener">code</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Writing -->
+    <section id="writing">
+      <p class="section-label">Writing</p>
+
+      <div class="writing-list">
+        <a class="writing-item" href="/writing/reading-note-neurosymbolic-ai.html">
+          <span class="writing-date">2025-02-11</span>
+          <span class="writing-title">A reading note on neurosymbolic AI</span>
+        </a>
+        <a class="writing-item" href="/writing/your-ml-system-will-fail-in-production.html">
+          <span class="writing-date">2024-12-03</span>
+          <span class="writing-title">Your ML system will fail in production. Plan for it.</span>
+        </a>
+        <a class="writing-item" href="/writing/fine-tuning-is-mostly-data-work.html">
+          <span class="writing-date">2024-11-15</span>
+          <span class="writing-title">Fine-tuning small models is mostly data work</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <p class="section-label">Contact</p>
+
+      <div class="contact-list">
+        <div class="contact-item">
+          <span class="contact-key">github</span>
+          <span class="contact-val">
+            <a href="https://github.com/neuralbroker">github.com/neuralbroker</a>
+          </span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-key">huggingface</span>
+          <span class="contact-val">
+            <a href="https://huggingface.co/neuralbroker">huggingface.co/neuralbroker</a>
+          </span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-key">linkedin</span>
+          <span class="contact-val">
+            <a href="https://linkedin.com/in/abdullasajad">linkedin.com/in/abdullasajad</a>
+          </span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-key">email</span>
+          <span class="contact-val">
+            <a href="mailto:abdullasajad01@gmail.com">abdullasajad01@gmail.com</a>
+          </span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-key">cv</span>
+          <span class="contact-val">
+            <a href="/resume.pdf">resume.pdf</a>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <footer>&copy; Abdulla Sajad</footer>
+
+  </div>
 </body>
 </html>
