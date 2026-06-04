@@ -1,9 +1,3 @@
-_site/
-.jekyll-cache/
-.sass-cache/
-Gemfile
-Gemfile.lock
-_repos/
 .DS_Store
 Thumbs.db
 *.log

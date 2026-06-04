@@ -3,62 +3,97 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#01242e" media="(prefers-color-scheme: dark)">
 <title>Abdulla Sajad</title>
 <meta name="description" content="Engineer in Kerala. Fine-tunes small models, ships small tools, reads small papers.">
+<meta name="author" content="Abdulla Sajad">
 <link rel="canonical" href="https://neuralbroker.github.io/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3EA%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="./style.css">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Abdulla Sajad">
+<meta property="og:title" content="Abdulla Sajad">
+<meta property="og:description" content="Engineer in Kerala. Fine-tunes small models, ships small tools, reads small papers.">
+<meta property="og:url" content="https://neuralbroker.github.io/">
+<meta property="og:image" content="https://neuralbroker.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_IN">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Abdulla Sajad">
+<meta name="twitter:description" content="Engineer in Kerala. Fine-tunes small models, ships small tools, reads small papers.">
+<meta name="twitter:image" content="https://neuralbroker.github.io/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Abdulla Sajad",
+  "url": "https://neuralbroker.github.io/",
+  "email": "mailto:abdullasajad01@gmail.com",
+  "address": {"@type": "PostalAddress", "addressRegion": "Kerala", "addressCountry": "IN"},
+  "sameAs": [
+    "https://github.com/neuralbroker",
+    "https://huggingface.co/neuralbroker",
+    "https://www.linkedin.com/in/abdullasajad"
+  ],
+  "knowsAbout": [
+    "Machine Learning", "LLM Fine-tuning", "Retrieval-Augmented Generation",
+    "Python", "TypeScript", "FastAPI", "PyTorch"
+  ],
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Sree Narayana Guru College of Engineering and Technology",
+    "address": {"@type": "PostalAddress", "addressRegion": "Kerala", "addressCountry": "IN"}
+  }
+}
+</script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <header>
   <h1><a href="./">Abdulla Sajad</a></h1>
-  <nav><a href="./">home</a> <a href="#projects">projects</a> <a href="#writing">writing</a> <a href="#contact">contact</a> <a href="./resume.pdf">cv</a></nav>
+  <nav aria-label="Primary"><a href="./">home</a> <a href="#projects">projects</a> <a href="#writing">writing</a> <a href="#contact">contact</a> <a href="./resume.pdf">cv</a></nav>
 </header>
 
-<main>
+<main id="main">
 <section>
   <p>I'm Abdulla. I write code, mostly Python and TypeScript, often with LLMs involved. I'm in Kerala. I ship small tools, fine-tune small models, and read a lot of papers I don't fully understand.</p>
   <p>That's most of it.</p>
 </section>
 
-<section id="projects">
-  <h2>Projects</h2>
+<section id="projects" aria-labelledby="projects-h">
+  <h2 id="projects-h">Projects</h2>
   <ul class="projects">
     <li>
-      <span class="p-title"><a href="https://github.com/neuralbroker/blitzkode">BlitzKode</a></span>
-      <span class="p-desc">Fine-tuned Qwen2.5-Coder-1.5B on 2,000 code instructions. Four training stages: SFT, reward SFT, DPO, GGUF export.</span>
+      <h3 class="p-title"><a href="https://github.com/neuralbroker/blitzkode">BlitzKode</a></h3>
+      <span class="p-desc">Fine-tuned Qwen2.5-Coder-1.5B on 2,000 code instructions. Three training stages (SFT, reward SFT, DPO) plus GGUF export for CPU-only inference.</span>
       <span class="p-links"><a href="https://github.com/neuralbroker/blitzkode">code</a> <a href="https://huggingface.co/neuralbroker/blitzkode">model</a> <a href="./writing/fine-tuning-is-mostly-data-work.html">notes</a></span>
     </li>
     <li>
-      <span class="p-title"><a href="https://github.com/neuralbroker/esencelab">EsenceLab</a></span>
-      <span class="p-desc">Real-time sentiment analysis over a WebSocket feed. FastAPI backend, a small transformer at the core, browser-side rendering.</span>
+      <h3 class="p-title"><a href="https://github.com/neuralbroker/esencelab">EsenceLab</a></h3>
+      <span class="p-desc">Full-stack AI hiring platform (student, recruiter, admin modules). Gemini-powered resume parsing cut manual shortlisting by 60% across 200+ resumes; three-service monorepo on Vercel and Render. Won 2nd Prize at Innovision (30+ teams).</span>
       <span class="p-links"><a href="https://github.com/neuralbroker/esencelab">code</a></span>
     </li>
     <li>
-      <span class="p-title"><a href="https://github.com/neuralbroker/lexora-ai">Lexora AI</a></span>
-      <span class="p-desc">Document Q&amp;A with retrieval. Per-user FAISS indices, GPT-4 Turbo for generation, Redis for hot cache, Celery for the slow stuff.</span>
+      <h3 class="p-title"><a href="https://github.com/neuralbroker/lexora-ai">Lexora AI</a></h3>
+      <span class="p-desc">Document Q&amp;A with retrieval. Per-user FAISS indices, OpenAI for generation, Redis for hot cache, Celery for the slow stuff.</span>
       <span class="p-links"><a href="https://github.com/neuralbroker/lexora-ai">code</a></span>
     </li>
     <li>
-      <span class="p-title"><a href="https://github.com/neuralbroker/sentinel-ml">SentinelML</a></span>
+      <h3 class="p-title"><a href="https://github.com/neuralbroker/sentinel-ml">SentinelML</a></h3>
       <span class="p-desc">Credit-card fraud detection. RandomForest on 25 features, 0.94 ROC-AUC. Drift detection, auto-retrain.</span>
       <span class="p-links"><a href="https://github.com/neuralbroker/sentinel-ml">code</a> <a href="./writing/your-ml-system-will-fail-in-production.html">notes</a></span>
-    </li>
-    <li>
-      <span class="p-title"><a href="https://github.com/neuralbroker/ai-resume-screener">AI Resume Screener</a></span>
-      <span class="p-desc">Resume-job matching with a small open model on Groq. JWT auth, role-based access, SQLite. 446 lines.</span>
-      <span class="p-links"><a href="https://github.com/neuralbroker/ai-resume-screener">code</a></span>
-    </li>
-    <li>
-      <span class="p-title">Neurosymbolic Reasoning</span>
-      <span class="p-desc">A short seminar paper on hybrid neuro-symbolic architectures. More philosophical than I expected.</span>
-      <span class="p-links"><a href="./writing/reading-note-neurosymbolic-ai.html">notes</a></span>
     </li>
   </ul>
 </section>
 
-<section id="writing">
-  <h2>Writing</h2>
+<section id="writing" aria-labelledby="writing-h">
+  <h2 id="writing-h">Writing</h2>
   <ul class="posts">
     <li><time datetime="2025-02-11">2025-02-11</time> <a href="./writing/reading-note-neurosymbolic-ai.html">A reading note on neurosymbolic AI</a></li>
     <li><time datetime="2024-12-03">2024-12-03</time> <a href="./writing/your-ml-system-will-fail-in-production.html">Your ML system will fail in production. Plan for it.</a></li>
@@ -66,8 +101,8 @@
   </ul>
 </section>
 
-<section id="contact">
-  <h2>Contact</h2>
+<section id="contact" aria-labelledby="contact-h">
+  <h2 id="contact-h">Contact</h2>
   <ul class="contact">
     <li><span class="k">github</span> <a href="https://github.com/neuralbroker">github.com/neuralbroker</a></li>
     <li><span class="k">huggingface</span> <a href="https://huggingface.co/neuralbroker">huggingface.co/neuralbroker</a></li>

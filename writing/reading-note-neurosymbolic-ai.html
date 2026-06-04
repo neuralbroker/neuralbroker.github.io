@@ -3,35 +3,67 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#01242e" media="(prefers-color-scheme: dark)">
 <title>A reading note on neurosymbolic AI · Abdulla Sajad</title>
 <meta name="description" content="What I think I understand, and where I don't.">
+<meta name="author" content="Abdulla Sajad">
 <link rel="canonical" href="https://neuralbroker.github.io/writing/reading-note-neurosymbolic-ai.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3EA%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../style.css">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Abdulla Sajad">
+<meta property="og:title" content="A reading note on neurosymbolic AI">
+<meta property="og:description" content="What I think I understand, and where I don't.">
+<meta property="og:url" content="https://neuralbroker.github.io/writing/reading-note-neurosymbolic-ai.html">
+<meta property="og:image" content="https://neuralbroker.github.io/og-image.png">
+<meta property="article:published_time" content="2025-02-11">
+<meta property="article:author" content="Abdulla Sajad">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A reading note on neurosymbolic AI">
+<meta name="twitter:description" content="What I think I understand, and where I don't.">
+<meta name="twitter:image" content="https://neuralbroker.github.io/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "A reading note on neurosymbolic AI",
+  "description": "What I think I understand, and where I don't.",
+  "datePublished": "2025-02-11",
+  "author": {"@type": "Person", "name": "Abdulla Sajad", "url": "https://neuralbroker.github.io/"},
+  "url": "https://neuralbroker.github.io/writing/reading-note-neurosymbolic-ai.html",
+  "mainEntityOfPage": "https://neuralbroker.github.io/writing/reading-note-neurosymbolic-ai.html"
+}
+</script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <header>
   <h1><a href="../">Abdulla Sajad</a></h1>
-  <nav><a href="../">home</a> <a href="../#projects">projects</a> <a href="../#writing">writing</a> <a href="../#contact">contact</a> <a href="../resume.pdf">cv</a></nav>
+  <nav aria-label="Primary"><a href="../">home</a> <a href="../#projects">projects</a> <a href="../#writing">writing</a> <a href="../#contact">contact</a> <a href="../resume.pdf">cv</a></nav>
 </header>
 
-<main>
+<main id="main">
 <article>
   <header>
     <p><time datetime="2025-02-11">2025-02-11</time></p>
-    <h1>A reading note on neurosymbolic AI</h1>
+    <h2>A reading note on neurosymbolic AI</h2>
     <p><em>What I think I understand, and where I don't.</em></p>
   </header>
 
   <p>I read a survey on neurosymbolic AI last week. This is not a summary. This is a note to myself about what I think I understood, and what I'm not sure I did. If you're looking for a clean overview, find a better source.</p>
 
-  <h2>The pitch, as I understand it</h2>
+  <h3>The pitch, as I understand it</h3>
 
   <p>Neural networks are good at fuzzy stuff. Perception, language, anything that looks like a high-dimensional pattern-matching problem. They are bad at things that require exact, compositional reasoning. Long chains of inference, formal constraints, the kind of stuff symbolic systems were good at in the 80s.</p>
 
   <p>The neurosymbolic idea is to put the two together. A neural component handles the perception. A symbolic component handles the reasoning. The interface between them is the interesting part. Most of the disagreements in the literature are about how to draw that line.</p>
 
-  <h2>What I think I got</h2>
+  <h3>What I think I got</h3>
 
   <p>There are basically three camps:</p>
 
@@ -43,7 +75,7 @@
 
   <p>I think the first camp is the most principled. The third is the most ambitious. The second is the easiest to publish, because you can take any existing neural model and add a constraint.</p>
 
-  <h2>What I'm not sure about</h2>
+  <h3>What I'm not sure about</h3>
 
   <p>I don't know if any of this works in a way that justifies the engineering cost. The benchmark numbers in the surveys look good, but I notice that the benchmarks are usually hand-picked, and the symbolic components are usually small enough that you could just write the rules. I'm not convinced the field has crossed the threshold where the hybrid system is doing something neither component could do alone.</p>
 
@@ -51,7 +83,7 @@
 
   <p>I might be wrong about this. I'm not a neurosymbolic researcher. I'm someone who read a survey and is suspicious of things that look like silver bullets.</p>
 
-  <h2>What I'll take from it</h2>
+  <h3>What I'll take from it</h3>
 
   <p>Two things.</p>
 
@@ -61,7 +93,7 @@
 
   <p>I'll write it up if I do.</p>
 
-  <h2>What I want to read next</h2>
+  <h3>What I want to read next</h3>
 
   <p>I want to read more of the older work, the 90s stuff that was doing this before it was cool. There's a thread from Garcez and Lamb that I haven't followed yet. I want to read some of the more skeptical takes, the kind that show up in JMLR and not at NeurIPS. And I want to find a good failure case — a real neurosymbolic system that was deployed and broke, and someone wrote honestly about why.</p>
 

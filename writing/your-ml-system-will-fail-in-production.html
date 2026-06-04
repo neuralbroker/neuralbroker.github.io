@@ -3,23 +3,55 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#01242e" media="(prefers-color-scheme: dark)">
 <title>Your ML system will fail in production. Plan for it. · Abdulla Sajad</title>
 <meta name="description" content="A postmortem of SentinelML.">
+<meta name="author" content="Abdulla Sajad">
 <link rel="canonical" href="https://neuralbroker.github.io/writing/your-ml-system-will-fail-in-production.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3EA%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../style.css">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Abdulla Sajad">
+<meta property="og:title" content="Your ML system will fail in production. Plan for it.">
+<meta property="og:description" content="A postmortem of SentinelML.">
+<meta property="og:url" content="https://neuralbroker.github.io/writing/your-ml-system-will-fail-in-production.html">
+<meta property="og:image" content="https://neuralbroker.github.io/og-image.png">
+<meta property="article:published_time" content="2024-12-03">
+<meta property="article:author" content="Abdulla Sajad">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Your ML system will fail in production. Plan for it.">
+<meta name="twitter:description" content="A postmortem of SentinelML.">
+<meta name="twitter:image" content="https://neuralbroker.github.io/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Your ML system will fail in production. Plan for it.",
+  "description": "A postmortem of SentinelML.",
+  "datePublished": "2024-12-03",
+  "author": {"@type": "Person", "name": "Abdulla Sajad", "url": "https://neuralbroker.github.io/"},
+  "url": "https://neuralbroker.github.io/writing/your-ml-system-will-fail-in-production.html",
+  "mainEntityOfPage": "https://neuralbroker.github.io/writing/your-ml-system-will-fail-in-production.html"
+}
+</script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <header>
   <h1><a href="../">Abdulla Sajad</a></h1>
-  <nav><a href="../">home</a> <a href="../#projects">projects</a> <a href="../#writing">writing</a> <a href="../#contact">contact</a> <a href="../resume.pdf">cv</a></nav>
+  <nav aria-label="Primary"><a href="../">home</a> <a href="../#projects">projects</a> <a href="../#writing">writing</a> <a href="../#contact">contact</a> <a href="../resume.pdf">cv</a></nav>
 </header>
 
-<main>
+<main id="main">
 <article>
   <header>
     <p><time datetime="2024-12-03">2024-12-03</time></p>
-    <h1>Your ML system will fail in production. Plan for it.</h1>
+    <h2>Your ML system will fail in production. Plan for it.</h2>
     <p><em>A postmortem of SentinelML.</em></p>
   </header>
 
@@ -27,7 +59,7 @@
 
   <p>This is the postmortem I wish I'd had before I started.</p>
 
-  <h2>The first thing that broke was the data, not the model</h2>
+  <h3>The first thing that broke was the data, not the model</h3>
 
   <p>Two weeks into production, the model's precision started to drift. False positives went from 4% to 9% over ten days. The model hadn't changed. The data had.</p>
 
@@ -35,7 +67,7 @@
 
   <p>I added PSI (population stability index) on the top ten features and a KS test on the rest. Alert when PSI &gt; 0.2 on any single feature. The numbers turned out to be tractable to interpret and easy to wire up. I should have done this before deploying.</p>
 
-  <h2>The second thing that broke was me</h2>
+  <h3>The second thing that broke was me</h3>
 
   <p>I retrained the model manually when drift crossed the threshold. That worked for about a month, then I missed a week. There was no alert. The model was making bad calls. I didn't know because I wasn't looking.</p>
 
@@ -43,7 +75,7 @@
 
   <p>Both kinds of work matter. The infrastructure work is what keeps the model work running.</p>
 
-  <h2>The third thing that broke was the right thing</h2>
+  <h3>The third thing that broke was the right thing</h3>
 
   <p>I had a feature called <code>txn_velocity_24h</code> — the count of transactions on the card in the last 24 hours. It was a hand-engineered feature, the kind of thing feature-selection papers tell you to distrust. It turned out to be the most important feature in the model by a wide margin. SHAP values, permutation importance, and partial dependence all agreed.</p>
 
@@ -51,7 +83,7 @@
 
   <p>This is also why I'm skeptical of the "just throw the raw data at a transformer" framing. For tabular data with strong human-understandable structure, a feature you can name is usually better than an embedding you can't.</p>
 
-  <h2>What I would do differently</h2>
+  <h3>What I would do differently</h3>
 
   <p>Three things:</p>
 
@@ -61,7 +93,7 @@
     <li><strong>Spend more time on the data dictionary than the model card.</strong> Anyone who works with the system in six months will need to know what every feature means, where it came from, and what assumptions it encodes. A model card is for outsiders. A data dictionary is for the next person on call at 3 AM.</li>
   </ol>
 
-  <h2>What this is not</h2>
+  <h3>What this is not</h3>
 
   <p>This is not a tutorial. The techniques here are standard and you can find better explanations elsewhere. What I'm trying to do is give you a sense of where the time actually goes, because almost no public writeup does that. Most ML writeups are about the model. The model is the part you can describe in a paragraph. Everything else is the part you actually have to build.</p>
 
