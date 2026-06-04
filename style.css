@@ -196,10 +196,15 @@ ul.projects .p-links a { margin-right: 10px; }
 
 /* Contact list */
 ul.contact { list-style: none; padding: 0; margin: 1em 0; }
-ul.contact li { margin: 0.3em 0; }
+ul.contact li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6em;
+  margin: 0.3em 0;
+  flex-wrap: wrap;
+}
 ul.contact .k {
-  display: inline-block;
-  width: 110px;
+  flex: 0 0 110px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   color: var(--muted);
   font-size: 0.95em;
@@ -208,7 +213,7 @@ ul.contact .k {
 /* Mobile */
 @media (max-width: 480px) {
   body { padding: 16px; }
-  ul.contact .k { width: 88px; }
+  ul.contact .k { flex: 0 0 88px; }
   ul.posts li { flex-direction: column; gap: 0.15em; }
   ul.posts time { flex: 0 0 auto; }
   h2 { margin-top: 1.6em; }
