@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#01242e" media="(prefers-color-scheme: dark)">
+<title>My projects and learnings so far · Sajad</title>
+<meta name="description" content="A walkthrough of BlitzKode, EsenceLab, Lexora AI, and SentinelML, with the design decisions and the things I'd do differently.">
+<meta name="author" content="Sajad">
+<link rel="canonical" href="https://neuralbroker.github.io/writing/projects-and-learnings.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Sajad">
+<meta property="og:title" content="My projects and learnings so far">
+<meta property="og:description" content="A walkthrough of BlitzKode, EsenceLab, Lexora AI, and SentinelML, with the design decisions and the things I'd do differently.">
+<meta property="og:url" content="https://neuralbroker.github.io/writing/projects-and-learnings.html">
+<meta property="og:image" content="https://neuralbroker.github.io/og-image.png">
+<meta property="article:published_time" content="2026-06-04">
+<meta property="article:author" content="Sajad">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="My projects and learnings so far">
+<meta name="twitter:description" content="A walkthrough of BlitzKode, EsenceLab, Lexora AI, and SentinelML, with the design decisions and the things I'd do differently.">
+<meta name="twitter:image" content="https://neuralbroker.github.io/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "My projects and learnings so far",
+  "description": "A walkthrough of BlitzKode, EsenceLab, Lexora AI, and SentinelML, with the design decisions and the things I'd do differently.",
+  "datePublished": "2026-06-04",
+  "author": {"@type": "Person", "name": "Sajad", "url": "https://neuralbroker.github.io/"},
+  "url": "https://neuralbroker.github.io/writing/projects-and-learnings.html",
+  "mainEntityOfPage": "https://neuralbroker.github.io/writing/projects-and-learnings.html"
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header>
+  <h1><a href="../">Sajad</a></h1>
+  <nav aria-label="Primary"><a href="../">home</a> <a href="../#projects">projects</a> <a href="../#writing">writing</a> <a href="../#contact">contact</a> <a href="../resume.pdf">cv</a></nav>
+</header>
+
+<main id="main">
+<article>
+  <header>
+    <p><time datetime="2026-06-04">2026-06-04</time></p>
+    <h2>My projects and learnings so far</h2>
+    <p><em>A walkthrough of BlitzKode, EsenceLab, Lexora AI, and SentinelML, with the design decisions and the things I'd do differently.</em></p>
+  </header>
+
+  <p>Four projects, all in 2026. This is a tour of the code I wrote and the parts that taught me the most. I tried to be specific about <em>why</em> things are the way they are, not just <em>what</em> they are. Each section assumes you've read the README; I'll skip the boilerplate and go to the parts that are interesting to me in hindsight.</p>
+
+  <h3>BlitzKode: a 1.5B model, fully on your laptop</h3>
+
+  <p>BlitzKode started as a personal project because I wanted a coding assistant that worked on a plane. The interesting part isn't the model; it's the gap between <em>the training pipeline</em> and <em>the inference server</em>, and the way the two constrain each other.</p>
+
+  <p><strong>Why a 4-stage pipeline.</strong> The model card says "SFT, reward SFT, DPO, LoRA" and people sometimes ask why the last step exists. It exists because of the export. The SFT and DPO stages produce a model I can validate against a held-out split. The LoRA stage is a separate, smaller run on top, with <code>r=32</code> and target modules scoped to the attention layers, so I can merge it into the base later without a second full pass. The end state is a single merged model in bfloat16, with the LoRA adapter published separately for people who want to keep the base unchanged. The two published artifacts (full GGUF and 0.5B LoRA adapter) are deliberately redundant: one is "drop it in and run it," the other is "fine-tune further from my checkpoint."</p>
+
+  <p><strong>Resource math.</strong> The base 1.5B in float16 needs about 3 GB of VRAM for inference. Fine-tuning the full model in bfloat16 with the training-set examples blew past the 24 GB I had on the box. The fix wasn't a smaller model; it was LoRA with gradient checkpointing, which gets the active memory under 8 GB and the working set under 12. The Q8_0 GGUF (1.53 GB) then runs on a laptop with no GPU at all. The mmap loading and prompt cache settings in <code>server.py</code> exist because the cold start time of loading 1.5 GB off disk was the worst part of the experience. With mmap it starts in under two seconds.</p>
+
+  <p><strong>The grounding guardrail.</strong> The thing I am most proud of fixing is the regex in <code>server.py</code> named <code>_SIGNATURE_QUERY_RE</code>. The first version of BlitzKode would happily invent a signature for any library you asked about. "How do I use <code>someLibrary.foo()</code>?" would get a confident answer that referenced methods that don't exist. Small models do this. The fix isn't a better prompt; it's a hard refusal at the request level for any question that looks like a signature or usage lookup and doesn't include source code or documentation in the prompt. The regex isn't clever; it just looks for patterns like "signature of X", "how do I use X()", or "docs for X function" combined with no fenced code block. When it matches, the response is a fixed string: "I don't have enough verified context to know the signature or usage of X." When the user pastes source or enables research mode (web search), the guardrail steps out of the way. It's the only piece of the system that I trust to never get worse, because it has no LLM in it.</p>
+
+  <p><strong>The web search thing.</strong> <code>/generate/research</code> hits DuckDuckGo, parses the HTML response with a hand-rolled <code>HTMLParser</code> subclass (<code>DuckDuckGoHTMLParser</code>), and injects the top five snippets as context. This is fragile. If DuckDuckGo changes their result-page CSS, the parser breaks. I keep it because it's the only way to get a coding assistant that can answer questions about libraries that came out after the model's training cutoff, and the breakage mode is loud (no results returned), not silent (wrong results). The research endpoint is off by default in the rate-limited profile.</p>
+
+  <p><strong>What I'd do differently.</strong> The training pipeline has five scripts (<code>train_sft.py</code>, <code>train_reward_sft.py</code>, <code>train_dpo.py</code>, <code>train_available.py</code>, <code>train_continue.py</code>) and it's not obvious which one to run first. I'd collapse them into a single <code>train.py</code> with a stage argument. The eval suite is also a smoke test, not a benchmark. I'd add executable unit-test scoring.</p>
+
+  <h3>EsenceLab: 60% shorter shortlists, and what that took</h3>
+
+  <p>EsenceLab is the only project in this list I didn't write alone. It's a three-service monorepo, and the win condition was: a recruiter posts a job, the platform ranks applicants, and the time-to-shortlist drops. The 60% number is from the Innovision run; in the actual deployed version it's higher because the recruiter team had more iterations.</p>
+
+  <p><strong>The three services.</strong> Frontend is Next.js 15 with the App Router, served from Vercel. Backend is Express in TypeScript, served from Render. The AI service is a separate FastAPI Python app, also on Render. The split is deliberate. The frontend handles session UI and route protection. The backend handles auth, RBAC, file uploads, and the database layer (Supabase/Postgres). The AI service handles everything that calls a model, so the rest of the system doesn't pay the cold-start cost of a Python model server. The service-to-service auth is a shared bearer token (<code>AI_INTERNAL_AUTH_TOKEN</code>) checked on every call. The backend refuses to start in production if the token is shorter than 24 characters or looks like a placeholder.</p>
+
+  <p><strong>RBAC and the tests that back it.</strong> There are three roles: student, recruiter, admin. The recruiter role is gated by an admin-approval step on a public access-request form. The interesting part is the test suite, not the code. <code>backend/test/rbac-smoke.test.js</code> covers the happy paths of each role against the API. <code>backend/test/rbac-stress.test.js</code> throws concurrent requests at role-protected routes to verify the rate limiter and the per-user isolation. Both run in CI on every push. I think the reason this project shipped without a serious security incident is that those tests existed from week one, not week twenty.</p>
+
+  <p><strong>The AI service is intentionally boring.</strong> <code>ai-service/app/main.py</code> exposes four things: <code>/resume/parse</code>, <code>/skills/extract</code>, <code>/match/score</code>, and <code>/student/assistant</code>. The first three are local. The fourth optionally calls Groq with a 12-second timeout, falling back to canned guidance if the call fails. The optional NLP libraries (<code>spacy</code>, <code>pdfplumber</code>) are imported inside <code>try/except</code> blocks; the service starts even if they're missing. Most of the routes are pure functions over JSON, with no in-memory state. The student assistant has a small LRU cache, keyed by the SHA-256 of the prompt, with a TTL of a few minutes. None of this is clever. All of it is what makes the service survivable when the upstream is slow or down.</p>
+
+  <p><strong>The production-safety assertions.</strong> <code>_assert_production_safety()</code> in <code>main.py</code> runs at startup and refuses to boot if any of: <code>AI_ALLOWED_ORIGINS</code> is empty or <code>*</code> in production, the internal auth token is missing or too short, or the database URL is a placeholder. The same pattern exists in the Express backend. The list of failures that would have shipped otherwise is long, and the assertions are short enough that I trust them.</p>
+
+  <p><strong>What I'd do differently.</strong> The frontend has 25 pages under <code>frontend/src/app</code>, and several of them import the same handful of utility functions through copy-paste rather than a shared hook. The role-based route guard (<code>useRoleAccess</code>) was added late; it should have been there from page one. The Express backend's <code>index.ts</code> is 6,000 lines and would benefit from a router-per-feature split. Both are pure refactors and the next sprint will be that.</p>
+
+  <h3>Lexora AI: per-user vector stores, the right way</h3>
+
+  <p>Lexora is a document Q&amp;A service. The thing that interested me was the isolation problem: when many users share a single process, how do you make sure user A's question doesn't retrieve chunks from user B's PDFs?</p>
+
+  <p><strong>Per-user FAISS indices.</strong> The default for a small RAG app is one global FAISS index filtered by metadata at query time. That's the wrong default for a multi-tenant service. The fix in Lexora is one FAISS index per user, stored under <code>FAISS_INDEX_PATH/&lt;user_id&gt;/</code>. The retrieval service is constructed with a <code>user_id</code> and gets the user's vector store; it cannot reach another user's. The retrieval also filters by <code>document_ids</code> inside the FAISS search, not after context construction, so context is never built from documents the user didn't request.</p>
+
+  <p><strong>JWT with rotation and revocation.</strong> Access tokens have a <code>jti</code>. On logout, the <code>jti</code> is added to a Redis denylist with a TTL equal to the token's remaining lifetime. Refresh tokens are single-use: the moment a refresh token is exchanged, the old one is blacklisted in Redis. The login flow gives a user both tokens; the API refuses a request if the access token's <code>jti</code> is in the denylist. The retrieval cache keys also include <code>user_id</code>, query hash, and document filter; a hit is only valid if all three match. The point of this is not to be clever. It's to make the cache safe.</p>
+
+  <p><strong>Background processing, opt-in.</strong> <code>DOCUMENT_PROCESSING_MODE=inline</code> processes uploads in the request thread, which is what you want for local dev. <code>background</code> queues the work to Celery, which is what you want in production. The same code path serves both. Document parsing uses <code>pdfplumber</code> for PDFs and a small dispatcher for <code>txt</code>, <code>md</code>, and <code>docx</code>. The chunker is a simple sliding window with overlap, exposed in <code>app/utils/text_chunker.py</code>.</p>
+
+  <p><strong>The chat service.</strong> <code>app/services/chat_service.py</code> orchestrates the whole loop: persist the user message, run retrieval, build the LLM context with source attribution, call OpenAI, persist the assistant message. The non-streaming path returns the message and sources in one call. The streaming path yields chunks over SSE and writes the final message to the DB on completion. The history is passed to the model as real user/assistant turns, not a flattened user-only string, which matters for follow-up questions. The cost of that single line of change was visible in the eval: multi-turn accuracy went up by more than any other tweak I made.</p>
+
+  <p><strong>What I'd do differently.</strong> FAISS rebuilds the user index from scratch on every document deletion. The metadata-side store keeps the original embeddings, so the rebuild is cheap; in production I'd switch to a vector DB that supports delete in place, because the rebuild path will eventually hit a high-churn case. The test suite is at 46% coverage; chat, retrieval, and vector storage all need more tests before I'd run this in a real product. The OpenAI key is read from env on every request; that's fine for a side project, but the prompt templates should move to a config file so non-engineers can iterate on them.</p>
+
+  <h3>SentinelML: the part they don't teach in tutorials</h3>
+
+  <p>SentinelML is the most-deployed project in this list. It runs in Docker Compose with PostgreSQL, Redis, MLflow, Prometheus, and Grafana, and the only reason it works is that I treated drift as a first-class concern, not a research project. The postmortem of this project is its own post (<a href="./your-ml-system-will-fail-in-production.html">Your ML system will fail in production</a>), so I'll focus on the code here.</p>
+
+  <p><strong>The 25 features.</strong> <code>sentinel_ml/features/engineering.py</code> builds the feature matrix. The numerical features are organized in four groups. Time: <code>hour_of_day</code>, <code>day_of_week</code>, <code>is_weekend</code>, <code>is_night</code>, <code>amount_log</code>. User behavior: <code>user_txn_count_1h</code>, <code>_24h</code>, <code>_7d</code>, plus a 7-day rolling mean and standard deviation of amount, and the z-score of the current amount against the user's history. Velocity: <code>time_since_last_txn</code> and the derived <code>txn_velocity_1h</code>, <code>txn_velocity_24h</code>. Risk: <code>merchant_risk_score</code> and <code>country_risk_score</code>, computed from the training-set fraud rate per merchant and per country. Change: <code>device_change_flag</code> and <code>location_change_flag</code>, which are 0/1 indicators of whether the device or country differs from the previous transaction. The categorical features (<code>merchant_category</code>, <code>transaction_type</code>, <code>device_type</code>, <code>card_type</code>, <code>location_country</code>) are label-encoded at fit time, and unknown categories at inference time are mapped to <code>UNKNOWN</code>.</p>
+
+  <p>The one that mattered the most, by a wide margin, was <code>txn_velocity_24h</code>. SHAP, permutation importance, and partial dependence all agreed. The model's top feature was a hand-engineered count of how many transactions the user had done in the last 24 hours. The lesson in the postmortem post holds: for tabular data with strong domain structure, a feature you can name usually beats an embedding you can't.</p>
+
+  <p><strong>SMOTE and what it actually does.</strong> The training pipeline applies SMOTE to the training set only, never to validation. The model wrapper (<code>FraudDetectionModel</code>) is a thin <code>RandomForestClassifier</code> from scikit-learn. ROC-AUC on the holdout is 0.94; the production postmortem covers the drift events that brought it down to 0.81 in the first ten days. The reason SMOTE matters here is not that fraud is the minority class; it's that without oversampling, the random forest's prior on "not fraud" is so strong that recall on the actual fraud cases drops to unusable levels. The fix is not class weights; the fix is to actually synthesize enough minority examples that the model can learn the boundary.</p>
+
+  <p><strong>Drift detection, three ways.</strong> <code>sentinel_ml/monitoring/drift.py</code> runs three different tests. Kolmogorov-Smirnov for numerical features (the standard two-sample test; null hypothesis is "drawn from the same distribution"). Chi-squared for categorical features. And PSI, the Population Stability Index, with the standard 10-bucket bucketing and the well-known thresholds: <code>&lt; 0.1</code> no change, <code>0.1-0.25</code> moderate, <code>&gt; 0.25</code> significant. The implementation holds a rolling window of recent observations (default 1,000) per feature, compares it to the reference distribution from training, and emits a <code>DriftResult</code> for each feature that crosses the threshold. The results are written to <code>DataDriftLog</code> in the database. The PSI function is in <code>calculate_psi</code>; it's the one I check the most.</p>
+
+  <p><strong>The cache key.</strong> The Redis cache for predictions uses a deterministic hash of the request payload plus the model version. The model version is a timestamp string like <code>v20260518_162532</code>, written at training time. A new training run gets a new version; the old cache entries become invalid by definition. This is the only way to do model-versioned caching without storing a separate version key for every entry. The cache is optional: if Redis is unreachable, the API continues without it. The fallback path is the safe path; the cache is the optimization.</p>
+
+  <p><strong>What I'd do differently.</strong> The model is a RandomForest. The next version will be gradient-boosted, with calibrated probability outputs. The features are good, but the model's capacity to combine them non-linearly is bounded. The drift detector logs to the database, but doesn't page anyone. The alerting layer should be a small Slack webhook on the admin monitoring endpoint. The synthetic data generator is a single file; the real fraud patterns it produces are a stylized version of the real distribution. The first time this is deployed against a real bank's data, the drift detector will light up immediately and the team will learn what their actual distribution looks like. That's the point.</p>
+
+  <h3>What I learned across all four</h3>
+
+  <p>Three things keep showing up.</p>
+
+  <p><strong>1. The boring infrastructure is the work.</strong> The four projects differ in every other way, but they all have a similar shape: a small amount of interesting code (the model, the retrieval, the RAG loop), wrapped in a large amount of boring code (auth, validation, caching, monitoring, deployment). The boring code is what makes the interesting code useful. SentinelML's drift detector is not as interesting as a new model architecture, and it is the only reason the system has been running for months without someone noticing the model has gone stale.</p>
+
+  <p><strong>2. Multi-tenant defaults matter.</strong> Lexora's per-user FAISS indices and EsenceLab's role-gated routes are both examples of a principle: in a multi-user system, the secure default has to be the one that's easiest to ship. The unsafe default is always a few lines shorter. If you ship the short version first, you have to convince yourself to rip it out later, and you usually don't.</p>
+
+  <p><strong>3. Evaluation is a separate project from training.</strong> BlitzKode's eval suite is a smoke test, not a benchmark. SentinelML's holdout is small enough that the ROC-AUC fluctuates by 0.02 between runs. Lexora has no end-to-end eval for the RAG loop. The next quarter is mostly about closing that gap across all of them. The training work is one phase; the eval work is the next.</p>
+
+  <p>That's the tour. The code is on GitHub. If something here was wrong, or if you've done one of these differently and it worked, I'd like to hear about it.</p>
+
+  <p class="back-link"><a href="../">← back to home</a></p>
+</article>
+</main>
+
+<footer>
+  <p><small>© <span id="year">2026</span> Sajad.</small></p>
+</footer>
+<script>
+(function(){var y=document.getElementById('year');if(y)y.textContent=new Date().getFullYear();})();
+</script>
+</body>
+</html>
