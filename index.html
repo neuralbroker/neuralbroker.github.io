@@ -69,22 +69,22 @@
   <ul class="projects">
     <li>
       <h3 class="p-title"><a href="https://github.com/neuralbroker/blitzkode">BlitzKode</a></h3>
-      <p class="p-desc">Fine-tuned Qwen2.5-Coder-1.5B on 2,000 code instructions. Three training stages (SFT, reward SFT, DPO) plus GGUF export for CPU-only inference.</p>
+      <p class="p-desc">4-stage fine-tuning (SFT, reward SFT, DPO, LoRA) on Qwen2.5-Coder-1.5B. GGUF Q8_0 + LoRA adapter, FastAPI + SSE. 510+ HF downloads.</p>
       <p class="p-links"><a href="https://github.com/neuralbroker/blitzkode">code</a> <a href="https://huggingface.co/neuralbroker/blitzkode">model</a> <a href="./writing/fine-tuning-is-mostly-data-work.html">notes</a></p>
     </li>
     <li>
       <h3 class="p-title"><a href="https://github.com/neuralbroker/esencelab">EsenceLab</a></h3>
-      <p class="p-desc">Full-stack AI hiring platform (student, recruiter, admin modules). Gemini-powered resume parsing cut manual shortlisting by 60% across 200+ resumes; three-service monorepo on Vercel and Render. Won 2nd Prize at Innovision (30+ teams).</p>
+      <p class="p-desc">Full-stack AI hiring platform (student, recruiter, admin). Gemini resume parsing cut shortlisting by 60% across 200+ resumes. 3-service monorepo on Vercel + Render, GitHub Actions CI. JWT + Supabase RLS auth. 2nd at Innovision (30+ teams).</p>
       <p class="p-links"><a href="https://github.com/neuralbroker/esencelab">code</a></p>
     </li>
     <li>
       <h3 class="p-title"><a href="https://github.com/neuralbroker/lexora-ai">Lexora AI</a></h3>
-      <p class="p-desc">Document Q&amp;A with retrieval. Per-user FAISS indices, OpenAI for generation, Redis for hot cache, Celery for the slow stuff.</p>
+      <p class="p-desc">RAG document Q&amp;A. Per-user FAISS isolation, LangChain + OpenAI. Sub-2s retrieval on 100k-token corpora. JWT refresh-token rotation, Redis-backed revocation.</p>
       <p class="p-links"><a href="https://github.com/neuralbroker/lexora-ai">code</a></p>
     </li>
     <li>
       <h3 class="p-title"><a href="https://github.com/neuralbroker/sentinel-ml">SentinelML</a></h3>
-      <p class="p-desc">Credit-card fraud detection. RandomForest on 25 features, 0.94 ROC-AUC. Drift detection, auto-retrain.</p>
+      <p class="p-desc">Credit-card fraud detection. SMOTE + RandomForest on 25 features, 0.94 ROC-AUC. Redis prediction cache, MLflow tracking, docker-compose. Drift detection, weekly retrain.</p>
       <p class="p-links"><a href="https://github.com/neuralbroker/sentinel-ml">code</a> <a href="./writing/your-ml-system-will-fail-in-production.html">notes</a></p>
     </li>
   </ul>
