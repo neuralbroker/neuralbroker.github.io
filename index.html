@@ -71,23 +71,23 @@
   <ul class="projects">
     <li>
       <h3 class="p-title"><a href="https://github.com/neuralbroker/blitzkode">BlitzKode</a></h3>
-      <span class="p-desc">Fine-tuned Qwen2.5-Coder-1.5B on 2,000 code instructions. Three training stages (SFT, reward SFT, DPO) plus GGUF export for CPU-only inference.</span>
-      <span class="p-links"><a href="https://github.com/neuralbroker/blitzkode">code</a> <a href="https://huggingface.co/neuralbroker/blitzkode">model</a> <a href="./writing/fine-tuning-is-mostly-data-work.html">notes</a></span>
+      <p class="p-desc">Fine-tuned Qwen2.5-Coder-1.5B on 2,000 code instructions. Three training stages (SFT, reward SFT, DPO) plus GGUF export for CPU-only inference.</p>
+      <p class="p-links"><a href="https://github.com/neuralbroker/blitzkode">code</a> <a href="https://huggingface.co/neuralbroker/blitzkode">model</a> <a href="./writing/fine-tuning-is-mostly-data-work.html">notes</a></p>
     </li>
     <li>
       <h3 class="p-title"><a href="https://github.com/neuralbroker/esencelab">EsenceLab</a></h3>
-      <span class="p-desc">Full-stack AI hiring platform (student, recruiter, admin modules). Gemini-powered resume parsing cut manual shortlisting by 60% across 200+ resumes; three-service monorepo on Vercel and Render. Won 2nd Prize at Innovision (30+ teams).</span>
-      <span class="p-links"><a href="https://github.com/neuralbroker/esencelab">code</a></span>
+      <p class="p-desc">Full-stack AI hiring platform (student, recruiter, admin modules). Gemini-powered resume parsing cut manual shortlisting by 60% across 200+ resumes; three-service monorepo on Vercel and Render. Won 2nd Prize at Innovision (30+ teams).</p>
+      <p class="p-links"><a href="https://github.com/neuralbroker/esencelab">code</a></p>
     </li>
     <li>
       <h3 class="p-title"><a href="https://github.com/neuralbroker/lexora-ai">Lexora AI</a></h3>
-      <span class="p-desc">Document Q&amp;A with retrieval. Per-user FAISS indices, OpenAI for generation, Redis for hot cache, Celery for the slow stuff.</span>
-      <span class="p-links"><a href="https://github.com/neuralbroker/lexora-ai">code</a></span>
+      <p class="p-desc">Document Q&amp;A with retrieval. Per-user FAISS indices, OpenAI for generation, Redis for hot cache, Celery for the slow stuff.</p>
+      <p class="p-links"><a href="https://github.com/neuralbroker/lexora-ai">code</a></p>
     </li>
     <li>
       <h3 class="p-title"><a href="https://github.com/neuralbroker/sentinel-ml">SentinelML</a></h3>
-      <span class="p-desc">Credit-card fraud detection. RandomForest on 25 features, 0.94 ROC-AUC. Drift detection, auto-retrain.</span>
-      <span class="p-links"><a href="https://github.com/neuralbroker/sentinel-ml">code</a> <a href="./writing/your-ml-system-will-fail-in-production.html">notes</a></span>
+      <p class="p-desc">Credit-card fraud detection. RandomForest on 25 features, 0.94 ROC-AUC. Drift detection, auto-retrain.</p>
+      <p class="p-links"><a href="https://github.com/neuralbroker/sentinel-ml">code</a> <a href="./writing/your-ml-system-will-fail-in-production.html">notes</a></p>
     </li>
   </ul>
 </section>
@@ -114,10 +114,10 @@
 </main>
 
 <footer>
-  <p><small>© <span id="year"></span> Abdulla Sajad.</small></p>
+  <p><small>© <span id="year">2026</span> Abdulla Sajad.</small></p>
 </footer>
 <script>
-document.getElementById('year').textContent = new Date().getFullYear();
+(function(){var y=document.getElementById('year');if(y)y.textContent=new Date().getFullYear();})();
 </script>
 </body>
 </html>

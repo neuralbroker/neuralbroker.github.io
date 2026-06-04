@@ -96,10 +96,10 @@
 </main>
 
 <footer>
-  <p><small>© <span id="year"></span> Abdulla Sajad.</small></p>
+  <p><small>© <span id="year">2026</span> Abdulla Sajad.</small></p>
 </footer>
 <script>
-document.getElementById('year').textContent = new Date().getFullYear();
+(function(){var y=document.getElementById('year');if(y)y.textContent=new Date().getFullYear();})();
 </script>
 </body>
 </html>

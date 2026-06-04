@@ -73,7 +73,7 @@ a:focus-visible {
 }
 
 nav { font-size: 0.95em; margin-top: 0.5em; }
-nav a { margin-right: 8px; }
+nav a { margin-right: 4px; padding: 6px 4px; display: inline-block; }
 strong, b { color: var(--heading); }
 
 code, pre, kbd, samp {
@@ -126,7 +126,6 @@ article header { margin-bottom: 1.5em; }
 .back-link { margin-top: 2em; font-size: 0.95em; }
 
 ::selection { background: var(--link); color: var(--bg); }
-::placeholder { color: var(--muted); opacity: 1; }
 
 /* Skip link */
 .skip-link {
@@ -175,14 +174,12 @@ ul.projects .p-title {
 ul.projects .p-title a,
 ul.projects .p-title a:visited { color: var(--heading); }
 ul.projects .p-desc {
-  display: block;
   color: var(--text);
   font-size: 0.95em;
-  margin-top: 0.2em;
+  margin: 0.25em 0 0;
 }
 ul.projects .p-links {
-  display: block;
-  margin-top: 0.3em;
+  margin: 0.3em 0 0;
   font-size: 0.85em;
 }
 ul.projects .p-links a { margin-right: 10px; }
@@ -205,4 +202,6 @@ ul.contact .k {
   ul.posts li { flex-direction: column; gap: 0.15em; }
   ul.posts time { flex: 0 0 auto; }
   h2 { margin-top: 1.6em; }
+  nav { line-height: 1.9; }
+  nav a { padding: 8px 6px; }
 }
