@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#01242e" media="(prefers-color-scheme: dark)">
 <title>Your ML system will fail in production. Plan for it. · Abdulla Sajad</title>
-<meta name="description" content="A postmortem of SentinelML.">
+<meta name="description" content="A postmortem of SentinelML, the credit-card fraud detection system I built in 2026.">
 <meta name="author" content="Abdulla Sajad">
 <link rel="canonical" href="https://neuralbroker.github.io/writing/your-ml-system-will-fail-in-production.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3EA%3C/text%3E%3C/svg%3E">
@@ -16,15 +16,15 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Abdulla Sajad">
 <meta property="og:title" content="Your ML system will fail in production. Plan for it.">
-<meta property="og:description" content="A postmortem of SentinelML.">
+<meta property="og:description" content="A postmortem of SentinelML, the credit-card fraud detection system I built in 2026.">
 <meta property="og:url" content="https://neuralbroker.github.io/writing/your-ml-system-will-fail-in-production.html">
 <meta property="og:image" content="https://neuralbroker.github.io/og-image.png">
-<meta property="article:published_time" content="2024-12-03">
+<meta property="article:published_time" content="2026-05-25">
 <meta property="article:author" content="Abdulla Sajad">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Your ML system will fail in production. Plan for it.">
-<meta name="twitter:description" content="A postmortem of SentinelML.">
+<meta name="twitter:description" content="A postmortem of SentinelML, the credit-card fraud detection system I built in 2026.">
 <meta name="twitter:image" content="https://neuralbroker.github.io/og-image.png">
 
 <script type="application/ld+json">
@@ -32,8 +32,8 @@
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "Your ML system will fail in production. Plan for it.",
-  "description": "A postmortem of SentinelML.",
-  "datePublished": "2024-12-03",
+  "description": "A postmortem of SentinelML, the credit-card fraud detection system I built in 2026.",
+  "datePublished": "2026-05-25",
   "author": {"@type": "Person", "name": "Abdulla Sajad", "url": "https://neuralbroker.github.io/"},
   "url": "https://neuralbroker.github.io/writing/your-ml-system-will-fail-in-production.html",
   "mainEntityOfPage": "https://neuralbroker.github.io/writing/your-ml-system-will-fail-in-production.html"
@@ -50,12 +50,12 @@
 <main id="main">
 <article>
   <header>
-    <p><time datetime="2024-12-03">2024-12-03</time></p>
+    <p><time datetime="2026-05-25">2026-05-25</time></p>
     <h2>Your ML system will fail in production. Plan for it.</h2>
     <p><em>A postmortem of SentinelML.</em></p>
   </header>
 
-  <p>I spent most of 2024 building <a href="https://github.com/neuralbroker/sentinel-ml">SentinelML</a>, a credit-card fraud detection system. The model part was the easy part. The model was a RandomForest on 25 features. I trained it, it hit 0.94 ROC-AUC on a held-out set, I wrote a FastAPI wrapper, I shipped it. The hard part was everything after that, and "everything after that" is most of what makes an ML system work.</p>
+  <p>I spent most of this year building <a href="https://github.com/neuralbroker/sentinel-ml">SentinelML</a>, a credit-card fraud detection system. The model part was the easy part. The model was a RandomForest on 25 features. I trained it, it hit 0.94 ROC-AUC on a held-out set, I wrote a FastAPI wrapper, I shipped it. The hard part was everything after that, and "everything after that" is most of what makes an ML system work.</p>
 
   <p>This is the postmortem I wish I'd had before I started.</p>
 

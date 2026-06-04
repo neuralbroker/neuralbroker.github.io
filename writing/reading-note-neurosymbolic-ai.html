@@ -6,8 +6,8 @@
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#01242e" media="(prefers-color-scheme: dark)">
-<title>A reading note on neurosymbolic AI · Abdulla Sajad</title>
-<meta name="description" content="What I think I understand, and where I don't.">
+<title>Neurosymbolic AI in military systems · Abdulla Sajad</title>
+<meta name="description" content="Seminar paper on neurosymbolic AI in military systems: autonomy, command-and-control, verification, and where the symbolic part actually helps.">
 <meta name="author" content="Abdulla Sajad">
 <link rel="canonical" href="https://neuralbroker.github.io/writing/reading-note-neurosymbolic-ai.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3EA%3C/text%3E%3C/svg%3E">
@@ -15,24 +15,24 @@
 
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Abdulla Sajad">
-<meta property="og:title" content="A reading note on neurosymbolic AI">
-<meta property="og:description" content="What I think I understand, and where I don't.">
+<meta property="og:title" content="Neurosymbolic AI in military systems">
+<meta property="og:description" content="Seminar paper on neurosymbolic AI in military systems: autonomy, command-and-control, verification, and where the symbolic part actually helps.">
 <meta property="og:url" content="https://neuralbroker.github.io/writing/reading-note-neurosymbolic-ai.html">
 <meta property="og:image" content="https://neuralbroker.github.io/og-image.png">
 <meta property="article:published_time" content="2025-02-11">
 <meta property="article:author" content="Abdulla Sajad">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="A reading note on neurosymbolic AI">
-<meta name="twitter:description" content="What I think I understand, and where I don't.">
+<meta name="twitter:title" content="Neurosymbolic AI in military systems">
+<meta name="twitter:description" content="Seminar paper on neurosymbolic AI in military systems: autonomy, command-and-control, verification, and where the symbolic part actually helps.">
 <meta name="twitter:image" content="https://neuralbroker.github.io/og-image.png">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "A reading note on neurosymbolic AI",
-  "description": "What I think I understand, and where I don't.",
+  "headline": "Neurosymbolic AI in military systems",
+  "description": "Seminar paper on neurosymbolic AI in military systems: autonomy, command-and-control, verification, and where the symbolic part actually helps.",
   "datePublished": "2025-02-11",
   "author": {"@type": "Person", "name": "Abdulla Sajad", "url": "https://neuralbroker.github.io/"},
   "url": "https://neuralbroker.github.io/writing/reading-note-neurosymbolic-ai.html",
@@ -51,11 +51,17 @@
 <article>
   <header>
     <p><time datetime="2025-02-11">2025-02-11</time></p>
-    <h2>A reading note on neurosymbolic AI</h2>
-    <p><em>What I think I understand, and where I don't.</em></p>
+    <h2>Neurosymbolic AI in military systems</h2>
+    <p><em>Seminar paper, SNGCET, Spring 2025. What I think I understand about applying neurosymbolic methods to defence applications, and where I don't.</em></p>
   </header>
 
-  <p>I read a survey on neurosymbolic AI last week. This is not a summary. This is a note to myself about what I think I understood, and what I'm not sure I did. If you're looking for a clean overview, find a better source.</p>
+  <p><em>This is the seminar paper I gave for my B.Tech coursework. The topic is neurosymbolic AI in military systems: where a neural component handles perception and pattern-matching, and a symbolic component handles the verifiable, rule-bound reasoning that defence applications tend to demand. The notes below are what I read, what I agreed with, and what I'm not yet sold on.</em></p>
+
+  <p>I read a survey on neurosymbolic AI for this paper, plus a few of the older papers it cited. This isn't a summary of any one of them. It's a note to myself about what I think I understood, and what I'm not sure I did. If you're looking for a clean overview, find a better source.</p>
+
+  <h3>Why military systems, specifically</h3>
+
+  <p>Military and defence applications are an interesting case for neurosymbolic AI because the failure modes matter. A misclassification in a consumer photo app is a slightly wrong tag. The same misclassification in a target-recognition system, an autonomous logistics planner, or a cyber-defence triage tool is a different problem entirely. The pitch for neurosymbolic methods in this domain is that you keep the perception power of neural networks while adding a symbolic layer that can be inspected, constrained, and argued about. Whether the engineering cost is worth it is the question I kept asking while reading.</p>
 
   <h3>The pitch, as I understand it</h3>
 
@@ -68,26 +74,26 @@
   <p>There are basically three camps:</p>
 
   <ul>
-    <li><strong>Symbolic-neural.</strong> A traditional symbolic system at the core, with neural networks plugged in as oracles. The neural net answers questions the symbolic system can't easily compute. The classic example is a theorem prover that uses a neural net to predict which axioms to try next.</li>
-    <li><strong>Neural-symbolic.</strong> A neural net at the core, with symbolic structure imposed on top. The architecture is neural but the loss function or the output constraints encode symbolic knowledge. The classic example is a network that outputs a parse tree.</li>
-    <li><strong>Hybrid.</strong> Both components are first-class. There's a controller that decides which one to use, and they communicate through some shared representation.</li>
+    <li><strong>Symbolic-neural.</strong> A traditional symbolic system at the core, with neural networks plugged in as oracles. The neural net answers questions the symbolic system can't easily compute. The classic example is a theorem prover that uses a neural net to predict which axioms to try next. In a military context, this looks like a rule-based engagement-decision shell with a learned perception module feeding it sensor data.</li>
+    <li><strong>Neural-symbolic.</strong> A neural net at the core, with symbolic structure imposed on top. The architecture is neural but the loss function or the output constraints encode symbolic knowledge. The classic example is a network that outputs a parse tree. For defence applications, this often shows up as a learned policy that is constrained to obey a rules-of-engagement specification.</li>
+    <li><strong>Hybrid.</strong> Both components are first-class. There's a controller that decides which one to use, and they communicate through some shared representation. This is the most ambitious and the most common in real deployed systems I've read about.</li>
   </ul>
 
-  <p>I think the first camp is the most principled. The third is the most ambitious. The second is the easiest to publish, because you can take any existing neural model and add a constraint.</p>
+  <p>I think the first camp is the most principled for military applications, because the symbolic shell is the part that can be audited. The third is the most ambitious. The second is the easiest to publish, because you can take any existing neural model and add a constraint.</p>
 
   <h3>What I'm not sure about</h3>
 
-  <p>I don't know if any of this works in a way that justifies the engineering cost. The benchmark numbers in the surveys look good, but I notice that the benchmarks are usually hand-picked, and the symbolic components are usually small enough that you could just write the rules. I'm not convinced the field has crossed the threshold where the hybrid system is doing something neither component could do alone.</p>
+  <p>I don't know if any of this works in a way that justifies the engineering cost. The benchmark numbers in the surveys look good, but I notice that the benchmarks are usually hand-picked, and the symbolic components are usually small enough that you could just write the rules. I'm not convinced the field has crossed the threshold where the hybrid system is doing something neither component could do alone. In military applications this matters more, because the failure of "we added complexity for no real gain" is harder to walk back than in a research paper.</p>
 
-  <p>There's also an alignment story here that I find suspicious. The pitch is that neurosymbolic systems are more interpretable, because you can read the symbolic trace. In practice the trace tells you what the system did, not why. The neural part still does the parts that are hard to interpret. You get a partial story and a feeling of safety that may not be earned.</p>
+  <p>There's also an alignment story here that I find suspicious. The pitch is that neurosymbolic systems are more interpretable, because you can read the symbolic trace. In practice the trace tells you what the system did, not why. The neural part still does the parts that are hard to interpret. You get a partial story and a feeling of safety that may not be earned. In a military system, partial interpretability isn't the same as auditable safety, and I think that distinction is sometimes glossed over.</p>
 
-  <p>I might be wrong about this. I'm not a neurosymbolic researcher. I'm someone who read a survey and is suspicious of things that look like silver bullets.</p>
+  <p>I might be wrong about this. I'm not a neurosymbolic researcher. I'm someone who read a survey and is suspicious of things that look like silver bullets, especially in domains where the consequences of being wrong are not symmetric.</p>
 
   <h3>What I'll take from it</h3>
 
   <p>Two things.</p>
 
-  <p>First, the framing is useful even if the systems aren't. The question "where does the perception end and the reasoning begin" is one I'm going to keep asking about every system I build. Most ML systems I see answer that question by accident, or not at all.</p>
+  <p>First, the framing is useful even if the systems aren't. The question "where does the perception end and the reasoning begin" is one I'm going to keep asking about every system I build, and especially about systems where the answer is "we don't know, the neural net handles it." Most ML systems I see answer that question by accident, or not at all.</p>
 
   <p>Second, I want to try building one. Not a research system. A small, stupid system where a neural net classifies a document and a symbolic system checks the classification against a set of rules I write. The point is to feel the interface. To find out where it breaks, what kinds of errors the symbolic part catches, what kinds it misses. To find out whether the engineering cost is worth it for the kind of work I do.</p>
 
@@ -95,7 +101,7 @@
 
   <h3>What I want to read next</h3>
 
-  <p>I want to read more of the older work, the 90s stuff that was doing this before it was cool. There's a thread from Garcez and Lamb that I haven't followed yet. I want to read some of the more skeptical takes, the kind that show up in JMLR and not at NeurIPS. And I want to find a good failure case — a real neurosymbolic system that was deployed and broke, and someone wrote honestly about why.</p>
+  <p>I want to read more of the older work, the 90s stuff that was doing this before it was cool. There's a thread from Garcez and Lamb that I haven't followed yet. I want to read some of the more skeptical takes, the kind that show up in JMLR and not at NeurIPS. And I want to find a good failure case — a real neurosymbolic system that was deployed (in defence or elsewhere) and broke, and someone wrote honestly about why.</p>
 
   <p>If you know of any of those, I'd like to hear about it.</p>
 
