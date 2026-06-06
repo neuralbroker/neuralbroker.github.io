@@ -17,15 +17,13 @@
 <meta property="og:site_name" content="Abdulla Sajad">
 <meta property="og:title" content="My projects and learnings so far">
 <meta property="og:description" content="A walkthrough of BlitzKode, EsenceLab, Lexora AI, and SentinelML, with the design decisions and the things I'd do differently.">
-<meta property="og:url" content="https://neuralbroker.github.io/writing/projects-and-learnings.html">
-<meta property="og:image" content="https://neuralbroker.github.io/og-image.png">
-<meta property="article:published_time" content="2026-06-04">
+  <meta property="og:url" content="https://neuralbroker.github.io/writing/projects-and-learnings.html">
+  <meta property="article:published_time" content="2026-06-04">
 <meta property="article:author" content="Abdulla Sajad">
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="My projects and learnings so far">
-<meta name="twitter:description" content="A walkthrough of BlitzKode, EsenceLab, Lexora AI, and SentinelML, with the design decisions and the things I'd do differently.">
-<meta name="twitter:image" content="https://neuralbroker.github.io/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="My projects and learnings so far">
+  <meta name="twitter:description" content="A walkthrough of BlitzKode, EsenceLab, Lexora AI, and SentinelML, with the design decisions and the things I'd do differently.">
 
 <script type="application/ld+json">
 {
@@ -55,7 +53,7 @@
     <p><em>A walkthrough of BlitzKode, EsenceLab, Lexora AI, and SentinelML, with the design decisions and the things I'd do differently.</em></p>
   </header>
 
-  <p>Four projects, all in 2026. This is a tour of the code I wrote and the parts that taught me the most. I tried to be specific about <em>why</em> things are the way they are, not just <em>what</em> they are. Each section assumes you've read the README; I'll skip the boilerplate and go to the parts that are interesting to me in hindsight.</p>
+  <p>Six projects, all in 2026. This is a tour of the code I wrote and the parts that taught me the most. I tried to be specific about <em>why</em> things are the way they are, not just <em>what</em> they are. Each section assumes you've read the README; I'll skip the boilerplate and go to the parts that are interesting to me in hindsight.</p>
 
   <h3>BlitzKode: a 1.5B model, fully on your laptop</h3>
 
@@ -115,7 +113,16 @@
 
   <p><strong>What I'd do differently.</strong> The model is a RandomForest. The next version will be gradient-boosted, with calibrated probability outputs. The features are good, but the model's capacity to combine them non-linearly is bounded. The drift detector logs to the database, but doesn't page anyone. The alerting layer should be a small Slack webhook on the admin monitoring endpoint. The synthetic data generator is a single file; the real fraud patterns it produces are a stylized version of the real distribution. The first time this is deployed against a real bank's data, the drift detector will light up immediately and the team will learn what their actual distribution looks like. That's the point.</p>
 
-  <h3>What I learned across all four</h3>
+  <h3>Other projects</h3>
+
+  <p>Two more projects that didn't make it into the main tour but are on GitHub:</p>
+
+  <ul>
+    <li><strong><a href="https://github.com/neuralbroker/ai-resume-screener">AI Resume Screener</a></strong> — FastAPI-based resume screener using Groq (llama-3.1-8b-instant). JWT auth, screening history, admin role, statistics dashboard. A precursor to EsenceLab's parsing pipeline; the same Groq-based pattern ended up in the larger project.</li>
+    <li><strong><a href="https://github.com/neuralbroker/speakswap">SpeakSwap</a></strong> — Next.js 15 + React 19 translation app. Text + speech translation between languages via free endpoints (MyMemory, LibreTranslate, Lingva) with fallback. Voice input/output, dark mode, translation history in localStorage, common-phrases library for 12 languages.</li>
+  </ul>
+
+  <h3>What I learned across all six</h3>
 
   <p>Three things keep showing up.</p>
 
