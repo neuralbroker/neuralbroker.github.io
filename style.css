@@ -424,57 +424,39 @@ ul.posts a:hover { text-decoration: underline; }
 
 /* Contact */
 ul.contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
   list-style: none;
   padding: 0;
-  margin: 0.5rem 0 0;
+  margin: 0.75rem 0 0;
 }
 
 ul.contact li {
-  margin: 0.55rem 0;
+  margin: 0;
 }
 
 .contact-link {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  color: var(--heading);
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  color: var(--muted);
   text-decoration: none;
-  font-size: 0.98rem;
-  line-height: 1.4;
-  padding: 0.35rem 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
 }
 
 .contact-link:hover {
-  text-decoration: underline;
-  text-decoration-color: var(--muted);
-}
-
-.contact-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.35rem;
-  height: 1.35rem;
-  color: var(--muted);
-  flex-shrink: 0;
-}
-
-.contact-link:hover .contact-icon {
   color: var(--heading);
+  border-color: var(--heading);
+  text-decoration: none;
 }
 
-.contact-icon svg {
-  width: 100%;
-  height: 100%;
-}
-
-.contact-icon svg[fill="currentColor"] {
-  fill: currentColor;
-}
-
-.contact-text {
-  min-width: 0;
-  word-break: break-word;
+.contact-link svg {
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 /* Footer */
@@ -630,9 +612,6 @@ article li { margin: 0.35rem 0; }
 
   article header h2 { font-size: 1.2rem; }
 
-  .contact-link {
-    padding: 0.45rem 0;
-  }
 }
 
 @media (max-width: 360px) {
