@@ -3,26 +3,26 @@
 <head>
 <meta charset="utf-8">
 <script>try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark')}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#000000" id="theme-color-meta">
 <title>Abdulla Sajad</title>
-<meta name="description" content="Applied AI engineer. Fine-tunes small models, ships production systems, writes about what breaks.">
+<meta name="description" content="Software engineer working on applied AI. I fine-tune small models, ship backend tools, and write about what I learn along the way.">
 <meta name="author" content="Abdulla Sajad">
 <link rel="canonical" href="https://neuralbroker.github.io/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' fill='white'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23111'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-size='58' fill='%23fff' font-family='monospace'%3EA%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="./style.css">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Abdulla Sajad">
 <meta property="og:title" content="Abdulla Sajad">
-<meta property="og:description" content="Applied AI engineer. Fine-tunes small models, ships production systems, writes about what breaks.">
+<meta property="og:description" content="Software engineer working on applied AI. I fine-tune small models, ship backend tools, and write about what I learn along the way.">
 <meta property="og:url" content="https://neuralbroker.github.io/">
 <meta property="og:locale" content="en_IN">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Abdulla Sajad">
-<meta name="twitter:description" content="Applied AI engineer. Fine-tunes small models, ships production systems, writes about what breaks.">
+<meta name="twitter:description" content="Software engineer working on applied AI. I fine-tune small models, ship backend tools, and write about what I learn along the way.">
 
 <script type="application/ld+json">
 {
@@ -76,34 +76,32 @@
 <main id="main">
 
 <section class="hero reveal">
-  <p class="hero-lead">I build AI systems that survive production.</p>
-  <p class="hero-sub"><span class="status-dot" aria-hidden="true"></span>Applied AI · India · open to remote engineering roles</p>
+  <p class="hero-lead">I write code. I make it work. I make it stay working.</p>
+  <p class="hero-sub">Software engineer focused on applied AI. Based in India, open to remote roles.</p>
 </section>
 
 <section id="about" class="reveal" aria-labelledby="about-h">
   <span class="section-label" id="about-h">about</span>
   <p>
-    I take models from notebook to deployment — fine-tuning small LLMs, designing RAG pipelines,
-    and shipping backend services with FastAPI and Next.js. Most of my time goes to the boring
-    infrastructure that keeps the interesting parts running: auth, monitoring, caching, drift detection.
+    I build AI systems end to end — fine-tuning small language models, putting together RAG pipelines,
+    and shipping backends with FastAPI and Next.js. A lot of the work is the unglamorous part that
+    actually matters: auth, monitoring, caching, and keeping things running after launch.
   </p>
   <p>
-    Currently focused on applied LLMs, MLOps, and systems that stay working after launch.
-    Based in India, available for remote software and AI engineering roles.
+    Right now I'm most interested in applied LLMs, MLOps, and deployment. I'm based in India and
+    open to remote software and AI engineering roles.
   </p>
 </section>
 
 <section id="featured" class="reveal" aria-labelledby="featured-h">
   <span class="section-label" id="featured-h">featured</span>
   <div class="card card-featured">
-    <span class="card-badge">highlight</span>
     <h3 class="p-title"><a href="https://github.com/neuralbroker/blitzkode">BlitzKode</a></h3>
-    <p class="p-hook">Open-source coding LLM that runs on a laptop.</p>
-    <p class="p-desc">4-stage fine-tuning pipeline (SFT → Reward-SFT → DPO → LoRA) on Qwen2.5-1.5B-Instruct. Cut VRAM from 24 GB to 8 GB via LoRA, gradient checkpointing, and bfloat16. Exported to GGUF Q8_0, served with FastAPI + SSE streaming.</p>
-    <p class="card-metrics">
-      <span>510+</span> HuggingFace downloads ·
-      <span>24→8 GB</span> VRAM ·
-      <span>4-stage</span> pipeline
+    <p class="p-desc">
+      An open-source coding LLM I trained so it could run on a laptop without a GPU.
+      Four-stage pipeline on Qwen2.5-1.5B-Instruct — SFT, reward SFT, DPO, then LoRA —
+      which brought VRAM down from 24 GB to about 8. Exported to GGUF and served through
+      FastAPI with SSE streaming. It's had 510+ downloads on HuggingFace.
     </p>
     <p class="p-links"><a href="https://github.com/neuralbroker/blitzkode">code</a> <a href="https://huggingface.co/neuralbroker/blitzkode">model</a> <a href="./writing/fine-tuning-is-mostly-data-work.html">notes</a></p>
   </div>
@@ -114,32 +112,48 @@
   <ul class="projects">
     <li class="card">
       <h3 class="p-title"><a href="https://github.com/neuralbroker/esencelab">EsenceLab</a></h3>
-      <p class="p-hook">AI hiring platform — 60% faster shortlisting.</p>
-      <p class="p-desc">3-service monorepo (Next.js 15 + Express + FastAPI) with Groq resume parsing, JWT + Supabase RLS auth, and GitHub Actions CI. Deployed on Vercel + Render. 2nd place at Innovision (30+ teams).</p>
+      <p class="p-desc">
+        An AI hiring platform that cut manual shortlisting time by about 60% across 200+ resumes.
+        Three services in one repo — Next.js frontend, Express backend, FastAPI AI layer —
+        with Groq for resume parsing and Supabase for auth. Deployed on Vercel and Render.
+        We placed 2nd at Innovision out of 30+ teams.
+      </p>
       <p class="p-links"><a href="https://github.com/neuralbroker/esencelab">code</a> <a href="https://esencelab.vercel.app">live</a></p>
     </li>
     <li class="card">
       <h3 class="p-title"><a href="https://github.com/neuralbroker/lexora-ai">Lexora AI</a></h3>
-      <p class="p-hook">Multi-tenant RAG with per-user vector isolation.</p>
-      <p class="p-desc">Sub-2s retrieval on 100k-token corpora. Per-user FAISS indices, LangChain + OpenAI, JWT refresh-token rotation, and Redis-backed revocation.</p>
+      <p class="p-desc">
+        A document Q&amp;A tool built around RAG. Each user gets their own FAISS index so
+        retrieval stays isolated between accounts. Sub-2-second retrieval on 100k-token corpora,
+        with JWT refresh-token rotation and Redis-backed revocation.
+      </p>
       <p class="p-links"><a href="https://github.com/neuralbroker/lexora-ai">code</a></p>
     </li>
     <li class="card">
       <h3 class="p-title"><a href="https://github.com/neuralbroker/sentinel-ml">SentinelML</a></h3>
-      <p class="p-hook">Fraud detection API with production drift monitoring.</p>
-      <p class="p-desc">0.94 ROC-AUC with SMOTE + RandomForest on 25 engineered features. Redis prediction cache, MLflow tracking, PSI/KS drift detection, and weekly auto-retrain. Docker Compose deployment.</p>
+      <p class="p-desc">
+        A credit-card fraud detection API — 0.94 ROC-AUC on a RandomForest with 25 hand-built features.
+        Includes Redis caching, MLflow tracking, drift detection, and a weekly retrain job.
+        Runs in Docker Compose with Postgres, Prometheus, and Grafana.
+      </p>
       <p class="p-links"><a href="https://github.com/neuralbroker/sentinel-ml">code</a> <a href="./writing/your-ml-system-will-fail-in-production.html">notes</a></p>
     </li>
     <li class="card">
       <h3 class="p-title"><a href="https://github.com/neuralbroker/ai-resume-screener">AI Resume Screener</a></h3>
-      <p class="p-hook">Groq-powered resume screening with auth and history.</p>
-      <p class="p-desc">FastAPI service using llama-3.1-8b-instant. JWT auth, per-user screening history, admin role, and statistics dashboard. SQLite + SQLAlchemy.</p>
+      <p class="p-desc">
+        A FastAPI app that screens resumes using Groq's llama-3.1-8b-instant.
+        JWT auth, per-user history, an admin role, and a small stats dashboard.
+        SQLite and SQLAlchemy on the backend.
+      </p>
       <p class="p-links"><a href="https://github.com/neuralbroker/ai-resume-screener">code</a></p>
     </li>
     <li class="card">
       <h3 class="p-title"><a href="https://github.com/neuralbroker/speakswap">SpeakSwap</a></h3>
-      <p class="p-hook">Translation app for text and speech — no API keys required.</p>
-      <p class="p-desc">Next.js 15 + React 19 with free endpoints (MyMemory, LibreTranslate, Lingva) and fallback chains. Voice input/output, dark mode, and translation history in localStorage.</p>
+      <p class="p-desc">
+        A translation app for text and speech, built with Next.js 15 and React 19.
+        Uses free APIs (MyMemory, LibreTranslate, Lingva) with fallbacks when one is down.
+        Voice input and output, plus translation history saved in localStorage.
+      </p>
       <p class="p-links"><a href="https://github.com/neuralbroker/speakswap">code</a></p>
     </li>
   </ul>
@@ -149,7 +163,7 @@
   <span class="section-label" id="skills-h">skills</span>
   <div class="skills-grid">
     <div class="skill-group">
-      <h3>machine learning</h3>
+      <h3>Machine learning</h3>
       <div class="skill-tags">
         <span class="skill-tag">PyTorch</span>
         <span class="skill-tag">LoRA / DPO</span>
@@ -160,7 +174,7 @@
       </div>
     </div>
     <div class="skill-group">
-      <h3>backend</h3>
+      <h3>Backend</h3>
       <div class="skill-tags">
         <span class="skill-tag">Python</span>
         <span class="skill-tag">FastAPI</span>
@@ -171,7 +185,7 @@
       </div>
     </div>
     <div class="skill-group">
-      <h3>frontend &amp; ops</h3>
+      <h3>Frontend &amp; ops</h3>
       <div class="skill-tags">
         <span class="skill-tag">Next.js</span>
         <span class="skill-tag">React</span>
