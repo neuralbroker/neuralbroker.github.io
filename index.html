@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="dark light">
 <meta name="theme-color" content="#000000" id="theme-color-meta">
 <title>Abdulla Sajad</title>
-<meta name="description" content="Software engineer working on applied AI. I fine-tune small models, ship backend tools, and write about what I learn along the way.">
+<meta name="description" content="Fine-tunes small models, ships small tools, reads small papers.">
 <meta name="author" content="Abdulla Sajad">
 <link rel="canonical" href="https://neuralbroker.github.io/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23111'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-size='58' fill='%23fff' font-family='monospace'%3EA%3C/text%3E%3C/svg%3E">
@@ -16,13 +16,13 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Abdulla Sajad">
 <meta property="og:title" content="Abdulla Sajad">
-<meta property="og:description" content="Software engineer working on applied AI. I fine-tune small models, ship backend tools, and write about what I learn along the way.">
+<meta property="og:description" content="Fine-tunes small models, ships small tools, reads small papers.">
 <meta property="og:url" content="https://neuralbroker.github.io/">
 <meta property="og:locale" content="en_IN">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Abdulla Sajad">
-<meta name="twitter:description" content="Software engineer working on applied AI. I fine-tune small models, ship backend tools, and write about what I learn along the way.">
+<meta name="twitter:description" content="Fine-tunes small models, ships small tools, reads small papers.">
 
 <script type="application/ld+json">
 {
@@ -50,156 +50,90 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="site-header">
-  <div class="header-inner">
-    <div class="brand">
-      <h1><a href="./">Abdulla Sajad</a></h1>
-      <p class="tagline">Software Engineer — Applied AI</p>
-    </div>
-    <div class="header-actions">
-      <nav aria-label="Primary">
-        <a href="./">home</a>
-        <a href="#projects">projects</a>
-        <a href="#skills">skills</a>
-        <a href="#writing">writing</a>
-        <a href="#contact">contact</a>
-        <a href="./resume.pdf">cv</a>
-      </nav>
-      <button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="true" aria-label="Switch to light theme">
-        <span class="theme-icon theme-icon-dark" aria-hidden="true">☀</span>
-        <span class="theme-icon theme-icon-light" aria-hidden="true">☾</span>
-      </button>
-    </div>
-  </div>
+<header>
+  <h1><a href="./">Abdulla Sajad</a></h1>
+  <p class="tagline">Software Engineer — Applied AI</p>
+  <nav aria-label="Primary">
+    <a href="./">home</a>
+    <a href="#projects">projects</a>
+    <a href="#writing">writing</a>
+    <a href="#contact">contact</a>
+    <a href="./resume.pdf">cv</a>
+    <button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="true" aria-label="Switch to light theme">
+      <span class="theme-label theme-label-dark">light</span>
+      <span class="theme-label theme-label-light">dark</span>
+    </button>
+  </nav>
 </header>
 
 <main id="main">
 
-<section class="hero reveal">
-  <p class="hero-lead">I write code. I make it work. I make it stay working.</p>
-  <p class="hero-sub">Software engineer focused on applied AI. Based in India, open to remote roles.</p>
+<section class="intro">
+  <p class="intro-lead">I write code. I make it work. I make it stay working.</p>
+  <p class="intro-sub">Based in India. Open to remote software and AI engineering roles.</p>
 </section>
 
-<section id="about" class="reveal" aria-labelledby="about-h">
-  <span class="section-label" id="about-h">about</span>
+<section id="about" aria-labelledby="about-h">
+  <h2 id="about-h">About</h2>
   <p>
-    I build AI systems end to end — fine-tuning small language models, putting together RAG pipelines,
-    and shipping backends with FastAPI and Next.js. A lot of the work is the unglamorous part that
-    actually matters: auth, monitoring, caching, and keeping things running after launch.
+    I build production AI systems end-to-end: fine-tuning small language models,
+    designing RAG pipelines, and shipping backend services with FastAPI and Next.js.
+    Most of my time goes to the part people skip in demos — auth, monitoring, caching,
+    drift detection, deployment.
   </p>
   <p>
-    Right now I'm most interested in applied LLMs, MLOps, and deployment. I'm based in India and
-    open to remote software and AI engineering roles.
+    Right now I'm focused on applied LLMs and MLOps. If you need someone who can take
+    a model from a notebook to something that stays up, that's the work I do.
   </p>
 </section>
 
-<section id="featured" class="reveal" aria-labelledby="featured-h">
-  <span class="section-label" id="featured-h">featured</span>
-  <div class="card card-featured">
-    <h3 class="p-title"><a href="https://github.com/neuralbroker/blitzkode">BlitzKode</a></h3>
-    <p class="p-desc">
-      An open-source coding LLM I trained so it could run on a laptop without a GPU.
-      Four-stage pipeline on Qwen2.5-1.5B-Instruct — SFT, reward SFT, DPO, then LoRA —
-      which brought VRAM down from 24 GB to about 8. Exported to GGUF and served through
-      FastAPI with SSE streaming. It's had 510+ downloads on HuggingFace.
-    </p>
-    <p class="p-links"><a href="https://github.com/neuralbroker/blitzkode">code</a> <a href="https://huggingface.co/neuralbroker/blitzkode">model</a> <a href="./writing/fine-tuning-is-mostly-data-work.html">notes</a></p>
-  </div>
-</section>
-
-<section id="projects" class="reveal" aria-labelledby="projects-h">
-  <span class="section-label" id="projects-h">projects</span>
+<section id="projects" aria-labelledby="projects-h">
+  <h2 id="projects-h">Projects</h2>
   <ul class="projects">
-    <li class="card">
+    <li>
+      <h3 class="p-title"><a href="https://github.com/neuralbroker/blitzkode">BlitzKode</a></h3>
+      <p class="p-desc">Open-source coding LLM with 510+ HuggingFace downloads. Fine-tuned Qwen2.5-1.5B-Instruct through a four-stage pipeline (SFT, reward SFT, DPO, LoRA), cut VRAM from 24 GB to 8 GB, exported to GGUF, and served with FastAPI + SSE streaming.</p>
+      <p class="p-links"><a href="https://github.com/neuralbroker/blitzkode">code</a> <a href="https://huggingface.co/neuralbroker/blitzkode">model</a> <a href="./writing/fine-tuning-is-mostly-data-work.html">notes</a></p>
+    </li>
+    <li>
       <h3 class="p-title"><a href="https://github.com/neuralbroker/esencelab">EsenceLab</a></h3>
-      <p class="p-desc">
-        An AI hiring platform that cut manual shortlisting time by about 60% across 200+ resumes.
-        Three services in one repo — Next.js frontend, Express backend, FastAPI AI layer —
-        with Groq for resume parsing and Supabase for auth. Deployed on Vercel and Render.
-        We placed 2nd at Innovision out of 30+ teams.
-      </p>
+      <p class="p-desc">AI hiring platform that cut manual shortlisting by 60% across 200+ resumes. Three-service monorepo — Next.js, Express, FastAPI — with Groq resume parsing and Supabase auth. Deployed on Vercel and Render. 2nd place at Innovision.</p>
       <p class="p-links"><a href="https://github.com/neuralbroker/esencelab">code</a> <a href="https://esencelab.vercel.app">live</a></p>
     </li>
-    <li class="card">
+    <li>
       <h3 class="p-title"><a href="https://github.com/neuralbroker/lexora-ai">Lexora AI</a></h3>
-      <p class="p-desc">
-        A document Q&amp;A tool built around RAG. Each user gets their own FAISS index so
-        retrieval stays isolated between accounts. Sub-2-second retrieval on 100k-token corpora,
-        with JWT refresh-token rotation and Redis-backed revocation.
-      </p>
+      <p class="p-desc">RAG document Q&amp;A with per-user FAISS index isolation. Sub-2s retrieval on 100k-token corpora, LangChain + OpenAI, JWT refresh-token rotation, Redis-backed revocation.</p>
       <p class="p-links"><a href="https://github.com/neuralbroker/lexora-ai">code</a></p>
     </li>
-    <li class="card">
+    <li>
       <h3 class="p-title"><a href="https://github.com/neuralbroker/sentinel-ml">SentinelML</a></h3>
-      <p class="p-desc">
-        A credit-card fraud detection API — 0.94 ROC-AUC on a RandomForest with 25 hand-built features.
-        Includes Redis caching, MLflow tracking, drift detection, and a weekly retrain job.
-        Runs in Docker Compose with Postgres, Prometheus, and Grafana.
-      </p>
+      <p class="p-desc">Credit-card fraud detection API at 0.94 ROC-AUC. SMOTE + RandomForest on 25 engineered features, Redis prediction cache, MLflow tracking, drift detection, weekly retrain. Docker Compose deployment.</p>
       <p class="p-links"><a href="https://github.com/neuralbroker/sentinel-ml">code</a> <a href="./writing/your-ml-system-will-fail-in-production.html">notes</a></p>
     </li>
-    <li class="card">
+    <li>
       <h3 class="p-title"><a href="https://github.com/neuralbroker/ai-resume-screener">AI Resume Screener</a></h3>
-      <p class="p-desc">
-        A FastAPI app that screens resumes using Groq's llama-3.1-8b-instant.
-        JWT auth, per-user history, an admin role, and a small stats dashboard.
-        SQLite and SQLAlchemy on the backend.
-      </p>
+      <p class="p-desc">FastAPI resume screener using Groq (llama-3.1-8b-instant). JWT auth, per-user screening history, admin role, statistics dashboard. SQLite + SQLAlchemy.</p>
       <p class="p-links"><a href="https://github.com/neuralbroker/ai-resume-screener">code</a></p>
     </li>
-    <li class="card">
+    <li>
       <h3 class="p-title"><a href="https://github.com/neuralbroker/speakswap">SpeakSwap</a></h3>
-      <p class="p-desc">
-        A translation app for text and speech, built with Next.js 15 and React 19.
-        Uses free APIs (MyMemory, LibreTranslate, Lingva) with fallbacks when one is down.
-        Voice input and output, plus translation history saved in localStorage.
-      </p>
+      <p class="p-desc">Next.js 15 translation app for text and speech. Free endpoints (MyMemory, LibreTranslate, Lingva) with fallback, voice input/output, translation history in localStorage.</p>
       <p class="p-links"><a href="https://github.com/neuralbroker/speakswap">code</a></p>
     </li>
   </ul>
 </section>
 
-<section id="skills" class="reveal" aria-labelledby="skills-h">
-  <span class="section-label" id="skills-h">skills</span>
-  <div class="skills-grid">
-    <div class="skill-group">
-      <h3>Machine learning</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">PyTorch</span>
-        <span class="skill-tag">LoRA / DPO</span>
-        <span class="skill-tag">RAG</span>
-        <span class="skill-tag">FAISS</span>
-        <span class="skill-tag">scikit-learn</span>
-        <span class="skill-tag">MLflow</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <h3>Backend</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">FastAPI</span>
-        <span class="skill-tag">TypeScript</span>
-        <span class="skill-tag">Express</span>
-        <span class="skill-tag">Redis</span>
-        <span class="skill-tag">PostgreSQL</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <h3>Frontend &amp; ops</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">Next.js</span>
-        <span class="skill-tag">React</span>
-        <span class="skill-tag">Docker</span>
-        <span class="skill-tag">GitHub Actions</span>
-        <span class="skill-tag">Prometheus</span>
-        <span class="skill-tag">Supabase</span>
-      </div>
-    </div>
-  </div>
+<section id="skills" aria-labelledby="skills-h">
+  <h2 id="skills-h">Skills</h2>
+  <ul class="skills-list">
+    <li><strong>ml</strong> PyTorch, LoRA/DPO, RAG, FAISS, scikit-learn, MLflow</li>
+    <li><strong>backend</strong> Python, FastAPI, TypeScript, Express, Redis, PostgreSQL</li>
+    <li><strong>frontend &amp; ops</strong> Next.js, React, Docker, GitHub Actions, Prometheus, Supabase</li>
+  </ul>
 </section>
 
-<section id="writing" class="reveal" aria-labelledby="writing-h">
-  <span class="section-label" id="writing-h">writing</span>
+<section id="writing" aria-labelledby="writing-h">
+  <h2 id="writing-h">Writing</h2>
   <ul class="posts">
     <li><time datetime="2026-06-04">2026-06-04</time> <a href="./writing/projects-and-learnings.html">My projects and learnings so far</a></li>
     <li><time datetime="2026-05-30">2026-05-30</time> <a href="./writing/fine-tuning-is-mostly-data-work.html">Fine-tuning small models is mostly data work</a></li>
@@ -208,8 +142,8 @@
   </ul>
 </section>
 
-<section id="contact" class="reveal" aria-labelledby="contact-h">
-  <span class="section-label" id="contact-h">contact</span>
+<section id="contact" aria-labelledby="contact-h">
+  <h2 id="contact-h">Contact</h2>
   <ul class="contact">
     <li><span class="k">github</span> <a href="https://github.com/neuralbroker">github.com/neuralbroker</a></li>
     <li><span class="k">huggingface</span> <a href="https://huggingface.co/neuralbroker">huggingface.co/neuralbroker</a></li>
@@ -221,9 +155,8 @@
 
 </main>
 
-<footer class="site-footer">
-  <p><small>© <span id="year">2026</span> Sajad</small></p>
-  <p class="footer-status">open to work</p>
+<footer>
+  <p><small>© <span id="year">2026</span> Sajad.</small></p>
 </footer>
 
 <script src="./theme.js" defer></script>
