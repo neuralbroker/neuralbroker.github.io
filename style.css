@@ -104,11 +104,12 @@ article li { margin-bottom: 0.25rem; }
 
 /* Footer */
 /* Social links */
-.social-links { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+.social-links { display: flex; gap: 1rem; }
 .social-links a { font-size: 0.88rem; color: #666; text-decoration: none; }
 .social-links a:hover { color: #333; }
 
-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #eee; font-size: 0.85rem; color: #999; }
+footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #eee; font-size: 0.85rem; color: #999; }
+footer .social-links { margin-bottom: 0.75rem; }
 footer a { color: #777; }
 
 /* Dark mode */
