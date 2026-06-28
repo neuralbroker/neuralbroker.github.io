@@ -95,6 +95,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  scroll-padding-top: var(--space-4);
   color-scheme: dark light;
   background: var(--bg);
 }
@@ -262,6 +263,13 @@ svg { flex-shrink: 0; }
   transform: none;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal:not(.is-visible) {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ==========================================================================
    Header & navigation
    ========================================================================== */
@@ -359,6 +367,14 @@ svg { flex-shrink: 0; }
 
 .nav-list a:hover { opacity: 0.8; }
 
+.nav-list a.is-active {
+  color: var(--heading);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 1;
+}
+
 /* ==========================================================================
    Intro
    ========================================================================== */
@@ -425,11 +441,22 @@ ul.projects {
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
+.project-card--featured {
+  border-color: var(--heading);
+  box-shadow: 0 2px 12px var(--glow);
+}
+
 @media (hover: hover) {
   .project-card:hover {
-    border-color: color-mix(in srgb, var(--heading) 40%, var(--border));
+    border-color: var(--heading);
     box-shadow: 0 4px 20px var(--glow);
     transform: translateY(-2px);
+  }
+
+  @supports (color: color-mix(in srgb, white 50%, black)) {
+    .project-card:hover {
+      border-color: color-mix(in srgb, var(--heading) 40%, var(--border));
+    }
   }
 }
 
@@ -488,6 +515,14 @@ ul.projects {
 .p-links a:hover {
   color: var(--heading);
   text-decoration: underline;
+}
+
+.p-links a[target="_blank"]::after,
+.p-title a[target="_blank"]::after {
+  content: "↗";
+  font-size: 0.85em;
+  margin-inline-start: 0.15em;
+  opacity: 0.55;
 }
 
 /* ==========================================================================
@@ -565,6 +600,16 @@ ul.posts a {
 }
 
 ul.posts a:hover { text-decoration: underline; }
+
+@media (hover: hover) {
+  ul.posts li:has(a:hover) {
+    border-bottom-color: var(--border);
+  }
+
+  ul.posts li:has(a:hover) time {
+    color: var(--heading);
+  }
+}
 
 /* ==========================================================================
    Contact
@@ -750,10 +795,16 @@ article li { margin: var(--space-1) 0; }
     background: var(--bg-elevated);
   }
 
-  .nav-list a:hover {
+  .nav-list a:hover,
+  .nav-list a.is-active {
     border-color: var(--heading);
     opacity: 1;
     text-decoration: none;
+  }
+
+  .nav-list a.is-active {
+    background: var(--bg-card);
+    font-weight: 600;
   }
 
   .project-card {
