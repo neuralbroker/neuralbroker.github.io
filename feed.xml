@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NeuralBroker Lab — Engineering Notes</title>
+    <link>https://neuralbroker.github.io/</link>
+    <description>Engineering notes by Abdulla Sajad (neuralbroker) on AI systems, fine-tuning, production ML, and infrastructure.</description>
+    <language>en</language>
+    <lastBuildDate>Sat, 28 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://neuralbroker.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>My projects and learnings so far</title>
+      <link>https://neuralbroker.github.io/writing/projects-and-learnings.html</link>
+      <guid>https://neuralbroker.github.io/writing/projects-and-learnings.html</guid>
+      <pubDate>Wed, 04 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Walkthrough of BlitzKode, EsenceLab, Lexora AI, and SentinelML — design decisions and what I'd do differently.</description>
+    </item>
+    <item>
+      <title>Fine-tuning small models is mostly data work</title>
+      <link>https://neuralbroker.github.io/writing/fine-tuning-is-mostly-data-work.html</link>
+      <guid>https://neuralbroker.github.io/writing/fine-tuning-is-mostly-data-work.html</guid>
+      <pubDate>Sat, 30 May 2026 00:00:00 +0000</pubDate>
+      <description>Lessons from building BlitzKode — why SFT data quality matters more than model architecture.</description>
+    </item>
+    <item>
+      <title>Your ML system will fail in production. Plan for it.</title>
+      <link>https://neuralbroker.github.io/writing/your-ml-system-will-fail-in-production.html</link>
+      <guid>https://neuralbroker.github.io/writing/your-ml-system-will-fail-in-production.html</guid>
+      <pubDate>Sun, 25 May 2026 00:00:00 +0000</pubDate>
+      <description>SentinelML postmortem — drift detection, retraining, and why monitoring beats model cards.</description>
+    </item>
+    <item>
+      <title>Neurosymbolic AI in military systems</title>
+      <link>https://neuralbroker.github.io/writing/reading-note-neurosymbolic-ai.html</link>
+      <guid>https://neuralbroker.github.io/writing/reading-note-neurosymbolic-ai.html</guid>
+      <pubDate>Tue, 11 Feb 2025 00:00:00 +0000</pubDate>
+      <description>Reading notes from a seminar paper on neurosymbolic AI approaches.</description>
+    </item>
+  </channel>
+</rss>

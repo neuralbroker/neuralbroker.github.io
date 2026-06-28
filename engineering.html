@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark')}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a0a0a" id="theme-color-meta">
+<title>Engineering · NeuralBroker Lab</title>
+<meta name="description" content="Engineering principles, stack, and timeline for Abdulla Sajad (neuralbroker).">
+<link rel="canonical" href="https://neuralbroker.github.io/engineering.html">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-top">
+    <div class="header-brand">
+      <p class="lab-name"><a href="./">NeuralBroker Lab</a></p>
+      <h1><a href="./">Abdulla Sajad</a></h1>
+      <p class="tagline">AI Software Engineer</p>
+    </div>
+    <button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="true" aria-label="Switch to light theme">
+      <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+  <nav class="site-nav" aria-label="Primary">
+    <ul class="nav-list">
+      <li><a href="./" data-nav="home">home</a></li>
+      <li><a href="./projects.html" data-nav="projects">projects</a></li>
+      <li><a href="./engineering.html" data-nav="engineering">engineering</a></li>
+      <li><a href="./writing.html" data-nav="writing">writing</a></li>
+      <li><a href="./architecture.html" data-nav="architecture">architecture</a></li>
+      <li><a href="./open-source.html" data-nav="opensource">open source</a></li>
+      <li><a href="./now.html" data-nav="now">now</a></li>
+      <li><a href="./uses.html" data-nav="uses">uses</a></li>
+      <li><a href="./resume.pdf" data-nav="resume">resume</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+<h2>Engineering</h2>
+<p class="page-lead">How I think about building systems — not a skill matrix, but principles, tools, and trajectory.</p>
+
+<section aria-labelledby="principles-h">
+  <h2 id="principles-h">Principles</h2>
+  <ul class="principle-list">
+    <li>Software should be simple. Complexity is a loan you pay interest on.</li>
+    <li>Measure before optimizing. Guessing at bottlenecks wastes weeks.</li>
+    <li>AI augments humans. Automate the boring parts; keep humans in the loop for judgment.</li>
+    <li>Understand before abstracting. Read the code, then build the abstraction.</li>
+    <li>Documentation is engineering. If it's not written down, it doesn't ship.</li>
+    <li>The boring infrastructure is the work. Auth, caching, monitoring, and deployment matter more than the model.</li>
+    <li>Multi-tenant defaults must be secure. The unsafe path is always shorter — don't ship it first.</li>
+    <li>Evaluation is a separate project from training. Smoke tests are not benchmarks.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="using-h">
+  <h2 id="using-h">Currently using</h2>
+  <ul class="currently-using">
+    <li>Python</li><li>FastAPI</li><li>Redis</li><li>Docker</li><li>PyTorch</li>
+    <li>LangChain</li><li>PostgreSQL</li><li>Next.js</li><li>GitHub Actions</li><li>Linux</li>
+  </ul>
+</section>
+
+<section aria-labelledby="timeline-h">
+  <h2 id="timeline-h">Timeline</h2>
+  <ul class="timeline-list">
+    <li><span class="timeline-year">2023</span> Freelance — shipped two production web apps end-to-end for clients.</li>
+    <li><span class="timeline-year">2024</span> Backend engineering — auth, APIs, databases, deployment fundamentals.</li>
+    <li><span class="timeline-year">2025</span> LLMs — fine-tuning, RAG pipelines, Hugging Face model publishing, seminar research.</li>
+    <li><span class="timeline-year">2026</span> AI Software Engineer — BlitzKode (510+ HF downloads), production ML systems, neuDB on PyPI, upstream open-source contributions.</li>
+  </ul>
+</section>
+
+<section aria-labelledby="identity-h">
+  <h2 id="identity-h">Systems engineer, not just app builder</h2>
+  <p>I publish and distribute AI models on Hugging Face, package developer tooling on PyPI (<a href="https://pypi.org/project/neudb/">neudb</a>, <a href="https://pypi.org/project/neuralbrok/">neuralbrok</a>), and contribute fixes to established open-source projects. The work spans training pipelines, inference servers, databases, and the glue that keeps them running in production.</p>
+</section>
+</main>
+
+<footer>
+  <p><small>© <span id="year">2026</span> <a href="./">NeuralBroker Lab</a> · Abdulla Sajad</small></p>
+</footer>
+<script src="./theme.js" defer></script>
+</body>
+</html>

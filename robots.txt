@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# NeuralBroker Lab — Abdulla Sajad (neuralbroker)
+# https://neuralbroker.github.io/
+
 Sitemap: https://neuralbroker.github.io/sitemap.xml

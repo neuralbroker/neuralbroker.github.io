@@ -1,0 +1,16 @@
+/* TEAM */
+Engineer: Abdulla Sajad
+Alias: neuralbroker
+Site: https://neuralbroker.github.io/
+GitHub: https://github.com/neuralbroker
+Email: abdullasajad01@gmail.com
+Location: India
+
+/* THANKS */
+Bear Blog, minimal Jekyll themes, engineers who publish /uses pages
+
+/* SITE */
+Built with: vanilla HTML, CSS, JavaScript
+Fonts: JetBrains Mono Nerd Font (self-hosted)
+Hosting: GitHub Pages
+Last update: 2026-06-28

@@ -4,8 +4,6 @@
   var STORAGE_KEY = 'theme';
   var root = document.documentElement;
 
-  root.classList.add('js');
-
   function getTheme() {
     return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
   }
@@ -22,7 +20,7 @@
 
   function updateMeta(theme) {
     var meta = document.getElementById('theme-color-meta');
-    if (meta) meta.setAttribute('content', theme === 'light' ? '#ffffff' : '#000000');
+    if (meta) meta.setAttribute('content', theme === 'light' ? '#ffffff' : '#0a0a0a');
   }
 
   function updateToggle(theme) {
@@ -47,60 +45,32 @@
     if (y) y.textContent = String(new Date().getFullYear());
   }
 
-  function initNavSpy() {
+  function normalizePath(path) {
+    if (!path || path === '/') return '/';
+    return path.replace(/\/index\.html$/, '/').replace(/\.html$/, '').replace(/\/$/, '') || '/';
+  }
+
+  function initNavCurrent() {
     var links = document.querySelectorAll('.nav-list a[data-nav]');
     if (!links.length) return;
 
-    var sections = [];
+    var current = normalizePath(location.pathname);
+    var page = current.split('/').pop() || 'home';
+
+    if (current === '/' || current.endsWith('/neuralbroker.github.io')) page = 'home';
+    if (location.pathname.indexOf('/writing/') !== -1) page = 'writing';
+    if (location.pathname.indexOf('/projects/') !== -1) page = 'projects';
+
     links.forEach(function (link) {
-      var id = link.getAttribute('data-nav');
-      if (!id || id === 'cv') return;
-      var el = id === 'home' ? null : document.getElementById(id);
-      if (id === 'home' || el) sections.push({ id: id, el: el });
+      var nav = link.getAttribute('data-nav');
+      var active = nav === page;
+      link.classList.toggle('is-active', active);
+      if (active) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
     });
-
-    if (sections.length < 2) return;
-
-    function setActive(id) {
-      links.forEach(function (link) {
-        var active = link.getAttribute('data-nav') === id;
-        link.classList.toggle('is-active', active);
-        if (active) link.setAttribute('aria-current', 'true');
-        else link.removeAttribute('aria-current');
-      });
-    }
-
-    function pickFromScroll() {
-      var offset = window.innerHeight * 0.35;
-      var current = 'home';
-
-      sections.forEach(function (section) {
-        if (!section.el) return;
-        var top = section.el.getBoundingClientRect().top;
-        if (top <= offset) current = section.id;
-      });
-
-      setActive(current);
-    }
-
-    function pickFromHash() {
-      var hash = location.hash.slice(1);
-      var matched = false;
-
-      sections.forEach(function (section) {
-        if (section.id === hash) matched = true;
-      });
-
-      if (matched) setActive(hash);
-      else pickFromScroll();
-    }
-
-    pickFromHash();
-    window.addEventListener('scroll', pickFromScroll, { passive: true });
-    window.addEventListener('hashchange', pickFromHash);
   }
 
   initToggle();
   initYear();
-  initNavSpy();
+  initNavCurrent();
 })();

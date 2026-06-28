@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark')}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a0a0a" id="theme-color-meta">
+<title>Projects · NeuralBroker Lab</title>
+<meta name="description" content="Projects by Abdulla Sajad (neuralbroker): BlitzKode, neuDB, Lexora AI, SentinelML, EsenceLab, and more.">
+<link rel="canonical" href="https://neuralbroker.github.io/projects.html">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-top">
+    <div class="header-brand">
+      <p class="lab-name"><a href="./">NeuralBroker Lab</a></p>
+      <h1><a href="./">Abdulla Sajad</a></h1>
+      <p class="tagline">AI Software Engineer</p>
+    </div>
+    <button type="button" class="theme-toggle" id="theme-toggle" role="switch" aria-checked="true" aria-label="Switch to light theme">
+      <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+  <nav class="site-nav" aria-label="Primary">
+    <ul class="nav-list">
+      <li><a href="./" data-nav="home">home</a></li>
+      <li><a href="./projects.html" data-nav="projects">projects</a></li>
+      <li><a href="./engineering.html" data-nav="engineering">engineering</a></li>
+      <li><a href="./writing.html" data-nav="writing">writing</a></li>
+      <li><a href="./architecture.html" data-nav="architecture">architecture</a></li>
+      <li><a href="./open-source.html" data-nav="opensource">open source</a></li>
+      <li><a href="./now.html" data-nav="now">now</a></li>
+      <li><a href="./uses.html" data-nav="uses">uses</a></li>
+      <li><a href="./resume.pdf" data-nav="resume">resume</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+<h2>Projects</h2>
+<p class="page-lead">Production AI systems, models, and developer tools. Each project has a writeup with architecture, tradeoffs, and lessons learned.</p>
+
+<ul class="projects">
+  <li class="project-entry project-entry--featured">
+    <h3 class="p-title"><a href="./projects/neudb.html">neuDB</a></h3>
+    <ul class="p-tech"><li>Python</li><li>FastAPI</li><li>PyPI</li><li>semantic search</li></ul>
+    <p class="p-desc">Zero-dep, file-based AI-native database. JSON tables, embeddings, agent memory loop. Currently in active development.</p>
+    <p class="p-links"><a href="./projects/neudb.html">writeup</a> <a href="https://github.com/neuralbroker/neudb" target="_blank" rel="noopener noreferrer">code</a> <a href="https://pypi.org/project/neudb/" target="_blank" rel="noopener noreferrer">pypi</a></p>
+  </li>
+  <li class="project-entry">
+    <h3 class="p-title"><a href="./projects/blitzkode.html">BlitzKode</a></h3>
+    <ul class="p-tech"><li>PyTorch</li><li>LoRA</li><li>DPO</li><li>FastAPI</li><li>GGUF</li></ul>
+    <p class="p-desc">1.5B coding model for laptops. 4-stage fine-tune on Qwen2.5, GGUF export, streaming inference. 510+ Hugging Face downloads.</p>
+    <p class="p-links"><a href="./projects/blitzkode.html">writeup</a> <a href="https://github.com/neuralbroker/blitzkode" target="_blank" rel="noopener noreferrer">code</a> <a href="https://huggingface.co/neuralbroker/blitzkode" target="_blank" rel="noopener noreferrer">model</a></p>
+  </li>
+  <li class="project-entry">
+    <h3 class="p-title"><a href="./projects/lexora-ai.html">Lexora AI</a></h3>
+    <ul class="p-tech"><li>RAG</li><li>FAISS</li><li>LangChain</li><li>Redis</li><li>JWT</li></ul>
+    <p class="p-desc">Per-user RAG Q&amp;A. Sub-2s retrieval over 100k-token docs with isolated FAISS indexes and JWT + Redis revocation.</p>
+    <p class="p-links"><a href="./projects/lexora-ai.html">writeup</a> <a href="https://github.com/neuralbroker/lexora-ai" target="_blank" rel="noopener noreferrer">code</a></p>
+  </li>
+  <li class="project-entry">
+    <h3 class="p-title"><a href="./projects/sentinel-ml.html">SentinelML</a></h3>
+    <ul class="p-tech"><li>scikit-learn</li><li>MLflow</li><li>Redis</li><li>Docker</li></ul>
+    <p class="p-desc">Fraud detection API (0.94 ROC-AUC). Feature engineering, drift detection (PSI/KS), model-versioned Redis cache, Docker Compose stack.</p>
+    <p class="p-links"><a href="./projects/sentinel-ml.html">writeup</a> <a href="https://github.com/neuralbroker/sentinel-ml" target="_blank" rel="noopener noreferrer">code</a> <a href="./writing/your-ml-system-will-fail-in-production.html">notes</a></p>
+  </li>
+  <li class="project-entry">
+    <h3 class="p-title"><a href="https://github.com/neuralbroker/esencelab" target="_blank" rel="noopener noreferrer">EsenceLab</a></h3>
+    <ul class="p-tech"><li>Next.js</li><li>FastAPI</li><li>Groq</li><li>Supabase</li></ul>
+    <p class="p-desc">AI hiring platform. 60% shorter resume shortlisting for 200+ candidates. Innovision 2nd place.</p>
+    <p class="p-links"><a href="https://github.com/neuralbroker/esencelab" target="_blank" rel="noopener noreferrer">code</a> <a href="https://esencelab.vercel.app" target="_blank" rel="noopener noreferrer">live</a> <a href="./writing/projects-and-learnings.html">notes</a></p>
+  </li>
+  <li class="project-entry">
+    <h3 class="p-title"><a href="https://github.com/neuralbroker/ai-resume-screener" target="_blank" rel="noopener noreferrer">AI Resume Screener</a></h3>
+    <ul class="p-tech"><li>FastAPI</li><li>Groq</li><li>SQLite</li></ul>
+    <p class="p-desc">Groq-powered resume screener. JWT, admin dashboard, per-user history. Precursor to EsenceLab's parsing pipeline.</p>
+    <p class="p-links"><a href="https://github.com/neuralbroker/ai-resume-screener" target="_blank" rel="noopener noreferrer">code</a></p>
+  </li>
+  <li class="project-entry">
+    <h3 class="p-title"><a href="https://github.com/neuralbroker/speakswap" target="_blank" rel="noopener noreferrer">SpeakSwap</a></h3>
+    <ul class="p-tech"><li>Next.js</li><li>React</li></ul>
+    <p class="p-desc">Text + speech translation with free API fallback chain, voice I/O, local history.</p>
+    <p class="p-links"><a href="https://github.com/neuralbroker/speakswap" target="_blank" rel="noopener noreferrer">code</a></p>
+  </li>
+</ul>
+</main>
+
+<footer>
+  <p><small>© <span id="year">2026</span> <a href="./">NeuralBroker Lab</a> · Abdulla Sajad</small></p>
+</footer>
+<script src="./theme.js" defer></script>
+</body>
+</html>
