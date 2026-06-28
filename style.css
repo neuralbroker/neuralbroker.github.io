@@ -103,6 +103,11 @@ article li { margin-bottom: 0.25rem; }
 .error-code { font-size: 3rem; font-weight: 700; color: #ddd; }
 
 /* Footer */
+/* Social links */
+.social-links { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+.social-links a { font-size: 0.88rem; color: #666; text-decoration: none; }
+.social-links a:hover { color: #333; }
+
 footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #eee; font-size: 0.85rem; color: #999; }
 footer a { color: #777; }
 
@@ -124,6 +129,8 @@ body { background: var(--bg, #fff); color: var(--fg, #333); }
 .posts time { color: var(--fg3, #888); }
 .page-lead, .hero-now, .home-links .desc { color: var(--fg2, #666); }
 article pre { background: var(--border, #f7f7f7); }
+.social-links a { color: var(--fg2, #666); }
+.social-links a:hover { color: var(--fg, #333); }
 footer { border-top-color: var(--border, #eee); color: var(--fg3, #999); }
 footer a { color: var(--fg2, #888); }
 .roadmap-list li[data-status="done"] { color: var(--fg3, #999); }
