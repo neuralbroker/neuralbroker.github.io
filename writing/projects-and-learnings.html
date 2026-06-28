@@ -139,7 +139,7 @@
 
 <script>
 (function(){var y=document.getElementById('year');if(y)y.textContent=new Date().getFullYear();})();
-document.getElementById('theme-toggle')?.addEventListener('click',function(){var t=document.documentElement.getAttribute('data-theme');document.documentElement.setAttribute('data-theme',t==='light'?'dark':'light');localStorage.setItem('theme',document.documentElement.getAttribute('data-theme'))});
+document.getElementById('theme-toggle')?.addEventListener('click',function(){var t=document.documentElement.getAttribute('data-theme');document.documentElement.setAttribute('data-theme',t==='dark'?'light':'dark');localStorage.setItem('theme',document.documentElement.getAttribute('data-theme'))});
 try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}
 </script>
 </body>
