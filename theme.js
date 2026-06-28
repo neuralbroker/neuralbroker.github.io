@@ -47,50 +47,6 @@
     if (y) y.textContent = String(new Date().getFullYear());
   }
 
-  function isInViewport(el) {
-    var rect = el.getBoundingClientRect();
-    return rect.top < window.innerHeight * 0.92 && rect.bottom > 0;
-  }
-
-  function initReveal() {
-    var els = document.querySelectorAll('.reveal');
-    if (!els.length) return;
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      els.forEach(function (el) { el.classList.add('is-visible'); });
-      return;
-    }
-
-    function show(el) {
-      el.classList.add('is-visible');
-    }
-
-    els.forEach(function (el) {
-      if (isInViewport(el)) show(el);
-    });
-
-    if (!('IntersectionObserver' in window)) {
-      els.forEach(show);
-      return;
-    }
-
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            show(entry.target);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.06, rootMargin: '0px 0px -4% 0px' }
-    );
-
-    els.forEach(function (el) {
-      if (!el.classList.contains('is-visible')) observer.observe(el);
-    });
-  }
-
   function initNavSpy() {
     var links = document.querySelectorAll('.nav-list a[data-nav]');
     if (!links.length) return;
@@ -146,6 +102,5 @@
 
   initToggle();
   initYear();
-  initReveal();
   initNavSpy();
 })();

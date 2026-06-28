@@ -75,12 +75,12 @@
 
 <main id="main">
 
-<section class="intro reveal">
+<section class="intro">
   <p class="intro-lead">I build AI systems that survive production.</p>
   <p class="intro-sub">Fine-tuning small models, shipping FastAPI + RAG services, and writing the parts that keep them running. Based in India, open to remote roles.</p>
 </section>
 
-<section id="about" class="reveal" aria-labelledby="about-h">
+<section id="about" aria-labelledby="about-h">
   <h2 id="about-h">About</h2>
   <p>
     I'm a software engineer who takes models and ideas from notebooks all the way to deployed, monitored services.
@@ -92,7 +92,7 @@
   </p>
 </section>
 
-<section id="highlights" class="reveal" aria-labelledby="highlights-h">
+<section id="highlights" aria-labelledby="highlights-h">
   <h2 id="highlights-h">Highlights</h2>
   <ul class="highlights">
     <li><strong>510+</strong> downloads on open-source fine-tuned coding LLM (BlitzKode on Hugging Face)</li>
@@ -102,10 +102,10 @@
   </ul>
 </section>
 
-<section id="projects" class="reveal" aria-labelledby="projects-h">
+<section id="projects" aria-labelledby="projects-h">
   <h2 id="projects-h">Projects</h2>
   <ul class="projects">
-    <li class="project-card project-card--featured">
+    <li class="project-entry project-entry--featured">
       <h3 class="p-title"><a href="https://github.com/neuralbroker/blitzkode" target="_blank" rel="noopener noreferrer">BlitzKode</a></h3>
       <ul class="p-tech" aria-label="Technologies used">
         <li>PyTorch</li><li>LoRA</li><li>DPO</li><li>FastAPI</li><li>GGUF</li>
@@ -113,7 +113,7 @@
       <p class="p-desc">A 1.5B coding model that runs well on a laptop. 4-stage fine-tune (SFT → DPO → LoRA) on Qwen2.5, VRAM down from 24 GB to ~8 GB, GGUF export, FastAPI + streaming. 510+ HF downloads.</p>
       <p class="p-links"><a href="https://github.com/neuralbroker/blitzkode" target="_blank" rel="noopener noreferrer">code</a> <a href="https://huggingface.co/neuralbroker/blitzkode" target="_blank" rel="noopener noreferrer">model</a> <a href="./writing/fine-tuning-is-mostly-data-work.html">notes</a></p>
     </li>
-    <li class="project-card">
+    <li class="project-entry">
       <h3 class="p-title"><a href="https://github.com/neuralbroker/esencelab" target="_blank" rel="noopener noreferrer">EsenceLab</a></h3>
       <ul class="p-tech" aria-label="Technologies used">
         <li>Next.js</li><li>FastAPI</li><li>Groq</li><li>Supabase</li>
@@ -121,7 +121,7 @@
       <p class="p-desc">AI hiring platform. Cut manual resume shortlisting by 60% for 200+ candidates using Groq parsing in a Next.js + FastAPI monorepo. 2nd at Innovision.</p>
       <p class="p-links"><a href="https://github.com/neuralbroker/esencelab" target="_blank" rel="noopener noreferrer">code</a> <a href="https://esencelab.vercel.app" target="_blank" rel="noopener noreferrer">live</a></p>
     </li>
-    <li class="project-card">
+    <li class="project-entry">
       <h3 class="p-title"><a href="https://github.com/neuralbroker/lexora-ai" target="_blank" rel="noopener noreferrer">Lexora AI</a></h3>
       <ul class="p-tech" aria-label="Technologies used">
         <li>RAG</li><li>FAISS</li><li>LangChain</li><li>Redis</li>
@@ -129,7 +129,7 @@
       <p class="p-desc">Per-user RAG Q&amp;A. Sub-2s retrieval over 100k-token docs with isolated FAISS indexes, LangChain, JWT + Redis revocation.</p>
       <p class="p-links"><a href="https://github.com/neuralbroker/lexora-ai" target="_blank" rel="noopener noreferrer">code</a></p>
     </li>
-    <li class="project-card">
+    <li class="project-entry">
       <h3 class="p-title"><a href="https://github.com/neuralbroker/sentinel-ml" target="_blank" rel="noopener noreferrer">SentinelML</a></h3>
       <ul class="p-tech" aria-label="Technologies used">
         <li>scikit-learn</li><li>MLflow</li><li>Redis</li><li>Docker</li>
@@ -137,7 +137,7 @@
       <p class="p-desc">Fraud detection API (0.94 ROC-AUC). Feature-engineered RandomForest + SMOTE, Redis cache, MLflow, drift detection and weekly retrains. Docker Compose.</p>
       <p class="p-links"><a href="https://github.com/neuralbroker/sentinel-ml" target="_blank" rel="noopener noreferrer">code</a> <a href="./writing/your-ml-system-will-fail-in-production.html">notes</a></p>
     </li>
-    <li class="project-card">
+    <li class="project-entry">
       <h3 class="p-title"><a href="https://github.com/neuralbroker/ai-resume-screener" target="_blank" rel="noopener noreferrer">AI Resume Screener</a></h3>
       <ul class="p-tech" aria-label="Technologies used">
         <li>FastAPI</li><li>Groq</li><li>SQLite</li>
@@ -145,7 +145,7 @@
       <p class="p-desc">FastAPI + Groq resume screener. Per-user history, JWT, admin dashboard and stats. SQLite backend.</p>
       <p class="p-links"><a href="https://github.com/neuralbroker/ai-resume-screener" target="_blank" rel="noopener noreferrer">code</a></p>
     </li>
-    <li class="project-card">
+    <li class="project-entry">
       <h3 class="p-title"><a href="https://github.com/neuralbroker/speakswap" target="_blank" rel="noopener noreferrer">SpeakSwap</a></h3>
       <ul class="p-tech" aria-label="Technologies used">
         <li>Next.js</li><li>React</li>
@@ -156,7 +156,7 @@
   </ul>
 </section>
 
-<section id="skills" class="reveal" aria-labelledby="skills-h">
+<section id="skills" aria-labelledby="skills-h">
   <h2 id="skills-h">Skills</h2>
   <ul class="skills-list">
     <li><span class="skill-tag">ML</span> PyTorch, LoRA/DPO, RAG, FAISS, scikit-learn, MLflow, Hugging Face</li>
@@ -165,7 +165,7 @@
   </ul>
 </section>
 
-<section id="writing" class="reveal" aria-labelledby="writing-h">
+<section id="writing" aria-labelledby="writing-h">
   <h2 id="writing-h">Writing</h2>
   <ul class="posts">
     <li><time datetime="2026-06-04">2026-06-04</time> <a href="./writing/projects-and-learnings.html">My projects and learnings so far</a></li>
@@ -175,9 +175,8 @@
   </ul>
 </section>
 
-<section id="contact" class="reveal" aria-labelledby="contact-h">
+<section id="contact" aria-labelledby="contact-h">
   <h2 id="contact-h">Contact</h2>
-  <div class="contact-panel">
   <ul class="contact">
     <li>
       <a class="contact-link" href="https://github.com/neuralbroker" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
@@ -205,7 +204,6 @@
       </a>
     </li>
   </ul>
-  </div>
 </section>
 
 </main>
