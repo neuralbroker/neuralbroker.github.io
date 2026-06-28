@@ -80,8 +80,6 @@ p { margin-bottom: 1rem; }
 }
 
 /* Now page */
-.reading-list { list-style: none; }
-.reading-list li { margin-bottom: 0.4rem; font-size: 0.92rem; color: var(--fg, #555); font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
 
 /* Article (writing posts) */
 article h2 { font-size: 1.5rem; margin-top: 0; }
