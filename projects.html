@@ -40,49 +40,49 @@
 
 <main id="main">
 <h2>Projects</h2>
-<p class="page-lead">Things I've built. Each project has a writeup covering architecture, tradeoffs, and what I learned.</p>
+<p class="page-lead">What I've built.</p>
 
 <ul class="projects">
   <li class="project-entry project-entry--featured">
     <h3 class="p-title"><a href="./projects/neudb.html">neuDB</a></h3>
     <ul class="p-tech"><li>Python</li><li>FastAPI</li><li>PyPI</li><li>semantic search</li></ul>
-    <p class="p-desc">Zero-dep, file-based AI-native database. JSON tables, embeddings, agent memory loop. Currently in active development.</p>
+    <p class="p-desc">Zero-dep, file-based AI database. JSON, embeddings, agent memory.</p>
     <p class="p-links"><a href="./projects/neudb.html">writeup</a> <a href="https://github.com/neuralbroker/neudb" target="_blank" rel="noopener noreferrer">code</a> <a href="https://pypi.org/project/neudb/" target="_blank" rel="noopener noreferrer">pypi</a></p>
   </li>
   <li class="project-entry">
     <h3 class="p-title"><a href="./projects/blitzkode.html">BlitzKode</a></h3>
     <ul class="p-tech"><li>PyTorch</li><li>LoRA</li><li>DPO</li><li>FastAPI</li><li>GGUF</li></ul>
-    <p class="p-desc">1.5B coding model for laptops. 4-stage fine-tune on Qwen2.5, GGUF export, streaming inference. 510+ Hugging Face downloads.</p>
+    <p class="p-desc">1.5B coding model. 4-stage fine-tune, GGUF export, FastAPI + SSE. 510+ HF downloads.</p>
     <p class="p-links"><a href="./projects/blitzkode.html">writeup</a> <a href="https://github.com/neuralbroker/blitzkode" target="_blank" rel="noopener noreferrer">code</a> <a href="https://huggingface.co/neuralbroker/blitzkode" target="_blank" rel="noopener noreferrer">model</a></p>
   </li>
   <li class="project-entry">
     <h3 class="p-title"><a href="./projects/lexora-ai.html">Lexora AI</a></h3>
     <ul class="p-tech"><li>RAG</li><li>FAISS</li><li>LangChain</li><li>Redis</li><li>JWT</li></ul>
-    <p class="p-desc">Per-user RAG Q&amp;A. Sub-2s retrieval over 100k-token docs with isolated FAISS indexes and JWT + Redis revocation.</p>
+    <p class="p-desc">Per-user RAG. Isolated FAISS indexes, sub-2s retrieval, JWT + Redis.</p>
     <p class="p-links"><a href="./projects/lexora-ai.html">writeup</a> <a href="https://github.com/neuralbroker/lexora-ai" target="_blank" rel="noopener noreferrer">code</a></p>
   </li>
   <li class="project-entry">
     <h3 class="p-title"><a href="./projects/sentinel-ml.html">SentinelML</a></h3>
     <ul class="p-tech"><li>scikit-learn</li><li>MLflow</li><li>Redis</li><li>Docker</li></ul>
-    <p class="p-desc">Fraud detection API (0.94 ROC-AUC). Feature engineering, drift detection (PSI/KS), model-versioned Redis cache, Docker Compose stack.</p>
+    <p class="p-desc">Fraud detection. 0.94 ROC-AUC, drift monitoring, Docker Compose.</p>
     <p class="p-links"><a href="./projects/sentinel-ml.html">writeup</a> <a href="https://github.com/neuralbroker/sentinel-ml" target="_blank" rel="noopener noreferrer">code</a> <a href="./writing/your-ml-system-will-fail-in-production.html">notes</a></p>
   </li>
   <li class="project-entry">
     <h3 class="p-title"><a href="https://github.com/neuralbroker/esencelab" target="_blank" rel="noopener noreferrer">EsenceLab</a></h3>
     <ul class="p-tech"><li>Next.js</li><li>FastAPI</li><li>Groq</li><li>Supabase</li></ul>
-    <p class="p-desc">AI hiring platform. 60% shorter resume shortlisting for 200+ candidates. Innovision 2nd place.</p>
+    <p class="p-desc">AI hiring platform. 60% faster shortlisting, Innovision 2nd place.</p>
     <p class="p-links"><a href="https://github.com/neuralbroker/esencelab" target="_blank" rel="noopener noreferrer">code</a> <a href="https://esencelab.vercel.app" target="_blank" rel="noopener noreferrer">live</a> <a href="./writing/projects-and-learnings.html">notes</a></p>
   </li>
   <li class="project-entry">
     <h3 class="p-title"><a href="https://github.com/neuralbroker/ai-resume-screener" target="_blank" rel="noopener noreferrer">AI Resume Screener</a></h3>
     <ul class="p-tech"><li>FastAPI</li><li>Groq</li><li>SQLite</li></ul>
-    <p class="p-desc">Groq-powered resume screener. JWT, admin dashboard, per-user history. Precursor to EsenceLab's parsing pipeline.</p>
+    <p class="p-desc">Groq-powered resume screener. JWT, admin dashboard.</p>
     <p class="p-links"><a href="https://github.com/neuralbroker/ai-resume-screener" target="_blank" rel="noopener noreferrer">code</a></p>
   </li>
   <li class="project-entry">
     <h3 class="p-title"><a href="https://github.com/neuralbroker/speakswap" target="_blank" rel="noopener noreferrer">SpeakSwap</a></h3>
     <ul class="p-tech"><li>Next.js</li><li>React</li></ul>
-    <p class="p-desc">Text + speech translation with free API fallback chain, voice I/O, local history.</p>
+    <p class="p-desc">Translation app. Free API fallbacks, voice I/O, dark mode.</p>
     <p class="p-links"><a href="https://github.com/neuralbroker/speakswap" target="_blank" rel="noopener noreferrer">code</a></p>
   </li>
 </ul>
