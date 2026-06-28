@@ -17,7 +17,7 @@ body {
 a { color: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 a:hover { opacity: 0.6; }
 
-.skip-link { position: absolute; top: -100px; left: 0; padding: 0.5rem 1rem; background: #333; color: #fff; z-index: 100; }
+.skip-link { position: absolute; top: -100px; left: 0; padding: 0.5rem 1rem; background: var(--fg, #333); color: var(--bg, #fff); z-index: 100; }
 .skip-link:focus { top: 0; }
 
 /* Header — Bear Blog style */
@@ -49,7 +49,7 @@ p { margin-bottom: 1rem; }
 
 /* Hero */
 .hero p { font-size: 1.05rem; }
-.hero-now { color: #666; font-size: 0.9rem; font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
 
 /* Home links */
 .home-links { margin-top: 2rem; font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
@@ -81,7 +81,7 @@ p { margin-bottom: 1rem; }
 
 /* Now page */
 .reading-list { list-style: none; }
-.reading-list li { margin-bottom: 0.4rem; font-size: 0.92rem; color: #555; font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+.reading-list li { margin-bottom: 0.4rem; font-size: 0.92rem; color: var(--fg, #555); font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
 
 /* Article (writing posts) */
 article h2 { font-size: 1.5rem; margin-top: 0; }
@@ -91,11 +91,8 @@ article code { font-size: 0.88em; font-family: 'JetBrains Mono', 'SF Mono', Mona
 article ul, article ol { margin: 0.5rem 0 1rem 1.5rem; }
 article li { margin-bottom: 0.25rem; }
 .back-link { margin-top: 2rem; font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-.back-link a { color: #666; }
-.micro-toc { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin: 1rem 0; font-size: 0.88rem; font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-.micro-toc a { color: #666; }
-.decision-list { list-style: none; }
-.decision-q { font-weight: 500; display: block; margin-top: 0.5rem; }
+.back-link a { color: var(--fg2, #666); }
+
 
 /* 404 */
 .error-section { text-align: center; padding: 3rem 0; font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
@@ -125,9 +122,9 @@ body { background: var(--bg, #fff); color: var(--fg, #333); }
 .theme-toggle:hover { color: var(--fg, #333); }
 .project-entry { border-bottom-color: var(--border, #eee); }
 .p-tech li { color: var(--fg2, #666); border-color: var(--border, #e0e0e0); }
-.p-desc { color: var(--fg, #555); }
+.p-desc { color: var(--fg2, #555); }
 .posts time { color: var(--fg3, #888); }
-.page-lead, .hero-now, .home-links .desc { color: var(--fg2, #666); }
+.page-lead, .home-links .desc { color: var(--fg2, #666); }
 article pre { background: var(--border, #f7f7f7); }
 .social-links a { color: var(--fg2, #666); }
 .social-links a:hover { color: var(--fg, #333); }
