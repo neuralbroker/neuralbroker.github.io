@@ -81,9 +81,7 @@ p { margin-bottom: 1rem; }
 
 /* Now page */
 .reading-list { list-style: none; }
-.reading-list li { margin-bottom: 0.4rem; font-size: 0.92rem; color: #555; }
-.roadmap-list li[data-status="done"] { color: #999; }
-.roadmap-list li[data-status="active"] { font-weight: 500; color: #333; }
+.reading-list li { margin-bottom: 0.4rem; font-size: 0.92rem; color: #555; font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
 
 /* Article (writing posts) */
 article h2 { font-size: 1.5rem; margin-top: 0; }
@@ -135,8 +133,7 @@ article pre { background: var(--border, #f7f7f7); }
 .social-links a:hover { color: var(--fg, #333); }
 footer { border-top-color: var(--border, #eee); color: var(--fg3, #999); }
 footer a { color: var(--fg2, #888); }
-.roadmap-list li[data-status="done"] { color: var(--fg3, #999); }
-.roadmap-list li[data-status="active"] { color: var(--fg, #333); }
+
 .error-code { color: var(--border, #ddd); }
 
 [data-theme="dark"] .theme-toggle .icon-sun { display: none; }

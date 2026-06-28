@@ -5,6 +5,8 @@
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
 <meta name="robots" content="noindex">
 <title>404 · Abdulla Sajad</title>
 <link rel="canonical" href="https://neuralbroker.github.io/">
@@ -27,6 +29,7 @@
     <a href="./projects.html">projects</a>
     <a href="./writing.html">writing</a>
     <a href="./now.html">now</a>
+    <a href="./resume.pdf">resume</a>
   </div>
 </header>
 
@@ -50,8 +53,7 @@
 
 <script>
 (function(){var y=document.getElementById('year');if(y)y.textContent=new Date().getFullYear();})();
-document.getElementById('theme-toggle')?.addEventListener('click',function(){var t=document.documentElement.getAttribute('data-theme');document.documentElement.setAttribute('data-theme',t==='light'?'dark':'light');localStorage.setItem('theme',document.documentElement.getAttribute('data-theme'))});
-try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}
+document.getElementById('theme-toggle')?.addEventListener('click',function(){var t=document.documentElement.getAttribute('data-theme');document.documentElement.setAttribute('data-theme',t==='dark'?'light':'dark');localStorage.setItem('theme',document.documentElement.getAttribute('data-theme'))});
 </script>
 </body>
 </html>
