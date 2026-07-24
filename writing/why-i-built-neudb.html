@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+<title>Why I built neuDB · Abdulla Sajad</title>
+<meta name="description" content="A short note on designing a transparent local database for AI memory.">
+<meta name="author" content="Abdulla Sajad">
+<link rel="canonical" href="https://neuralbroker.github.io/writing/why-i-built-neudb.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Abdulla Sajad">
+<meta property="og:title" content="Why I built neuDB">
+<meta property="og:description" content="A short note on designing a transparent local database for AI memory.">
+<meta property="og:url" content="https://neuralbroker.github.io/writing/why-i-built-neudb.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Why I built neuDB">
+<meta name="twitter:description" content="A short note on designing a transparent local database for AI memory.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23111'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-size='58' fill='%23fff' font-family='monospace'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header>
+  <div class="header-row">
+    <span class="site-title"><a href="../">hey, I'm Sajad</a></span>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <span class="icon-sun">☀</span>
+      <span class="icon-moon">☾</span>
+    </button>
+  </div>
+  <div class="nav-row">
+    <a href="../">home</a>
+    <a href="../projects.html">projects</a>
+    <a href="../writing.html">writing</a>
+    <a href="../now.html">now</a>
+    <a href="../resume.pdf">resume</a>
+  </div>
+</header>
+
+<main id="main">
+<article>
+  <header>
+    <p><time datetime="2026-07-24">2026-07-24</time></p>
+    <h2>Why I built neuDB</h2>
+    <p><em>A small database project about transparency, persistence, and AI memory.</em></p>
+  </header>
+
+  <p>Most AI applications hide memory behind a managed database or a hosted vector service. That is convenient, but it can make the system difficult to inspect when something goes wrong. I built neuDB to understand the underlying pieces directly: how records are persisted, how writes remain safe after a failure, and how semantic retrieval fits into an ordinary data model.</p>
+
+  <p>neuDB stores each table as a human-readable JSON file. A record receives a UUID, and the core engine supports insertion, filtering, updating, deletion, and text search. Writes go through a temporary file, <code>fsync</code>, and atomic replacement. Per-file locks protect concurrent threads inside the process. The design is intentionally modest, but every decision is visible and easy to debug.</p>
+
+  <p>The AI layer adds optional embeddings to message records. Semantic search uses cosine similarity, while text search remains available when an embedding model is not installed. On top of that, the agent retrieves relevant messages before calling an LLM and stores the new exchange afterward. The result is a small long-term memory loop that can run locally with Ollama or connect to an OpenAI-compatible provider.</p>
+
+  <p>The project also clarified its limits. JSON files and linear scans are appropriate for a local tool, not a high-volume service. A production version would need indexes, transactions, process-safe coordination, pagination, and an approximate nearest-neighbour vector index. Those limitations are part of the value of the project: a simple implementation makes the next engineering problem concrete.</p>
+
+  <p><a href="https://github.com/neuralbroker/neudb">neuDB is available on GitHub</a> and is published on <a href="https://pypi.org/project/neudb/">PyPI</a>.</p>
+
+  <p class="back-link"><a href="../writing.html">← writing</a></p>
+</article>
+</main>
+
+<footer>
+  <div class="social-links">
+    <a href="https://github.com/neuralbroker">github</a>
+    <a href="https://www.linkedin.com/in/abdullasajad">linkedin</a>
+    <a href="https://huggingface.co/neuralbroker">huggingface</a>
+    <a href="mailto:abdullasajad01@gmail.com">email</a>
+  </div>
+  <p>© <span id="year">2026</span> Sajad. <a href="../">home</a></p>
+</footer>
+
+<script>
+(function(){var y=document.getElementById('year');if(y)y.textContent=new Date().getFullYear();})();
+document.getElementById('theme-toggle')?.addEventListener('click',function(){var t=document.documentElement.getAttribute('data-theme');document.documentElement.setAttribute('data-theme',t==='dark'?'light':'dark');localStorage.setItem('theme',document.documentElement.getAttribute('data-theme'))});
+</script>
+</body>
+</html>
