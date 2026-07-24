@@ -8,17 +8,17 @@
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
 <title>Projects · Abdulla Sajad</title>
-<meta name="description" content="Things I've built.">
+<meta name="description" content="Selected software engineering and applied AI work by Abdulla Sajad.">
 <meta name="author" content="Abdulla Sajad">
 <link rel="canonical" href="https://neuralbroker.github.io/projects.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Abdulla Sajad">
 <meta property="og:title" content="Projects · Abdulla Sajad">
-<meta property="og:description" content="Things I've built.">
+<meta property="og:description" content="Selected software engineering and applied AI work by Abdulla Sajad.">
 <meta property="og:url" content="https://neuralbroker.github.io/projects.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Projects · Abdulla Sajad">
-<meta name="twitter:description" content="Things I've built.">
+<meta name="twitter:description" content="Selected software engineering and applied AI work by Abdulla Sajad.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23111'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-size='58' fill='%23fff' font-family='monospace'%3ES%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="./style.css">
 </head>
@@ -45,48 +45,43 @@
 <main id="main">
 <h2>Projects</h2>
 
+<p class="page-lead">The three projects central to my software engineering work.</p>
+
 <ul class="projects">
-  <li class="project-entry" id="neudb">
-    <h3 class="p-title"><a href="https://github.com/neuralbroker/neudb">neuDB</a></h3>
-    <ul class="p-tech"><li>Python</li><li>FastAPI</li><li>PyPI</li></ul>
-    <p class="p-desc">Zero-dep, file-based AI database. JSON, embeddings, agent memory. <a href="https://pypi.org/project/neudb/">pypi</a></p>
-    <p class="p-links"><a href="https://github.com/neuralbroker/neudb">code</a> <a href="https://pypi.org/project/neudb/">pypi</a></p>
+  <li class="project-entry" id="esencelab">
+    <h3 class="p-title"><a href="https://github.com/neuralbroker/esencelab">EsenceLab</a></h3>
+    <ul class="p-tech"><li>Next.js</li><li>Express</li><li>FastAPI</li><li>Supabase</li></ul>
+    <p class="p-desc">A three-service career platform for students, recruiters, and administrators. The system includes resume processing, skill matching, role-based access, recruiter workflows, and career planning features. The project won second place at Innovision.</p>
+    <p class="p-links"><a href="https://github.com/neuralbroker/esencelab">code</a></p>
   </li>
-  <li class="project-entry">
-    <h3 class="p-title"><a href="https://github.com/neuralbroker/blitzkode">BlitzKode</a></h3>
-    <ul class="p-tech"><li>PyTorch</li><li>LoRA</li><li>DPO</li><li>FastAPI</li></ul>
-    <p class="p-desc">1.5B coding model. 4-stage fine-tune, GGUF export, SSE streaming.</p>
-    <p class="p-links"><a href="https://github.com/neuralbroker/blitzkode">code</a> <a href="https://huggingface.co/neuralbroker/blitzkode">model</a></p>
-  </li>
-  <li class="project-entry">
+  <li class="project-entry" id="lexora">
     <h3 class="p-title"><a href="https://github.com/neuralbroker/lexora-ai">Lexora AI</a></h3>
-    <ul class="p-tech"><li>RAG</li><li>FAISS</li><li>LangChain</li><li>Redis</li></ul>
-    <p class="p-desc">Per-user RAG. Isolated FAISS indexes, sub-2s retrieval, JWT + Redis.</p>
+    <ul class="p-tech"><li>Python</li><li>FastAPI</li><li>LangChain</li><li>FAISS</li><li>Redis</li></ul>
+    <p class="p-desc">A document question-answering backend built around retrieval-augmented generation. It parses documents, creates embeddings, stores per-user FAISS indexes, retrieves relevant context, and returns source-aware responses.</p>
     <p class="p-links"><a href="https://github.com/neuralbroker/lexora-ai">code</a></p>
   </li>
-  <li class="project-entry">
-    <h3 class="p-title"><a href="https://github.com/neuralbroker/sentinel-ml">SentinelML</a></h3>
-    <ul class="p-tech"><li>scikit-learn</li><li>MLflow</li><li>Redis</li><li>Docker</li></ul>
-    <p class="p-desc">Fraud detection. 0.94 ROC-AUC, drift monitoring, Docker Compose.</p>
-    <p class="p-links"><a href="https://github.com/neuralbroker/sentinel-ml">code</a></p>
+  <li class="project-entry" id="neudb">
+    <h3 class="p-title"><a href="https://github.com/neuralbroker/neudb">neuDB</a></h3>
+    <ul class="p-tech"><li>Python</li><li>FastAPI</li><li>PyPI</li><li>Semantic search</li></ul>
+    <p class="p-desc">A published, zero-dependency database engine using human-readable JSON persistence, atomic writes, file locking, cosine-similarity search, and optional LLM memory.</p>
+    <p class="p-links"><a href="https://github.com/neuralbroker/neudb">code</a> <a href="https://pypi.org/project/neudb/">PyPI</a></p>
   </li>
+</ul>
+
+<h2>Additional work</h2>
+
+<ul class="projects">
   <li class="project-entry">
-    <h3 class="p-title"><a href="https://github.com/neuralbroker/esencelab">EsenceLab</a></h3>
-    <ul class="p-tech"><li>Next.js</li><li>FastAPI</li><li>Groq</li><li>Supabase</li></ul>
-    <p class="p-desc">AI hiring platform. 60% faster shortlisting, Innovision 2nd place.</p>
-    <p class="p-links"><a href="https://github.com/neuralbroker/esencelab">code</a></p>
+    <h3 class="p-title"><a href="https://github.com/neuralbroker/bugbee">Bugbee</a></h3>
+    <ul class="p-tech"><li>Rust</li><li>Security tooling</li><li>CLI</li><li>SARIF</li></ul>
+    <p class="p-desc">A terminal-native security tool for deterministic scanning, evidence-backed findings, scope enforcement, and report generation.</p>
+    <p class="p-links"><a href="https://github.com/neuralbroker/bugbee">code</a></p>
   </li>
   <li class="project-entry">
     <h3 class="p-title"><a href="https://github.com/neuralbroker/ai-resume-screener">AI Resume Screener</a></h3>
-    <ul class="p-tech"><li>FastAPI</li><li>Groq</li><li>SQLite</li></ul>
-    <p class="p-desc">Groq-powered resume matcher. JWT, admin dashboard.</p>
+    <ul class="p-tech"><li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>JWT</li></ul>
+    <p class="p-desc">An authenticated API for screening resumes against job descriptions, retaining screening history, and supporting administrative review.</p>
     <p class="p-links"><a href="https://github.com/neuralbroker/ai-resume-screener">code</a></p>
-  </li>
-  <li class="project-entry">
-    <h3 class="p-title"><a href="https://github.com/neuralbroker/speakswap">SpeakSwap</a></h3>
-    <ul class="p-tech"><li>Next.js</li><li>React</li></ul>
-    <p class="p-desc">Translation app. Free API fallbacks, voice I/O, dark mode.</p>
-    <p class="p-links"><a href="https://github.com/neuralbroker/speakswap">code</a></p>
   </li>
 </ul>
 </main>
