@@ -45,26 +45,38 @@
 <main id="main">
 <h2>Projects</h2>
 
-<p class="page-lead">The three projects central to my software engineering work.</p>
+<p class="page-lead">Five projects: backend reliability, storage systems, backend + AI, agent systems, and product engineering.</p>
 
 <ul class="projects">
+  <li class="project-entry" id="hookflow">
+    <h3 class="p-title"><a href="https://github.com/neuralbroker/hookflow">HookFlow</a></h3>
+    <ul class="p-tech"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Redis</li><li>Docker</li><li>pytest</li></ul>
+    <p class="p-desc">Reliable webhook and event delivery infrastructure. Persist-first ingest, HMAC-signed async delivery, exponential-backoff retries, idempotency keys, per-endpoint rate limits, dead-letter queue, and delivery history. Tested (13 tests), CI, and Docker Compose.</p>
+    <p class="p-links"><a href="https://github.com/neuralbroker/hookflow">code</a></p>
+  </li>
+  <li class="project-entry" id="neudb">
+    <h3 class="p-title"><a href="https://github.com/neuralbroker/neudb">neuDB</a></h3>
+    <ul class="p-tech"><li>Python</li><li>PyPI</li><li>Storage</li><li>Semantic search</li></ul>
+    <p class="p-desc">A published, zero-dependency storage experiment using human-readable JSON persistence, atomic writes, thread-safe single-process access, cosine-similarity search, and optional LLM memory.</p>
+    <p class="p-links"><a href="https://github.com/neuralbroker/neudb">code</a> <a href="https://pypi.org/project/neudb/">PyPI</a></p>
+  </li>
+  <li class="project-entry" id="lexora">
+    <h3 class="p-title"><a href="https://github.com/neuralbroker/lexora-ai">Lexora</a></h3>
+    <ul class="p-tech"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Redis</li><li>FAISS</li></ul>
+    <p class="p-desc">A backend API with asynchronous document processing and retrieval. Validated uploads, JWT auth, per-user vector isolation, cached retrieval, chat with streaming, health/ready/metrics, CI, and Docker.</p>
+    <p class="p-links"><a href="https://github.com/neuralbroker/lexora-ai">code</a></p>
+  </li>
+  <li class="project-entry" id="bugbee">
+    <h3 class="p-title"><a href="https://github.com/neuralbroker/bugbee">Bugbee</a></h3>
+    <ul class="p-tech"><li>TypeScript</li><li>Bun</li><li>Agent systems</li><li>Verification</li></ul>
+    <p class="p-desc">AI developer infrastructure for tool execution, persistent project context, and verification workflows. Derived from anomalyco/opencode; original contribution is the Superharness verification/memory layer.</p>
+    <p class="p-links"><a href="https://github.com/neuralbroker/bugbee">code</a></p>
+  </li>
   <li class="project-entry" id="esencelab">
     <h3 class="p-title"><a href="https://github.com/neuralbroker/esencelab">EsenceLab</a></h3>
     <ul class="p-tech"><li>Next.js</li><li>Express</li><li>FastAPI</li><li>Supabase</li></ul>
     <p class="p-desc">A three-service career platform for students, recruiters, and administrators. The system includes resume processing, skill matching, role-based access, recruiter workflows, and career planning features. The project won second place at Innovision.</p>
     <p class="p-links"><a href="https://github.com/neuralbroker/esencelab">code</a></p>
-  </li>
-  <li class="project-entry" id="lexora">
-    <h3 class="p-title"><a href="https://github.com/neuralbroker/lexora-ai">Lexora AI</a></h3>
-    <ul class="p-tech"><li>Python</li><li>FastAPI</li><li>LangChain</li><li>FAISS</li><li>Redis</li></ul>
-    <p class="p-desc">A document question-answering backend built around retrieval-augmented generation. It parses documents, creates embeddings, stores per-user FAISS indexes, retrieves relevant context, and returns source-aware responses.</p>
-    <p class="p-links"><a href="https://github.com/neuralbroker/lexora-ai">code</a></p>
-  </li>
-  <li class="project-entry" id="neudb">
-    <h3 class="p-title"><a href="https://github.com/neuralbroker/neudb">neuDB</a></h3>
-    <ul class="p-tech"><li>Python</li><li>FastAPI</li><li>PyPI</li><li>Semantic search</li></ul>
-    <p class="p-desc">A published, zero-dependency database engine using human-readable JSON persistence, atomic writes, file locking, cosine-similarity search, and optional LLM memory.</p>
-    <p class="p-links"><a href="https://github.com/neuralbroker/neudb">code</a> <a href="https://pypi.org/project/neudb/">PyPI</a></p>
   </li>
 </ul>
 
@@ -72,15 +84,9 @@
 
 <ul class="projects">
   <li class="project-entry">
-    <h3 class="p-title"><a href="https://github.com/neuralbroker/bugbee">Bugbee</a></h3>
-    <ul class="p-tech"><li>TypeScript</li><li>Bun</li><li>AI coding agent</li><li>CLI</li></ul>
-    <p class="p-desc">An AI coding agent for the terminal, desktop, and IDE, built with Bun and structured as a multi-package TypeScript workspace.</p>
-    <p class="p-links"><a href="https://github.com/neuralbroker/bugbee">code</a></p>
-  </li>
-  <li class="project-entry">
     <h3 class="p-title"><a href="https://github.com/neuralbroker/ai-resume-screener">AI Resume Screener</a></h3>
     <ul class="p-tech"><li>Python</li><li>FastAPI</li><li>SQLAlchemy</li><li>JWT</li></ul>
-    <p class="p-desc">An authenticated API for screening resumes against job descriptions, retaining screening history, and supporting administrative review.</p>
+    <p class="p-desc">An authenticated API for screening resumes against job descriptions, retaining screening history, and supporting administrative review. Supporting project; superseded by Lexora for retrieval work.</p>
     <p class="p-links"><a href="https://github.com/neuralbroker/ai-resume-screener">code</a></p>
   </li>
 </ul>
