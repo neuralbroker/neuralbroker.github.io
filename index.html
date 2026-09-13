@@ -5,23 +5,23 @@
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark light">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
-<title>Abdulla Sajad</title>
-<meta name="description" content="Software engineer focused on backend systems and applied AI.">
+<meta name="theme-color" content="#FAF6EF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1A1712" media="(prefers-color-scheme: dark)">
+<title>Abdulla Sajad — Backend Engineer</title>
+<meta name="description" content="Software engineer building reliable backend systems, APIs, and applied AI infrastructure.">
 <meta name="author" content="Abdulla Sajad">
 <link rel="canonical" href="https://neuralbroker.github.io/">
 <link rel="alternate" type="application/rss+xml" title="Abdulla Sajad" href="https://neuralbroker.github.io/feed.xml">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23111'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-size='58' fill='%23fff' font-family='monospace'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%231A1712'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-size='58' fill='%23FAF6EF' font-family='monospace'%3ES%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="./style.css">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Abdulla Sajad">
-<meta property="og:title" content="Abdulla Sajad">
-<meta property="og:description" content="Software engineer focused on backend systems and applied AI.">
+<meta property="og:title" content="Abdulla Sajad — Backend Engineer">
+<meta property="og:description" content="Software engineer building reliable backend systems, APIs, and applied AI infrastructure.">
 <meta property="og:url" content="https://neuralbroker.github.io/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Abdulla Sajad">
-<meta name="twitter:description" content="Software engineer focused on backend systems and applied AI.">
+<meta name="twitter:title" content="Abdulla Sajad — Backend Engineer">
+<meta name="twitter:description" content="Software engineer building reliable backend systems, APIs, and applied AI infrastructure.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -30,7 +30,7 @@
   "alternateName": "neuralbroker",
   "url": "https://neuralbroker.github.io/",
   "email": "mailto:abdullasajad01@gmail.com",
-  "description": "Software engineer focused on backend systems and applied AI.",
+  "description": "Software engineer building reliable backend systems, APIs, and applied AI infrastructure.",
   "sameAs": [
     "https://github.com/neuralbroker",
     "https://huggingface.co/neuralbroker",
@@ -44,85 +44,126 @@
 }
 </script>
 </head>
-<body>
+<body class="landing">
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header>
+<header class="landing-nav">
   <div class="header-row">
-    <span class="site-title"><a href="./">hey, I'm Sajad</a></span>
+    <span class="site-title"><a href="./">Sajad<span class="cursor" aria-hidden="true">_</span></a></span>
+    <nav class="nav-row" aria-label="Sections">
+      <a href="#work">work</a>
+      <a href="#services">services</a>
+      <a href="#about">about</a>
+    </nav>
+    <a class="btn" href="mailto:abdullasajad01@gmail.com?subject=Hire%20Me%20—%20Backend%20Engineer">Hire Me</a>
     <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
       <span class="icon-sun">☀</span>
       <span class="icon-moon">☾</span>
     </button>
   </div>
-  <div class="nav-row">
-    <a href="./">home</a>
-    <a href="./projects.html">projects</a>
-    <a href="./writing.html">writing</a>
-    <a href="./now.html">now</a>
-    <a href="./resume.pdf">resume</a>
-  </div>
 </header>
 
 <main id="main">
 <section class="hero">
-  <p><strong>Software Engineer · Backend Systems · Applied AI</strong></p>
-  <p>I build backend systems, APIs, data services, and practical AI infrastructure. <a href="mailto:abdullasajad01@gmail.com">Get in touch</a>.</p>
-
-</section>
-
-<section class="featured-work">
-  <h2>Projects</h2>
-  <ul class="projects">
-    <li class="project-entry">
-      <h3 class="p-title"><a href="./projects.html#hookflow">HookFlow</a></h3>
-      <p class="p-desc">Reliable webhook and event delivery: persist-first ingest, HMAC-signed retries, idempotency, and dead-letter queue.</p>
-    </li>
-    <li class="project-entry">
-      <h3 class="p-title"><a href="./projects.html#neudb">neuDB</a></h3>
-      <p class="p-desc">A published Python storage experiment with JSON persistence, search, and AI memory.</p>
-    </li>
-    <li class="project-entry">
-      <h3 class="p-title"><a href="./projects.html#lexora">Lexora</a></h3>
-      <p class="p-desc">A backend API with async document processing and retrieval over PostgreSQL and Redis.</p>
-    </li>
-    <li class="project-entry">
-      <h3 class="p-title"><a href="./projects.html#bugbee">Bugbee</a></h3>
-      <p class="p-desc">AI agent systems: tool execution, persistent context, and verification workflows.</p>
-    </li>
-    <li class="project-entry">
-      <h3 class="p-title"><a href="./projects.html#esencelab">EsenceLab</a></h3>
-      <p class="p-desc">A multi-service product backend with auth, RBAC, PostgreSQL, and one AI workflow.</p>
-    </li>
+  <p class="kicker">$ whoami — backend engineer</p>
+  <h1>I build backend systems that stay up when dependencies don't.</h1>
+  <p class="lede">Production APIs, reliable delivery, and data layers for teams shipping real products — with practical AI where it earns its place.</p>
+  <p class="cta-row">
+    <a class="btn" href="mailto:abdullasajad01@gmail.com?subject=Hire%20Me%20—%20Backend%20Engineer">Hire Me</a>
+    <a class="text-link" href="#work">See my work ↓</a>
+  </p>
+  <div class="terminal" role="img" aria-label="Sample webhook delivery log showing a signed retry succeeding">
+    <div class="term-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="term-title">hookflow — worker.log</span></div>
+<pre class="term-body">POST /v1/events → 201 <span class="dim"># persist-first, idempotency-key: demo-1</span>
+worker: POST https://client/wh → <span class="warn">500</span> <span class="dim"># attempt 1, backoff 60s</span>
+worker: POST https://client/wh → <span class="ok">200</span> <span class="dim"># attempt 2, 5ms</span>
+verify X-Hookflow-Signature: sha256=f423…e554 → <span class="ok">match</span></pre>
+  </div>
+  <ul class="trust-strip" aria-label="Core stack">
+    <li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Redis</li><li>Docker</li>
   </ul>
-  <p><a href="./projects.html">View project details</a></p>
 </section>
 
-<section class="skills">
-  <h2>Technical Skills</h2>
-  <p><strong>Core:</strong> Python, SQL, FastAPI, PostgreSQL, Redis, Docker, AWS</p>
-  <p><strong>Also:</strong> Git, pytest, Linux, CI/CD, async Python, JWT/RBAC, structured logging</p>
-  <p><strong>Languages:</strong> Python, TypeScript, SQL</p>
-  <p><strong>AI:</strong> RAG, embeddings, LLM APIs, agent verification</p>
-</section>
-
-<nav class="home-links" aria-label="Explore">
-  <ul>
-    <li><a href="./projects.html">Projects</a> <span class="desc">backend systems, applied AI, and developer tools</span></li>
-    <li><a href="./writing.html">Writing</a> <span class="desc">notes on software and AI engineering</span></li>
-    <li><a href="./now.html">Now</a> <span class="desc">current work and learning</span></li>
+<section class="proof">
+  <ul class="proof-row">
+    <li><span class="ok">●</span> CI green across repos</li>
+    <li>Published on <a href="https://pypi.org/project/neudb/">PyPI</a></li>
+    <li>13 + 31 tests, Docker Compose ships</li>
   </ul>
-</nav>
+</section>
+
+<section class="featured-work" id="work">
+  <p class="kicker">01 — selected work</p>
+  <h2>Three systems, three reliability problems solved</h2>
+
+  <article class="feature">
+    <p class="f-num">01</p>
+    <div class="f-body">
+      <h3><a href="https://github.com/neuralbroker/hookflow">HookFlow</a></h3>
+      <p class="f-problem">Problem: customer webhooks flap — timeouts, 5xx, deploys.</p>
+      <p class="f-result">Result: persist-first ingest, HMAC-signed retries with backoff, idempotency, DLQ — verified live end-to-end.</p>
+<pre class="f-arch">client → fastapi → postgres → redis → worker → webhook</pre>
+      <p class="p-links"><a href="https://github.com/neuralbroker/hookflow">code</a></p>
+    </div>
+  </article>
+
+  <article class="feature flip">
+    <p class="f-num">02</p>
+    <div class="f-body">
+      <h3><a href="https://github.com/neuralbroker/lexora-ai">Lexora</a></h3>
+      <p class="f-problem">Problem: grounded Q&A over private documents.</p>
+      <p class="f-result">Result: async processing + retrieval backend — JWT, per-user vectors, cached, CI green.</p>
+<pre class="f-arch">upload → extract → chunk → embed → retrieve → answer</pre>
+      <p class="p-links"><a href="https://github.com/neuralbroker/lexora-ai">code</a></p>
+    </div>
+  </article>
+
+  <article class="feature">
+    <p class="f-num">03</p>
+    <div class="f-body">
+      <h3><a href="https://github.com/neuralbroker/neudb">neuDB</a></h3>
+      <p class="f-problem">Problem: inspectable memory for local agent prototypes.</p>
+      <p class="f-result">Result: zero-dependency JSON engine — atomic writes, search, published on PyPI.</p>
+<pre class="f-arch">connect() → table.json → search_text / search_similar</pre>
+      <p class="p-links"><a href="https://github.com/neuralbroker/neudb">code</a> <a href="https://pypi.org/project/neudb/">PyPI</a></p>
+    </div>
+  </article>
+
+  <p class="more-link"><a href="./projects.html">View all work →</a></p>
+</section>
+
+<section class="capabilities" id="services">
+  <p class="kicker">02 — services</p>
+  <h2>What I can do for you</h2>
+  <ul class="cap-list">
+    <li><strong>Ship production APIs</strong> — FastAPI + PostgreSQL, auth, validation, tests, CI.</li>
+    <li><strong>Make delivery reliable</strong> — queues, retries with backoff, idempotency, dead-lettering.</li>
+    <li><strong>Build data + retrieval layers</strong> — caching, background jobs, embeddings that stay honest.</li>
+    <li><strong>Add AI without the mess</strong> — one integration at a time, verified, observable, removable.</li>
+  </ul>
+</section>
+
+<section class="about" id="about">
+  <p class="kicker">03 — about</p>
+  <h2>Calm systems, clear diffs</h2>
+  <p>I'm Sajad, a backend-leaning engineer from Kerala working toward Bengaluru product teams. I write small, reviewable changes, document trade-offs honestly, and verify with tests instead of adjectives. <a href="./resume.pdf">Résumé (PDF)</a>.</p>
+</section>
+
+<section class="final-cta" id="contact">
+  <p class="kicker">04 — next step</p>
+  <h2>Have a backend that needs to stop flaking?</h2>
+  <p><a class="btn btn-light" href="mailto:abdullasajad01@gmail.com?subject=Hire%20Me%20—%20Backend%20Engineer">Hire Me</a></p>
+</section>
 </main>
 
 <footer>
   <div class="social-links">
+    <a href="mailto:abdullasajad01@gmail.com">email</a>
     <a href="https://github.com/neuralbroker">github</a>
     <a href="https://www.linkedin.com/in/abdullasajad">linkedin</a>
-    <a href="https://huggingface.co/neuralbroker">huggingface</a>
-    <a href="mailto:abdullasajad01@gmail.com">email</a>
+    <a href="./resume.pdf">resume</a>
   </div>
-  <p>© <span id="year">2026</span> Sajad. <a href="./">home</a></p>
+  <p>© <span id="year">2026</span> Sajad. <a href="#main">back to top ↑</a></p>
 </footer>
 
 <script>
