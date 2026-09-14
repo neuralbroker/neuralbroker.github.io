@@ -51,31 +51,31 @@
   <li class="project-entry" id="hookflow">
     <h3 class="p-title"><a href="https://github.com/neuralbroker/hookflow">HookFlow</a></h3>
     <ul class="p-tech"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Redis</li><li>Docker</li><li>pytest</li></ul>
-    <p class="p-desc">Reliable webhook and event delivery infrastructure. Persist-first ingest, HMAC-signed async delivery, exponential-backoff retries, idempotency keys, per-endpoint rate limits, dead-letter queue, and delivery history. Tested (13 tests), CI, and Docker Compose.</p>
+    <p class="p-desc">Reliable webhook and event delivery infrastructure. Persist-first ingest, HMAC-signed async delivery, exponential-backoff retries, idempotency keys (DB-enforced), per-endpoint rate limits, dead-letter queue with replay, request IDs, metrics/stats, and delivery history. Tested (17 tests), measured (39 rps, p95 29ms ingest), CI, and Docker Compose.</p>
     <p class="p-links"><a href="https://github.com/neuralbroker/hookflow">code</a></p>
   </li>
   <li class="project-entry" id="neudb">
     <h3 class="p-title"><a href="https://github.com/neuralbroker/neudb">neuDB</a></h3>
     <ul class="p-tech"><li>Python</li><li>PyPI</li><li>Storage</li><li>Semantic search</li></ul>
-    <p class="p-desc">A published, zero-dependency storage experiment using human-readable JSON persistence, atomic writes, thread-safe single-process access, cosine-similarity search, and optional LLM memory.</p>
+    <p class="p-desc">A published, zero-dependency storage experiment using human-readable JSON persistence, atomic writes, thread-safe single-process access, corruption-safe loads, cosine-similarity search, and optional LLM memory. Tested (32 tests incl. concurrency + recovery), measured (138 inserts/s at 2K rows, O(N) documented).</p>
     <p class="p-links"><a href="https://github.com/neuralbroker/neudb">code</a> <a href="https://pypi.org/project/neudb/">PyPI</a></p>
   </li>
   <li class="project-entry" id="lexora">
     <h3 class="p-title"><a href="https://github.com/neuralbroker/lexora-ai">Lexora</a></h3>
     <ul class="p-tech"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Redis</li><li>FAISS</li></ul>
-    <p class="p-desc">A backend API with asynchronous document processing and retrieval. Validated uploads, JWT auth, per-user vector isolation, cached retrieval, chat with streaming, health/ready/metrics, CI, and Docker.</p>
+    <p class="p-desc">A backend API with asynchronous document processing and retrieval. Validated uploads, JWT auth, enforced rate limits, request IDs, retried LLM calls, per-user vector isolation, cached retrieval, chat with streaming, retrieval eval probe, health/ready/metrics, CI, and Docker. Tested (35 tests).</p>
     <p class="p-links"><a href="https://github.com/neuralbroker/lexora-ai">code</a></p>
   </li>
   <li class="project-entry" id="bugbee">
     <h3 class="p-title"><a href="https://github.com/neuralbroker/bugbee">Bugbee</a></h3>
     <ul class="p-tech"><li>TypeScript</li><li>Bun</li><li>Agent systems</li><li>Verification</li></ul>
-    <p class="p-desc">AI developer infrastructure for tool execution, persistent project context, and verification workflows. Derived from anomalyco/opencode; original contribution is the Superharness verification/memory layer.</p>
+    <p class="p-desc">AI developer infrastructure for tool execution, persistent project context, and verification workflows. Derived from anomalyco/opencode; original contribution is the Superharness layer (permission-scoped modes, verify-after-mutate, trace), documented in docs/ARCHITECTURE.md and docs/CONFIG.md.</p>
     <p class="p-links"><a href="https://github.com/neuralbroker/bugbee">code</a></p>
   </li>
   <li class="project-entry" id="esencelab">
     <h3 class="p-title"><a href="https://github.com/neuralbroker/esencelab">EsenceLab</a></h3>
     <ul class="p-tech"><li>Next.js</li><li>Express</li><li>FastAPI</li><li>Supabase</li></ul>
-    <p class="p-desc">A three-service career platform for students, recruiters, and administrators. The system includes resume processing, skill matching, role-based access, recruiter workflows, and career planning features. The project won second place at Innovision.</p>
+    <p class="p-desc">Multi-service product backend: Express API with JWT + RBAC, FastAPI AI service (one deterministic resume-parse/match workflow), Next.js frontend, Supabase PostgreSQL. Monolith-to-modules split in progress (auth/roles extracted, RBAC suite green).</p>
     <p class="p-links"><a href="https://github.com/neuralbroker/esencelab">code</a></p>
   </li>
 </ul>

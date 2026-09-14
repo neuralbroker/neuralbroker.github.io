@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+<title>HookFlow: accept first, deliver later · Abdulla Sajad</title>
+<meta name="description" content="Why webhook delivery is a persistence problem, not a POST problem.">
+<meta name="author" content="Abdulla Sajad">
+<link rel="canonical" href="https://neuralbroker.github.io/writing/hookflow-persist-first.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Abdulla Sajad">
+<meta property="og:title" content="HookFlow: accept first, deliver later">
+<meta property="og:description" content="Why webhook delivery is a persistence problem, not a POST problem.">
+<meta property="og:url" content="https://neuralbroker.github.io/writing/hookflow-persist-first.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HookFlow: accept first, deliver later">
+<meta name="twitter:description" content="Why webhook delivery is a persistence problem, not a POST problem.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23111'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-size='58' fill='%23fff' font-family='monospace'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header>
+  <div class="header-row">
+    <span class="site-title"><a href="../">hey, I'm Sajad</a></span>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <span class="icon-sun">☀</span>
+      <span class="icon-moon">☾</span>
+    </button>
+  </div>
+  <div class="nav-row">
+    <a href="../">home</a>
+    <a href="../projects.html">projects</a>
+    <a href="../writing.html">writing</a>
+    <a href="../now.html">now</a>
+    <a href="../resume.pdf">resume</a>
+  </div>
+</header>
+
+<main id="main">
+<article>
+  <header>
+    <p><time datetime="2026-09-14">2026-09-14</time></p>
+    <h2>HookFlow: accept first, deliver later</h2>
+    <p><em>Webhook delivery is a persistence problem, not a POST problem.</em></p>
+  </header>
+
+  <p>The naive webhook sender does <code>requests.post(customer_url, json=event)</code> inside the request handler. That couples your API latency to the customer's worst day: their deploy, their timeout, their 500. I built HookFlow around the opposite order — persist the event and its delivery row first, acknowledge the producer, and let a worker own the unreliable part.</p>
+
+  <p>The ingest path validates (http(s) URL, JSON-serializable payload under 256KB), checks idempotency, then commits <code>Event + Delivery(status=queued)</code> in one transaction before touching Redis. Redis only carries a wake-up hint; the worker polls due rows regardless, so a dropped message delays delivery instead of losing it. Measured on SQLite via TestClient: 39 rps at p95 29ms for 1KB payloads — the cost is the transaction, not the bytes.</p>
+
+  <p>Two decisions were load-bearing. First, at-least-once plus idempotency keys instead of exactly-once claims: a <code>UNIQUE(endpoint_id, idempotency_key)</code> constraint plus an <code>IntegrityError</code> catch closes the race where two concurrent ingests both pass the app-level existence check — the loser returns the winner as deduplicated. Second, backoff with a dead end: 1m → 5m → 30m → 2h → 12h, then a dead-letter state with a replay endpoint that resets attempts (successes are not requeueable — replaying one would duplicate a side effect at the receiver).</p>
+
+  <p>The failure I keep thinking about is scope: there is still no multi-tenant auth — endpoint secrets authenticate receivers, not producers. Anyone with network access can register endpoints. That is documented, not hidden, and per-tenant API keys are the next change. A portfolio project earns trust by stating its threat model plainly.</p>
+
+  <p><a href="https://github.com/neuralbroker/hookflow">HookFlow is available on GitHub</a>.</p>
+
+  <p class="back-link"><a href="../writing.html">← writing</a></p>
+</article>
+</main>
+
+<footer>
+  <div class="social-links">
+    <a href="https://github.com/neuralbroker">github</a>
+    <a href="https://www.linkedin.com/in/abdullasajad">linkedin</a>
+    <a href="https://huggingface.co/neuralbroker">huggingface</a>
+    <a href="mailto:abdullasajad01@gmail.com">email</a>
+  </div>
+  <p>© <span id="year">2026</span> Sajad. <a href="../">home</a></p>
+</footer>
+
+<script>
+(function(){var y=document.getElementById('year');if(y)y.textContent=new Date().getFullYear();})();
+document.getElementById('theme-toggle')?.addEventListener('click',function(){var t=document.documentElement.getAttribute('data-theme');document.documentElement.setAttribute('data-theme',t==='dark'?'light':'dark');localStorage.setItem('theme',document.documentElement.getAttribute('data-theme'))});
+</script>
+</body>
+</html>
