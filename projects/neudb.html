@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#101010">
+<title>neuDB — embedded storage experiment · Sajad</title>
+<meta name="description" content="Case study: a zero-dependency embedded Python storage engine — persistence, search, concurrency, recovery. Measured benchmarks.">
+<meta name="author" content="Abdulla Sajad">
+<link rel="canonical" href="https://neuralbroker.github.io/projects/neudb.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Abdulla Sajad">
+<meta property="og:title" content="neuDB — embedded storage experiment">
+<meta property="og:description" content="Case study: persistence, search, concurrency, and recovery in ~900 lines of stdlib Python.">
+<meta property="og:url" content="https://neuralbroker.github.io/projects/neudb.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="neuDB — embedded storage experiment">
+<meta name="twitter:description" content="Case study: persistence, search, concurrency, and recovery in ~900 lines of stdlib Python.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23101010'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-size='58' fill='%23e8e8e8' font-family='monospace'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header>
+  <div class="header-row">
+    <span class="site-title"><a href="../">sajad</a></span>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <span class="icon-sun">☀</span>
+      <span class="icon-moon">☾</span>
+    </button>
+  </div>
+  <div class="nav-row">
+    <a href="../projects.html">projects</a>
+    <a href="../writing.html">writing</a>
+    <a href="../now.html">now</a>
+    <a href="../resume.pdf">resume</a>
+  </div>
+</header>
+
+<main id="main">
+<article>
+  <p><a href="../projects.html">projects</a> / neudb</p>
+  <h1>neuDB</h1>
+  <p><em>Lightweight embedded Python database/storage engine exploring persistence, indexing, search, concurrency, and recovery.</em></p>
+  <p class="meta">Python (stdlib core) · PyPI 0.4.1 · 32 tests, CI — <a href="https://github.com/neuralbroker/neudb">source</a> · <a href="https://pypi.org/project/neudb/">PyPI</a></p>
+
+  <h2>Problem</h2>
+  <p>Local prototypes and LLM agents need inspectable persistence without running PostgreSQL — and debugging what an agent "remembered" should be as simple as reading a file. I built neuDB to learn where stdlib persistence breaks, with the breakage documented rather than hidden.</p>
+
+  <h2>Constraints</h2>
+  <ul>
+    <li>Zero dependencies for the core. Human-readable files (<code>cat *.json</code> is the debugger).</li>
+    <li>Honest scope: no server, no index, no transactions, no multi-process safety. Not a PostgreSQL competitor.</li>
+  </ul>
+
+  <h2>Architecture</h2>
+  <pre>Python library / CLI
+  ↓
+Table = one JSON file {id: record}
+  ↓ (temp + fsync + os.replace)
+Database = directory of tables
+  ↓
+Optional FastAPI / agent / dashboard (examples, not core)</pre>
+
+  <h2>Implementation</h2>
+  <p>Each table is one JSON file mapping IDs to records. Writes go through temp-file + <code>fsync</code> + atomic <code>os.replace</code>, so a crash leaves the table fully old or fully new — never half-written. Same-process threads are serialized by a per-path <code>threading.RLock</code> held across reload-mutate-save. Search is brute-force: case-insensitive text plus cosine-similarity vector search with text fallback. Corrupt files raise a path-carrying <code>CorruptedTableError</code> instead of a bare traceback; stray temp files from interrupted writes are removed by an explicit maintenance call.</p>
+
+  <h2>Engineering decisions</h2>
+  <ul>
+    <li><strong>JSON files</strong> for readability and trivial backup/restore.</li>
+    <li><strong>Atomic replace</strong> for crash-safe single-file writes.</li>
+    <li><strong>Thread locks only</strong> — multi-process safety explicitly out of scope.</li>
+    <li><strong>Brute-force scans</strong> to stay dependency-free; extras (<code>api</code>, <code>agent</code>) kept out of the core.</li>
+  </ul>
+
+  <h2>Challenges</h2>
+  <p>While adding concurrency tests I first implemented temp-file sweeping <em>on open</em> — and the new test caught it deleting a live writer's temp file mid-write (<code>FileNotFoundError</code> in <code>os.replace</code>). Sweeping is now explicit maintenance with an age threshold, and the incident is documented in <code>docs/recovery.md</code>. The test suite earning its keep is the point of the project.</p>
+
+  <h2>Benchmarks</h2>
+  <p>Measured 2026-09-14 via <code>benchmarks/bench.py</code> (Python 3.11, local disk):</p>
+  <table>
+    <tr><th>Workload</th><th>2,000 rows (338KB)</th><th>5,000 rows (847KB)</th></tr>
+    <tr><td>Insert</td><td>138/s · p50 7.3ms · p95 13.7ms</td><td>56/s · p50 17.5ms · p95 34.4ms</td></tr>
+    <tr><td>Full read</td><td>2.6ms</td><td>6.9ms</td></tr>
+    <tr><td>Text search</td><td>2.9ms</td><td>6.8ms</td></tr>
+    <tr><td>Threaded 4×100</td><td colspan="2">400/400 rows, 0 lost</td></tr>
+  </table>
+  <p>Per-insert cost grows with file size — O(N) writes confirmed by measurement. Guideline: do not use past ~10K rows per table.</p>
+
+  <h2>Trade-offs</h2>
+  <ul>
+    <li>Full-file rewrite per write and full-file load per read: simple and atomic, but linear cost.</li>
+    <li>No index, pagination, checksums, or backup rotation — documented in Limitations, not roadmap-vapor.</li>
+    <li>Embeddings bloat the JSON; vector search is linear scan over rows × dimensions.</li>
+  </ul>
+
+  <h2>Lessons</h2>
+  <p>~900 lines of stdlib suffice for the experiment — and the measurement matters more than the code. The benchmark table is the real deliverable: it tells you exactly where this design stops being viable, which is what makes the next design (indexes, WAL, pages) concrete instead of theoretical.</p>
+
+  <h2>Source</h2>
+  <p><a href="https://github.com/neuralbroker/neudb">github.com/neuralbroker/neudb</a> · <a href="../writing/why-i-built-neudb.html">engineering note</a></p>
+
+  <p class="back-link"><a href="../projects.html">← projects</a></p>
+</article>
+</main>
+
+<footer>
+  <p class="who">Sajad — Software Engineer</p>
+  <div class="social-links">
+    <a href="https://github.com/neuralbroker">github</a>
+    <a href="https://www.linkedin.com/in/abdullasajad">linkedin</a>
+    <a href="mailto:abdullasajad01@gmail.com">email</a>
+  </div>
+  <p>© <span id="year">2026</span> Sajad.</p>
+</footer>
+
+<script>
+(function(){var y=document.getElementById('year');if(y)y.textContent=new Date().getFullYear();})();
+document.getElementById('theme-toggle')?.addEventListener('click',function(){var el=document.documentElement;var t=el.getAttribute('data-theme')==='light'?'dark':'light';el.setAttribute('data-theme',t);try{localStorage.setItem('theme',t)}catch(e){}});
+</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#101010">
+<title>Lexora — async document/retrieval backend · Sajad</title>
+<meta name="description" content="Case study: FastAPI document processing and retrieval backend — PostgreSQL, Redis, background workers, auth, observability, testing.">
+<meta name="author" content="Abdulla Sajad">
+<link rel="canonical" href="https://neuralbroker.github.io/projects/lexora.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Abdulla Sajad">
+<meta property="og:title" content="Lexora — async document/retrieval backend">
+<meta property="og:description" content="Case study: FastAPI document processing and retrieval backend — PostgreSQL, Redis, background workers, auth, observability, testing.">
+<meta property="og:url" content="https://neuralbroker.github.io/projects/lexora.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lexora — async document/retrieval backend">
+<meta name="twitter:description" content="Case study: FastAPI document processing and retrieval backend — PostgreSQL, Redis, background workers, auth, observability, testing.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23101010'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-size='58' fill='%23e8e8e8' font-family='monospace'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header>
+  <div class="header-row">
+    <span class="site-title"><a href="../">sajad</a></span>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <span class="icon-sun">☀</span>
+      <span class="icon-moon">☾</span>
+    </button>
+  </div>
+  <div class="nav-row">
+    <a href="../projects.html">projects</a>
+    <a href="../writing.html">writing</a>
+    <a href="../now.html">now</a>
+    <a href="../resume.pdf">resume</a>
+  </div>
+</header>
+
+<main id="main">
+<article>
+  <p><a href="../projects.html">projects</a> / lexora</p>
+  <h1>Lexora</h1>
+  <p><em>Asynchronous document processing and retrieval backend.</em></p>
+  <p class="meta">Python · FastAPI · PostgreSQL · Redis · Celery · FAISS · Docker — 35 tests, CI — <a href="https://github.com/neuralbroker/lexora-ai">source</a></p>
+
+  <h2>Problem</h2>
+  <p>Small teams need grounded Q&amp;A over their own PDFs, text, Markdown, and Word files — without building retrieval, auth, and background processing from scratch. "RAG" is one component of that system; the backend around it is most of the work.</p>
+
+  <h2>Constraints</h2>
+  <ul>
+    <li>Uploads must be validated (type, size) before any processing starts.</li>
+    <li>Document processing must not block chat: same pipeline, inline or background.</li>
+    <li>One user's vectors must never leak into another user's answers.</li>
+  </ul>
+
+  <h2>Architecture</h2>
+  <pre>Client
+  ↓
+FastAPI (/api/v1: auth, documents, chat)
+  ↓
+PostgreSQL (users, documents, conversations, messages)
+  ↓
+Redis / Background Worker (retrieval cache, token blacklist, document jobs)
+  ↓
+Document Processing (validate → extract → chunk → embed → per-user FAISS)
+  ↓
+Retrieval (query embed → top-k → rank → context) → LLM (chat / stream)</pre>
+
+  <h2>Implementation</h2>
+  <p>JWT register/login/refresh/logout with a Redis-backed token blacklist for logout and rotation. Uploads go through type/size validation, then extraction (pypdf, python-docx), chunking, embedding, and per-user FAISS indexing — via the same <code>process_document</code> path in both inline and Celery modes. Chat answers through retrieval + LLM with SSE streaming and conversation history. Retrieval results cache for 1h under user-scoped keys. Non-streaming LLM calls retry 3× with exponential backoff; API routes carry request IDs and enforced per-IP rate limits (429 + <code>Retry-After</code>). Prometheus <code>/metrics</code>, structured JSON logs, <code>/health</code> + <code>/ready</code> (DB + Redis checks), Docker Compose for the full stack.</p>
+
+  <h2>Engineering decisions</h2>
+  <ul>
+    <li><strong>PostgreSQL for relational history</strong> with async SQLAlchemy pooling; SQLite only for tests.</li>
+    <li><strong>Redis for two jobs</strong> — retrieval cache and JWT revocation — not as a general dumping ground.</li>
+    <li><strong>Per-user FAISS isolation</strong> for simplicity, rebuilt on delete. Documented trade-off; pgvector is the planned replacement.</li>
+    <li><strong>Dead dependencies removed</strong> (Sentry SDK never wired, pymupdf never imported, Alembic with no migrations) rather than carried for keywords.</li>
+  </ul>
+
+  <h2>Challenges</h2>
+  <p>The README's own limitation list was the work queue: rate limiting configured but not enforced, no request IDs, LLM calls without retries. Each was closed with a mechanism plus a test — the reliability test file covers the limiter windows, the 429 contract, and a transient-failure-then-recovery LLM sequence. What remains open (streaming retries, idempotent uploads, FAISS→pgvector) stays listed as limitations, not silent gaps.</p>
+
+  <h2>Benchmarks</h2>
+  <p>Measured: 35 unit tests passing, ~49% coverage, and a deterministic retrieval recall probe (<code>scripts/eval_retrieval.py</code>) scoring 3/3 at top-3 — a keyword-recall floor over chunking that needs no API keys. Latency/throughput numbers (upload→processable, retrieval, chat, first-token) require PG + Redis + an OpenAI key and are not yet measured — so they are not cited.</p>
+
+  <h2>Trade-offs</h2>
+  <ul>
+    <li>FAISS per-user indexes are simple and isolated but rebuild on delete and don't scale like pgvector.</li>
+    <li>LangChain wrappers remain (direct OpenAI calls planned) — abstraction kept where it already works.</li>
+    <li>Rate limiting is single-replica in-memory; Redis sliding windows come with multi-replica deployment.</li>
+  </ul>
+
+  <h2>Lessons</h2>
+  <p>AI is a fraction of an AI product. Auth, validation, background processing, caching, revocation, rate limits, metrics, and tests are the system; retrieval quality is one input to it. An eval probe you can run offline beats a demo you can only run on stage.</p>
+
+  <h2>Source</h2>
+  <p><a href="https://github.com/neuralbroker/lexora-ai">github.com/neuralbroker/lexora-ai</a></p>
+
+  <p class="back-link"><a href="../projects.html">← projects</a></p>
+</article>
+</main>
+
+<footer>
+  <p class="who">Sajad — Software Engineer</p>
+  <div class="social-links">
+    <a href="https://github.com/neuralbroker">github</a>
+    <a href="https://www.linkedin.com/in/abdullasajad">linkedin</a>
+    <a href="mailto:abdullasajad01@gmail.com">email</a>
+  </div>
+  <p>© <span id="year">2026</span> Sajad.</p>
+</footer>
+
+<script>
+(function(){var y=document.getElementById('year');if(y)y.textContent=new Date().getFullYear();})();
+document.getElementById('theme-toggle')?.addEventListener('click',function(){var el=document.documentElement;var t=el.getAttribute('data-theme')==='light'?'dark':'light';el.setAttribute('data-theme',t);try{localStorage.setItem('theme',t)}catch(e){}});
+</script>
+</body>
+</html>

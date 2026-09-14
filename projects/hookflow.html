@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#101010">
+<title>HookFlow — reliable event delivery · Sajad</title>
+<meta name="description" content="Case study: persist-first webhook delivery with retries, idempotency, and a dead-letter queue. FastAPI, PostgreSQL, Redis.">
+<meta name="author" content="Abdulla Sajad">
+<link rel="canonical" href="https://neuralbroker.github.io/projects/hookflow.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Abdulla Sajad">
+<meta property="og:title" content="HookFlow — reliable event delivery">
+<meta property="og:description" content="Case study: persist-first webhook delivery with retries, idempotency, and a dead-letter queue.">
+<meta property="og:url" content="https://neuralbroker.github.io/projects/hookflow.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HookFlow — reliable event delivery">
+<meta name="twitter:description" content="Case study: persist-first webhook delivery with retries, idempotency, and a dead-letter queue.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23101010'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-size='58' fill='%23e8e8e8' font-family='monospace'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header>
+  <div class="header-row">
+    <span class="site-title"><a href="../">sajad</a></span>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <span class="icon-sun">☀</span>
+      <span class="icon-moon">☾</span>
+    </button>
+  </div>
+  <div class="nav-row">
+    <a href="../projects.html">projects</a>
+    <a href="../writing.html">writing</a>
+    <a href="../now.html">now</a>
+    <a href="../resume.pdf">resume</a>
+  </div>
+</header>
+
+<main id="main">
+<article>
+  <p><a href="../projects.html">projects</a> / hookflow</p>
+  <h1>HookFlow</h1>
+  <p><em>Reliable webhook and event delivery infrastructure.</em></p>
+  <p class="meta">Python · FastAPI · PostgreSQL · Redis · Docker · pytest — 17 tests, CI, Docker Compose — <a href="https://github.com/neuralbroker/hookflow">source</a></p>
+
+  <h2>Problem</h2>
+  <p>Customer webhook endpoints are flaky: timeouts, 5xx responses, deploys mid-delivery. Sending the POST inside the producer's request handler couples API latency to the customer's worst day — and a failed POST means a lost event.</p>
+
+  <h2>Constraints</h2>
+  <ul>
+    <li>One primary service, one database, one queue. No Kafka, no Kubernetes.</li>
+    <li>Redis is optional: the system must stay correct with plain database polling.</li>
+    <li>Receivers must be able to verify every delivery and safely retry it.</li>
+  </ul>
+
+  <h2>Architecture</h2>
+  <pre>Client
+  ↓ POST /v1/events (validate, Idempotency-Key)
+FastAPI (register endpoints, ingest, history)
+  ↓ persist first
+PostgreSQL (endpoints, events, deliveries)
+  ↓ notify (wake-up hint)
+Redis list ──→ Worker (polls due rows regardless)
+  ↓ sign + POST + timeout
+Customer webhook (verifies X-Hookflow-Signature)
+  ↓
+Delivery history + replay + /metrics + /v1/stats</pre>
+
+  <h2>Implementation</h2>
+  <p>Ingest validates (http(s) URL, JSON-serializable payload under 256KB), checks idempotency, then commits <code>Event + Delivery(status=queued)</code> in a single transaction before touching Redis. The worker signs each POST with per-endpoint HMAC-SHA256 (<code>X-Hookflow-Signature: sha256=…</code>), enforces a 10s timeout, and settles the row: success, retrying with backoff, or dead-letter after 5 attempts (1m → 5m → 30m → 2h → 12h). A replay endpoint resets dead-letter rows to queued; successes are not requeueable, since replaying one would duplicate a side effect at the receiver. Per-endpoint fixed-window rate limits, request IDs on every response, and Prometheus-text <code>/metrics</code> plus <code>/v1/stats</code> (queue depth by status) cover observability.</p>
+
+  <h2>Engineering decisions</h2>
+  <ul>
+    <li><strong>Persist before enqueue.</strong> An accepted event is never lost even if Redis drops the wake-up, because the worker polls due rows.</li>
+    <li><strong>At-least-once + idempotency keys</strong> instead of exactly-once claims. A <code>UNIQUE(endpoint_id, idempotency_key)</code> constraint plus an <code>IntegrityError</code> catch closes the race where two concurrent ingests both pass the app-level existence check — the loser returns the winner as deduplicated.</li>
+    <li><strong>Worker poll indexed</strong> on <code>(status, next_attempt_at)</code> so the 2s poll never full-scans.</li>
+    <li><strong>Observability without new dependencies</strong> — in-process counters, request-ID middleware, stats endpoint.</li>
+  </ul>
+
+  <h2>Challenges</h2>
+  <p>The idempotency race above was the sharpest edge: the app-level "does this key exist?" check is correct for sequential requests and wrong under concurrency. The UNIQUE constraint is the actual guarantee; the application code is the friendly path. Testing it meant driving two overlapping ingests rather than trusting the single-threaded test.</p>
+
+  <h2>Benchmarks</h2>
+  <p>Measured 2026-09-14 via <code>scripts/load_test.py</code> (TestClient + SQLite, single process — the ingest transaction, not production Postgres):</p>
+  <table>
+    <tr><th>Workload</th><th>RPS</th><th>p50</th><th>p95</th></tr>
+    <tr><td>500 events × 1KB</td><td>38.6</td><td>25.5ms</td><td>28.8ms</td></tr>
+    <tr><td>200 events × 10KB</td><td>37.7</td><td>25.8ms</td><td>29.0ms</td></tr>
+  </table>
+  <p>Payload size barely moves latency: the cost is the transaction, not the bytes. Postgres, concurrent, and worker-delivery numbers are not yet measured and are not cited.</p>
+
+  <h2>Trade-offs</h2>
+  <ul>
+    <li>Memory rate-limit/queue fallback is single-replica only — documented, not hidden.</li>
+    <li><code>create_all</code> instead of Alembic: acceptable for 3 tables with no alterations yet; migrations arrive with the first ALTER.</li>
+    <li>Secrets stored plaintext; no multi-tenant auth — endpoint secrets authenticate receivers, not producers. Per-tenant API keys are the next change.</li>
+  </ul>
+
+  <h2>Lessons</h2>
+  <p>Webhook delivery is a persistence problem, not a POST problem. The interesting work is all in the failure paths: what happens when the receiver is down, when Redis is down, when two producers race. Each got a mechanism (polling fallback, backoff + DLQ, UNIQUE constraint) plus a test.</p>
+
+  <h2>Source</h2>
+  <p><a href="https://github.com/neuralbroker/hookflow">github.com/neuralbroker/hookflow</a> · <a href="../writing/hookflow-persist-first.html">engineering note</a></p>
+
+  <p class="back-link"><a href="../projects.html">← projects</a></p>
+</article>
+</main>
+
+<footer>
+  <p class="who">Sajad — Software Engineer</p>
+  <div class="social-links">
+    <a href="https://github.com/neuralbroker">github</a>
+    <a href="https://www.linkedin.com/in/abdullasajad">linkedin</a>
+    <a href="mailto:abdullasajad01@gmail.com">email</a>
+  </div>
+  <p>© <span id="year">2026</span> Sajad.</p>
+</footer>
+
+<script>
+(function(){var y=document.getElementById('year');if(y)y.textContent=new Date().getFullYear();})();
+document.getElementById('theme-toggle')?.addEventListener('click',function(){var el=document.documentElement;var t=el.getAttribute('data-theme')==='light'?'dark':'light';el.setAttribute('data-theme',t);try{localStorage.setItem('theme',t)}catch(e){}});
+</script>
+</body>
+</html>

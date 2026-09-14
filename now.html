@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark light">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
-<title>Now · Abdulla Sajad</title>
-<meta name="description" content="Open to work and collaborate.">
+<meta name="theme-color" content="#101010">
+<title>Now · Sajad — Software Engineer</title>
+<meta name="description" content="What Sajad is working on now: backend engineering, HookFlow, Lexora.">
 <meta name="author" content="Abdulla Sajad">
 <link rel="canonical" href="https://neuralbroker.github.io/now.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Abdulla Sajad">
-<meta property="og:title" content="Now · Abdulla Sajad">
-<meta property="og:description" content="Open to work and collaborate.">
+<meta property="og:title" content="Now · Sajad — Software Engineer">
+<meta property="og:description" content="What Sajad is working on now.">
 <meta property="og:url" content="https://neuralbroker.github.io/now.html">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Now · Abdulla Sajad">
-<meta name="twitter:description" content="Open to work and collaborate.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23111'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-size='58' fill='%23fff' font-family='monospace'%3ES%3C/text%3E%3C/svg%3E">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Now · Sajad — Software Engineer">
+<meta name="twitter:description" content="What Sajad is working on now.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23101010'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-size='58' fill='%23e8e8e8' font-family='monospace'%3ES%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -27,7 +26,7 @@
 
 <header>
   <div class="header-row">
-    <span class="site-title"><a href="./">hey, I'm Sajad</a></span>
+    <span class="site-title"><a href="./">sajad</a></span>
     <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
       <span class="icon-sun">☀</span>
       <span class="icon-moon">☾</span>
@@ -43,32 +42,30 @@
 </header>
 
 <main id="main">
-<h2>Now</h2>
+<h1>Now</h1>
 <p class="page-lead">Sep 2026</p>
 
 <section>
-  <p>I am preparing for software engineering / backend roles.</p>
-  <p>Recently shipped <a href="https://github.com/neuralbroker/hookflow">HookFlow</a> (reliable webhook delivery) and brought <a href="https://github.com/neuralbroker/lexora-ai">Lexora</a> CI green. Current focus: backend engineering, data structures and algorithms, and reliable LLM application design.</p>
+  <p>Preparing for software engineering / backend roles.</p>
+  <p>Recently: shipped <a href="./projects/hookflow.html">HookFlow</a> (persist-first webhook delivery, 17 tests, measured ingest), hardened <a href="./projects/neudb.html">neuDB</a> (concurrency + recovery tests, benchmarks), and closed <a href="./projects/lexora.html">Lexora</a>'s reliability gaps (enforced rate limits, LLM retries, retrieval eval). Current focus: backend engineering, data structures and algorithms, and reliable LLM application design.</p>
+  <p>Contact: <a href="mailto:abdullasajad01@gmail.com">email</a> · <a href="https://github.com/neuralbroker">GitHub</a> · <a href="https://www.linkedin.com/in/abdullasajad">LinkedIn</a></p>
 </section>
 
 </main>
 
 <footer>
+  <p class="who">Sajad — Software Engineer</p>
   <div class="social-links">
     <a href="https://github.com/neuralbroker">github</a>
     <a href="https://www.linkedin.com/in/abdullasajad">linkedin</a>
-    <a href="https://huggingface.co/neuralbroker">huggingface</a>
     <a href="mailto:abdullasajad01@gmail.com">email</a>
   </div>
-  <p>© <span id="year">2026</span> Sajad. <a href="./">home</a></p>
+  <p>© <span id="year">2026</span> Sajad.</p>
 </footer>
 
 <script>
 (function(){var y=document.getElementById('year');if(y)y.textContent=new Date().getFullYear();})();
-document.getElementById('theme-toggle')?.addEventListener('click',function(){var t=document.documentElement.getAttribute('data-theme');document.documentElement.setAttribute('data-theme',t==='dark'?'light':'dark');localStorage.setItem('theme',document.documentElement.getAttribute('data-theme'))});
-</script>
-<script>
-(function(){document.documentElement.classList.add('js');var els=document.querySelectorAll('section,.project-entry,main > h2');if(!('IntersectionObserver' in window)){els.forEach(function(el){el.classList.add('revealed')});return}var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('revealed');io.unobserve(e.target)}})},{threshold:0.08});els.forEach(function(el){io.observe(el)})})();
+document.getElementById('theme-toggle')?.addEventListener('click',function(){var el=document.documentElement;var t=el.getAttribute('data-theme')==='light'?'dark':'light';el.setAttribute('data-theme',t);try{localStorage.setItem('theme',t)}catch(e){}});
 </script>
 </body>
 </html>
