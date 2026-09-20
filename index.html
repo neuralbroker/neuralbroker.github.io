@@ -5,13 +5,13 @@
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark light">
-<meta name="theme-color" content="#101010">
+<meta name="theme-color" content="#0B0D0C">
 <title>Sajad — Software Engineer</title>
 <meta name="description" content="Software engineer focused on backend systems, infrastructure, and applied AI.">
 <meta name="author" content="Abdulla Sajad">
 <link rel="canonical" href="https://neuralbroker.github.io/">
 <link rel="alternate" type="application/rss+xml" title="Abdulla Sajad" href="https://neuralbroker.github.io/feed.xml">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23101010'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-size='58' fill='%23e8e8e8' font-family='monospace'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="./style.css">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Abdulla Sajad">
@@ -44,7 +44,7 @@
 
 <header>
   <div class="header-row">
-    <span class="site-title"><a href="./">sajad</a></span>
+    <span class="site-title"><a href="./" aria-label="home"><span class="home-dim">~/</span>neuralbroker<span class="cursor" aria-hidden="true"></span></a></span>
     <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
       <span class="icon-sun">☀</span>
       <span class="icon-moon">☾</span>
@@ -62,44 +62,50 @@
 <section class="hero">
   <h1>Sajad</h1>
   <p class="role"><strong>Software Engineer</strong><br>Backend Systems · Infrastructure · Applied AI</p>
-  <p>I build backend systems, APIs, data services, and practical AI infrastructure.</p>
-  <p><a href="https://github.com/neuralbroker">GitHub</a> · <a href="https://www.linkedin.com/in/abdullasajad">LinkedIn</a></p>
-  <pre class="whoami" aria-label="shell style summary"><span class="prompt">$</span> whoami
-software engineer — backend systems, applied ai</pre>
+  <p class="lede">I build backend systems, APIs, data services, and practical AI infrastructure.</p>
+  <p class="contact-line"><a href="https://github.com/neuralbroker">GitHub</a> · <a href="https://www.linkedin.com/in/abdullasajad">LinkedIn</a></p>
+  <p class="status-line" aria-label="current status"><span class="status-label">status</span><span class="status-rule" aria-hidden="true">—</span><span class="status-item"><span class="dot" aria-hidden="true"></span>building</span><span class="status-item"><span class="dot amber" aria-hidden="true"></span>learning</span><span class="status-item"><span class="dot" aria-hidden="true"></span>shipping</span></p>
+  <pre class="whoami" aria-label="shell style summary"><span class="prompt">$ </span><span class="cmd">whoami</span>
+<span class="out">software engineer — backend systems, applied ai</span></pre>
 </section>
 
 <section>
   <h2>Selected work</h2>
   <ul class="projects">
     <li class="project-entry">
-      <h3 class="p-title"><span class="num">01</span><a href="./projects/hookflow.html">HookFlow</a></h3>
+      <p class="p-path" aria-hidden="true"><span class="num">01</span><span class="dir">~/projects/hookflow</span></p>
+      <h3 class="p-title"><a href="./projects/hookflow.html">HookFlow</a></h3>
       <p class="p-desc">Reliable webhook and event delivery infrastructure.</p>
       <ul class="p-tech"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Redis</li></ul>
-      <p class="p-links"><a href="./projects/hookflow.html">case study</a><a href="https://github.com/neuralbroker/hookflow">source</a></p>
+      <p class="p-links"><a href="./projects/hookflow.html"><span class="bracket">[</span>case study<span class="bracket">]</span></a><a href="https://github.com/neuralbroker/hookflow"><span class="bracket">[</span>source <span class="arrow" aria-hidden="true">→</span><span class="bracket">]</span></a></p>
     </li>
     <li class="project-entry">
-      <h3 class="p-title"><span class="num">02</span><a href="./projects/neudb.html">neuDB</a></h3>
+      <p class="p-path" aria-hidden="true"><span class="num">02</span><span class="dir">~/projects/neudb</span></p>
+      <h3 class="p-title"><a href="./projects/neudb.html">neuDB</a></h3>
       <p class="p-desc">Lightweight embedded database/storage engine.</p>
       <ul class="p-tech"><li>Python</li><li>Storage</li><li>Search</li></ul>
-      <p class="p-links"><a href="./projects/neudb.html">case study</a><a href="https://github.com/neuralbroker/neudb">source</a></p>
+      <p class="p-links"><a href="./projects/neudb.html"><span class="bracket">[</span>case study<span class="bracket">]</span></a><a href="https://github.com/neuralbroker/neudb"><span class="bracket">[</span>source <span class="arrow" aria-hidden="true">→</span><span class="bracket">]</span></a></p>
     </li>
     <li class="project-entry">
-      <h3 class="p-title"><span class="num">03</span><a href="./projects/lexora.html">Lexora</a></h3>
+      <p class="p-path" aria-hidden="true"><span class="num">03</span><span class="dir">~/projects/lexora</span></p>
+      <h3 class="p-title"><a href="./projects/lexora.html">Lexora</a></h3>
       <p class="p-desc">Asynchronous document processing and retrieval backend.</p>
       <ul class="p-tech"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Redis</li></ul>
-      <p class="p-links"><a href="./projects/lexora.html">case study</a><a href="https://github.com/neuralbroker/lexora-ai">source</a></p>
+      <p class="p-links"><a href="./projects/lexora.html"><span class="bracket">[</span>case study<span class="bracket">]</span></a><a href="https://github.com/neuralbroker/lexora-ai"><span class="bracket">[</span>source <span class="arrow" aria-hidden="true">→</span><span class="bracket">]</span></a></p>
     </li>
     <li class="project-entry">
-      <h3 class="p-title"><span class="num">04</span><a href="./projects/bugbee.html">Bugbee</a></h3>
+      <p class="p-path" aria-hidden="true"><span class="num">04</span><span class="dir">~/projects/bugbee</span></p>
+      <h3 class="p-title"><a href="./projects/bugbee.html">Bugbee</a></h3>
       <p class="p-desc">AI developer infrastructure: tools, context, verification.</p>
       <ul class="p-tech"><li>TypeScript</li><li>Bun</li><li>Agent systems</li></ul>
-      <p class="p-links"><a href="./projects/bugbee.html">case study</a><a href="https://github.com/neuralbroker/bugbee">source</a></p>
+      <p class="p-links"><a href="./projects/bugbee.html"><span class="bracket">[</span>case study<span class="bracket">]</span></a><a href="https://github.com/neuralbroker/bugbee"><span class="bracket">[</span>source <span class="arrow" aria-hidden="true">→</span><span class="bracket">]</span></a></p>
     </li>
     <li class="project-entry">
-      <h3 class="p-title"><span class="num">05</span><a href="./projects/esencelab.html">EsenceLab</a></h3>
+      <p class="p-path" aria-hidden="true"><span class="num">05</span><span class="dir">~/projects/esencelab</span></p>
+      <h3 class="p-title"><a href="./projects/esencelab.html">EsenceLab</a></h3>
       <p class="p-desc">Multi-service product engineering with auth and RBAC.</p>
       <ul class="p-tech"><li>TypeScript</li><li>Express</li><li>PostgreSQL</li></ul>
-      <p class="p-links"><a href="./projects/esencelab.html">case study</a><a href="https://github.com/neuralbroker/esencelab">source</a></p>
+      <p class="p-links"><a href="./projects/esencelab.html"><span class="bracket">[</span>case study<span class="bracket">]</span></a><a href="https://github.com/neuralbroker/esencelab"><span class="bracket">[</span>source <span class="arrow" aria-hidden="true">→</span><span class="bracket">]</span></a></p>
     </li>
   </ul>
 </section>
@@ -107,8 +113,8 @@ software engineer — backend systems, applied ai</pre>
 <section>
   <h2>Engineering notes</h2>
   <ul class="posts">
-    <li><time datetime="2026-09-14">14 Sep 2026</time><span><a href="./writing/hookflow-persist-first.html">HookFlow: accept first, deliver later</a><span class="post-desc">Why webhook delivery is a persistence problem, not a POST problem.</span></span></li>
-    <li><time datetime="2026-07-24">24 Jul 2026</time><span><a href="./writing/why-i-built-neudb.html">Why I built neuDB</a><span class="post-desc">Persistence, failure handling, and what a storage experiment teaches.</span></span></li>
+    <li><time datetime="2026-09-14">14 Sep 2026</time><span class="log-id" aria-hidden="true">[01]</span><span class="log-body"><a href="./writing/hookflow-persist-first.html">HookFlow: accept first, deliver later</a><span class="post-desc">Why webhook delivery is a persistence problem, not a POST problem.</span></span></li>
+    <li><time datetime="2026-07-24">24 Jul 2026</time><span class="log-id" aria-hidden="true">[02]</span><span class="log-body"><a href="./writing/why-i-built-neudb.html">Why I built neuDB</a><span class="post-desc">Persistence, failure handling, and what a storage experiment teaches.</span></span></li>
   </ul>
 </section>
 
@@ -120,23 +126,33 @@ software engineer — backend systems, applied ai</pre>
     <li><span class="k">core</span> Python · SQL · FastAPI · PostgreSQL · Redis · Docker · Linux · Git · AWS</li>
     <li><span class="k">areas</span> APIs · async processing · distributed systems · observability · applied AI</li>
   </ul>
+  <aside class="sysblock" aria-label="system information">
+    <p class="sysblock-title">system</p>
+    <p class="sysblock-rule" aria-hidden="true">────────────────────</p>
+    <dl>
+      <dt>os</dt><dd>Linux</dd>
+      <dt>lang</dt><dd>Python <span class="sep">/</span> TypeScript</dd>
+      <dt>stack</dt><dd>FastAPI <span class="sep">/</span> PostgreSQL <span class="sep">/</span> Redis</dd>
+      <dt>status</dt><dd>building things</dd>
+    </dl>
+  </aside>
   <p class="meta">github.com/neuralbroker · <a href="./now.html">now</a></p>
 </section>
 </main>
 
 <footer>
-  <p class="who">Sajad — Software Engineer</p>
+  <p class="who">sajad<span class="at">@</span>neuralbroker</p>
   <div class="social-links">
     <a href="https://github.com/neuralbroker">github</a>
     <a href="https://www.linkedin.com/in/abdullasajad">linkedin</a>
     <a href="mailto:abdullasajad01@gmail.com">email</a>
   </div>
-  <p>© <span id="year">2026</span> Sajad.</p>
+  <div class="fine"><p>© <span id="year">2026</span> Sajad</p><span class="eof" aria-hidden="true">· EOF</span></div>
+<!-- $ sudo rm -rf /regrets
+     permission denied.
+     good. -->
 </footer>
 
-<script>
-(function(){var y=document.getElementById('year');if(y)y.textContent=new Date().getFullYear();})();
-document.getElementById('theme-toggle')?.addEventListener('click',function(){var el=document.documentElement;var t=el.getAttribute('data-theme')==='light'?'dark':'light';el.setAttribute('data-theme',t);try{localStorage.setItem('theme',t)}catch(e){}});
-</script>
+<script src="./script.js" defer></script>
 </body>
 </html>
