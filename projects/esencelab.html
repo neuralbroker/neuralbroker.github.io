@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="dark light">
-<meta name="theme-color" content="#0B0D0C">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#fdfdfa">
 <title>EsenceLab — multi-service product backend · Sajad</title>
 <meta name="description" content="Case study: Express API with JWT and RBAC, FastAPI AI service, Next.js frontend, Supabase PostgreSQL — and splitting a 6K-line monolith.">
 <meta name="author" content="Abdulla Sajad">
@@ -24,34 +23,24 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="site-header">
-  <div class="wrap header-in">
-    <span class="site-title"><a href="../" aria-label="home"><span class="home-dim">~/</span>neuralbroker<span class="cursor" aria-hidden="true"></span></a></span>
-    <input class="nav-check" type="checkbox" id="nav-toggle" aria-label="Toggle navigation">
-    <div class="header-actions">
-      <label class="menu-btn" for="nav-toggle"><span class="menu-open">[menu]</span><span class="menu-close">[close]</span></label>
-      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-        <span class="icon-sun">☀</span>
-        <span class="icon-moon">☾</span>
-      </button>
-    </div>
-    <nav class="site-nav" aria-label="Primary">
-      <a href="../projects.html">work</a>
-      <a href="../writing.html">writing</a>
-      <a href="../now.html">now</a>
-      <a href="../#about">about</a>
-      <a href="../resume.pdf">resume</a>
-    </nav>
-  </div>
+<header>
+  <p class="site-title"><a href="../">Sajad</a></p>
+  <nav aria-label="Primary">
+    <a href="../projects.html">Projects</a>
+    <a href="../writing.html">Writing</a>
+    <a href="../now.html">Now</a>
+  </nav>
 </header>
 
+
+
 <main id="main">
-<div class="wrap page-main">
+<div>
 <article>
   <p class="breadcrumb"><a href="../projects.html">projects</a> / esencelab</p>
   <h1>EsenceLab</h1>
   <p><em>Multi-service product system: TypeScript API with authentication and RBAC, Python AI service, PostgreSQL.</em></p>
-  <p class="meta">TypeScript · Express · Next.js · Python FastAPI · Supabase PostgreSQL · Docker — RBAC suite, CI — <a href="https://github.com/neuralbroker/esencelab">source</a></p>
+  <p class="metaline">TypeScript · Express · Next.js · Python FastAPI · Supabase PostgreSQL · Docker — RBAC suite, CI — <a href="https://github.com/neuralbroker/esencelab">source</a></p>
 
   <h2>Problem</h2>
   <p>Students can't map resumes to skill gaps, recruiters screen manually, admins lack one control surface. The engineering problem underneath: three deployables (web, API, AI service) with clear boundaries — auth, role-gated onboarding, resume parsing, job matching — sharing one data model.</p>
@@ -105,22 +94,13 @@ AI service (FastAPI: /ai/parse-resume, /ai/match)</pre>
   <p class="back-link"><a href="../projects.html">← projects</a></p>
 </article>
 </div>
-</main>
+  </main>
 
-<footer>
-  <div class="wrap footer-in">
-    <p class="who"><span class="home-dim">~/</span>neuralbroker</p>
-    <div class="social-links">
-      <a href="https://github.com/neuralbroker">github</a>
-      <a href="https://www.linkedin.com/in/abdullasajad">linkedin</a>
-      <a href="../resume.pdf">resume</a>
-    </div>
-    <div class="fine"><p>© <span id="year">2026</span> Sajad</p><span class="eof" aria-hidden="true">· EOF</span></div>
-  </div>
-<!-- $ sudo rm -rf /regrets
-     permission denied.
-     good. -->
+  <footer>
+  <p>© <span id="year">2026</span> Sajad · <a href="https://github.com/neuralbroker">GitHub</a> · <a href="https://www.linkedin.com/in/abdullasajad">LinkedIn</a></p>
 </footer>
+
+
 
 <script src="../script.js" defer></script>
 </body>

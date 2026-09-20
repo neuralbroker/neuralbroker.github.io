@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="dark light">
-<meta name="theme-color" content="#0B0D0C">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#fdfdfa">
 <title>Projects · Sajad — Software Engineer</title>
 <meta name="description" content="Selected backend systems and applied AI work: HookFlow, neuDB, Lexora, Bugbee, EsenceLab.">
 <meta name="author" content="Abdulla Sajad">
@@ -24,97 +23,59 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="site-header">
-  <div class="wrap header-in">
-    <span class="site-title"><a href="./" aria-label="home"><span class="home-dim">~/</span>neuralbroker<span class="cursor" aria-hidden="true"></span></a></span>
-    <input class="nav-check" type="checkbox" id="nav-toggle" aria-label="Toggle navigation">
-    <div class="header-actions">
-      <label class="menu-btn" for="nav-toggle"><span class="menu-open">[menu]</span><span class="menu-close">[close]</span></label>
-      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-        <span class="icon-sun">☀</span>
-        <span class="icon-moon">☾</span>
-      </button>
-    </div>
-    <nav class="site-nav" aria-label="Primary">
-      <a href="./projects.html">work</a>
-      <a href="./writing.html">writing</a>
-      <a href="./now.html">now</a>
-      <a href="./#about">about</a>
-      <a href="./resume.pdf">resume</a>
-    </nav>
-  </div>
+<header>
+  <p class="site-title"><a href="./">Sajad</a></p>
+  <nav aria-label="Primary">
+    <a href="./projects.html">Projects</a>
+    <a href="./writing.html">Writing</a>
+    <a href="./now.html">Now</a>
+  </nav>
 </header>
 
+
+
 <main id="main">
-<div class="wrap page-main">
 <h1>Projects</h1>
 
-<p class="page-lead">Five projects: backend reliability, storage systems, backend + AI, agent systems, and product engineering. Each has a case study; GitHub has the proof.</p>
+<p>Five projects: backend reliability, storage systems, backend + AI, agent systems, and product engineering. Each has a case study; GitHub has the proof.</p>
 
-<ul class="projects">
-  <li class="project" id="hookflow">
-      <span class="p-no" aria-hidden="true">01</span>
-      <div class="p-main">
-        <h3 class="p-name"><a href="./projects/hookflow.html">HookFlow</a></h3>
-        <p class="p-desc">Reliable webhook and event delivery infrastructure. Persist-first ingest, HMAC-signed retries, DB-enforced idempotency, dead-letter queue with replay. 17 tests, measured 39 rps / p95 29ms ingest.</p>
-        <ul class="p-tech"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Redis</li></ul>
-      </div>
-      <p class="p-links"><a href="./projects/hookflow.html">case study <span class="arrow" aria-hidden="true">→</span></a><a href="https://github.com/neuralbroker/hookflow">source <span class="arrow" aria-hidden="true">→</span></a></p>
-    </li>
-  <li class="project" id="neudb">
-      <span class="p-no" aria-hidden="true">02</span>
-      <div class="p-main">
-        <h3 class="p-name"><a href="./projects/neudb.html">neuDB</a></h3>
-        <p class="p-desc">Lightweight embedded Python storage experiment: JSON tables, atomic writes, thread-safe access, corruption-safe loads, search. 32 tests, measured 138 inserts/s at 2K rows.</p>
-        <ul class="p-tech"><li>Python</li><li>Storage</li><li>Search</li></ul>
-      </div>
-      <p class="p-links"><a href="./projects/neudb.html">case study <span class="arrow" aria-hidden="true">→</span></a><a href="https://github.com/neuralbroker/neudb">source <span class="arrow" aria-hidden="true">→</span></a><a href="https://pypi.org/project/neudb/">pypi <span class="arrow" aria-hidden="true">→</span></a></p>
-    </li>
-  <li class="project" id="lexora">
-      <span class="p-no" aria-hidden="true">03</span>
-      <div class="p-main">
-        <h3 class="p-name"><a href="./projects/lexora.html">Lexora</a></h3>
-        <p class="p-desc">Asynchronous document processing and retrieval backend. Validated uploads, JWT auth, enforced rate limits, retried LLM calls, cached retrieval, streaming chat. 35 tests.</p>
-        <ul class="p-tech"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Redis</li></ul>
-      </div>
-      <p class="p-links"><a href="./projects/lexora.html">case study <span class="arrow" aria-hidden="true">→</span></a><a href="https://github.com/neuralbroker/lexora-ai">source <span class="arrow" aria-hidden="true">→</span></a></p>
-    </li>
-  <li class="project" id="bugbee">
-      <span class="p-no" aria-hidden="true">04</span>
-      <div class="p-main">
-        <h3 class="p-name"><a href="./projects/bugbee.html">Bugbee</a></h3>
-        <p class="p-desc">AI developer infrastructure: permission-scoped agent modes, tool execution, persistent context, opt-in verification. Original layer: Superharness.</p>
-        <ul class="p-tech"><li>TypeScript</li><li>Bun</li><li>Agent systems</li></ul>
-      </div>
-      <p class="p-links"><a href="./projects/bugbee.html">case study <span class="arrow" aria-hidden="true">→</span></a><a href="https://github.com/neuralbroker/bugbee">source <span class="arrow" aria-hidden="true">→</span></a></p>
-    </li>
-  <li class="project" id="esencelab">
-      <span class="p-no" aria-hidden="true">05</span>
-      <div class="p-main">
-        <h3 class="p-name"><a href="./projects/esencelab.html">EsenceLab</a></h3>
-        <p class="p-desc">Multi-service product backend: Express API with JWT + RBAC, FastAPI AI service, Next.js, Supabase PostgreSQL. Monolith-to-modules split in progress.</p>
-        <ul class="p-tech"><li>TypeScript</li><li>Express</li><li>PostgreSQL</li></ul>
-      </div>
-      <p class="p-links"><a href="./projects/esencelab.html">case study <span class="arrow" aria-hidden="true">→</span></a><a href="https://github.com/neuralbroker/esencelab">source <span class="arrow" aria-hidden="true">→</span></a></p>
-    </li>
-</ul>
-</div>
-</main>
+  <article>
+  <h3><a href="./projects/hookflow.html">HookFlow</a></h3>
+<p>Reliable webhook and event delivery infrastructure. Persist-first ingest, HMAC-signed retries, DB-enforced idempotency, dead-letter queue with replay. 17 tests, measured 39 rps / p95 29ms ingest.</p>
+<p class="small muted">Python / FastAPI / PostgreSQL / Redis</p>
+<p><a href="./projects/hookflow.html">Case study</a> · <a href="https://github.com/neuralbroker/hookflow">Source</a></p>
+</article>
+  <article>
+  <h3><a href="./projects/neudb.html">neuDB</a></h3>
+<p>Lightweight embedded Python storage experiment: JSON tables, atomic writes, thread-safe access, corruption-safe loads, search. 32 tests, measured 138 inserts/s at 2K rows.</p>
+<p class="small muted">Python / Storage / Search</p>
+<p><a href="./projects/neudb.html">Case study</a> · <a href="https://github.com/neuralbroker/neudb">Source</a> · <a href="https://pypi.org/project/neudb/">PyPI</a></p>
+</article>
+  <article>
+  <h3><a href="./projects/lexora.html">Lexora</a></h3>
+<p>Asynchronous document processing and retrieval backend. Validated uploads, JWT auth, enforced rate limits, retried LLM calls, cached retrieval, streaming chat. 35 tests.</p>
+<p class="small muted">Python / FastAPI / PostgreSQL / Redis</p>
+<p><a href="./projects/lexora.html">Case study</a> · <a href="https://github.com/neuralbroker/lexora-ai">Source</a></p>
+</article>
+  <article>
+  <h3><a href="./projects/bugbee.html">Bugbee</a></h3>
+<p>AI developer infrastructure: permission-scoped agent modes, tool execution, persistent context, opt-in verification. Original layer: Superharness.</p>
+<p class="small muted">TypeScript / Bun / Agent systems</p>
+<p><a href="./projects/bugbee.html">Case study</a> · <a href="https://github.com/neuralbroker/bugbee">Source</a></p>
+</article>
+  <article>
+  <h3><a href="./projects/esencelab.html">EsenceLab</a></h3>
+<p>Multi-service product backend: Express API with JWT + RBAC, FastAPI AI service, Next.js, Supabase PostgreSQL. Monolith-to-modules split in progress.</p>
+<p class="small muted">TypeScript / Express / PostgreSQL</p>
+<p><a href="./projects/esencelab.html">Case study</a> · <a href="https://github.com/neuralbroker/esencelab">Source</a></p>
+</article>
+  </main>
 
-<footer>
-  <div class="wrap footer-in">
-    <p class="who"><span class="home-dim">~/</span>neuralbroker</p>
-    <div class="social-links">
-      <a href="https://github.com/neuralbroker">github</a>
-      <a href="https://www.linkedin.com/in/abdullasajad">linkedin</a>
-      <a href="./resume.pdf">resume</a>
-    </div>
-    <div class="fine"><p>© <span id="year">2026</span> Sajad</p><span class="eof" aria-hidden="true">· EOF</span></div>
-  </div>
-<!-- $ sudo rm -rf /regrets
-     permission denied.
-     good. -->
+  <footer>
+  <p>© <span id="year">2026</span> Sajad · <a href="https://github.com/neuralbroker">GitHub</a> · <a href="https://www.linkedin.com/in/abdullasajad">LinkedIn</a></p>
 </footer>
+
+
 
 <script src="./script.js" defer></script>
 </body>

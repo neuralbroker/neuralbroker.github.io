@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="dark light">
-<meta name="theme-color" content="#0B0D0C">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#fdfdfa">
 <title>Bugbee — AI developer infrastructure · Sajad</title>
 <meta name="description" content="Case study: permission-scoped agent runs with tool execution, persistent context, and opt-in verification. TypeScript, Bun.">
 <meta name="author" content="Abdulla Sajad">
@@ -24,34 +23,24 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header class="site-header">
-  <div class="wrap header-in">
-    <span class="site-title"><a href="../" aria-label="home"><span class="home-dim">~/</span>neuralbroker<span class="cursor" aria-hidden="true"></span></a></span>
-    <input class="nav-check" type="checkbox" id="nav-toggle" aria-label="Toggle navigation">
-    <div class="header-actions">
-      <label class="menu-btn" for="nav-toggle"><span class="menu-open">[menu]</span><span class="menu-close">[close]</span></label>
-      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-        <span class="icon-sun">☀</span>
-        <span class="icon-moon">☾</span>
-      </button>
-    </div>
-    <nav class="site-nav" aria-label="Primary">
-      <a href="../projects.html">work</a>
-      <a href="../writing.html">writing</a>
-      <a href="../now.html">now</a>
-      <a href="../#about">about</a>
-      <a href="../resume.pdf">resume</a>
-    </nav>
-  </div>
+<header>
+  <p class="site-title"><a href="../">Sajad</a></p>
+  <nav aria-label="Primary">
+    <a href="../projects.html">Projects</a>
+    <a href="../writing.html">Writing</a>
+    <a href="../now.html">Now</a>
+  </nav>
 </header>
 
+
+
 <main id="main">
-<div class="wrap page-main">
+<div>
 <article>
   <p class="breadcrumb"><a href="../projects.html">projects</a> / bugbee</p>
   <h1>Bugbee</h1>
   <p><em>AI developer infrastructure for coding, tool execution, persistent project context, and verification.</em></p>
-  <p class="meta">TypeScript · Bun · SQLite · Effect — original layer: Superharness (~350 lines) — <a href="https://github.com/neuralbroker/bugbee">source</a></p>
+  <p class="metaline">TypeScript · Bun · SQLite · Effect — original layer: Superharness (~350 lines) — <a href="https://github.com/neuralbroker/bugbee">source</a></p>
   <p>Attribution first: Bugbee's shells (TUI, desktop, providers) are carried over from <a href="https://github.com/anomalyco/opencode">anomalyco/opencode</a> under MIT (see <code>NOTICE</code>). My original work is the Superharness runtime layer: <code>packages/bugbee/src/harness/</code>, documented in <code>docs/ARCHITECTURE.md</code> and <code>docs/CONFIG.md</code>.</p>
 
   <h2>Problem</h2>
@@ -110,22 +99,13 @@ Persistent Context (memory files + trace.jsonl + compaction epochs)</pre>
   <p class="back-link"><a href="../projects.html">← projects</a></p>
 </article>
 </div>
-</main>
+  </main>
 
-<footer>
-  <div class="wrap footer-in">
-    <p class="who"><span class="home-dim">~/</span>neuralbroker</p>
-    <div class="social-links">
-      <a href="https://github.com/neuralbroker">github</a>
-      <a href="https://www.linkedin.com/in/abdullasajad">linkedin</a>
-      <a href="../resume.pdf">resume</a>
-    </div>
-    <div class="fine"><p>© <span id="year">2026</span> Sajad</p><span class="eof" aria-hidden="true">· EOF</span></div>
-  </div>
-<!-- $ sudo rm -rf /regrets
-     permission denied.
-     good. -->
+  <footer>
+  <p>© <span id="year">2026</span> Sajad · <a href="https://github.com/neuralbroker">GitHub</a> · <a href="https://www.linkedin.com/in/abdullasajad">LinkedIn</a></p>
 </footer>
+
+
 
 <script src="../script.js" defer></script>
 </body>
