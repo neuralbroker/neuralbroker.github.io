@@ -13,6 +13,19 @@ document.getElementById('theme-toggle')?.addEventListener('click', function () {
   try { localStorage.setItem('theme', t); } catch (e) {}
 });
 
+/* Mobile nav (checkbox-driven, works without JS): close on Escape or link tap. */
+(function () {
+  var navCheck = document.getElementById('nav-toggle');
+  if (!navCheck) return;
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && navCheck.checked) navCheck.checked = false;
+  });
+  var links = document.querySelectorAll('.site-nav a');
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener('click', function () { navCheck.checked = false; });
+  }
+})();
+
 try {
   console.log(
     '%c$ sudo rm -rf /regrets\n%cpermission denied.\n\ngood.',

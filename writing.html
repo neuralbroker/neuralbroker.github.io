@@ -25,42 +25,50 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<header>
-  <div class="header-row">
+<header class="site-header">
+  <div class="wrap header-in">
     <span class="site-title"><a href="./" aria-label="home"><span class="home-dim">~/</span>neuralbroker<span class="cursor" aria-hidden="true"></span></a></span>
-    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-      <span class="icon-sun">☀</span>
-      <span class="icon-moon">☾</span>
-    </button>
-  </div>
-  <div class="nav-row">
-    <a href="./">home</a>
-    <a href="./projects.html">projects</a>
-    <a href="./writing.html">writing</a>
-    <a href="./now.html">now</a>
-    <a href="./resume.pdf">resume</a>
+    <input class="nav-check" type="checkbox" id="nav-toggle" aria-label="Toggle navigation">
+    <div class="header-actions">
+      <label class="menu-btn" for="nav-toggle"><span class="menu-open">[menu]</span><span class="menu-close">[close]</span></label>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <span class="icon-sun">☀</span>
+        <span class="icon-moon">☾</span>
+      </button>
+    </div>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="./projects.html">work</a>
+      <a href="./writing.html">writing</a>
+      <a href="./now.html">now</a>
+      <a href="./#about">about</a>
+      <a href="./resume.pdf">resume</a>
+    </nav>
   </div>
 </header>
 
 <main id="main">
+<div class="wrap page-main">
 <h1>Engineering notes</h1>
 
 <p class="page-lead">Notes on things I actually built — decisions, failures, measurements. No tutorials, no hype.</p>
 
 <ul class="posts">
-  <li><time datetime="2026-09-14">14 Sep 2026</time><span class="log-id" aria-hidden="true">[01]</span><span class="log-body"><a href="./writing/hookflow-persist-first.html">HookFlow: accept first, deliver later</a><span class="post-desc">Why webhook delivery is a persistence problem, not a POST problem.</span></span></li>
-  <li><time datetime="2026-07-24">24 Jul 2026</time><span class="log-id" aria-hidden="true">[02]</span><span class="log-body"><a href="./writing/why-i-built-neudb.html">Why I built neuDB</a><span class="post-desc">Persistence, failure handling, and what a storage experiment teaches.</span></span></li>
+  <li><time datetime="2026-09-14">14 Sep 2026</time><span class="log-body"><a href="./writing/hookflow-persist-first.html">HookFlow: accept first, deliver later</a><span class="post-desc">Why webhook delivery is a persistence problem, not a POST problem.</span></span></li>
+  <li><time datetime="2026-07-24">24 Jul 2026</time><span class="log-body"><a href="./writing/why-i-built-neudb.html">Why I built neuDB</a><span class="post-desc">Persistence, failure handling, and what a storage experiment teaches.</span></span></li>
 </ul>
+</div>
 </main>
 
 <footer>
-  <p class="who">sajad<span class="at">@</span>neuralbroker</p>
-  <div class="social-links">
-    <a href="https://github.com/neuralbroker">github</a>
-    <a href="https://www.linkedin.com/in/abdullasajad">linkedin</a>
-    <a href="mailto:abdullasajad01@gmail.com">email</a>
+  <div class="wrap footer-in">
+    <p class="who"><span class="home-dim">~/</span>neuralbroker</p>
+    <div class="social-links">
+      <a href="https://github.com/neuralbroker">github</a>
+      <a href="https://www.linkedin.com/in/abdullasajad">linkedin</a>
+      <a href="./resume.pdf">resume</a>
+    </div>
+    <div class="fine"><p>© <span id="year">2026</span> Sajad</p><span class="eof" aria-hidden="true">· EOF</span></div>
   </div>
-  <div class="fine"><p>© <span id="year">2026</span> Sajad</p><span class="eof" aria-hidden="true">· EOF</span></div>
 <!-- $ sudo rm -rf /regrets
      permission denied.
      good. -->
