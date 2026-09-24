@@ -4,19 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#fdfdfa">
+<meta name="theme-color" content="#121212">
 <title>Projects · Sajad — Software Engineer</title>
-<meta name="description" content="Selected backend systems and applied AI work: HookFlow, neuDB, Lexora, Bugbee, EsenceLab.">
+<meta name="description" content="Things I've built: HookFlow, neuDB, Lexora, Bugbee, EsenceLab.">
 <meta name="author" content="Abdulla Sajad">
 <link rel="canonical" href="https://neuralbroker.github.io/projects.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Abdulla Sajad">
 <meta property="og:title" content="Projects · Sajad — Software Engineer">
-<meta property="og:description" content="Selected backend systems and applied AI work: HookFlow, neuDB, Lexora, Bugbee, EsenceLab.">
+<meta property="og:description" content="Things I've built recently, with write-ups and source code.">
 <meta property="og:url" content="https://neuralbroker.github.io/projects.html">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Projects · Sajad — Software Engineer">
-<meta name="twitter:description" content="Selected backend systems and applied AI work: HookFlow, neuDB, Lexora, Bugbee, EsenceLab.">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="./style.css">
 </head>
@@ -32,50 +30,46 @@
   </nav>
 </header>
 
-
-
 <main id="main">
 <h1>Projects</h1>
 
-<p>Five projects: backend reliability, storage systems, backend + AI, agent systems, and product engineering. Each has a case study; GitHub has the proof.</p>
+<p>Things I've built recently. Each one has a short write-up, and the code is on GitHub.</p>
 
   <article>
   <h3><a href="./projects/hookflow.html">HookFlow</a></h3>
-<p>Reliable webhook and event delivery infrastructure. Persist-first ingest, HMAC-signed retries, DB-enforced idempotency, dead-letter queue with replay. 17 tests, measured 39 rps / p95 29ms ingest.</p>
-<p class="small muted">Python / FastAPI / PostgreSQL / Redis</p>
-<p><a href="./projects/hookflow.html">Case study</a> · <a href="https://github.com/neuralbroker/hookflow">Source</a></p>
+<p>I needed reliable webhook delivery without running Kafka, so I built it around Postgres: save the event first, then let a worker retry it with backoff until it lands or goes to a dead-letter queue. Has tests and some rough load numbers.</p>
+<p class="small muted">Python, FastAPI, PostgreSQL, Redis</p>
+<p><a href="./projects/hookflow.html">Write-up</a> · <a href="https://github.com/neuralbroker/hookflow">Source</a></p>
 </article>
   <article>
   <h3><a href="./projects/neudb.html">neuDB</a></h3>
-<p>Lightweight embedded Python storage experiment: JSON tables, atomic writes, thread-safe access, corruption-safe loads, search. 32 tests, measured 138 inserts/s at 2K rows.</p>
-<p class="small muted">Python / Storage / Search</p>
-<p><a href="./projects/neudb.html">Case study</a> · <a href="https://github.com/neuralbroker/neudb">Source</a> · <a href="https://pypi.org/project/neudb/">PyPI</a></p>
+<p>A tiny embedded database in stdlib-only Python. One JSON file per table, atomic writes, thread locks, and a lot of honesty about what it can't do. I use it to think through persistence and recovery.</p>
+<p class="small muted">Python</p>
+<p><a href="./projects/neudb.html">Write-up</a> · <a href="https://github.com/neuralbroker/neudb">Source</a> · <a href="https://pypi.org/project/neudb/">PyPI</a></p>
 </article>
   <article>
   <h3><a href="./projects/lexora.html">Lexora</a></h3>
-<p>Asynchronous document processing and retrieval backend. Validated uploads, JWT auth, enforced rate limits, retried LLM calls, cached retrieval, streaming chat. 35 tests.</p>
-<p class="small muted">Python / FastAPI / PostgreSQL / Redis</p>
-<p><a href="./projects/lexora.html">Case study</a> · <a href="https://github.com/neuralbroker/lexora-ai">Source</a></p>
+<p>Upload documents, process them in the background, ask questions over them. The interesting part wasn't the LLM call — it was auth, validation, rate limits, caching, and retries around it.</p>
+<p class="small muted">Python, FastAPI, PostgreSQL, Redis</p>
+<p><a href="./projects/lexora.html">Write-up</a> · <a href="https://github.com/neuralbroker/lexora-ai">Source</a></p>
 </article>
   <article>
   <h3><a href="./projects/bugbee.html">Bugbee</a></h3>
-<p>AI developer infrastructure: permission-scoped agent modes, tool execution, persistent context, opt-in verification. Original layer: Superharness.</p>
-<p class="small muted">TypeScript / Bun / Agent systems</p>
-<p><a href="./projects/bugbee.html">Case study</a> · <a href="https://github.com/neuralbroker/bugbee">Source</a></p>
+<p>Tooling for working with coding agents: scoped permissions, persistent context, and optional checks before you trust the output. TypeScript side of my work.</p>
+<p class="small muted">TypeScript, Bun</p>
+<p><a href="./projects/bugbee.html">Write-up</a> · <a href="https://github.com/neuralbroker/bugbee">Source</a></p>
 </article>
   <article>
   <h3><a href="./projects/esencelab.html">EsenceLab</a></h3>
-<p>Multi-service product backend: Express API with JWT + RBAC, FastAPI AI service, Next.js, Supabase PostgreSQL. Monolith-to-modules split in progress.</p>
-<p class="small muted">TypeScript / Express / PostgreSQL</p>
-<p><a href="./projects/esencelab.html">Case study</a> · <a href="https://github.com/neuralbroker/esencelab">Source</a></p>
+<p>A multi-service project I picked up along the way: an Express API with roles, a small FastAPI AI service, and a frontend on top. Still untangling parts of it.</p>
+<p class="small muted">TypeScript, Express, PostgreSQL</p>
+<p><a href="./projects/esencelab.html">Write-up</a> · <a href="https://github.com/neuralbroker/esencelab">Source</a></p>
 </article>
   </main>
 
   <footer>
   <p>© <span id="year">2026</span> Sajad · <a href="https://github.com/neuralbroker">GitHub</a> · <a href="https://www.linkedin.com/in/abdullasajad">LinkedIn</a></p>
 </footer>
-
-
 
 <script src="./script.js" defer></script>
 </body>
